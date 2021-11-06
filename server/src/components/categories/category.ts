@@ -1,3 +1,4 @@
+import { NextFunction } from 'express';
 import { Schema, model, ObjectId, Document } from 'mongoose';
 import slugify from 'slugify';
 
@@ -6,9 +7,9 @@ const ObjectId = Schema.Types.ObjectId;
 export interface ICategory extends Document {
   name: string;
   image?: string;
-  parent: ICategory['_id'];
+  parent: ICategory['_id'] | null;
   slug: string;
-  descendents: [{ _id: ICategory['_id']; name: string; image?: string; slug: string }];
+  descendents: [{ _id: ICategory['_id']; name: string; image?: string; slug: string }] | [];
 }
 
 const categorySchema = new Schema<ICategory>({
@@ -34,8 +35,9 @@ const categorySchema = new Schema<ICategory>({
   ],
 });
 
-categorySchema.pre('save', function (this: ICategory) {
+categorySchema.pre('validate', function (this: ICategory, next: NextFunction) {
   this.slug = slugify(this.name);
+  next();
 });
 
 export default model<ICategory>('Category', categorySchema);

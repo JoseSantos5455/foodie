@@ -5,7 +5,7 @@ import productService from './productsService';
 class ProductController {
   async addProduct(req: Request, res: Response, next: NextFunction) {
     try {
-      const { createdProduct } = await productService.addProduct(req.body);
+      const createdProduct = await productService.addProduct(req.body);
       return res.status(200).json(makeResJson(createdProduct));
     } catch (err) {
       next(err);
@@ -14,7 +14,7 @@ class ProductController {
 
   async getProducts(req: Request, res: Response, next: NextFunction) {
     try {
-      const products = await productService.getProducts('title');
+      const { products } = await productService.getProducts('title');
       return res.status(200).json(makeResJson(products));
     } catch (err) {
       next(err);

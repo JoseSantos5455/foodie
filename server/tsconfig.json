@@ -2,6 +2,7 @@
 
     {
       "compilerOptions": {
+        "module": "commonjs",
         "target": "es2020",
         "lib": [
           "es2020",
@@ -22,14 +23,13 @@
         "emitDecoratorMetadata": true,
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
-        "module": "commonjs",
         "pretty": true,
         "sourceMap": true,
         "outDir": "./build",
         "allowJs": true,
         "noEmit": false,
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
       },
       "include": [
         "./src/**/*",

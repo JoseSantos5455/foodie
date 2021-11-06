@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { IProduct } from './product';
-import { IUser } from './user';
+import { IProduct } from '../products/product';
+import { IUser } from '../users/user';
 
 const ObjectId = Schema.Types.ObjectId;
 

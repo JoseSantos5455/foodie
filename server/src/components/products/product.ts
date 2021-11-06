@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import slugify from 'slugify';
-import { ICategory } from './category';
+import { ICategory } from '../categories/category';
 
 const ObjectId = Schema.Types.ObjectId;
 
@@ -78,7 +78,7 @@ productSchema.pre('save', function (this: IProduct) {
   this.slug = slugify(this.title);
 });
 
-productSchema.virtuals('reviews', {
+productSchema.virtual('reviews', {
   ref: 'Review',
   localField: '_id',
   foreignField: 'product',

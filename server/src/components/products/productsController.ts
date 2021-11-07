@@ -21,10 +21,32 @@ class ProductController {
     }
   }
 
-  //   async getProductBySlug(req: Request, res: Response) {
-  //     const product = await productService.getProductBySlug(req.params.slug);
-  //     res.status(200).json(product);
-  //   }
+  async getProductBySlug(req: Request, res: Response, next: NextFunction) {
+    try {
+      const product = await productService.getProductBySlug(req.params.slug);
+      res.status(200).json(makeResJson(product));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async deleteProduct(req: Request, res: Response, next: NextFunction) {
+    try {
+      const deletedProductId = await productService.deleteProduct(req.params.id);
+      res.status(200).json(makeResJson(deletedProductId));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async updateProduct(req: Request, res: Response, next: NextFunction) {
+    try {
+      const updatedProduct = await productService.updateProduct(req.params.slug, req.body);
+      res.status(200).json(makeResJson(updatedProduct));
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new ProductController();

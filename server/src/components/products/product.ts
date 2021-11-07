@@ -12,7 +12,7 @@ export interface IProduct extends Document {
   image: string;
   subImages: [string];
   brand: string;
-  pricing: { originalPrice: string; discountPrice: string };
+  pricing: { originalPrice: number; discountPercentage: number };
   countInStock: number;
   sold: number;
   rating: number;
@@ -38,7 +38,7 @@ const productSchema = new Schema<IProduct>(
     subImages: [String],
     brand: String,
     pricing: {
-      originalPrice: { type: String, required: true },
+      originalPrice: { type: Number, required: true },
       discountPercentage: { type: Number, default: 0 },
     },
     size: [{ val: Number, price: Number }],

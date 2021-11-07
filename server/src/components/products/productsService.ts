@@ -4,10 +4,10 @@ import { ErrorHandler } from '@/middlewares/error.middleware';
 
 export interface IProductService {
   addProduct: (product: IProduct) => Promise<IProduct>;
-  //   getProductBySlug: (slug: string) => Promise<IProduct>;
+  getProductBySlug: (slug: string) => Promise<IProduct>;
   getProducts: () => Promise<{ products: IProduct[] }>;
-  //   deleteProduct: (id: IProduct['_id']) => Promise<IProduct['_id']>;
-  //   updateProduct: (id: IProduct['_id'], updates: any) => Promise<IProduct>;
+  deleteProduct: (id: IProduct['_id']) => Promise<IProduct['_id']>;
+  updateProduct: (slug: string, updates: any) => Promise<IProduct>;
 }
 
 class ProductService implements IProductService {
@@ -27,7 +27,7 @@ class ProductService implements IProductService {
 
       return createdProduct;
     } catch (err) {
-      throw new Error(err.message);
+      throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
 
@@ -41,17 +41,53 @@ class ProductService implements IProductService {
 
       return { products };
     } catch (err) {
-      if (err.statusCode) {
-        throw new ErrorHandler(err.statusCode, err.message);
-      } else {
-        throw new Error(err.message);
-      }
+      throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
 
-  //   async getProductBySlug(slug: string) {
-  //     return Product.find({ slug });
-  //   }
+  async getProductBySlug(slug: string): Promise<IProduct> {
+    try {
+      const product = await Product.findOne({ slug });
+
+      if (!product) {
+        throw new ErrorHandler(404, 'Product Not Found');
+      }
+
+      return product;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
+
+  async deleteProduct(id: string): Promise<IProduct['_id']> {
+    try {
+      const deletedProduct = await Product.findByIdAndDelete(id);
+
+      if (!deletedProduct) {
+        throw new ErrorHandler(404, 'Product not found');
+      }
+
+      return deletedProduct._id;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
+
+  async updateProduct(slug: string, updates: any): Promise<IProduct> {
+    try {
+      if (updates.title) {
+        updates.slug = slugify(updates.title);
+      }
+      const updatedProduct = await Product.findOneAndUpdate({ slug }, updates, { new: true });
+      if (!updatedProduct) {
+        throw new ErrorHandler(404, 'Product Not Found');
+      }
+
+      return updatedProduct;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
 }
 
 export default new ProductService();

@@ -1,6 +1,7 @@
 import Category, { ICategory } from './category';
 import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
+// import Product from '../products/product';
 
 interface ICategoryService {
   addCategory: (category: ICategory) => Promise<ICategory>;
@@ -69,6 +70,9 @@ class CategoryService implements ICategoryService {
           await Category.findByIdAndUpdate(parentCategoryId, { $set: { descendents } });
         }
       }
+
+      // Delete All The Products in this category
+      // await Product.deleteMany({category: deletedCategory._id})
 
       return deletedCategory._id;
     } catch (err) {

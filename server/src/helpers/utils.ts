@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken';
+import { IUser } from '../components/users/user';
+
 interface IResponseStatus {
   status_code: number;
   success: boolean;
@@ -21,4 +24,25 @@ const makeResJson = (data: any, success = true): IResponseStatus => {
   };
 };
 
-export { makeResJson };
+const generateToken = (user_id: IUser['_id'], email: string) => {
+  return jwt.sign({ user_id, email }, process.env.JWT_SECRET, {
+    expiresIn: '2h',
+  });
+};
+
+const userInfo = (user: IUser, token: string) => ({
+  id: user._id,
+  firstName: user.firstName,
+  lastName: user.lastName,
+  email: user.email,
+  city: user.city || '',
+  address: user.address || '',
+  zipCode: user.zipCode || '',
+  avatar: user.avatar || '',
+  phone: user.phone || '',
+  isPhoneValidated: user.isPhoneValidated,
+  role: user.role,
+  token,
+});
+
+export { makeResJson, generateToken, userInfo };

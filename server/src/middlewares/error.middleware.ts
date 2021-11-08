@@ -118,7 +118,7 @@ const errorMiddleware = (err: any, req: Request, res: Response, next: NextFuncti
     );
   }
 
-  console.log('FROM MIDDLEWARE ------------------------', err);
+  // console.log('FROM MIDDLEWARE ------------------------', err);
   res.status(statusCode).json(
     errResJSON({
       statusCode,

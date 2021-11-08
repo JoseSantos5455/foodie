@@ -7,7 +7,7 @@ export interface IProductService {
   getProductBySlug: (slug: string) => Promise<IProduct>;
   getProducts: () => Promise<{ products: IProduct[] }>;
   deleteProduct: (id: IProduct['_id']) => Promise<IProduct['_id']>;
-  updateProduct: (slug: string, updates: any) => Promise<IProduct>;
+  updateProduct: (slug: string, updates: Partial<IProduct>) => Promise<IProduct>;
 }
 
 class ProductService implements IProductService {
@@ -73,7 +73,7 @@ class ProductService implements IProductService {
     }
   }
 
-  async updateProduct(slug: string, updates: any): Promise<IProduct> {
+  async updateProduct(slug: string, updates: Partial<IProduct>): Promise<IProduct> {
     try {
       if (updates.title) {
         updates.slug = slugify(updates.title);

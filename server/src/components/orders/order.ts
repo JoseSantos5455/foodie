@@ -1,10 +1,10 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import { IProduct } from '../products/product';
 import { IUser } from '../users/user';
 
 const ObjectId = Schema.Types.ObjectId;
 
-export interface IOrder {
+export interface IOrder extends Document {
   user: IUser['_id'];
   orderItems: [
     {
@@ -21,7 +21,7 @@ export interface IOrder {
   shippingInfo: {
     city: string;
     phone: string;
-    isPhoneValidated?: boolean;
+    isPhoneValidated: boolean;
     address: string;
     zipCode: string;
   };
@@ -30,6 +30,7 @@ export interface IOrder {
   subTotal: number;
   total: string;
   shippingPrice: string;
+  isPaid: boolean;
 }
 
 const orderSchema = new Schema(
@@ -44,7 +45,7 @@ const orderSchema = new Schema(
         productId: { type: ObjectId, required: true, ref: 'Product' },
         quantity: { type: Number, required: true },
         pricing: {
-          originalPrice: Number,
+          originalPrice: { type: Number, required: true },
           discountPercentage: Number,
         },
         title: { type: String, required: true },
@@ -54,7 +55,7 @@ const orderSchema = new Schema(
     shippingInfo: {
       city: { type: String, required: true },
       phone: { type: String, required: true },
-      isPhoneValidated: { type: Boolean, required: true, validate: true },
+      isPhoneValidated: { type: Boolean, required: true },
       address: { type: String, required: true },
       zipCode: { type: String, required: true },
     },

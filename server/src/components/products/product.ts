@@ -1,6 +1,7 @@
 import { Schema, model, Document } from 'mongoose';
 import slugify from 'slugify';
 import { ICategory } from '../categories/category';
+import { IReview } from '../reviews/review';
 
 const ObjectId = Schema.Types.ObjectId;
 
@@ -26,6 +27,7 @@ export interface IProduct extends Document {
     color: string;
   };
   category: ICategory['_id'];
+  reviews: IReview[];
 }
 
 const productSchema = new Schema<IProduct>(
@@ -75,13 +77,15 @@ const productSchema = new Schema<IProduct>(
 );
 
 productSchema.pre('save', function (this: IProduct) {
-  this.slug = slugify(this.title);
+  if (this.isNew) {
+    this.slug = slugify(this.title);
+  }
 });
 
 productSchema.virtual('reviews', {
   ref: 'Review',
   localField: '_id',
-  foreignField: 'product',
+  foreignField: 'productId',
   justOne: false,
 });
 

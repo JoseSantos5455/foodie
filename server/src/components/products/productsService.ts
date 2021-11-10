@@ -47,7 +47,7 @@ class ProductService implements IProductService {
 
   async getProductBySlug(slug: string): Promise<IProduct> {
     try {
-      const product = await Product.findOne({ slug });
+      const product = await Product.findOne({ slug }).populate('reviews');
 
       if (!product) {
         throw new ErrorHandler(404, 'Product Not Found');

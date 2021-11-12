@@ -1,5 +1,8 @@
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { IProduct } from '../products/product';
+
+const ObjectId = Schema.Types.ObjectId;
 
 export interface IUser extends Document {
   firstName: string;
@@ -13,6 +16,7 @@ export interface IUser extends Document {
   zipCode?: string;
   avatar?: string;
   role: string;
+  orders: IProduct['_id'][];
 }
 
 const userSchema = new Schema({
@@ -51,6 +55,7 @@ const userSchema = new Schema({
     enum: ['admin', 'user'],
     default: 'user',
   },
+  orders: [ObjectId],
 });
 
 userSchema.pre<IUser>('save', async function (this: IUser) {

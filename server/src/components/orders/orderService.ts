@@ -1,5 +1,5 @@
 import { ErrorHandler } from '@/middlewares/error.middleware';
-import { IUser } from '../users/user';
+import User, { IUser } from '../users/user';
 import Order, { IOrder } from './order';
 
 interface IOrderService {
@@ -18,6 +18,7 @@ class OrderService implements IOrderService {
       if (!order.shippingInfo.isPhoneValidated) {
         throw new ErrorHandler(400, 'phone number must be valideted');
       }
+      if (!order.orderItems) throw new ErrorHandler(400, 'you must order something');
       order.user = userId;
       const createdOrder = await Order.create(order);
       return createdOrder;
@@ -69,6 +70,17 @@ class OrderService implements IOrderService {
       const updatedOrder = await Order.findByIdAndUpdate(orderId, { orderStatus }, { new: true });
       if (!updatedOrder) {
         throw new ErrorHandler(404, 'no order was found');
+      }
+      if (orderStatus === 'delivered') {
+        const user = await User.findById(updatedOrder.user);
+        if (!user) throw new ErrorHandler(404, 'user does not exist');
+
+        const orderedProducts = [...user.orders];
+        const newOrder = updatedOrder.orderItems.map((item) => item.productId);
+
+        orderedProducts.unshift(...newOrder);
+        user.orders = orderedProducts;
+        await user.save();
       }
       return updatedOrder.orderStatus;
     } catch (err) {

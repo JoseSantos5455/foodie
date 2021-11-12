@@ -28,8 +28,8 @@ export interface IOrder extends Document {
   paymentMethod: string;
   orderStatus: string;
   subTotal: number;
-  total: string;
-  shippingPrice: string;
+  total: number;
+  shippingPrice: number;
   isPaid: boolean;
 }
 

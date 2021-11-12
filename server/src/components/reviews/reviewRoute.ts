@@ -1,11 +1,11 @@
 import { isAuthenticated } from '@/middlewares/auth.middleware';
-import { isReviewOwner } from '@/middlewares/middleware';
+import { isAllowedToReview, isReviewOwner } from '@/middlewares/middleware';
 import { Router } from 'express';
 import reviewController from './reviewController';
 
 const router = Router();
 
-router.route('/:slug').post(isAuthenticated, reviewController.addReview);
+router.route('/:slug').post(isAuthenticated, isAllowedToReview, reviewController.addReview);
 router
   .route('/:id')
   .delete(isAuthenticated, isReviewOwner, reviewController.deleteReview)

@@ -1,6 +1,8 @@
 import { Request, NextFunction, Response } from 'express';
 import { ErrorHandler } from './error.middleware';
 import Review from '@/components/reviews/review';
+import User from '@/components/users/user';
+import Product from '@/components/products/product';
 
 const isReviewOwner = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -16,4 +18,23 @@ const isReviewOwner = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export { isReviewOwner };
+const isAllowedToReview = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await User.findById(req.user._id).select('orders');
+    if (!user) return next(new ErrorHandler(404, 'user not found'));
+
+    const product = await Product.findOne({ slug: req.params.slug }).select('slug');
+
+    if (!product) return next(new ErrorHandler(404, 'product does not exist'));
+
+    if (user.orders.some((order) => order.toString() === product._id.toString())) {
+      return next();
+    } else {
+      return next(new ErrorHandler(403, 'you have to buy the product to review'));
+    }
+  } catch (err) {
+    return next(err);
+  }
+};
+
+export { isReviewOwner, isAllowedToReview };

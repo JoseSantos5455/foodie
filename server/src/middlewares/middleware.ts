@@ -3,6 +3,7 @@ import { ErrorHandler } from './error.middleware';
 import Review from '@/components/reviews/review';
 import User from '@/components/users/user';
 import Product from '@/components/products/product';
+import Category from '@/components/categories/category';
 
 const isReviewOwner = async (req: Request, res: Response, next: NextFunction) => {
   try {

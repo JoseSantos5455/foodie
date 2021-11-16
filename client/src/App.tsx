@@ -1,8 +1,11 @@
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './router/AppRouter';
+
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-indigo-500">hello</h1>
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 

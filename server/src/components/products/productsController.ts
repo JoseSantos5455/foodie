@@ -14,7 +14,7 @@ class ProductController {
 
   async getProducts(req: Request, res: Response, next: NextFunction) {
     try {
-      const { products } = await productService.getProducts();
+      const { products } = await productService.getProducts('title rating slug image pricing');
       return res.status(200).json(makeResJson(products));
     } catch (err) {
       next(err);

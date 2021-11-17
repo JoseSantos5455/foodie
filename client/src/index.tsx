@@ -1,10 +1,15 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+// Fonts
+import '@fontsource/quicksand';
+import '@fontsource/quicksand/400.css';
+import '@fontsource/quicksand/600.css';
+import '@fontsource/quicksand/700.css';
+import '@fontsource/lato';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,0 +1,8 @@
+@layer components {
+  .header {
+    @apply py-4 bg-white w-full shadow-sm;
+  }
+  .container {
+    @apply max-w-screen-xl mx-auto px-2;
+  }
+}

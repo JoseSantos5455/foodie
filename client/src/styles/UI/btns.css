@@ -1,0 +1,11 @@
+@layer components {
+  .btn {
+    @apply font-semibold font-secondary py-1 px-4 rounded;
+  }
+  .btn-primary {
+    @apply bg-primary hover:bg-primaryHover text-white;
+  }
+  .btn-dark {
+    @apply bg-primaryDark hover:bg-gray-800 text-white;
+  }
+}

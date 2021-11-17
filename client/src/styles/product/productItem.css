@@ -1,0 +1,19 @@
+@layer components {
+  .product-item {
+    @apply p-2 bg-white shadow-sm hover:shadow-lg rounded-lg;
+  }
+
+  .product-title {
+    @apply font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden h-6 w-32  text-base;
+  }
+
+  .rating-stars {
+    @apply flex items-center;
+    span {
+      @apply contents;
+    }
+  }
+  .product-price {
+    @apply flex items-center  justify-between;
+  }
+}

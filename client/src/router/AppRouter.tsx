@@ -1,10 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Layout from '../components/UI/Layout';
+import Layout from 'components/UI/Layout';
 
-import * as ROUTES from '../utils/routes';
-const Home = lazy(() => import('../pages/home'));
-const NotFound = lazy(() => import('../pages/notFound'));
+import * as ROUTES from 'utils/routes';
+const Home = lazy(() => import('pages/home'));
+const NotFound = lazy(() => import('pages/notFound'));
 
 const AppRouter = () => {
   return (

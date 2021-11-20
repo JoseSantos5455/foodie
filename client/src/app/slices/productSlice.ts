@@ -9,7 +9,7 @@ const productSlice = createSlice({
   reducers: {
     getProductsStart: (state, action: PayloadAction<void>) => {},
     getProductsSuccess: (state, action) => {
-      return [...state];
+      return [...action.payload];
     },
   },
 });

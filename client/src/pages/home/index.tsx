@@ -1,14 +1,18 @@
-import ProductItem from 'components/product/ProductItem';
 import React from 'react';
 import ErrorBoundary from 'modules/ErrorBoundary';
 import Features from './components/Features';
 import { getProductsStart } from 'app/slices/productSlice';
 import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'app/store';
+import ProductList from 'components/product/ProductList';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
   const dispatchAction = () => dispatch(getProductsStart());
+  const { products } = useAppSelector((state) => ({
+    products: state.products,
+  }));
 
   return (
     <ErrorBoundary>
@@ -22,18 +26,7 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-5 gap-2">
-          {new Array(5).fill({}).map((item) => (
-            <ProductItem
-              title="producto"
-              slug="product"
-              rating={4}
-              originalPrice={12}
-              image="https://i.pinimg.com/736x/b4/07/b7/b407b70a5160814f3c5523e5c9ffa698.jpg"
-              id="mlsdfkmslkm"
-            />
-          ))}
-        </div>
+        <div className=" grid grid-cols-5 gap-2">{products.length > 0 && <ProductList products={products} />}</div>
       </section>
     </ErrorBoundary>
   );

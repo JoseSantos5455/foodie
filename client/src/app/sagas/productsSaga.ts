@@ -1,16 +1,32 @@
-import { call } from '@redux-saga/core/effects';
+import { call, put } from '@redux-saga/core/effects';
 import { getProducts } from 'api/services/productApi';
-import { getProductsStart } from 'app/slices/productSlice';
+import { productsError } from 'app/slices/errorSlice';
+import { loadingProducts } from 'app/slices/loadingSlice';
+import { getProductsStart, getProductsSuccess } from 'app/slices/productSlice';
 import { IProduct } from 'types/types';
+import toast from 'react-hot-toast';
+
+function* handleError(err: any) {
+  yield put(loadingProducts(false));
+  if (err.message) {
+    yield put(productsError(err.message));
+    toast(err.message);
+  } else {
+    toast.error('server error');
+    yield put(productsError('server error'));
+  }
+}
 
 function* productsSaga(action: any) {
   switch (action.type) {
     case getProductsStart.type:
       try {
-        const products: IProduct = yield call(getProducts);
-        console.log(products);
+        yield put(loadingProducts(true));
+        const products: IProduct[] = yield call(getProducts);
+        yield put(getProductsSuccess(products));
+        yield put(loadingProducts(false));
       } catch (err) {
-        console.log(err);
+        yield handleError(err);
       }
       break;
     default:

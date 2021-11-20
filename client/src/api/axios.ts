@@ -12,7 +12,7 @@ const httpRequest = (req: any) => {
     try {
       const response = await axios(req);
 
-      resolve(response.data);
+      resolve(response.data.data);
     } catch (err: any) {
       reject(err?.response?.data || {});
     }

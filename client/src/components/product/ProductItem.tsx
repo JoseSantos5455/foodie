@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
 import 'styles/product/productItem.css';
 
-export interface IProduct {
+export interface IProductItem {
   title: string;
   originalPrice: number;
   discountPercentage?: number;
@@ -22,7 +22,7 @@ const ProductItem = ({
   rating,
   hasBtn = false,
   slug,
-}: IProduct) => {
+}: IProductItem) => {
   return (
     <div className="product-item">
       {/* <div className="absolute bg-primary p-2 top-0 right-0 rounded rounded-br-none rounded-tr-none rounded-tl-none">
@@ -31,12 +31,9 @@ const ProductItem = ({
             </span>
         </div> */}
       <Link to={`${slug}`}>
-        <div
-          className="w-full h-60 bg-contain"
-          style={{
-            backgroundImage: `url(${image})`,
-          }}
-        ></div>
+        <div className="w-full h-60 ">
+          <img src={image} alt="baby" />
+        </div>
       </Link>
 
       <div>

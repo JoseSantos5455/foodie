@@ -1,5 +1,6 @@
 import React from 'react';
-import ProductItem, { IProduct } from './ProductItem';
+import ProductItem from './ProductItem';
+import { IProduct } from 'types/types';
 
 interface IProductList {
   products: IProduct[];
@@ -7,21 +8,21 @@ interface IProductList {
 
 const ProductList = ({ products }: IProductList) => {
   return (
-    <div>
+    <>
       {products.length > 0 &&
         products.map((product) => (
           <ProductItem
             title={product.title}
-            originalPrice={product.originalPrice}
-            discountPercentage={product.discountPercentage}
+            originalPrice={product.pricing.originalPrice}
+            discountPercentage={product.pricing.discountPercentage}
             image={product.image}
-            id={product.id}
+            id={product._id}
             rating={product.rating}
             hasBtn={false}
             slug="product.slug"
           />
         ))}
-    </div>
+    </>
   );
 };
 

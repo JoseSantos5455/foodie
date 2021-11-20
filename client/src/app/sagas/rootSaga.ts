@@ -1,7 +1,9 @@
-import { takeLatest } from "redux-saga/effects";
+import { getProductsStart } from 'app/slices/productSlice';
+import { takeLatest } from 'redux-saga/effects';
+import productsSaga from './productsSaga';
 
 function* rootSaga() {
-  yield takeLatest("get_products", () => console.log("products"));
+  yield takeLatest(getProductsStart.type, productsSaga);
 }
 
 export default rootSaga;

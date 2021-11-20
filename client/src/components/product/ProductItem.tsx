@@ -46,7 +46,7 @@ const ProductItem = ({
       <div className="product-price">
         <h5 className="font-semibold text-lg">{originalPrice} $</h5>
         <div className="rating-stars">
-          <RatingView ratingValue={rating} size={18} />
+          <RatingView className="contents" ratingValue={rating} size={18} />
         </div>
       </div>
     </div>

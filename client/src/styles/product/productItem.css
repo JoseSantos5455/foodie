@@ -9,9 +9,6 @@
 
   .rating-stars {
     @apply flex items-center;
-    span {
-      @apply contents;
-    }
   }
   .product-price {
     @apply flex items-center  justify-between;

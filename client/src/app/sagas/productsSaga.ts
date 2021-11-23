@@ -4,21 +4,19 @@ import { productsError } from 'app/slices/errorSlice';
 import { loadingProducts } from 'app/slices/loadingSlice';
 import { getProductsStart, getProductsSuccess } from 'app/slices/productSlice';
 import { IProduct } from 'types/types';
-import toast from 'react-hot-toast';
+
+interface IProductSaga {
+  type: string;
+  payload: any;
+}
 
 function* handleError(err: any) {
   yield put(loadingProducts(false));
-  if (err.message) {
-    yield put(productsError(err.message));
-    toast(err.message);
-  } else {
-    toast.error('server error');
-    yield put(productsError('server error'));
-  }
+  yield put(productsError({ message: err.message || 'Sorry, a server error accured please try again later' }));
 }
 
-function* productsSaga(action: any) {
-  switch (action.type) {
+function* productsSaga({ type, payload }: IProductSaga) {
+  switch (type) {
     case getProductsStart.type:
       try {
         yield put(loadingProducts(true));

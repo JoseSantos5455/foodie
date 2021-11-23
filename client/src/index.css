@@ -4,4 +4,7 @@
 
 html {
   background-color: #edf2f5;
+  background-image: url('./assets/galaxy-bg.png');
+  background-size: cover;
+  background-position: center center;
 }

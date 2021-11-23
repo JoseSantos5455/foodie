@@ -19,7 +19,7 @@ const ProductList = ({ products }: IProductList) => {
             id={product._id}
             rating={product.rating}
             hasBtn={false}
-            slug="product.slug"
+            slug={product.slug}
           />
         ))}
     </>

@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 
 const Layout: React.FC = () => {
   return (
-    <main className="bg-primaryLight">
+    <main>
       <Navbar />
       <div className="max-w-screen-xl px-2 mx-auto">
         <Outlet />

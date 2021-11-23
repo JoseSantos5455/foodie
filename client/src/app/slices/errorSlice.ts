@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IError } from 'types/types';
 
 interface IErrorState {
-  isErrorProducts: string | null;
+  isErrorProducts: IError | null;
 }
 
 const initialState: IErrorState = {
@@ -12,12 +13,15 @@ const errorSlice = createSlice({
   name: 'errorState',
   initialState,
   reducers: {
-    productsError: (state, action: PayloadAction<string | null>) => {
+    productsError: (state, action: PayloadAction<IError | null>) => {
       return { ...state, isErrorProducts: action.payload };
+    },
+    clearErrors: () => {
+      return initialState;
     },
   },
 });
 
-export const { productsError } = errorSlice.actions;
+export const { productsError, clearErrors } = errorSlice.actions;
 
 export default errorSlice.reducer;

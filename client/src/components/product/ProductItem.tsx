@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
 import 'styles/product/productItem.css';
+import { HeartOutlined } from '@ant-design/icons';
 
 export interface IProductItem {
   title: string;
@@ -36,8 +37,10 @@ const ProductItem = ({
         </div>
       </Link>
 
-      <div>
+      <div className="flex items-center justify-between">
         <h3 className="product-title">{title}</h3>
+
+        <HeartOutlined className="text-primaryDark" />
       </div>
 
       <div className="product-price">

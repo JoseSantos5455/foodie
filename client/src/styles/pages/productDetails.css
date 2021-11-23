@@ -1,0 +1,12 @@
+@layer components {
+  .product-grid {
+    @apply grid grid-cols-6 gap-2 bg-white shadow-md p-1;
+  }
+  .product-col-4 {
+    @apply col-span-4;
+  }
+
+  .product-col-2 {
+    @apply col-span-2;
+  }
+}

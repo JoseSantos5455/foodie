@@ -8,4 +8,7 @@
   .btn-dark {
     @apply bg-primaryDark hover:bg-gray-800 text-white;
   }
+  .btn-err {
+    @apply bg-red-600 hover:bg-red-800 text-white;
+  }
 }

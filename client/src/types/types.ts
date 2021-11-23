@@ -10,3 +10,11 @@ export interface IProduct {
     discountPercentage: number;
   };
 }
+
+export interface IError {
+  statusCode?: number;
+  title?: string;
+  type?: string;
+  message: string;
+  errors?: any[];
+}

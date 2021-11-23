@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
 import 'styles/UI/navbar.css';
+import logo from 'assets/logo.png';
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div>
             <Link to={ROUTES.HOME} className="font-bold text-2xl text-primary font-main">
-              Lapino
+              <img src={logo} alt="logo" className="h-8" />
             </Link>
           </div>
           <SearchBar />

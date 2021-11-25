@@ -10,7 +10,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({ theme, className = '', children, onClick }) => {
   return (
-    <button onClick={onClick} className={` btn ${theme} ${className}`}>
+    <button onClick={onClick} className={`btn ${theme} ${className}`}>
       {children}
     </button>
   );

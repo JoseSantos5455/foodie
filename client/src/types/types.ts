@@ -33,6 +33,7 @@ export interface IError {
 }
 
 export interface IReview {
+  _id: string;
   userName: string;
   rating: number;
   comment: string;

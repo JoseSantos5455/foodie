@@ -19,7 +19,7 @@ export const ProductShowcase = ({ images, image }: ShowCaseProps) => {
   });
   return (
     <div className="w-full h-full">
-      <ImageGallery items={galleryImages} />
+      <ImageGallery showNav={false} showPlayButton={false} items={galleryImages} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 
 import * as ROUTES from 'utils/routes';
+import Cart from 'pages/cart';
 const ProductDetails = lazy(() => import('pages/product'));
 const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
@@ -24,6 +25,14 @@ const AppRouter = () => {
           element={
             <Suspense fallback={<p>...loding</p>}>
               <ProductDetails />
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.CART}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <Cart />
             </Suspense>
           }
         />

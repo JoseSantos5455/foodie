@@ -18,7 +18,7 @@ const ReviewList = ({ reviews, rating, numReviews }: ReviewsListProps) => {
         </p>
       </div>
       <div className="max-h-52 overflow-y-scroll px-4  ">
-        {reviews?.length > 0 && reviews.map((review) => <Review review={review} />)}
+        {reviews?.length > 0 && reviews.map((review) => <Review key={review._id} review={review} />)}
       </div>
     </div>
   );

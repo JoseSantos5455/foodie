@@ -16,4 +16,7 @@
   .btn-cart {
     @apply bg-primary hover:bg-primaryHover py-3 px-24 text-xl capitalize  text-white;
   }
+  .btn-gray {
+    @apply bg-gray-300 hover:bg-gray-400 w-6 h-6 flex items-center justify-center text-xl capitalize  text-primaryDark;
+  }
 }

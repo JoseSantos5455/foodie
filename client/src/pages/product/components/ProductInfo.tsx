@@ -1,4 +1,5 @@
 import { HeartOutlined } from '@ant-design/icons';
+import { ICart } from 'app/slices/cartSlice';
 import Button from 'components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
 
@@ -20,6 +21,12 @@ type ProductInfoType = {
   brand: string;
   rating: number;
   numReviews: number;
+  _id: string;
+  handleAddToCart: () => void;
+  isItemOnCart: (id: string) => boolean;
+  onAddQty: (id: string) => void;
+  onMinusQty: (id: string) => void;
+  findItem: (id: string) => ICart | undefined;
 };
 
 const ColorCircle = ({ color }: ColorProps) => (
@@ -32,9 +39,23 @@ const Size = ({ size }: SizeProps) => (
   </span>
 );
 
-const ProductInfo = ({ title, description, brand, pricing, rating, numReviews }: ProductInfoType) => {
+const ProductInfo = ({
+  title,
+  description,
+  brand,
+  pricing,
+  rating,
+  numReviews,
+  handleAddToCart,
+  isItemOnCart,
+  onAddQty,
+  onMinusQty,
+  findItem,
+  _id,
+}: ProductInfoType) => {
   const colors: string[] = ['red', 'blue', 'aqua'];
   const sizes: number[] = [12, 16, 25];
+
   return (
     <div className="pr-16 pt-10">
       <h2 className="font-main text-2xl mb-4 font-bold">{title}</h2>
@@ -65,7 +86,22 @@ const ProductInfo = ({ title, description, brand, pricing, rating, numReviews }:
         </div>
       </div>
       <div className="flex items-center space-x-4">
-        <Button theme="btn-cart">Add to cart</Button>
+        {isItemOnCart(_id) && (
+          <div className="flex items-center space-x-4">
+            <Button onClick={() => onAddQty(_id)} theme="btn-gray self-end">
+              +
+            </Button>
+            <span className="font-bold">{findItem(_id)?.qty}</span>
+            <Button onClick={() => onMinusQty(_id)} theme="btn-gray">
+              -
+            </Button>
+          </div>
+        )}
+        {!isItemOnCart(_id) && (
+          <Button onClick={handleAddToCart} theme="btn-cart">
+            Add to cart
+          </Button>
+        )}
         <div className="rounded-full bg-white shadow-lg flex items-center justify-center py-1 px-2">
           <HeartOutlined className="text-red-300 text-3xl" />
         </div>

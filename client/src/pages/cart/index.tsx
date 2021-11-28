@@ -15,7 +15,7 @@ const Cart = () => {
             ))}
           </div>
           <div>
-            <Summary subTotal={12.5} tax={20} delivery={12} total={30} />
+            <Summary showBtn subTotal={12.5} tax={20} delivery={12} total={30} />
           </div>
         </div>
       )}

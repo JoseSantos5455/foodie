@@ -1,13 +1,16 @@
 import Button from 'components/UI/Button';
+import { CHECKOUT_STEP_1 } from 'utils/routes';
+import { Link } from 'react-router-dom';
 
 interface SummaryProps {
   subTotal: number;
   tax?: number;
   delivery: number;
   total: number;
+  showBtn?: boolean;
 }
 
-const Summary = ({ subTotal, tax, delivery, total }: SummaryProps) => {
+const Summary = ({ subTotal, tax, delivery, total, showBtn = false }: SummaryProps) => {
   return (
     <div className="rounded border border-gray-200 p-4 shadow-md bg-white">
       <h2 className="font-main text-center font-bold mb-4">Summary</h2>
@@ -29,9 +32,11 @@ const Summary = ({ subTotal, tax, delivery, total }: SummaryProps) => {
         <h4 className="font-secondary capitalize">Total</h4>
         <p className="font-bold">{total}$</p>
       </div>
-      <Button theme="btn-primary" className="w-full uppercase">
-        process to checkout
-      </Button>
+      {showBtn && (
+        <Button theme="btn-primary" className="w-full uppercase">
+          <Link to={CHECKOUT_STEP_1}>process to checkout</Link>
+        </Button>
+      )}
     </div>
   );
 };

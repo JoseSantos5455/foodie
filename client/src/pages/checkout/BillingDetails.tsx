@@ -1,6 +1,6 @@
 import Button from 'components/UI/Button';
 import { Link } from 'react-router-dom';
-import { CHECKOUT_STEP_2 } from 'utils/routes';
+import { CHECKOUT_STEP_2, CHECKOUT_STEP_3 } from 'utils/routes';
 import CheckoutSteps from './components/CheckoutSteps';
 
 interface Props {}
@@ -71,7 +71,9 @@ const BillingDetails = (props: Props) => {
             <Button theme="btn-outline-rounded">
               <Link to={CHECKOUT_STEP_2}>Back </Link>
             </Button>
-            <Button theme="btn-rounded">Continue</Button>
+            <Button theme="btn-rounded">
+              <Link to={CHECKOUT_STEP_3}>Continue</Link>
+            </Button>
           </div>
         </form>
       </div>

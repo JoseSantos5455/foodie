@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 import Cart from 'pages/cart';
+const Payment = lazy(() => import('pages/checkout/Payment'));
 const BillingDetails = lazy(() => import('pages/checkout/BillingDetails'));
 const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
 const ProductDetails = lazy(() => import('pages/product'));
@@ -50,6 +51,14 @@ const AppRouter = () => {
           element={
             <Suspense fallback={<p>...loding</p>}>
               <BillingDetails />
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.CHECKOUT_STEP_3}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <Payment />
             </Suspense>
           }
         />

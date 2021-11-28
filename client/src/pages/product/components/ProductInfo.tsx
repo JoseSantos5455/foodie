@@ -98,7 +98,7 @@ const ProductInfo = ({
           </div>
         )}
         {!isItemOnCart(_id) && (
-          <Button onClick={handleAddToCart} theme="btn-cart">
+          <Button onClick={handleAddToCart} theme="btn-large">
             Add to cart
           </Button>
         )}

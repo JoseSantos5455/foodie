@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
-
 import * as ROUTES from 'utils/routes';
 import Cart from 'pages/cart';
+const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
 const ProductDetails = lazy(() => import('pages/product'));
 const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
@@ -33,6 +33,14 @@ const AppRouter = () => {
           element={
             <Suspense fallback={<p>...loding</p>}>
               <Cart />
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.CHECKOUT_STEP_1}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <OrderSummary />
             </Suspense>
           }
         />

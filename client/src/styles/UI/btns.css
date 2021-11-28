@@ -19,4 +19,11 @@
   .btn-gray {
     @apply bg-gray-300 hover:bg-gray-400 w-6 h-6 flex items-center justify-center text-xl capitalize  text-primaryDark;
   }
+
+  .btn-rounded {
+    @apply bg-primary px-6 py-1 hover:bg-primaryHover border-2 border-primary hover:border-primaryHover text-white rounded-full;
+  }
+  .btn-outline-rounded {
+    @apply border-2 px-6 py-1 text-primary border-primary hover:bg-primaryHover hover:text-white hover:border-primaryHover  rounded-full;
+  }
 }

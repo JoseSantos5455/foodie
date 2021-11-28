@@ -4,6 +4,8 @@ import Button from 'components/UI/Button';
 import useCart from 'utils/hooks/useCart';
 import CheckoutSteps from './components/CheckoutSteps';
 import { FC } from 'react';
+import { CHECKOUT_STEP_2, HOME } from 'utils/routes';
+import { Link } from 'react-router-dom';
 
 const OrderSummary: FC = () => {
   const { cart } = useCart();
@@ -25,8 +27,12 @@ const OrderSummary: FC = () => {
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <Button theme="btn-outline-rounded">Back to shop</Button>
-              <Button theme="btn-rounded">Continue</Button>
+              <Button theme="btn-outline-rounded">
+                <Link to={HOME}>Back to shop</Link>
+              </Button>
+              <Button theme="btn-rounded">
+                <Link to={CHECKOUT_STEP_2}>Continue</Link>
+              </Button>
             </div>
           </>
         )}

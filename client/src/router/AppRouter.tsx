@@ -2,7 +2,8 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
-import Cart from 'pages/cart';
+const Cart = lazy(() => import('pages/cart'));
+const Shop = lazy(() => import('pages/shop'));
 const Login = lazy(() => import('pages/auth/Login'));
 const Signup = lazy(() => import('pages/auth/Signup'));
 const Payment = lazy(() => import('pages/checkout/Payment'));
@@ -77,6 +78,14 @@ const AppRouter = () => {
           element={
             <Suspense fallback={<p>...loding</p>}>
               <Signup />
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.SHOP}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <Shop />
             </Suspense>
           }
         />

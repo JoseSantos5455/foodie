@@ -23,7 +23,7 @@ type ProductInfoType = {
   numReviews: number;
   _id: string;
   handleAddToCart: () => void;
-  isItemOnCart: (id: string) => boolean;
+  isItemInCart: (id: string) => boolean;
   onAddQty: (id: string) => void;
   onMinusQty: (id: string) => void;
   findItem: (id: string) => ICart | undefined;
@@ -47,7 +47,7 @@ const ProductInfo = ({
   rating,
   numReviews,
   handleAddToCart,
-  isItemOnCart,
+  isItemInCart,
   onAddQty,
   onMinusQty,
   findItem,
@@ -86,7 +86,7 @@ const ProductInfo = ({
         </div>
       </div>
       <div className="flex items-center space-x-4">
-        {isItemOnCart(_id) && (
+        {isItemInCart(_id) && (
           <div className="flex items-center space-x-4">
             <Button onClick={() => onAddQty(_id)} theme="btn-gray self-end">
               +
@@ -97,7 +97,7 @@ const ProductInfo = ({
             </Button>
           </div>
         )}
-        {!isItemOnCart(_id) && (
+        {!isItemInCart(_id) && (
           <Button onClick={handleAddToCart} theme="btn-large">
             Add to cart
           </Button>

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'app/store';
 import ProductList from 'components/product/ProductList';
 import ErrorCard from 'components/UI/ErrorCard';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
     <ErrorBoundary>
       <section className="py-10">
         <button onClick={dispatchAction}>Get Products</button>
+        <Link to="/shop">shop</Link>
         <div className=" grid grid-cols-5 gap-2 mb-10">
           <div className="bg-white shadow-md"></div>
           <div className="col-span-4">

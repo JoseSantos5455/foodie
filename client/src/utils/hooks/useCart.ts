@@ -8,10 +8,10 @@ const useCart = () => {
   const dispatch = useAppDispatch();
 
   const findItem = (id: String) => cart.find((item) => item._id === id);
-  const isItemOnCart = (id: string) => !!findItem(id);
+  const isItemInCart = (id: string) => !!findItem(id);
 
   const onAddToCart = (cartItem: ICart) => {
-    if (isItemOnCart(cartItem._id)) {
+    if (isItemInCart(cartItem._id)) {
       dispatch(addQtyItem(cartItem._id));
       toast.success('Product Added to cart');
     } else {
@@ -21,7 +21,7 @@ const useCart = () => {
   };
 
   const onMinusQty = (id: string) => {
-    if (isItemOnCart(id)) {
+    if (isItemInCart(id)) {
       if (findItem(id)?.qty === 1) {
         dispatch(removeFromCart(id));
       } else {
@@ -43,7 +43,7 @@ const useCart = () => {
     dispatch(clearCart());
   };
 
-  return { cart, isItemOnCart, onAddToCart, onRemoveFromCart, onMinusQty, onAddQty, onClearCart, findItem };
+  return { cart, isItemInCart, onAddToCart, onRemoveFromCart, onMinusQty, onAddQty, onClearCart, findItem };
 };
 
 export default useCart;

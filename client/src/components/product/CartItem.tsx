@@ -16,7 +16,7 @@ const CartItem = ({ cartItem }: CartItemProps) => {
         <img src={cartItem.image} alt={cartItem.title} className="object-fitt rounded" />
         <div className="col-span-3 flex flex-col justify-between">
           <h4 className="font-main font-bold">{cartItem.title}</h4>
-          <p className="font-bold">{cartItem.price}</p>
+          <p className="font-bold">{cartItem.price} $</p>
         </div>
         <div className="flex flex-col justify-between">
           <div className="text-right cursor-pointer" onClick={() => onRemoveFromCart(id)}>

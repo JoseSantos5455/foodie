@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const { isError, isLoading, product } = useProduct(slug);
   const products = useAppSelector((state) => state.products);
   const discountPrice = calculateDiscount(product?.pricing.originalPrice, product?.pricing.discountPercentage);
-  const { onAddToCart, isItemOnCart, onAddQty, onMinusQty, findItem } = useCart();
+  const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem } = useCart();
 
   const handleAddToCart = () => {
     const cartItem = {
@@ -41,7 +41,7 @@ const ProductDetails = () => {
             <div className="h-full bg-gray-200 justify-self-center" style={{ width: 1 }}></div>
             <div className="col-span-4">
               <ProductInfo
-                isItemOnCart={isItemOnCart}
+                isItemInCart={isItemInCart}
                 onAddQty={onAddQty}
                 onMinusQty={onMinusQty}
                 findItem={findItem}

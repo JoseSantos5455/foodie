@@ -4,9 +4,10 @@ import { IProduct } from 'types/types';
 
 interface IProductList {
   products: IProduct[];
+  hasBtn?: boolean;
 }
 
-const ProductList = ({ products }: IProductList) => {
+const ProductList = ({ products, hasBtn }: IProductList) => {
   return (
     <>
       {products.length > 0 &&
@@ -18,7 +19,7 @@ const ProductList = ({ products }: IProductList) => {
             image={product.image}
             id={product._id}
             rating={product.rating}
-            hasBtn={false}
+            hasBtn={hasBtn}
             slug={product.slug}
           />
         ))}

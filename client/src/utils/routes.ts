@@ -6,3 +6,4 @@ export const SIGN_UP = '/sign-up';
 export const CHECKOUT_STEP_1 = '/order-summary';
 export const CHECKOUT_STEP_2 = '/billing-details';
 export const CHECKOUT_STEP_3 = '/payment';
+export const SHOP = '/shop';

@@ -6,7 +6,7 @@ const Layout: React.FC = () => {
   return (
     <main>
       <Navbar />
-      <div className="max-w-screen-xl px-2 mx-auto">
+      <div style={{ maxWidth: 1184 }} className=" px-2 mx-auto">
         <Outlet />
       </div>
     </main>

@@ -2,6 +2,9 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
+import Profile from 'components/profile';
+const Wishlist = lazy(() => import('pages/profile/Wishlist'));
+const ProfileDashboard = lazy(() => import('pages/profile'));
 const Cart = lazy(() => import('pages/cart'));
 const Shop = lazy(() => import('pages/shop'));
 const Login = lazy(() => import('pages/auth/Login'));
@@ -89,6 +92,24 @@ const AppRouter = () => {
             </Suspense>
           }
         />
+        <Route path={ROUTES.PROFILE_DASHBOARD} element={<Profile />}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<p>...loding</p>}>
+                <ProfileDashboard />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.WISHLIST}
+            element={
+              <Suspense fallback={<p>...loding</p>}>
+                <Wishlist />
+              </Suspense>
+            }
+          />
+        </Route>
 
         <Route
           path="*"

@@ -13,7 +13,7 @@ module.exports = {
         primary: '#00B6FE',
         primaryHover: '#008efe',
         primaryDark: '#1f2323',
-        primaryLight: '#edf2f5',
+        primaryLight: '#B2E9FF',
         yellowBeta: '#fed900',
         purpleBeta: '#e000ec',
         greenBeta: '#6ebb31',

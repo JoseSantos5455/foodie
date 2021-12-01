@@ -17,12 +17,12 @@ const ProfileDashboard = () => {
     {
       name: 'manage profile',
       icon: <UserOutlined />,
-      link: ROUTES.PURCHASE_HISTORY,
+      link: ROUTES.MANAGE_PROFILE,
     },
     {
       name: 'your wishlist',
       icon: <HeartFilled />,
-      link: ROUTES.PURCHASE_HISTORY,
+      link: ROUTES.WISHLIST,
     },
   ];
   return (

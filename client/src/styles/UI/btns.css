@@ -13,6 +13,10 @@
     @apply bg-red-600 hover:bg-red-800 py-1 px-4  text-white;
   }
 
+  .btn-success {
+    @apply bg-greenBeta hover:opacity-75 py-1 px-4  text-white;
+  }
+
   .btn-large {
     @apply bg-primary hover:bg-primaryHover py-3 px-24 text-xl capitalize  text-white;
   }

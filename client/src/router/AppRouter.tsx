@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 import Profile from 'components/profile';
+const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
+const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
 const Wishlist = lazy(() => import('pages/profile/Wishlist'));
 const ProfileDashboard = lazy(() => import('pages/profile'));
 const Cart = lazy(() => import('pages/cart'));
@@ -106,6 +108,22 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<p>...loding</p>}>
                 <Wishlist />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.MANAGE_PROFILE}
+            element={
+              <Suspense fallback={<p>...loding</p>}>
+                <ManageProfile />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.PURCHASE_HISTORY}
+            element={
+              <Suspense fallback={<p>...loding</p>}>
+                <PurchaseHistory />
               </Suspense>
             }
           />

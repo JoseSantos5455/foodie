@@ -40,3 +40,9 @@ export interface IReview {
   productId: string;
   userId: string;
 }
+
+export interface ICategory {
+  name: string;
+  image?: File | string;
+  parent?: string;
+}

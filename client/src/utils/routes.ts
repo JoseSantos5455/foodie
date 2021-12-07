@@ -11,3 +11,6 @@ export const PROFILE_DASHBOARD = '/profile';
 export const PURCHASE_HISTORY = 'purchase-history';
 export const MANAGE_PROFILE = 'manage-profile';
 export const WISHLIST = 'whishlist';
+
+// ADMIN ROUTES
+export const ADD_CATEGORY = '/add-category';

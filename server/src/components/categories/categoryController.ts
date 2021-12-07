@@ -14,7 +14,16 @@ class CategoryController {
 
   async getCategories(req: Request, res: Response, next: NextFunction) {
     try {
-      const categories = await categoryService.getCategories('name slug descendents parent');
+      const categories = await categoryService.getAllCategories('name slug descendents parent');
+      res.status(200).json(makeResJson(categories));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getParentCategories(req: Request, res: Response, next: NextFunction) {
+    try {
+      const categories = await categoryService.getParentCategories();
       res.status(200).json(makeResJson(categories));
     } catch (err) {
       next(err);

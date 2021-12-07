@@ -5,7 +5,8 @@ import { ErrorHandler } from '@/middlewares/error.middleware';
 
 interface ICategoryService {
   addCategory: (category: ICategory) => Promise<ICategory>;
-  getCategories: (select?: string) => Promise<ICategory[]>;
+  getAllCategories: (select?: string) => Promise<ICategory[]>;
+  getParentCategories: () => Promise<ICategory[]>;
   deleteCategory: (id: ICategory['_id']) => Promise<ICategory['_id']>;
 }
 
@@ -35,9 +36,23 @@ class CategoryService implements ICategoryService {
     }
   }
 
-  async getCategories(select?: string): Promise<ICategory[]> {
+  async getAllCategories(select?: string): Promise<ICategory[]> {
     try {
       const categories = await Category.find({}).select(select);
+
+      if (!categories) {
+        throw new ErrorHandler(404, 'no category was found');
+      }
+
+      return categories;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  async getParentCategories(): Promise<ICategory[]> {
+    try {
+      const categories = await Category.find({ parent: null }).select('name image');
 
       if (!categories) {
         throw new ErrorHandler(404, 'no category was found');

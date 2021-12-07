@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 import Profile from 'components/profile';
+const AddCategory = lazy(() => import('pages/admin/AddCategory'));
 const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
 const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
 const Wishlist = lazy(() => import('pages/profile/Wishlist'));
@@ -128,6 +129,14 @@ const AppRouter = () => {
             }
           />
         </Route>
+        <Route
+          path={ROUTES.ADD_CATEGORY}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <AddCategory />
+            </Suspense>
+          }
+        />
 
         <Route
           path="*"

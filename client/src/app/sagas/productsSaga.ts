@@ -5,7 +5,7 @@ import { loadingProducts } from 'app/slices/loadingSlice';
 import { getProductsStart, getProductsSuccess } from 'app/slices/productSlice';
 import { IProduct } from 'types/types';
 
-interface IProductSaga {
+export interface ISaga {
   type: string;
   payload: any;
 }
@@ -15,7 +15,7 @@ function* handleError(err: any) {
   yield put(productsError({ message: err.message || 'Sorry, a server error accured please try again later' }));
 }
 
-function* productsSaga({ type, payload }: IProductSaga) {
+function* productsSaga({ type, payload }: ISaga) {
   switch (type) {
     case getProductsStart.type:
       try {

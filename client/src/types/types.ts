@@ -43,6 +43,7 @@ export interface IReview {
 
 export interface ICategory {
   name: string;
-  image?: File | string;
+  image?: string;
   parent?: string;
+  _id?: string;
 }

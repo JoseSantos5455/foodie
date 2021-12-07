@@ -1,6 +1,11 @@
 import { put, call } from '@redux-saga/core/effects';
-import { addCategory } from 'api/services/categoryApi';
-import { addCategoryStart, addCategorySuccess } from 'app/slices/categorySlice';
+import { addCategory, getCategories } from 'api/services/categoryApi';
+import {
+  addCategoryStart,
+  addCategorySuccess,
+  getCategoriesStart,
+  getCategoriesSuccess,
+} from 'app/slices/categorySlice';
 import { categoryError } from 'app/slices/errorSlice';
 import { loadingCategory } from 'app/slices/loadingSlice';
 import { ICategory } from 'types/types';
@@ -28,7 +33,16 @@ function* categorySaga({ type, payload }: ISaga) {
           yield put(loadingCategory(false));
         }
       } catch (err) {
-        console.log(err);
+        yield handleError(err);
+      }
+      break;
+    case getCategoriesStart.type:
+      try {
+        yield put(loadingCategory(true));
+        const categories: ICategory[] = yield call(getCategories);
+        yield put(getCategoriesSuccess(categories));
+        yield put(loadingCategory(false));
+      } catch (err) {
         yield handleError(err);
       }
       break;

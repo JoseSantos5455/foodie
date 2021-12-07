@@ -7,3 +7,9 @@ export const addCategory = (category: ICategory) =>
     url: '/category',
     data: category,
   });
+
+export const getCategories = () =>
+  httpRequest({
+    method: 'GET',
+    url: '/category',
+  });

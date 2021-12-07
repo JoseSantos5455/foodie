@@ -11,9 +11,13 @@ const categorySlice = createSlice({
     addCategorySuccess: (state, action: PayloadAction<ICategory>) => {
       return [...state, action.payload];
     },
+    getCategoriesStart() {},
+    getCategoriesSuccess: (state, action: PayloadAction<ICategory[]>) => {
+      return action.payload;
+    },
   },
 });
 
-export const { addCategoryStart, addCategorySuccess } = categorySlice.actions;
+export const { addCategoryStart, addCategorySuccess, getCategoriesStart, getCategoriesSuccess } = categorySlice.actions;
 
 export default categorySlice.reducer;

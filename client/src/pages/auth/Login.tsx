@@ -6,6 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from 'utils/formValidation';
 import { Link } from 'react-router-dom';
 import { SIGN_UP } from 'utils/routes';
+import { useDispatch } from 'react-redux';
+import { loginStart } from 'app/slices/authSlice';
+import { ILoginCredentiels } from 'types/types';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,8 +21,10 @@ const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: { email: string; password: string }) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: ILoginCredentiels) => {
+    dispatch(loginStart(data));
   };
 
   return (

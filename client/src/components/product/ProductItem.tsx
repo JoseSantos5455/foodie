@@ -49,7 +49,7 @@ const ProductItem = ({
             </span>
         </div> */}
       <Link to={`/${slug}`}>
-        <div className="w-full h-60 ">
+        <div className="w-full h-60 " style={{ backgroundImage: `url${image}` }}>
           <img src={image} alt="baby" />
         </div>
       </Link>

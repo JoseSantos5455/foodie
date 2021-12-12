@@ -47,3 +47,25 @@ export interface ICategory {
   parent?: string;
   _id?: string;
 }
+
+export interface IUser {
+  fullName: string;
+  email: string;
+  password: string;
+  phone?: string;
+  isPhoneValidated?: boolean;
+  city?: string;
+  address?: string;
+  zipCode?: string;
+  avatar?: string;
+  role: string;
+}
+
+export interface ILoginCredentiels {
+  email: string;
+  password: string;
+}
+
+export interface IAccountCredentiels extends ILoginCredentiels {
+  fullName: string;
+}

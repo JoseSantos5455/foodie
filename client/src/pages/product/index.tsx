@@ -36,7 +36,7 @@ const ProductDetails = () => {
         <>
           <div className="grid grid-cols-9 gap-2 bg-white shadow-md p-4 mb-8">
             <div className="col-span-4">
-              <ProductShowcase images={product.subImages} />
+              <ProductShowcase images={product.subImages} image={product.image} />
             </div>
             <div className="h-full bg-gray-200 justify-self-center" style={{ width: 1 }}></div>
             <div className="col-span-4">

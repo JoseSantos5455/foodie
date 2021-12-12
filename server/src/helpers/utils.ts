@@ -32,8 +32,7 @@ const generateToken = (user_id: IUser['_id'], email: string) => {
 
 const userInfo = (user: IUser, token: string) => ({
   id: user._id,
-  firstName: user.firstName,
-  lastName: user.lastName,
+  fullName: user.fullName,
   email: user.email,
   city: user.city || '',
   address: user.address || '',

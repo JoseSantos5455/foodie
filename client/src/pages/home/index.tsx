@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ErrorBoundary from 'modules/ErrorBoundary';
-// import { getProductsStart } from 'app/slices/productSlice';
+import { getProductsStart } from 'app/slices/productSlice';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'app/store';
 import ProductList from 'components/product/ProductList';
@@ -12,7 +12,6 @@ import CategoryNav from 'components/UI/CategoryNav';
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
-  const dispatchAction = () => dispatch(getCategoriesStart());
   const { products, isErrorProducts, isLoadingProducts, categories, isLoadingCategory, isErrorCategory } =
     useAppSelector((state) => ({
       products: state.products,
@@ -23,10 +22,18 @@ const Home: React.FC = () => {
       isErrorCategory: state.errorState.isErrorCategory,
     }));
 
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(getProductsStart());
+    }
+    if (categories.length === 0) {
+      dispatch(getCategoriesStart());
+    }
+  }, [products.length, categories.length, dispatch]);
+
   return (
     <ErrorBoundary>
       <section className="py-10">
-        <button onClick={dispatchAction}>Get Products</button>
         <Link to="/shop">shop</Link>
         <div className=" grid grid-cols-5 gap-2 mb-10">
           <div className="bg-white shadow-md">

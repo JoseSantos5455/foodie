@@ -18,11 +18,14 @@ const Navbar = () => {
           <SearchBar />
           <div className="flex space-x-4 items-center">
             <Link to={ROUTES.CART}>
-              <span className="text-primaryDark hover:text-primary text-xl">
+              <span className="relative text-primaryDark hover:text-primary text-xl">
                 <ShoppingOutlined />
+                <span className="absolute  top-0 rounded-full bg-purpleBeta w-4 h-4 right-2 p-0 m-0 text-white font-main text-xs  leading-tight text-center">
+                  5
+                </span>
               </span>
             </Link>
-            <Link to={ROUTES.CART}>
+            <Link to={ROUTES.LOGIN}>
               <span className="text-primaryDark hover:text-primary text-xl">
                 <UserOutlined />
               </span>

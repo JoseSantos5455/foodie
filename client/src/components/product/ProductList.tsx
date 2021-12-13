@@ -13,6 +13,7 @@ const ProductList = ({ products, hasBtn }: IProductList) => {
       {products.length > 0 &&
         products.map((product) => (
           <ProductItem
+            key={product._id}
             title={product.title}
             originalPrice={product.pricing.originalPrice}
             discountPercentage={product.pricing.discountPercentage}

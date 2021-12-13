@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IAccountCredentiels, ILoginCredentiels, IUser } from 'types/types';
 
-const initialState: IUser | null = null;
+const initialState = {} as IUser;
 
 const authSlice = createSlice({
   name: 'auth',

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 import Profile from 'components/profile';
+import WithAuth from './WithAuth';
 const AddCategory = lazy(() => import('pages/admin/AddCategory'));
 const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
 const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
@@ -51,7 +52,9 @@ const AppRouter = () => {
           path={ROUTES.CHECKOUT_STEP_1}
           element={
             <Suspense fallback={<p>...loding</p>}>
-              <OrderSummary />
+              <WithAuth>
+                <OrderSummary />
+              </WithAuth>
             </Suspense>
           }
         />
@@ -59,7 +62,9 @@ const AppRouter = () => {
           path={ROUTES.CHECKOUT_STEP_2}
           element={
             <Suspense fallback={<p>...loding</p>}>
-              <BillingDetails />
+              <WithAuth>
+                <BillingDetails />
+              </WithAuth>
             </Suspense>
           }
         />
@@ -67,7 +72,9 @@ const AppRouter = () => {
           path={ROUTES.CHECKOUT_STEP_3}
           element={
             <Suspense fallback={<p>...loding</p>}>
-              <Payment />
+              <WithAuth>
+                <Payment />
+              </WithAuth>
             </Suspense>
           }
         />

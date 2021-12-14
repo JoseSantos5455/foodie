@@ -1,10 +1,14 @@
 import Button from 'components/UI/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CHECKOUT_STEP_2, CHECKOUT_STEP_3 } from 'utils/routes';
 import CheckoutSteps from './components/CheckoutSteps';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { billingSchema } from 'utils/formValidation';
+import { useAppSelector } from 'app/store';
+import { useEffect, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { getProfileStart } from 'app/slices/profileSlice';
 
 type FormData = {
   fullName: string;
@@ -12,16 +16,52 @@ type FormData = {
   city: string;
   address: string;
   phone: number;
-  postalCode: number;
+  zipCode: number;
 };
 
 const BillingDetails = () => {
-  const { register, handleSubmit } = useForm({
+  const navigate = useNavigate();
+  const { profile, auth } = useAppSelector((state) => ({
+    profile: state.profile,
+    auth: state.auth,
+  }));
+
+  const dispatch = useDispatch();
+
+  const defaultValues = useMemo(
+    () => ({
+      fullName: profile?.fullName,
+      email: profile?.email,
+      phone: profile?.phone,
+      city: profile?.city,
+      address: profile?.address,
+      zipCode: profile?.zipCode,
+    }),
+    [profile],
+  );
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(billingSchema),
+    defaultValues,
   });
+
+  useEffect(() => {
+    if (!profile.id) {
+      dispatch(getProfileStart(auth?.token));
+    }
+    if (profile.id) {
+      reset(defaultValues);
+    }
+  }, [profile, dispatch, auth.token, reset, defaultValues]);
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    navigate(CHECKOUT_STEP_3);
   };
 
   return (
@@ -39,6 +79,9 @@ const BillingDetails = () => {
               aria-label="Name"
               {...register('fullName')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.fullName?.message}</span>
+            </div>
           </div>
           <div>
             <label className="block text-sm text-primaryDark font-secondary mb-1">Email</label>
@@ -49,6 +92,9 @@ const BillingDetails = () => {
               aria-label="email"
               {...register('email')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.email?.message}</span>
+            </div>
           </div>
           <div>
             <label className="block text-sm text-primaryDark font-secondary mb-1">Phone</label>
@@ -59,6 +105,9 @@ const BillingDetails = () => {
               aria-label="phone"
               {...register('phone')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.phone?.message}</span>
+            </div>
           </div>
           <div>
             <label className="block text-sm text-primaryDark font-secondary mb-1">City</label>
@@ -69,6 +118,9 @@ const BillingDetails = () => {
               aria-label="city"
               {...register('city')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.city?.message}</span>
+            </div>
           </div>
           <div>
             <label className="block text-sm text-primaryDark font-secondary mb-1">Address</label>
@@ -79,6 +131,9 @@ const BillingDetails = () => {
               aria-label="address"
               {...register('address')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.address?.message}</span>
+            </div>
           </div>
           <div>
             <label className="block text-sm text-primaryDark font-secondary mb-1">zip code</label>
@@ -87,16 +142,19 @@ const BillingDetails = () => {
               type="text"
               placeholder="Your postal code"
               aria-label="postal code"
-              {...register('postalCode')}
+              {...register('zipCode')}
             />
+            <div className="mt-1">
+              <span className="text-red-600">{errors?.zipCode?.message}</span>
+            </div>
           </div>
 
           <div className="flex justify-between mt-6 items-center col-span-2">
             <Button theme="btn-outline-rounded">
               <Link to={CHECKOUT_STEP_2}>Back </Link>
             </Button>
-            <Button theme="btn-rounded">
-              <Link to={CHECKOUT_STEP_3}>Continue</Link>
+            <Button type="submit" theme="btn-rounded">
+              Continue
             </Button>
           </div>
         </form>

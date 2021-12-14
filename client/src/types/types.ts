@@ -60,6 +60,7 @@ export interface IUser {
   zipCode?: string;
   avatar?: string;
   role: string;
+  token: string;
 }
 
 export interface ILoginCredentiels {

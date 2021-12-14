@@ -5,12 +5,14 @@ interface IErrorState {
   isErrorProducts: IError | null;
   isErrorCategory: IError | null;
   isErrorAuth: IError | null;
+  isErrorProfile: IError | null;
 }
 
 const initialState: IErrorState = {
   isErrorProducts: null,
   isErrorCategory: null,
   isErrorAuth: null,
+  isErrorProfile: null,
 };
 
 const errorSlice = createSlice({
@@ -26,12 +28,15 @@ const errorSlice = createSlice({
     authError: (state, action: PayloadAction<IError | null>) => {
       return { ...state, isErrorAuth: action.payload };
     },
+    profileError: (state, action: PayloadAction<IError | null>) => {
+      return { ...state, isErrorProfile: action.payload };
+    },
     clearErrors: () => {
       return initialState;
     },
   },
 });
 
-export const { productsError, categoryError, authError, clearErrors } = errorSlice.actions;
+export const { productsError, categoryError, authError, clearErrors, profileError } = errorSlice.actions;
 
 export default errorSlice.reducer;

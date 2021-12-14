@@ -4,12 +4,14 @@ interface ILoadingState {
   isLoadingProducts: boolean;
   isLoadingCategory: boolean;
   isLoadingAuth: boolean;
+  isLoadingProfile: boolean;
 }
 
 const initialState: ILoadingState = {
   isLoadingProducts: false,
   isLoadingCategory: false,
   isLoadingAuth: false,
+  isLoadingProfile: false,
 };
 
 const loadingSlice = createSlice({
@@ -25,9 +27,12 @@ const loadingSlice = createSlice({
     loadingAuth: (state, action: PayloadAction<boolean>) => {
       return { ...state, isLoadingAuth: action.payload };
     },
+    loadingProfile: (state, action: PayloadAction<boolean>) => {
+      return { ...state, isLoadingAuth: action.payload };
+    },
   },
 });
 
-export const { loadingProducts, loadingCategory, loadingAuth } = loadingSlice.actions;
+export const { loadingProducts, loadingCategory, loadingAuth, loadingProfile } = loadingSlice.actions;
 
 export default loadingSlice.reducer;

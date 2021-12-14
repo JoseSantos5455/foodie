@@ -15,6 +15,9 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       return action.payload;
     },
+    logOut: (state, action) => {
+      return {} as IUser;
+    },
   },
 });
 

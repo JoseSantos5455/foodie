@@ -22,6 +22,6 @@ export const billingSchema = Yup.object().shape({
   email: Yup.string().required('this field is required').email('please enter a valid email'),
   city: Yup.string().required('this field is required'),
   address: Yup.string().required('this field is required').max(200, 'address should contain less than 200 letters'),
-  postalCode: Yup.string().required('this field is required').min(6, 'must be least 6 numbers'),
+  zipCode: Yup.string().required('this field is required').min(6, 'must be least 6 numbers'),
   phone: Yup.string().required('this field is required'),
 });

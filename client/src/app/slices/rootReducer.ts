@@ -5,6 +5,7 @@ import errorReducer from './errorSlice';
 import loadingReducer from './loadingSlice';
 import productReducer from './productSlice';
 import authReducer from './authSlice';
+import profileReducer from './profileSlice';
 
 export const rootReducer = combineReducers({
   products: productReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   cart: cartReducer,
   categories: categoryReducer,
   auth: authReducer,
+  profile: profileReducer,
 });

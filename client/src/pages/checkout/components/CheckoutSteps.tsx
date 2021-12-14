@@ -81,7 +81,7 @@ const CheckoutSteps = ({ current }: Props) => {
             </div>
           </div>
 
-          <div className="text-xs text-center md:text-base font-main font-semibold text-gray-700">order summary</div>
+          <div className="text-xs text-center md:text-base font-main font-semibold text-gray-700">Payment</div>
         </div>
       </div>
     </div>

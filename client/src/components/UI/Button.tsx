@@ -6,11 +6,12 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  type?: 'submit' | 'reset' | 'button';
 }
 
-const Button: React.FC<Props> = ({ theme, className = '', children, onClick }) => {
+const Button: React.FC<Props> = ({ theme, className = '', children, onClick, type }) => {
   return (
-    <button onClick={onClick} className={`btn ${theme} ${className}`}>
+    <button type={type} onClick={onClick} className={`btn ${theme} ${className}`}>
       {children}
     </button>
   );

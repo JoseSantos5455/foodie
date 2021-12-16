@@ -34,6 +34,16 @@ class UserController {
       next(err);
     }
   }
+  async updateProfile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const updatedProfile = await userService.updateProfile(req.body, req.user.id);
+
+      const token = generateToken(updatedProfile._id, updatedProfile.email);
+      res.status(200).json(makeResJson(userInfo(updatedProfile, token)));
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new UserController();

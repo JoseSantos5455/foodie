@@ -16,6 +16,7 @@ export interface IUser extends Document {
   avatar?: string;
   role: string;
   orders: IProduct['_id'][];
+  matchPassword: (password: string) => boolean;
 }
 
 const userSchema = new Schema({
@@ -55,6 +56,10 @@ const userSchema = new Schema({
   },
   orders: [ObjectId],
 });
+
+userSchema.methods.matchPassword = async function (enteredPassword: string) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 userSchema.pre<IUser>('save', async function (this: IUser) {
   const encryptPassword = await bcrypt.hash(this.password, 10);

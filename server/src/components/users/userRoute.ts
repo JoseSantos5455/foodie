@@ -5,7 +5,10 @@ import userController from './userController';
 
 const router = Router();
 
-router.route('/profile').get(isAuthenticated, userController.getProfile);
+router
+  .route('/profile')
+  .get(isAuthenticated, userController.getProfile)
+  .patch(isAuthenticated, userController.updateProfile);
 router.route('/signup').post(userController.signUp);
 router.route('/signin').post(userController.signIn);
 router.route('/').get(isAuthenticated, isAdmin, adminController.getUsers);

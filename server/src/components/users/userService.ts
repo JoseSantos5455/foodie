@@ -5,6 +5,8 @@ import bcrypt from 'bcryptjs';
 interface IUserService {
   signUp: (user: IUser) => Promise<IUser>;
   signIn: (email: string, password: string) => Promise<IUser>;
+  userProfile: (id: string) => Promise<IUser>;
+  updateProfile: (updates: Partial<IUser>, id: string) => Promise<IUser>;
 }
 
 class UserService implements IUserService {
@@ -44,6 +46,34 @@ class UserService implements IUserService {
         throw new ErrorHandler(404, 'user not found');
       }
       return user;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
+  async updateProfile(updates: Partial<IUser>, id: string): Promise<IUser> {
+    try {
+      const user = await User.findById(id);
+      if (user) {
+        if (updates.email) {
+          if (!updates.password) throw new ErrorHandler(400, 'password is needed to update email');
+          const emailExists = await User.findOne({ email: updates.email });
+          if (emailExists) throw new ErrorHandler(400, 'email already exists');
+          if (await user.matchPassword(updates?.password)) {
+            user.email = updates.email || user.email;
+          } else {
+            throw new ErrorHandler(400, 'password is incorrect');
+          }
+        }
+        user.fullName = updates.fullName || user.fullName;
+        user.city = updates.city || user.city;
+        user.address = updates.address || user.address;
+        user.zipCode = updates.zipCode || user.zipCode;
+        user.avatar = updates.avatar || user.avatar;
+        user.phone = updates.phone || user.phone;
+        user.isPhoneValidated = updates.isPhoneValidated || user.isPhoneValidated;
+      }
+      const updatedUser = await user.save();
+      return updatedUser;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }

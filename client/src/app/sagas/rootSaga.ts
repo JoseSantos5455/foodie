@@ -5,14 +5,14 @@ import productsSaga from './productsSaga';
 import categorySaga from './categorySaga';
 import { loginStart, signUpStart } from 'app/slices/authSlice';
 import authSaga from './authSaga';
-import { getProfileStart } from 'app/slices/profileSlice';
+import { getProfileStart, updateProfileStart } from 'app/slices/profileSlice';
 import profileSaga from './profileSaga';
 
 function* rootSaga() {
   yield takeLatest(getProductsStart.type, productsSaga);
   yield takeLatest([addCategoryStart.type, getCategoriesStart.type], categorySaga);
   yield takeLatest([signUpStart.type, loginStart.type], authSaga);
-  yield takeLatest([getProfileStart.type], profileSaga);
+  yield takeLatest([getProfileStart.type, updateProfileStart.type], profileSaga);
 }
 
 export default rootSaga;

@@ -11,12 +11,18 @@ const profileSlice = createSlice({
     getProfileSuccess: (state, action: PayloadAction<IUser>) => {
       return action.payload;
     },
+    updateProfileStart: (state, action: PayloadAction<Partial<IUser>>) => {},
+    updateProfileSuccess: (state, action: PayloadAction<IUser>) => {
+      return action.payload;
+    },
+
     clearProfile: () => {
       return {} as IUser;
     },
   },
 });
 
-export const { getProfileStart, getProfileSuccess, clearProfile } = profileSlice.actions;
+export const { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess, clearProfile } =
+  profileSlice.actions;
 
 export default profileSlice.reducer;

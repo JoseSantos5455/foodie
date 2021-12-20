@@ -1,6 +1,6 @@
-import { getProfile } from 'api/services/profileApi';
+import { getProfile, updateProfile } from 'api/services/profileApi';
 import { loadingProfile } from 'app/slices/loadingSlice';
-import { getProfileStart, getProfileSuccess } from 'app/slices/profileSlice';
+import { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess } from 'app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
 import { profileError } from '../slices/errorSlice';
 import { ISaga } from './productsSaga';
@@ -18,6 +18,16 @@ function* profileSaga({ type, payload }: ISaga) {
         yield put(loadingProfile(true));
         const profile: IUser = yield call(getProfile, payload);
         yield put(getProfileSuccess(profile));
+        yield put(loadingProfile(false));
+      } catch (err) {
+        handleError(err);
+      }
+      break;
+    case updateProfileStart.type:
+      try {
+        yield put(loadingProfile(true));
+        const profile: IUser = yield call(updateProfile, payload.token, payload);
+        yield put(updateProfileSuccess(profile));
         yield put(loadingProfile(false));
       } catch (err) {
         handleError(err);

@@ -10485,6 +10485,11 @@ react-simple-star-rating@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-simple-star-rating/-/react-simple-star-rating-3.0.0.tgz#923607b33ceb55e3c2c84fd79a6e0db64477638a"
   integrity sha512-kxl9ucQTr1TzXGT/klBe7EMqCN9uuRoSlZqKCr9HMMriEY8rB/VwABtwELYhSClhkE0LIRpWw12EAG9hq5DOSg==
 
+react-st-modal@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-st-modal/-/react-st-modal-1.1.3.tgz#9f51b2028ceef2b9d1ed4abeca68211b619067bb"
+  integrity sha512-QNAKjxPPKcHHGDKvXjcTkGgSzxd495nBxunGf3t4XfKjEDARKANcFg8yC1a3T2h/kXKB+YQfVuR5bK9iERWDDg==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"

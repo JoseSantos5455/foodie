@@ -12,7 +12,7 @@ const UseAuth = ({ children }: Props) => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
 
-  const auth = useAppSelector((state) => state.auth?.id && state.auth?.role);
+  const auth = useAppSelector((state) => state.auth?.id && state.auth?.role === 'user');
 
   useEffect(() => {
     if (auth) {

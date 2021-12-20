@@ -8,16 +8,11 @@ import { billingSchema } from 'utils/formValidation';
 import { useAppSelector } from 'app/store';
 import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProfileStart } from 'app/slices/profileSlice';
-
-type FormData = {
-  fullName: string;
-  email: string;
-  city: string;
-  address: string;
-  phone: number;
-  zipCode: number;
-};
+import { getProfileStart, updateProfileStart } from 'app/slices/profileSlice';
+import { compareObjs } from 'utils/helpers';
+import { IUser } from 'types/types';
+import { CustomDialog } from 'react-st-modal';
+import PasswordModal from './components/PasswordModal';
 
 const BillingDetails = () => {
   const navigate = useNavigate();
@@ -59,8 +54,29 @@ const BillingDetails = () => {
     }
   }, [profile, dispatch, auth.token, reset, defaultValues]);
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: Partial<IUser>) => {
+    const updates = compareObjs(data, defaultValues);
+
+    if (Object.keys(updates).length !== 0) {
+      if (updates.email) {
+        const result = await CustomDialog(<PasswordModal />, {
+          title: 'Enter your password',
+          showCloseIcon: true,
+        });
+
+        if (!result) {
+          alert('you must enter password to change email');
+          return;
+        } else {
+          updates.password = result;
+          updates.token = profile.token;
+          dispatch(updateProfileStart(updates));
+        }
+      } else {
+        updates.token = profile.token;
+        dispatch(updateProfileStart(updates));
+      }
+    }
     navigate(CHECKOUT_STEP_3);
   };
 

@@ -14,7 +14,7 @@ export const signupSchema = Yup.object().shape({
   password: Yup.string().required('this field is required').min(6, 'password must contain at least 6 characters'),
 });
 
-export const billingSchema = Yup.object().shape({
+export const profileSchema = Yup.object().shape({
   fullName: Yup.string()
     .required('this field is required')
     .min(4, 'must contain more than 4 letter')

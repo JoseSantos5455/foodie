@@ -6,6 +6,7 @@ import loadingReducer from './loadingSlice';
 import productReducer from './productSlice';
 import authReducer from './authSlice';
 import profileReducer from './profileSlice';
+import orderReducer from './orderSlice';
 
 export const rootReducer = combineReducers({
   products: productReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   categories: categoryReducer,
   auth: authReducer,
   profile: profileReducer,
+  orders: orderReducer,
 });

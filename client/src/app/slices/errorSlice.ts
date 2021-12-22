@@ -6,6 +6,7 @@ interface IErrorState {
   isErrorCategory: IError | null;
   isErrorAuth: IError | null;
   isErrorProfile: IError | null;
+  isErrorOrder: IError | null;
 }
 
 const initialState: IErrorState = {
@@ -13,6 +14,7 @@ const initialState: IErrorState = {
   isErrorCategory: null,
   isErrorAuth: null,
   isErrorProfile: null,
+  isErrorOrder: null,
 };
 
 const errorSlice = createSlice({
@@ -31,12 +33,15 @@ const errorSlice = createSlice({
     profileError: (state, action: PayloadAction<IError | null>) => {
       return { ...state, isErrorProfile: action.payload };
     },
+    orderError: (state, action: PayloadAction<IError | null>) => {
+      return { ...state, isErrorOrder: action.payload };
+    },
     clearErrors: () => {
       return initialState;
     },
   },
 });
 
-export const { productsError, categoryError, authError, clearErrors, profileError } = errorSlice.actions;
+export const { productsError, categoryError, authError, clearErrors, profileError, orderError } = errorSlice.actions;
 
 export default errorSlice.reducer;

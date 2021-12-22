@@ -11,7 +11,7 @@ const Cart = () => {
         <div className="grid grid-cols-2 gap-8 max-w-screen-lg mx-auto">
           <div>
             {cart.map((cartItem) => (
-              <CartItem key={cartItem._id} cartItem={cartItem} />
+              <CartItem key={cartItem.productId} cartItem={cartItem} />
             ))}
           </div>
           <div>

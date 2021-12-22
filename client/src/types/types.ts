@@ -63,6 +63,31 @@ export interface IUser {
   token: string;
 }
 
+export interface IOrder {
+  user: string;
+  orderItems: [
+    {
+      productId: string;
+      qty: number;
+      price: number;
+      title: string;
+      image: string;
+    },
+  ];
+  shippingInfo: {
+    city: string;
+    phone: string;
+    isPhoneValidated: boolean;
+    address: string;
+    zipCode: string;
+  };
+  paymentMethod: string;
+  subTotal: number;
+  total: number;
+  shippingPrice: number;
+  isPaid: boolean;
+}
+
 export interface ILoginCredentiels {
   email: string;
   password: string;

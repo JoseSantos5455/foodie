@@ -34,7 +34,7 @@ const ProductItem = ({
     const discountPrice = calculateDiscount(originalPrice, discountPercentage);
     const cartItem = {
       title: title,
-      _id: id,
+      productId: id,
       image,
       price: discountPrice,
       qty: 1,

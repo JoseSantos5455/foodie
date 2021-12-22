@@ -19,7 +19,7 @@ const OrderSummary: FC = () => {
             <div className="my-8 grid grid-cols-3 gap-4">
               <div className="col-span-2">
                 {cart.map((cartItem) => (
-                  <CartItem key={cartItem._id} cartItem={cartItem} />
+                  <CartItem key={cartItem.productId} cartItem={cartItem} />
                 ))}
               </div>
               <div>

@@ -7,12 +7,12 @@ const useCart = () => {
 
   const dispatch = useAppDispatch();
 
-  const findItem = (id: String) => cart.find((item) => item._id === id);
+  const findItem = (id: String) => cart.find((item) => item.productId === id);
   const isItemInCart = (id: string) => !!findItem(id);
 
   const onAddToCart = (cartItem: ICart) => {
-    if (isItemInCart(cartItem._id)) {
-      dispatch(addQtyItem(cartItem._id));
+    if (isItemInCart(cartItem.productId)) {
+      dispatch(addQtyItem(cartItem.productId));
       toast.success('Product Added to cart');
     } else {
       dispatch(addToCart(cartItem));

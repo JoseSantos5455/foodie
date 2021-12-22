@@ -43,11 +43,8 @@ const orderSchema = new Schema(
     orderItems: [
       {
         productId: { type: ObjectId, required: true, ref: 'Product' },
-        quantity: { type: Number, required: true },
-        pricing: {
-          originalPrice: { type: Number, required: true },
-          discountPercentage: Number,
-        },
+        qty: { type: Number, required: true },
+        price: { type: Number, required: true },
         title: { type: String, required: true },
         image: { type: String, required: true },
       },
@@ -60,7 +57,12 @@ const orderSchema = new Schema(
       zipCode: { type: String, required: true },
     },
     paymentMethod: { type: String, required: true },
-    orderStatus: { type: String, required: true, enum: ['pending', 'on going', 'canceled', 'delivered'] },
+    orderStatus: {
+      type: String,
+      required: true,
+      default: 'pending',
+      enum: ['pending', 'on going', 'canceled', 'delivered'],
+    },
     subTotal: { type: Number, required: true },
     total: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },

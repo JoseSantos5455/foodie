@@ -4,7 +4,7 @@ import { CHECKOUT_STEP_2, CHECKOUT_STEP_3 } from 'utils/routes';
 import CheckoutSteps from './components/CheckoutSteps';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { billingSchema } from 'utils/formValidation';
+import { profileSchema } from 'utils/formValidation';
 import { useAppSelector } from 'app/store';
 import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
@@ -41,7 +41,7 @@ const BillingDetails = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(billingSchema),
+    resolver: yupResolver(profileSchema),
     defaultValues,
   });
 

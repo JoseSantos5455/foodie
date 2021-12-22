@@ -32,7 +32,7 @@ const ProfileDashboard = () => {
       </h3>
       <div className="grid md:grid-cols-2 grid-rows-2 items-stretch gap-10">
         {profilePages.map((route, index) => (
-          <div className="w-full">
+          <div className="w-full" key={`route-${index}`}>
             <Link
               key={`${route}-${index}`}
               to={route.link}

@@ -2,8 +2,9 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
-import Profile from 'components/profile';
+
 import WithAuth from './WithAuth';
+const Profile = lazy(() => import('components/profile'));
 const AddCategory = lazy(() => import('pages/admin/AddCategory'));
 const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
 const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
@@ -102,7 +103,16 @@ const AppRouter = () => {
             </Suspense>
           }
         />
-        <Route path={ROUTES.PROFILE_DASHBOARD} element={<Profile />}>
+        <Route
+          path={ROUTES.PROFILE_DASHBOARD}
+          element={
+            <Suspense fallback={<p>...loding</p>}>
+              <WithAuth>
+                <Profile />
+              </WithAuth>
+            </Suspense>
+          }
+        >
           <Route
             index
             element={

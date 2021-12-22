@@ -1,7 +1,7 @@
-import React from 'react';
 import { useAppSelector } from 'app/store';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   children: JSX.Element;
@@ -10,7 +10,8 @@ interface Props {
 const UseAuth = ({ children }: Props) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
+  /* @ts-ignore */
+  const from = location?.state?.from?.pathname || '/';
 
   const auth = useAppSelector((state) => state.auth?.id && state.auth?.role === 'user');
 

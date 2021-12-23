@@ -16,7 +16,7 @@ function* orderSaga({ type, payload }: ISaga) {
     case addOrderStart.type:
       try {
         yield put(loadingOrder(true));
-        const order: IOrder = yield call(addOrder, payload.order, payload.token);
+        const order: IOrder = yield call(addOrder, payload.newOrder, payload.token);
         yield put(addOrderSuccess(order));
         yield put(loadingOrder(false));
       } catch (err) {

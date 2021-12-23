@@ -15,9 +15,9 @@ interface IOrderService {
 class OrderService implements IOrderService {
   async addOrder(order: IOrder, userId: IUser['_id']): Promise<IOrder> {
     try {
-      if (!order.shippingInfo.isPhoneValidated) {
-        throw new ErrorHandler(400, 'phone number must be valideted');
-      }
+      // if (!order.shippingInfo.isPhoneValidated) {
+      //   throw new ErrorHandler(400, 'phone number must be valideted');
+      // }
       if (!order.orderItems) throw new ErrorHandler(400, 'you must order something');
       order.user = userId;
       const createdOrder = await Order.create(order);

@@ -66,7 +66,6 @@ export interface IUser {
 }
 
 export interface IOrder {
-  user: string;
   orderItems: ICart[];
   shippingInfo: {
     city: string;

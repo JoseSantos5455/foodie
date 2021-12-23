@@ -1,9 +1,25 @@
 import { LockOutlined } from '@ant-design/icons';
 import Button from 'components/UI/Button';
+import { useForm } from 'react-hook-form';
+import useOrder from 'utils/hooks/useOrder';
+import { addOrderStart } from 'app/slices/orderSlice';
 
 const CardForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { newOrder, token, dispatch } = useOrder();
+
+  const onSubmit = (data: any) => {
+    newOrder.paymentMethod = 'card';
+    dispatch(addOrderStart({ newOrder, token }));
+  };
+
   return (
-    <form className="p-4">
+    <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
         <label className="font-bold text-sm mb-2 ml-1">Name on card</label>
         <div>
@@ -11,7 +27,9 @@ const CardForm = () => {
             className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors"
             placeholder="John Smith"
             type="text"
+            {...register('nameOnCard', { required: true })}
           />
+          <div>{errors.nameOnCard && <span className="text-red-600">This field is required</span>}</div>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 mb-3">
@@ -22,7 +40,9 @@ const CardForm = () => {
               className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors"
               placeholder="0000 0000 0000 0000"
               type="text"
+              {...register('CardNumber', { required: true })}
             />
+            <div>{errors.CardNumber && <span className="text-red-600">This field is required</span>}</div>
           </div>
         </div>
         <div>
@@ -31,8 +51,10 @@ const CardForm = () => {
             <input
               className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors"
               placeholder="000"
-              type="text"
+              type="number"
+              {...register('Cvv', { required: true })}
             />
+            <div>{errors.Cvv && <span className="text-red-600">This field is required</span>}</div>
           </div>
         </div>
       </div>
@@ -40,7 +62,10 @@ const CardForm = () => {
         <div className="px-2 w-1/2">
           <label className="font-bold text-sm mb-2 ml-1">Expiration date</label>
           <div>
-            <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors cursor-pointer">
+            <select
+              {...register('expirationMonth', { required: true })}
+              className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors cursor-pointer"
+            >
               <option value="01">01 - January</option>
               <option value="02">02 - February</option>
               <option value="03">03 - March</option>
@@ -54,10 +79,14 @@ const CardForm = () => {
               <option value="11">11 - November</option>
               <option value="12">12 - December</option>
             </select>
+            <div>{errors.expirationMonth && <span className="text-red-600">This field is required</span>}</div>
           </div>
         </div>
         <div className="px-2 w-1/2">
-          <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors cursor-pointer">
+          <select
+            {...register('expirationYear', { required: true })}
+            className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors cursor-pointer"
+          >
             <option value="2020">2020</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
@@ -69,6 +98,7 @@ const CardForm = () => {
             <option value="2028">2028</option>
             <option value="2029">2029</option>
           </select>
+          <div>{errors.expirationYear && <span className="text-red-600">This field is required</span>}</div>
         </div>
       </div>
 

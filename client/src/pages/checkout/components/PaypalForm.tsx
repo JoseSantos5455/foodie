@@ -1,9 +1,25 @@
 import { LockOutlined } from '@ant-design/icons';
 import Button from 'components/UI/Button';
+import { useForm } from 'react-hook-form';
+import useOrder from 'utils/hooks/useOrder';
+import { addOrderStart } from 'app/slices/orderSlice';
 
 const PaypalForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { newOrder, token, dispatch } = useOrder();
+
+  const onSubmit = (data: any) => {
+    newOrder.paymentMethod = 'paypal';
+    dispatch(addOrderStart({ newOrder, token }));
+  };
+
   return (
-    <form className="p-4">
+    <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
         <label className="font-bold text-sm mb-2 ml-1">Email</label>
         <div>
@@ -11,7 +27,12 @@ const PaypalForm = () => {
             className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors"
             placeholder="John Smith"
             type="email"
+            {...register('email', { required: true, pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g })}
           />
+          <div>
+            {errors.email?.type === 'pattern' && <span className="text-red-600">please enter a valid email</span>}
+            {errors.email?.type === 'required' && <span className="text-red-600">this field is required</span>}
+          </div>
         </div>
       </div>
       <div className="mb-3">
@@ -21,7 +42,9 @@ const PaypalForm = () => {
             className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-primary transition-colors"
             placeholder="John Smith"
             type="password"
+            {...register('span', { required: true })}
           />
+          <div>{errors.password && <span className="text-red-600">this field is required</span>}</div>
         </div>
       </div>
       <div className="flex justify-center">

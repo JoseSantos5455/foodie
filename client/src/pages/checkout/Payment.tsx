@@ -3,8 +3,7 @@ import { paymentIcons } from 'utils/icons';
 import { useState } from 'react';
 import CardForm from './components/CardForm';
 import PaypalForm from './components/PaypalForm';
-import { LockOutlined } from '@ant-design/icons';
-import Button from 'components/UI/Button';
+import DeliveryPay from './components/DeliveryPay';
 
 const Payment = () => {
   const [paymentType, setPaymentType] = useState('card');
@@ -23,7 +22,7 @@ const Payment = () => {
             <div className="px-2" key={icon.id}>
               <div
                 onClick={() => setPaymentType(icon.name)}
-                className={`flex items-center cursor-pointer p-6 rounded border ${
+                className={`flex items-center cursor-pointer p-6 rounded border-2 ${
                   icon.name === paymentType && 'border-primary'
                 }`}
               >
@@ -35,19 +34,7 @@ const Payment = () => {
         </div>
         {paymentType === 'card' && <CardForm />}
         {paymentType === 'paypal' && <PaypalForm />}
-        {paymentType === 'cash' && (
-          <div className="flex justify-center align-center p-8">
-            <div className="text-center">
-              <h3 className="text-xl font-bold fon-main mb-4 capitalize">total: 236.52$</h3>
-              <p className="font-secondary text-lg text-primaryDark">Pay at delivery</p>
-              <div className="flex items-center mt-8">
-                <Button theme="btn-large" className="flex items-center">
-                  <LockOutlined className="text-white mr-2" /> Confirm
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
+        {paymentType === 'cash' && <DeliveryPay />}
       </div>
     </section>
   );

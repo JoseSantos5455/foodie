@@ -29,10 +29,11 @@ class UserService implements IUserService {
     try {
       const user = await User.findOne({ email });
 
-      if (user && (await bcrypt.compare(password, user.password))) {
-        return user;
+      if (user) {
+        if (await bcrypt.compare(password, user.password)) return user;
+        else throw new ErrorHandler(400, 'incorrect password');
       } else {
-        throw new ErrorHandler(400, 'incorrect email or password');
+        throw new ErrorHandler(400, 'incorrect email');
       }
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);

@@ -9,7 +9,7 @@ type CartItemProps = {
 
 const CartItem = ({ cartItem }: CartItemProps) => {
   const { onMinusQty, onAddQty, onRemoveFromCart } = useCart();
-  const id = cartItem._id;
+  const id = cartItem.productId;
   return (
     <div className="bg-white rounded-md shadow-md p-4 mb-4">
       <div className="grid grid-cols-5 gap-2">

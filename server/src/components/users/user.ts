@@ -1,6 +1,7 @@
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { IProduct } from '../products/product';
+import { NextFunction } from 'express';
 
 const ObjectId = Schema.Types.ObjectId;
 
@@ -61,7 +62,10 @@ userSchema.methods.matchPassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.pre<IUser>('save', async function (this: IUser) {
+userSchema.pre<IUser>('save', async function (next: NextFunction) {
+  if (!this.isModified('password')) {
+    next();
+  }
   const encryptPassword = await bcrypt.hash(this.password, 10);
   this.password = encryptPassword;
 });

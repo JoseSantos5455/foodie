@@ -1,3 +1,5 @@
+import { ICart } from 'app/slices/cartSlice';
+
 export interface IProduct {
   _id: string;
   title: string;
@@ -53,27 +55,19 @@ export interface IUser {
   fullName: string;
   email: string;
   password: string;
-  phone?: string;
-  isPhoneValidated?: boolean;
-  city?: string;
-  address?: string;
-  zipCode?: string;
-  avatar?: string;
+  phone: string;
+  isPhoneValidated: boolean;
+  city: string;
+  address: string;
+  zipCode: string;
+  avatar: string;
   role: string;
   token: string;
 }
 
 export interface IOrder {
   user: string;
-  orderItems: [
-    {
-      productId: string;
-      qty: number;
-      price: number;
-      title: string;
-      image: string;
-    },
-  ];
+  orderItems: ICart[];
   shippingInfo: {
     city: string;
     phone: string;

@@ -4,6 +4,7 @@ import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 
 import WithAuth from './WithAuth';
+import Loading from 'components/loaders/Loading';
 const Profile = lazy(() => import('components/profile'));
 const AddCategory = lazy(() => import('pages/admin/AddCategory'));
 const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
@@ -28,7 +29,7 @@ const AppRouter = () => {
         <Route
           index
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <Home />
             </Suspense>
           }
@@ -36,7 +37,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.PRODUCT_DETAILS}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <ProductDetails />
             </Suspense>
           }
@@ -44,7 +45,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.CART}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <Cart />
             </Suspense>
           }
@@ -52,7 +53,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.CHECKOUT_STEP_1}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <WithAuth>
                 <OrderSummary />
               </WithAuth>
@@ -62,7 +63,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.CHECKOUT_STEP_2}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <WithAuth>
                 <BillingDetails />
               </WithAuth>
@@ -72,7 +73,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.CHECKOUT_STEP_3}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <WithAuth>
                 <Payment />
               </WithAuth>
@@ -82,7 +83,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.LOGIN}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <Login />
             </Suspense>
           }
@@ -90,7 +91,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.SIGN_UP}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <Signup />
             </Suspense>
           }
@@ -98,7 +99,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.SHOP}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <Shop />
             </Suspense>
           }
@@ -106,7 +107,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.PROFILE_DASHBOARD}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <WithAuth>
                 <Profile />
               </WithAuth>
@@ -116,7 +117,7 @@ const AppRouter = () => {
           <Route
             index
             element={
-              <Suspense fallback={<p>...loding</p>}>
+              <Suspense fallback={<Loading />}>
                 <ProfileDashboard />
               </Suspense>
             }
@@ -124,7 +125,7 @@ const AppRouter = () => {
           <Route
             path={ROUTES.WISHLIST}
             element={
-              <Suspense fallback={<p>...loding</p>}>
+              <Suspense fallback={<Loading />}>
                 <Wishlist />
               </Suspense>
             }
@@ -132,7 +133,7 @@ const AppRouter = () => {
           <Route
             path={ROUTES.MANAGE_PROFILE}
             element={
-              <Suspense fallback={<p>...loding</p>}>
+              <Suspense fallback={<Loading />}>
                 <ManageProfile />
               </Suspense>
             }
@@ -140,7 +141,7 @@ const AppRouter = () => {
           <Route
             path={ROUTES.PURCHASE_HISTORY}
             element={
-              <Suspense fallback={<p>...loding</p>}>
+              <Suspense fallback={<Loading />}>
                 <PurchaseHistory />
               </Suspense>
             }
@@ -149,7 +150,7 @@ const AppRouter = () => {
         <Route
           path={ROUTES.ADD_CATEGORY}
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <AddCategory />
             </Suspense>
           }
@@ -158,7 +159,7 @@ const AppRouter = () => {
         <Route
           path="*"
           element={
-            <Suspense fallback={<p>...loding</p>}>
+            <Suspense fallback={<Loading />}>
               <NotFound />
             </Suspense>
           }

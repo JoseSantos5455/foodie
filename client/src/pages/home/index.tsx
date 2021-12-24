@@ -8,6 +8,8 @@ import ErrorCard from 'components/UI/ErrorCard';
 import { Link } from 'react-router-dom';
 import { getCategoriesStart } from 'app/slices/categorySlice';
 import CategoryNav from 'components/UI/CategoryNav';
+import CategorySkeleton from 'components/loaders/CategorySkeleton';
+import ProductSkeleton from 'components/loaders/ProductSkeleton';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,7 +39,7 @@ const Home: React.FC = () => {
         <Link to="/shop">shop</Link>
         <div className=" grid grid-cols-5 gap-2 mb-10">
           <div className="bg-white shadow-md">
-            {isLoadingCategory && <span>loading...</span>}
+            {isLoadingCategory && <CategorySkeleton />}
             {isErrorCategory && <span>error !.</span>}
             {categories.length > 0 && <CategoryNav categories={categories} />}
           </div>
@@ -51,7 +53,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        {isLoadingProducts && <p>loading...</p>}
+        {isLoadingProducts && <ProductSkeleton />}
         {isErrorProducts && <ErrorCard message={isErrorProducts.message} />}
         <div className=" grid grid-cols-5 gap-2">{products.length > 0 && <ProductList products={products} />}</div>
       </section>

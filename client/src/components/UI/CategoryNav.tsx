@@ -19,6 +19,7 @@ const CategoryNav = ({ categories }: Props) => {
             </span>
             <span>{name}</span>
           </Link>
+         
         </li>
       ))}
     </ul>

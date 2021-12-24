@@ -4,8 +4,10 @@ import SearchBar from './SearchBar';
 import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
 import 'styles/UI/navbar.css';
 import logo from 'assets/logo.png';
+import { useAppSelector } from 'app/store';
 
 const Navbar = () => {
+  const cart = useAppSelector((state) => state.cart);
   return (
     <header className="header">
       <nav className="container">
@@ -21,7 +23,7 @@ const Navbar = () => {
               <span className="relative text-primaryDark hover:text-primary text-xl">
                 <ShoppingOutlined />
                 <span className="absolute  top-0 rounded-full bg-purpleBeta w-4 h-4 right-2 p-0 m-0 text-white font-main text-xs  leading-tight text-center">
-                  5
+                  {cart.length}
                 </span>
               </span>
             </Link>

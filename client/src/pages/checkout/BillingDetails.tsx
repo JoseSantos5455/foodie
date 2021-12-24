@@ -13,6 +13,7 @@ import { compareObjs } from 'utils/helpers';
 import { IUser } from 'types/types';
 import { CustomDialog } from 'react-st-modal';
 import PasswordModal from './components/PasswordModal';
+import WithCart from './components/WithCart';
 
 const BillingDetails = () => {
   const navigate = useNavigate();
@@ -81,101 +82,103 @@ const BillingDetails = () => {
   };
 
   return (
-    <section className="py-10">
-      <h1 className="text-center text-3xl font-main font-bold mb-4">Billing Details</h1>
-      <div className=" max-w-screen-md mx-auto bg-white p-4 shadow-md rounded">
-        <CheckoutSteps current={2} />
-        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4 p-8">
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">Full Name</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="text"
-              placeholder="Your Name"
-              aria-label="Name"
-              {...register('fullName')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.fullName?.message}</span>
+    <WithCart>
+      <section className="py-10">
+        <h1 className="text-center text-3xl font-main font-bold mb-4">Billing Details</h1>
+        <div className=" max-w-screen-md mx-auto bg-white p-4 shadow-md rounded">
+          <CheckoutSteps current={2} />
+          <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4 p-8">
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">Full Name</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="text"
+                placeholder="Your Name"
+                aria-label="Name"
+                {...register('fullName')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.fullName?.message}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">Email</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="email"
-              placeholder="Your Email"
-              aria-label="email"
-              {...register('email')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.email?.message}</span>
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">Email</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="email"
+                placeholder="Your Email"
+                aria-label="email"
+                {...register('email')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.email?.message}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">Phone</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="phone"
-              placeholder="Your phone number"
-              aria-label="phone"
-              {...register('phone')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.phone?.message}</span>
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">Phone</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="phone"
+                placeholder="Your phone number"
+                aria-label="phone"
+                {...register('phone')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.phone?.message}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">City</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="text"
-              placeholder="Your city"
-              aria-label="city"
-              {...register('city')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.city?.message}</span>
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">City</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="text"
+                placeholder="Your city"
+                aria-label="city"
+                {...register('city')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.city?.message}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">Address</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="text"
-              placeholder="Your address"
-              aria-label="address"
-              {...register('address')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.address?.message}</span>
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">Address</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="text"
+                placeholder="Your address"
+                aria-label="address"
+                {...register('address')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.address?.message}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-primaryDark font-secondary mb-1">zip code</label>
-            <input
-              className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
-              type="text"
-              placeholder="Your postal code"
-              aria-label="postal code"
-              {...register('zipCode')}
-            />
-            <div className="mt-1">
-              <span className="text-red-600">{errors?.zipCode?.message}</span>
+            <div>
+              <label className="block text-sm text-primaryDark font-secondary mb-1">zip code</label>
+              <input
+                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                type="text"
+                placeholder="Your postal code"
+                aria-label="postal code"
+                {...register('zipCode')}
+              />
+              <div className="mt-1">
+                <span className="text-red-600">{errors?.zipCode?.message}</span>
+              </div>
             </div>
-          </div>
 
-          <div className="flex justify-between mt-6 items-center col-span-2">
-            <Button theme="btn-outline-rounded">
-              <Link to={CHECKOUT_STEP_2}>Back </Link>
-            </Button>
-            <Button type="submit" theme="btn-rounded">
-              Continue
-            </Button>
-          </div>
-        </form>
-      </div>
-    </section>
+            <div className="flex justify-between mt-6 items-center col-span-2">
+              <Button theme="btn-outline-rounded">
+                <Link to={CHECKOUT_STEP_2}>Back </Link>
+              </Button>
+              <Button type="submit" theme="btn-rounded">
+                Continue
+              </Button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </WithCart>
   );
 };
 

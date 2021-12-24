@@ -11,6 +11,7 @@ import ShareProduct from './components/ShareProduct';
 import ProductList from 'components/product/ProductList';
 import { calculateDiscount } from 'utils/helpers';
 import useCart from 'utils/hooks/useCart';
+import DetailsSkeleton from 'components/loaders/DetailsSkeleton';
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -32,6 +33,7 @@ const ProductDetails = () => {
 
   return (
     <section className="py-10">
+      {isLoading && <DetailsSkeleton />}
       {!isError && !isLoading && product && (
         <>
           <div className="grid grid-cols-9 gap-2 bg-white shadow-md p-4 mb-8">

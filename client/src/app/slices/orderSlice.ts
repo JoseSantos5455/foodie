@@ -17,8 +17,8 @@ const orderSlice = createSlice({
       return [...state, action.payload];
     },
     getOrderStart: (state, action: PayloadAction<string>) => {},
-    getOrderSuccess: (state, action: PayloadAction<IOrder>) => {
-      return [...state, action.payload];
+    getOrderSuccess: (state, action: PayloadAction<IOrder[]>) => {
+      return [...state, ...action.payload];
     },
   },
 });

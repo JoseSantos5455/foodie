@@ -2,6 +2,8 @@ import { LockOutlined } from '@ant-design/icons';
 import { addOrderStart } from 'app/slices/orderSlice';
 import Button from 'components/UI/Button';
 import useOrder from 'utils/hooks/useOrder';
+import ConfirmationModal from 'components/UI/ConfirmationModal';
+import { CustomDialog } from 'react-st-modal';
 
 const DeliveryPay = () => {
   const { newOrder, token, dispatch } = useOrder();
@@ -9,6 +11,10 @@ const DeliveryPay = () => {
   const onConfirm = () => {
     newOrder.paymentMethod = 'cash';
     dispatch(addOrderStart({ newOrder, token }));
+    CustomDialog(<ConfirmationModal />, {
+      title: 'Confirm',
+      showCloseIcon: true,
+    });
   };
   return (
     <div className="flex justify-center align-center p-8">

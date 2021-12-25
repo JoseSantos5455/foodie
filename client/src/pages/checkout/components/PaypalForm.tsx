@@ -3,6 +3,8 @@ import Button from 'components/UI/Button';
 import { useForm } from 'react-hook-form';
 import useOrder from 'utils/hooks/useOrder';
 import { addOrderStart } from 'app/slices/orderSlice';
+import ConfirmationModal from 'components/UI/ConfirmationModal';
+import { CustomDialog } from 'react-st-modal';
 
 const PaypalForm = () => {
   const {
@@ -16,6 +18,10 @@ const PaypalForm = () => {
   const onSubmit = (data: any) => {
     newOrder.paymentMethod = 'paypal';
     dispatch(addOrderStart({ newOrder, token }));
+    CustomDialog(<ConfirmationModal />, {
+      title: 'Confirm',
+      showCloseIcon: true,
+    });
   };
 
   return (

@@ -20,3 +20,28 @@ export const calcSubTotal = (cart: any) => {
       .toFixed(2);
   }
 };
+
+export const displayTime = (timestamp: string) => {
+  const date = new Date(timestamp);
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+  const hour = date.getHours() + ':' + date.getMinutes();
+  return `${monthNames[monthIndex]} ${day}, ${year} at ${hour}`;
+};

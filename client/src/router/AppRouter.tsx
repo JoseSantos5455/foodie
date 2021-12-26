@@ -5,6 +5,7 @@ import * as ROUTES from 'utils/routes';
 
 import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
+const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
 const Profile = lazy(() => import('components/profile'));
 const AddCategory = lazy(() => import('pages/admin/AddCategory'));
 const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
@@ -143,6 +144,14 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <PurchaseHistory />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.ORDER_DETAILS}
+            element={
+              <Suspense fallback={<Loading />}>
+                <OrderDetails />
               </Suspense>
             }
           />

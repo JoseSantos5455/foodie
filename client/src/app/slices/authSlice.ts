@@ -15,11 +15,12 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       return action.payload;
     },
-    logOut: (state, action) => {
+    logOut() {},
+    clearAuth: () => {
       return {} as IUser;
     },
   },
 });
 
-export const { signUpStart, signUpSuccess, loginStart, loginSuccess } = authSlice.actions;
+export const { signUpStart, signUpSuccess, loginStart, loginSuccess, logOut, clearAuth } = authSlice.actions;
 export default authSlice.reducer;

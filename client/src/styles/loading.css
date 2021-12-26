@@ -4,7 +4,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.6);
   /* filter: blur(10px) contrast(20); */
 }
 

@@ -9,11 +9,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from 'utils/formValidation';
 import PasswordModal from 'pages/checkout/components/PasswordModal';
-import { useProfile } from 'components/profile';
+import { useUserProfile } from 'components/profile';
 import Button from 'components/UI/Button';
 
 const ManageProfile = () => {
-  const [profile] = useProfile();
+  const userProfile = useUserProfile();
+  const profile = userProfile[0];
+
   const dispatch = useDispatch();
 
   const defaultValues = useMemo(
@@ -39,31 +41,29 @@ const ManageProfile = () => {
   });
 
   useEffect(() => {
-    if (profile.id) {
+    if (profile?.id) {
       reset(defaultValues);
     }
   }, [profile, reset, defaultValues]);
 
   const onSubmit = async (data: Partial<IUser>) => {
     const updates = compareObjs(data, defaultValues);
-
     if (Object.keys(updates).length !== 0) {
       if (updates.email) {
         const result = await CustomDialog(<PasswordModal />, {
           title: 'Enter your password',
           showCloseIcon: true,
         });
-
         if (!result) {
           alert('you must enter password to change email');
           return;
         } else {
           updates.password = result;
-          updates.token = profile.token;
+          updates.token = profile?.token;
           dispatch(updateProfileStart(updates));
         }
       } else {
-        updates.token = profile.token;
+        updates.token = profile?.token;
         dispatch(updateProfileStart(updates));
       }
     }

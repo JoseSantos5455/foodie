@@ -81,6 +81,12 @@ export interface IOrder {
   isPaid: boolean;
 }
 
+export interface IOrderRes extends IOrder {
+  _id: string;
+  createdAt: string;
+  orderStatus: string;
+}
+
 export interface ILoginCredentiels {
   email: string;
   password: string;

@@ -1,13 +1,18 @@
 import { EllipsisOutlined, HeartFilled, ShoppingOutlined, UserOutlined } from '@ant-design/icons';
+import { useUserProfile } from 'components/profile';
 import { Link } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
 
 const ProfileDashboard = () => {
+  const userProfile = useUserProfile();
+  const orders = userProfile[2];
+
   const profilePages = [
     {
       name: 'your orders',
       icon: <ShoppingOutlined />,
       link: ROUTES.PURCHASE_HISTORY,
+      count: orders?.length,
     },
     {
       name: 'pending orders',
@@ -44,10 +49,12 @@ const ProfileDashboard = () => {
                 </span>
                 <span className="text-gray-600 text-xl">{route.name}</span>
               </h3>
-              <p className="flex pl-3 space-x-4 items-baseline capitalize">
-                <span className="text-2xl text-gray-900">12</span>
-                <span className="text-sm text-gray-500">orders</span>
-              </p>
+              {route.count && (
+                <p className="flex pl-3 space-x-4 items-baseline capitalize">
+                  <span className="text-2xl text-gray-900">{route.count && route.count}</span>
+                  <span className="text-sm text-gray-500">items</span>
+                </p>
+              )}
             </Link>
           </div>
         ))}

@@ -1,7 +1,10 @@
 import { signUp, login } from 'api/services/authApi';
-import { signUpStart, signUpSuccess, loginStart, loginSuccess } from 'app/slices/authSlice';
+import { signUpStart, signUpSuccess, loginStart, loginSuccess, logOut, clearAuth } from 'app/slices/authSlice';
+import { clearCart } from 'app/slices/cartSlice';
 import { authError } from 'app/slices/errorSlice';
 import { loadingAuth } from 'app/slices/loadingSlice';
+import { clearOrders } from 'app/slices/orderSlice';
+import { clearProfile } from 'app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
 import { IUser } from 'types/types';
 import { ISaga } from './productsSaga';
@@ -28,6 +31,18 @@ function* authSaga({ type, payload }: ISaga) {
         yield put(loadingAuth(true));
         const user: IUser = yield call(login, payload);
         yield put(loginSuccess(user));
+        yield put(loadingAuth(false));
+      } catch (err) {
+        handleError(err);
+      }
+      break;
+    case logOut.type:
+      try {
+        yield put(loadingAuth(true));
+        yield put(clearOrders());
+        yield put(clearProfile());
+        yield put(clearAuth());
+        yield put(clearCart());
         yield put(loadingAuth(false));
       } catch (err) {
         handleError(err);

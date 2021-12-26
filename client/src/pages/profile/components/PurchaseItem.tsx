@@ -1,16 +1,21 @@
-import Button from 'components/UI/Button';
+import { ICart } from 'app/slices/cartSlice';
+// import Button from 'components/UI/Button';
 
-const PurchaseItem = () => {
+type Props = {
+  orderItem: ICart;
+};
+
+const PurchaseItem = ({ orderItem }: Props) => {
   return (
-    <div className="grid mb-4 lg:grid-cols-7 grid-cols-5 shadow-md bg-gray-50 items-center gap-4 p-4">
-      <div className=" w-full bg-gray-200 col-span-2 rounded-md h-32 bg-center bg-contain bg-no-repeat"></div>
-      <div className="col-span-3">
-        <h3 className=" text-sm col-span-3 mb-4">product</h3>
-        <h4 className="text-md">$ 12</h4>
+    <div className="grid mb-4 lg:grid-cols-6 grid-cols-5 shadow-md bg-gray-50 items-center max-w-xl mx-auto gap-4 p-4">
+      <img src={orderItem.image} alt={orderItem.title} className="object-fit rounded col-span-3" />
+      <div className="col-span-2">
+        <h3 className=" text-sm  mb-4">{orderItem.title}</h3>
+        <h4 className="text-md">$ {orderItem.price}</h4>
       </div>
 
-      <div className="flex lg:flex-col  lg:col-span-2 col-span-5 h-full items-center justify-between">
-        <Button theme="btn-success">Delivered</Button>
+      <div className="flex lg:flex-col  lg:col-span-1  h-full items-center justify-between">
+        {/* <Button theme="btn-success"></Button> */}
         <span className="underline font-bold text-darkPrimary">Edit</span>
       </div>
     </div>

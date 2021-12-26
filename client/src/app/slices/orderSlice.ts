@@ -20,8 +20,11 @@ const orderSlice = createSlice({
     getOrderSuccess: (state, action: PayloadAction<IOrder[]>) => {
       return [...state, ...action.payload];
     },
+    clearOrders: () => {
+      return [];
+    },
   },
 });
 
-export const { addOrderStart, addOrderSuccess, getOrderStart, getOrderSuccess } = orderSlice.actions;
+export const { addOrderStart, addOrderSuccess, getOrderStart, getOrderSuccess, clearOrders } = orderSlice.actions;
 export default orderSlice.reducer;

@@ -5,6 +5,9 @@
   .btn-primary {
     @apply bg-primary hover:bg-primaryHover py-1 px-4  text-white;
   }
+  .btn-secondary {
+    @apply bg-purpleBeta hover:opacity-70 py-1 px-4  text-white;
+  }
 
   .btn-dark {
     @apply bg-primaryDark hover:bg-gray-800 py-1 px-4  text-white;

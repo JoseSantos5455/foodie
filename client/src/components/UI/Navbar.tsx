@@ -5,9 +5,13 @@ import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
 import 'styles/UI/navbar.css';
 import logo from 'assets/logo.png';
 import { useAppSelector } from 'app/store';
+import Button from './Button';
 
 const Navbar = () => {
-  const cart = useAppSelector((state) => state.cart);
+  const { cart, auth } = useAppSelector((state) => ({
+    cart: state.cart,
+    auth: state.auth?.id && state.auth?.role === 'user',
+  }));
   return (
     <header className="header">
       <nav className="container">
@@ -27,10 +31,13 @@ const Navbar = () => {
                 </span>
               </span>
             </Link>
-            <Link to={ROUTES.LOGIN}>
-              <span className="text-primaryDark hover:text-primary text-xl">
-                <UserOutlined />
-              </span>
+            <Link to={auth ? ROUTES.PROFILE_DASHBOARD : ROUTES.LOGIN}>
+              <Button theme="btn-secondary" className="flex items-center space-x-2 justify-center">
+                <span className="text-white contents">
+                  <UserOutlined />
+                </span>
+                <span>{auth ? 'Profile' : 'Login'}</span>
+              </Button>
             </Link>
           </div>
         </div>

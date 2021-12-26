@@ -1,4 +1,5 @@
 import { HomeOutlined, DollarOutlined, IdcardOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
+import { logOut } from 'app/slices/authSlice';
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
 
@@ -26,7 +27,7 @@ const profileRoutes = [
   },
 ];
 
-const SideNav = () => {
+const SideNav = ({ dispatch }: any) => {
   return (
     <div className="relative lg:h-auto h-40">
       <div
@@ -64,7 +65,10 @@ const SideNav = () => {
             </ul>
           </div>
         </div>
-        <div className="lg:border-t-2 lg:max-h-full  overflow-hidden transition-all duration-300 py-0  border-gray-100 lg:py-4">
+        <div
+          onClick={() => dispatch(logOut())}
+          className="lg:border-t-2 lg:max-h-full  overflow-hidden transition-all duration-300 py-0  border-gray-100 lg:py-4"
+        >
           <span className="flex space-x-2 cursor-pointer font-main font-bold items-center text-red-500 justify-center">
             <UserOutlined className="contents" />
             <span> Log Out</span>

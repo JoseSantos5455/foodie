@@ -2,9 +2,12 @@ import Summary from 'components/checkout/Summary';
 import CartItem from 'components/product/CartItem';
 import useCart from 'utils/hooks/useCart';
 import EmptyCart from './components/EmptyCart';
+import { calcSubTotal } from 'utils/helpers';
 
 const Cart = () => {
   const { cart } = useCart();
+  const subTotal = parseFloat(calcSubTotal(cart));
+
   return (
     <section className="py-10">
       <h1 className="font-main font-bold text-3xl text-center border-b border-gray-200 pb-4 mb-6">Basket</h1>
@@ -17,7 +20,7 @@ const Cart = () => {
             ))}
           </div>
           <div>
-            <Summary showBtn subTotal={12.5} tax={20} delivery={12} total={30} />
+            <Summary showBtn subTotal={subTotal} />
           </div>
         </div>
       )}

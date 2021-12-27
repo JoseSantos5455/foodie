@@ -13,8 +13,8 @@ const ConfirmationModal = () => {
             <p className="font-main text-xl font-bold text-primaryDark">Order Confirmed Successfully !</p>
           </div>
 
-          <Button onClick={() => dialog.close()} theme="btn-success">
-            Okay
+          <Button theme="btn-success" onClick={() => dialog.close()}>
+            okay
           </Button>
         </div>
       </div>

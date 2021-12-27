@@ -5,6 +5,7 @@ import { orderError } from 'app/slices/errorSlice';
 import { addOrderStart, addOrderSuccess, getOrderStart, getOrderSuccess } from 'app/slices/orderSlice';
 import { IOrder } from 'types/types';
 import { addOrder, getOrders } from 'api/services/orderApi';
+import { clearCart } from 'app/slices/cartSlice';
 
 function* handleError(err: any) {
   yield put(loadingOrder(false));
@@ -18,6 +19,8 @@ function* orderSaga({ type, payload }: ISaga) {
         yield put(loadingOrder(true));
         const order: IOrder = yield call(addOrder, payload.newOrder, payload.token);
         yield put(addOrderSuccess(order));
+        yield put(clearCart());
+
         yield put(loadingOrder(false));
       } catch (err) {
         handleError(err);

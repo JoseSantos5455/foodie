@@ -16,7 +16,15 @@ const CartItem = ({ cartItem }: CartItemProps) => {
         <img src={cartItem.image} alt={cartItem.title} className="object-fitt rounded" />
         <div className="col-span-3 flex flex-col justify-between">
           <h4 className="font-main font-bold">{cartItem.title}</h4>
-          <p className="font-bold">{cartItem.price} $</p>
+          <div className="flex space-x-6">
+            <p className="text-sm">
+              Unit Price:
+              <span className="font-bold text-base">{cartItem.price} $</span>
+            </p>
+            <p className="text-sm">
+              Total Price: <span className="font-bold text-base">{cartItem.price * cartItem.qty} $</span>
+            </p>
+          </div>
         </div>
         <div className="flex flex-col justify-between">
           <div className="text-right cursor-pointer" onClick={() => onRemoveFromCart(id)}>

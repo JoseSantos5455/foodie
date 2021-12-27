@@ -7,9 +7,11 @@ import { FC } from 'react';
 import { CHECKOUT_STEP_2, HOME } from 'utils/routes';
 import { Link } from 'react-router-dom';
 import WithCart from './components/WithCart';
+import { calcSubTotal } from 'utils/helpers';
 
 const OrderSummary: FC = () => {
   const { cart } = useCart();
+  const subTotal = parseFloat(calcSubTotal(cart));
   return (
     <WithCart>
       <section className="py-10">
@@ -25,7 +27,7 @@ const OrderSummary: FC = () => {
                   ))}
                 </div>
                 <div>
-                  <Summary subTotal={132} delivery={5} total={10} />
+                  <Summary subTotal={subTotal} />
                 </div>
               </div>
               <div className="flex justify-between items-center">

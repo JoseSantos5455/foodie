@@ -12,5 +12,8 @@
   "devDependencies": {
     "concurrently": "^6.3.0",
     "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "history": "^5.2.0"
   }
 }

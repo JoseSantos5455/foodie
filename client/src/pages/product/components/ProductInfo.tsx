@@ -3,13 +3,13 @@ import { ICart } from 'app/slices/cartSlice';
 import Button from 'components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
 
-type ColorProps = {
-  color: string;
-};
+// type ColorProps = {
+//   color: string;
+// };
 
-type SizeProps = {
-  size: number;
-};
+// type SizeProps = {
+//   size: number;
+// };
 
 type ProductInfoType = {
   title: string;
@@ -29,15 +29,15 @@ type ProductInfoType = {
   findItem: (id: string) => ICart | undefined;
 };
 
-const ColorCircle = ({ color }: ColorProps) => (
-  <span style={{ backgroundColor: color }} className="inline-block w-6 h-6 rounded-full" />
-);
+// const ColorCircle = ({ color }: ColorProps) => (
+//   <span style={{ backgroundColor: color }} className="inline-block w-6 h-6 rounded-full" />
+// );
 
-const Size = ({ size }: SizeProps) => (
-  <span className=" w-10 h-10 border hover:bg-gray-200 cursor-pointer border-gray-300 flex font-medium items-center justify-center">
-    {size}
-  </span>
-);
+// const Size = ({ size }: SizeProps) => (
+//   <span className=" w-10 h-10 border hover:bg-gray-200 cursor-pointer border-gray-300 flex font-medium items-center justify-center">
+//     {size}
+//   </span>
+// );
 
 const ProductInfo = ({
   title,
@@ -53,8 +53,8 @@ const ProductInfo = ({
   findItem,
   _id,
 }: ProductInfoType) => {
-  const colors: string[] = ['red', 'blue', 'aqua'];
-  const sizes: number[] = [12, 16, 25];
+  // const colors: string[] = ['red', 'blue', 'aqua'];
+  // const sizes: number[] = [12, 16, 25];
 
   return (
     <div className="pr-16 pt-10">
@@ -65,11 +65,11 @@ const ProductInfo = ({
       </div>
       <h3 className="font-main uppercase font-bold mb-4">brand : {brand}</h3>
       <p className="text-xl font-bold font-main">{pricing.originalPrice} $</p>
-      <div className="flex space-x-2 items-center  mb-4">
+      <div className="flex space-x-2 items-center  mb-12">
         <RatingView ratingValue={rating} />
         <span className="text-base text-gray-300">({numReviews})</span>
       </div>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <h3 className="font-secondary font-medium mb-2">color :</h3>
         <div className="flex space-x-2">
           {colors.map((color, index) => (
@@ -84,7 +84,7 @@ const ProductInfo = ({
             <Size key={`${size}-${index}`} size={size} />
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="flex items-center space-x-4">
         {isItemInCart(_id) && (
           <div className="flex items-center space-x-4">

@@ -1,6 +1,6 @@
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import Button from 'components/UI/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from 'utils/formValidation';
@@ -11,6 +11,8 @@ import { loginStart } from 'app/slices/authSlice';
 import { ILoginCredentiels } from 'types/types';
 import UseAuth from './UseAuth';
 import { useAppSelector } from 'app/store';
+import { loadingAuth } from 'app/slices/loadingSlice';
+import { authError } from 'app/slices/errorSlice';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +32,11 @@ const Login = () => {
   const onSubmit = (data: ILoginCredentiels) => {
     dispatch(loginStart(data));
   };
+
+  useEffect(() => {
+    dispatch(loadingAuth(false));
+    dispatch(authError(null));
+  }, [dispatch]);
 
   return (
     <UseAuth>

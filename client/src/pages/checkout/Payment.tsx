@@ -5,12 +5,18 @@ import CardForm from './components/CardForm';
 import PaypalForm from './components/PaypalForm';
 import DeliveryPay from './components/DeliveryPay';
 import WithCart from './components/WithCart';
+import { useAppSelector } from 'app/store';
+import Loading from 'components/loaders/Loading';
 
 const Payment = () => {
-  const [paymentType, setPaymentType] = useState('card');
+  const [paymentType, setPaymentType] = useState('cash');
+
+  const isLoadingOrder = useAppSelector((state) => state.loadingState.isLoadingOrder);
+
   return (
     <WithCart>
       <section className="py-10">
+        {isLoadingOrder && <Loading />}
         <h1 className="text-center text-3xl font-main font-bold mb-4">Payment</h1>
         <div className=" max-w-screen-md mx-auto bg-white p-4 shadow-md rounded">
           <div className="w-full text-center mb-4">

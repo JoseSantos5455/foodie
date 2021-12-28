@@ -1,6 +1,6 @@
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import Button from 'components/UI/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { signupSchema } from 'utils/formValidation';
@@ -10,6 +10,9 @@ import { IAccountCredentiels } from 'types/types';
 import { signUpStart } from 'app/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import UseAuth from './UseAuth';
+import { useAppSelector } from 'app/store';
+import { loadingAuth } from 'app/slices/loadingSlice';
+import { authError } from 'app/slices/errorSlice';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,16 +26,23 @@ const Signup = () => {
   });
 
   const dispatch = useDispatch();
+  const isErrorAuth = useAppSelector((state) => state.errorState.isErrorAuth);
 
   const onSubmit = (data: IAccountCredentiels) => {
     dispatch(signUpStart(data));
   };
+
+  useEffect(() => {
+    dispatch(loadingAuth(false));
+    dispatch(authError(null));
+  }, [dispatch]);
 
   return (
     <UseAuth>
       <section className="py-10">
         <h1 className="text-center text-3xl font-main font-bold mb-4">Create An Acoount</h1>
         <div className=" max-w-lg mx-auto bg-white p-4 shadow-md rounded">
+          {isErrorAuth && <p className=" text-center font-bold text-xl p-2 text-red-600">{isErrorAuth?.message}</p>}
           <form className="p-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-6">
               <label className="block text-sm text-primaryDark font-secondary mb-1">Full Name</label>

@@ -6,14 +6,18 @@ import { useAppSelector } from 'app/store';
 import { getProfileStart } from 'app/slices/profileSlice';
 import { useDispatch } from 'react-redux';
 import { getOrderStart } from 'app/slices/orderSlice';
+import Loading from 'components/loaders/Loading';
 
 type ContextType = [IUser, IUser, IOrderRes[]];
 
 const Profile = () => {
-  const { profile, auth, orders } = useAppSelector((state) => ({
+  const { profile, auth, orders, isLoadingProfile, isLoadingOrder, isLoadingAuth } = useAppSelector((state) => ({
     profile: state.profile,
     auth: state.auth,
     orders: state.orders,
+    isLoadingProfile: state.loadingState.isLoadingProfile,
+    isLoadingOrder: state.loadingState.isLoadingOrder,
+    isLoadingAuth: state.loadingState.isLoadingAuth,
   }));
 
   const dispatch = useDispatch();
@@ -28,6 +32,7 @@ const Profile = () => {
   }, [profile, dispatch, auth.token, orders.length]);
   return (
     <section className="py-10">
+      {(isLoadingOrder || isLoadingProfile || isLoadingAuth) && <Loading />}
       <div className="grid grid-cols-4 gap-12">
         <SideNav dispatch={dispatch} />
         <div className="col-span-3 bg-white p-4 shadow-md rounded">

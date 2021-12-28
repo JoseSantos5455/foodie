@@ -11,7 +11,7 @@ import { ISaga } from './productsSaga';
 
 function* handleError(err: any) {
   yield put(loadingAuth(false));
-  yield put(authError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  yield put(authError({ message: err.error.message || 'Sorry, a server error accured please try again later' }));
 }
 
 function* authSaga({ type, payload }: ISaga) {
@@ -19,21 +19,23 @@ function* authSaga({ type, payload }: ISaga) {
     case signUpStart.type:
       try {
         yield put(loadingAuth(true));
+        yield put(authError(null));
         const user: IUser = yield call(signUp, payload);
         yield put(signUpSuccess(user));
         yield put(loadingAuth(false));
       } catch (err) {
-        handleError(err);
+        yield handleError(err);
       }
       break;
     case loginStart.type:
       try {
         yield put(loadingAuth(true));
+        yield put(authError(null));
         const user: IUser = yield call(login, payload);
         yield put(loginSuccess(user));
         yield put(loadingAuth(false));
       } catch (err) {
-        handleError(err);
+        yield handleError(err);
       }
       break;
     case logOut.type:
@@ -45,7 +47,7 @@ function* authSaga({ type, payload }: ISaga) {
         yield put(clearCart());
         yield put(loadingAuth(false));
       } catch (err) {
-        handleError(err);
+        yield handleError(err);
       }
       break;
     default:

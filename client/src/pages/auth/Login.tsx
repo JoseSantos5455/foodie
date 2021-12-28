@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { loginStart } from 'app/slices/authSlice';
 import { ILoginCredentiels } from 'types/types';
 import UseAuth from './UseAuth';
+import { useAppSelector } from 'app/store';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +25,8 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  const isErrorAuth = useAppSelector((state) => state.errorState.isErrorAuth);
+
   const onSubmit = (data: ILoginCredentiels) => {
     dispatch(loginStart(data));
   };
@@ -33,6 +36,7 @@ const Login = () => {
       <section className="py-10">
         <h1 className="text-center text-3xl font-main font-bold mb-4">Login</h1>
         <div className=" max-w-lg mx-auto bg-white p-4 shadow-md rounded">
+          {isErrorAuth && <p className=" text-center font-bold text-xl p-2 text-red-600">{isErrorAuth?.message}</p>}
           <form className="p-4 mb-2" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-6">
               <label className="block text-sm text-primaryDark font-secondary mb-1">Email</label>

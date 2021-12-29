@@ -5,6 +5,8 @@ import * as ROUTES from 'utils/routes';
 
 import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
+import Admin from 'pages/admin';
+const Dashboard = lazy(() => import('pages/admin/Dashboard'));
 const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
 const Profile = lazy(() => import('components/profile'));
 const AddCategory = lazy(() => import('pages/admin/AddCategory'));
@@ -156,14 +158,6 @@ const AppRouter = () => {
             }
           />
         </Route>
-        <Route
-          path={ROUTES.ADD_CATEGORY}
-          element={
-            <Suspense fallback={<Loading />}>
-              <AddCategory />
-            </Suspense>
-          }
-        />
 
         <Route
           path="*"
@@ -174,6 +168,26 @@ const AppRouter = () => {
           }
         />
       </Route>
+      {/* Admin Pages Start */}
+      <Route path={ROUTES.ADMIN_DASHBOARD} element={<Admin />}>
+        <Route
+          index
+          element={
+            <Suspense fallback={<Loading />}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADD_CATEGORY}
+          element={
+            <Suspense fallback={<Loading />}>
+              <AddCategory />
+            </Suspense>
+          }
+        />
+      </Route>
+      {/* Admin Pages Ends */}
     </Routes>
   );
 };

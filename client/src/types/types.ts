@@ -1,29 +1,31 @@
 import { ICart } from 'app/slices/cartSlice';
 
 export interface IProduct {
-  _id: string;
   title: string;
   description: string;
   details: string;
-  slug: string;
   image: string;
   subImages: string[];
   brand: string;
   pricing: { originalPrice: number; discountPercentage: number };
   countInStock: number;
-  sold: number;
-  rating: number;
-  numReviews: number;
-  size: { val: string; price: number }[];
+  size: string[];
+  color: string[];
   specs: {
-    videoLink: string;
     countryOfProduction: string;
     weight: number;
     model: string;
-    color: string;
   };
   category: string;
+}
+
+export interface IProductRes extends IProduct {
+  sold: number;
+  slug: string;
+  _id: string;
   reviews: IReview[];
+  rating: number;
+  numReviews: number;
 }
 
 export interface IError {

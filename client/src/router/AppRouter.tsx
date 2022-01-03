@@ -2,10 +2,11 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
-
+import WithAdmin from './WithAdmin';
 import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
 import Admin from 'pages/admin';
+const AddProduct = lazy(() => import('pages/admin/AddProduct'));
 const Dashboard = lazy(() => import('pages/admin/Dashboard'));
 const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
 const Profile = lazy(() => import('components/profile'));
@@ -174,7 +175,19 @@ const AppRouter = () => {
           index
           element={
             <Suspense fallback={<Loading />}>
-              <Dashboard />
+              <WithAdmin>
+                <Dashboard />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_ADD_PRODUCT}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AddProduct />
+              </WithAdmin>
             </Suspense>
           }
         />
@@ -182,7 +195,9 @@ const AppRouter = () => {
           path={ROUTES.ADD_CATEGORY}
           element={
             <Suspense fallback={<Loading />}>
-              <AddCategory />
+              <WithAdmin>
+                <AddCategory />
+              </WithAdmin>
             </Suspense>
           }
         />

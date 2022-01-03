@@ -15,3 +15,25 @@ export const paymentIcons = [
     icon: 'https://firebasestorage.googleapis.com/v0/b/bunny-b4362.appspot.com/o/files%2FPayPalCard%201.png?alt=media&token=4b0b58fd-ed9c-41ad-8d92-50f2cfc95c0f',
   },
 ];
+
+export const shoeSizes = [
+  { value: 20, label: 20 },
+  { value: 21, label: 21 },
+  { value: 23, label: 23 },
+  { value: 24, label: 24 },
+  { value: 26, label: 26 },
+  { value: 30, label: 30 },
+  { value: 32, label: 32 },
+  { value: 34, label: 34 },
+];
+
+export const productColors = [
+  { value: '#000', label: 'Black' },
+  { value: '#fff', label: 'White' },
+  { value: '#0000FF', label: 'Blue' },
+  { value: '#FF0000', label: 'Red' },
+  { value: '#FFFF00', label: 'Yellow' },
+  { value: '#0000FF', label: 'Orange' },
+  { value: ' #00FF00', label: 'Green' },
+  { value: '#6a0dad', label: 'Purple' },
+];

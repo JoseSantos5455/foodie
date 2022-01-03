@@ -1,9 +1,9 @@
 import React from 'react';
 import ProductItem from './ProductItem';
-import { IProduct } from 'types/types';
+import { IProductRes } from 'types/types';
 
 interface IProductList {
-  products: IProduct[];
+  products: IProductRes[];
   hasBtn?: boolean;
 }
 

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
-import { DashboardOutlined } from '@ant-design/icons';
+import { DashboardOutlined, AppstoreAddOutlined } from '@ant-design/icons';
 
 interface Props {
   sideNavOpen: boolean;
@@ -11,6 +11,11 @@ const adminRoutes = [
     name: 'Dashboard',
     route: ROUTES.ADMIN_DASHBOARD,
     icon: <DashboardOutlined />,
+  },
+  {
+    name: 'Add Product',
+    route: ROUTES.ADMIN_ADD_PRODUCT,
+    icon: <AppstoreAddOutlined />,
   },
 ];
 

@@ -14,12 +14,14 @@ import { IUser } from 'types/types';
 import { CustomDialog } from 'react-st-modal';
 import PasswordModal from './components/PasswordModal';
 import WithCart from './components/WithCart';
+import Loading from 'components/loaders/Loading';
 
 const BillingDetails = () => {
   const navigate = useNavigate();
-  const { profile, auth } = useAppSelector((state) => ({
+  const { profile, auth, isLoadingProfile } = useAppSelector((state) => ({
     profile: state.profile,
     auth: state.auth,
+    isLoadingProfile: state.loadingState.isLoadingProfile,
   }));
 
   const dispatch = useDispatch();
@@ -84,6 +86,7 @@ const BillingDetails = () => {
   return (
     <WithCart>
       <section className="py-10">
+        {isLoadingProfile && <Loading/>}
         <h1 className="text-center text-3xl font-main font-bold mb-4">Billing Details</h1>
         <div className=" max-w-screen-md mx-auto bg-white p-4 shadow-md rounded">
           <CheckoutSteps current={2} />

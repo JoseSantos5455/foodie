@@ -1,5 +1,5 @@
 import { CreditCardOutlined } from '@ant-design/icons';
-import { paymentIcons } from 'utils/icons';
+import { paymentIcons } from 'utils/data';
 import { useState } from 'react';
 import CardForm from './components/CardForm';
 import PaypalForm from './components/PaypalForm';

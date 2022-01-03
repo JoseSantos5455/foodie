@@ -3,7 +3,7 @@ import { getProducts } from 'api/services/productApi';
 import { productsError } from 'app/slices/errorSlice';
 import { loadingProducts } from 'app/slices/loadingSlice';
 import { getProductsStart, getProductsSuccess } from 'app/slices/productSlice';
-import { IProduct } from 'types/types';
+import { IProductRes } from 'types/types';
 
 export interface ISaga {
   type: string;
@@ -20,13 +20,14 @@ function* productsSaga({ type, payload }: ISaga) {
     case getProductsStart.type:
       try {
         yield put(loadingProducts(true));
-        const products: IProduct[] = yield call(getProducts);
+        const products: IProductRes[] = yield call(getProducts);
         yield put(getProductsSuccess(products));
         yield put(loadingProducts(false));
       } catch (err) {
         yield handleError(err);
       }
       break;
+
     default:
       return;
   }

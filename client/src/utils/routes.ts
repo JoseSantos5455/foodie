@@ -14,4 +14,6 @@ export const WISHLIST = 'whishlist';
 export const ORDER_DETAILS = 'purchase-history/:orderId';
 
 // ADMIN ROUTES
-export const ADD_CATEGORY = '/add-category';
+export const ADD_CATEGORY = 'add-category';
+export const ADMIN_DASHBOARD = '/admin';
+export const ADMIN_ADD_PRODUCT = 'add-product';

@@ -45,3 +45,22 @@ export const displayTime = (timestamp: string) => {
   const hour = date.getHours() + ':' + date.getMinutes();
   return `${monthNames[monthIndex]} ${day}, ${year} at ${hour}`;
 };
+
+export const productData = (data: any) => ({
+  title: data.title,
+  description: data.description,
+  details: data.details,
+  image: data.image,
+  subImages: data.subImages,
+  brand: data.brand,
+  pricing: { originalPrice: data.originalPrice, discountPercentage: data.discountPercentage },
+  countInStock: data.countInStock,
+  size: data.size || [],
+  color: data.color || [],
+  specs: {
+    countryOfProduction: data.countryOfProduction,
+    weight: data.weight,
+    model: data.model,
+  },
+  category: data.category,
+});

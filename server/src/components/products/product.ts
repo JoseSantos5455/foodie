@@ -11,20 +11,19 @@ export interface IProduct extends Document {
   details: string;
   slug: string;
   image: string;
-  subImages: [string];
+  subImages: string[];
   brand: string;
   pricing: { originalPrice: number; discountPercentage: number };
   countInStock: number;
   sold: number;
   rating: number;
   numReviews: number;
-  size: [{ val: string; price: number }];
+  size: string[];
+  color: string[];
   specs: {
-    videoLink: string;
     countryOfProduction: string;
     weight: number;
     model: string;
-    color: string;
   };
   category: ICategory['_id'];
   reviews: IReview[];
@@ -43,7 +42,8 @@ const productSchema = new Schema<IProduct>(
       originalPrice: { type: Number, required: true },
       discountPercentage: { type: Number, default: 0 },
     },
-    size: [{ val: Number, price: Number }],
+    size: [String],
+    color: [String],
     countInStock: { type: Number, required: true, default: 0 },
     sold: { type: Number, default: 0 },
     rating: {
@@ -57,11 +57,9 @@ const productSchema = new Schema<IProduct>(
       default: 0,
     },
     specs: {
-      videoLink: String,
       countryOfProduction: String,
       weight: Number,
       model: String,
-      color: String,
     },
     category: {
       type: ObjectId,

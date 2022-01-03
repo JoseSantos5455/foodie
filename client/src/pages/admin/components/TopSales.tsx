@@ -5,8 +5,8 @@ const TopSales = () => {
         <h3 className="font-semibold text-greyAD dark:text-gray-50 capitalize">top sales</h3>
       </div>
       {Array(4)
-        .fill({})
-        .map((index) => (
+        .fill(null)
+        .map((item, index) => (
           <div
             key={`orders-${index}`}
             className="border-b border-gray-100 dark:border-nero pb-4 mb-2 flex items-center justify-between"

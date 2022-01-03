@@ -2,6 +2,7 @@ import { useAppSelector } from 'app/store';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ADMIN_DASHBOARD } from 'utils/routes';
 
 interface Props {
   children: JSX.Element;
@@ -13,13 +14,18 @@ const UseAuth = ({ children }: Props) => {
   /* @ts-ignore */
   const from = location?.state?.from?.pathname || '/';
 
-  const auth = useAppSelector((state) => state.auth?.id && state.auth?.role === 'user');
+  const { isUser, isAdmin } = useAppSelector((state) => ({
+    isUser: state.auth?.id && state.auth?.role === 'user',
+    isAdmin: state.auth?.id && state.auth?.role === 'admin',
+  }));
 
   useEffect(() => {
-    if (auth) {
+    if (isUser) {
       navigate(from, { replace: true });
+    } else if (isAdmin) {
+      navigate(ADMIN_DASHBOARD, { replace: true });
     }
-  }, [auth, from, navigate]);
+  }, [isUser, isAdmin, from, navigate]);
   return <>{children}</>;
 };
 

@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { ADMIN_DASHBOARD } from 'utils/routes';
 import Loading from 'components/loaders/Loading';
 
-
 interface Props {
   children: JSX.Element;
 }
@@ -16,8 +15,7 @@ const UseAuth = ({ children }: Props) => {
   /* @ts-ignore */
   const from = location?.state?.from?.pathname || '/';
 
-
-  const { isUser, isAdmin } = useAppSelector((state) => ({
+  const { isUser, isAdmin, isLoadingAuth } = useAppSelector((state) => ({
     isUser: state.auth?.id && state.auth?.role === 'user',
     isAdmin: state.auth?.id && state.auth?.role === 'admin',
     isLoadingAuth: state.loadingState?.isLoadingAuth,
@@ -30,7 +28,7 @@ const UseAuth = ({ children }: Props) => {
       navigate(ADMIN_DASHBOARD, { replace: true });
     }
   }, [isUser, isAdmin, from, navigate]);
- 
+
   return (
     <>
       {isLoadingAuth && <Loading />}

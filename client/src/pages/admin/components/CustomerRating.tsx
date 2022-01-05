@@ -7,8 +7,8 @@ const CustomerRating = () => {
         <h3 className="font-semibold text-greyAD dark:text-gray-50 capitalize">Product reviews</h3>
       </div>
       {Array(4)
-        .fill({})
-        .map((index) => (
+        .fill(null)
+        .map((item, index) => (
           <div
             key={`orders-${index}`}
             className="border-b border-gray-100  pb-4 mb-2 flex items-center justify-between"

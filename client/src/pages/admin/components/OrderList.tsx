@@ -16,8 +16,8 @@ const OrderList = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {new Array(4).fill(null).map((item, index) => (
-              <tr>
-                <td className="px-6 py-4" key={`row-${index}`}>
+              <tr key={`row-${index}`}>
+                <td className="px-6 py-4">
                   <div className="flex items-center space-x-3">
                     <p> Mira Rodeo </p>
                   </div>

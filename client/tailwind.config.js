@@ -24,6 +24,8 @@ module.exports = {
   variants: {
     extend: {
       shadow: ['hover', 'focus'],
+      opacity: ['disabled'],
+      cursor: ['disabled'],
     },
   },
   plugins: [],

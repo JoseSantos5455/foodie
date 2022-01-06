@@ -1,11 +1,11 @@
 @layer components {
   .search-form {
-    @apply grid grid-cols-6 sm:gap-2 w-max lg:justify-items-end gap-2;
+    @apply grid grid-cols-4 sm:gap-2 lg:w-max w-full lg:justify-items-end gap-2;
   }
   .search-input {
-    @apply bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-1 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primaryDark;
+    @apply bg-gray-200  appearance-none border-2 border-gray-200 rounded w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none focus:border-primaryDark;
   }
   .search-icon {
-    @apply absolute inline-flex top-1/2 left-3 text-2xl text-gray-400 transform -translate-y-1/2;
+    @apply absolute inline-flex top-1/2 left-0.5 text-2xl text-gray-400 transform -translate-y-1/2;
   }
 }

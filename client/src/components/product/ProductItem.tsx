@@ -42,39 +42,41 @@ const ProductItem = ({
     onAddToCart(cartItem);
   };
   return (
-    <div className="product-item self-start">
-      {/* <div className="absolute bg-primary p-2 top-0 right-0 rounded rounded-br-none rounded-tr-none rounded-tl-none">
+    <div>
+      <div className="product-item xl:self-start xl:w-auto w-72 xl:h-auto">
+        {/* <div className="absolute bg-primary p-2 top-0 right-0 rounded rounded-br-none rounded-tr-none rounded-tl-none">
             <span className=" text-sm font-semibold">
                hello
             </span>
         </div> */}
-      <Link to={`/${slug}`}>
-        <div className="w-full h-60 " style={{ backgroundImage: `url${image}` }}>
-          <img src={image} alt="baby" />
-        </div>
-      </Link>
+        <Link to={`/${slug}`}>
+          <div className="w-full xl:h-60 " style={{ backgroundImage: `url${image}` }}>
+            <img src={image} alt="baby" />
+          </div>
+        </Link>
 
-      <div className="flex items-center justify-between">
-        <h3 className="product-title">{title}</h3>
-        <HeartOutlined className="text-primaryDark" />
-      </div>
+        <div className="flex items-center justify-between">
+          <h3 className="product-title">{title}</h3>
+          <HeartOutlined className="text-primaryDark" />
+        </div>
 
-      <div className="product-price">
-        <h5 className="font-semibold text-lg">{originalPrice} $</h5>
-        <div className="rating-stars">
-          <RatingView fillColor={'#fed900'} className="contents" ratingValue={rating} size={18} />
+        <div className="product-price">
+          <h5 className="font-semibold text-lg">{originalPrice} $</h5>
+          <div className="rating-stars">
+            <RatingView fillColor={'#fed900'} className="contents" ratingValue={rating} size={18} />
+          </div>
         </div>
+        {hasBtn && (
+          <div className="mt-4 p-3  transition-all duration-300">
+            {!isItemInCart(id) && (
+              <Button theme="btn-primary" className="w-full" onClick={handleAddToCart}>
+                Add to cart
+              </Button>
+            )}
+            {isItemInCart(id) && <PlusMinusBtns theme="btn-primary" id={id} />}
+          </div>
+        )}
       </div>
-      {hasBtn && (
-        <div className="mt-4 p-3  transition-all duration-300">
-          {!isItemInCart(id) && (
-            <Button theme="btn-primary" className="w-full" onClick={handleAddToCart}>
-              Add to cart
-            </Button>
-          )}
-          {isItemInCart(id) && <PlusMinusBtns theme="btn-primary" id={id} />}
-        </div>
-      )}
     </div>
   );
 };

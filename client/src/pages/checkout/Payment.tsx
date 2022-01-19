@@ -24,9 +24,9 @@ const Payment = () => {
               <CreditCardOutlined className="text-white text-2xl" />
             </div>
           </div>
-          <div className="mb-3 flex ">
+          <div className="mb-3 md:flex ">
             {paymentIcons.map((icon) => (
-              <div className="px-2" key={icon.id}>
+              <div className="px-2 mb-2" key={icon.id}>
                 <div
                   onClick={() => setPaymentType(icon.name)}
                   className={`flex items-center cursor-pointer p-6 rounded border-2 ${

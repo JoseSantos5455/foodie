@@ -57,7 +57,7 @@ const ProductInfo = ({
   // const sizes: number[] = [12, 16, 25];
 
   return (
-    <div className="pr-16 pt-10">
+    <div className="xl:pr-16 pt-10">
       <h2 className="font-main text-2xl mb-4 font-bold">{title}</h2>
       <div className="mb-6">
         <h4 className="text-lg font-main font-medium mb-2">Description:</h4>
@@ -85,7 +85,7 @@ const ProductInfo = ({
           ))}
         </div>
       </div> */}
-      <div className="flex items-center space-x-4">
+      <div className="flex md:items-center md:flex-row flex-col  md:space-x-4 md:space-y-0 space-y-4">
         {isItemInCart(_id) && (
           <div className="flex items-center space-x-4">
             <Button onClick={() => onAddQty(_id)} theme="btn-gray self-end">
@@ -98,11 +98,11 @@ const ProductInfo = ({
           </div>
         )}
         {!isItemInCart(_id) && (
-          <Button onClick={handleAddToCart} theme="btn-large">
+          <Button onClick={handleAddToCart} theme="btn-large md:w-auto w-full">
             Add to cart
           </Button>
         )}
-        <div className="rounded-full bg-white shadow-lg flex items-center justify-center py-1 px-2">
+        <div className="rounded-full bg-white shadow-lg w-10 h-10 flex items-center justify-center py-1 px-2">
           <HeartOutlined className="text-red-300 text-3xl" />
         </div>
       </div>

@@ -58,13 +58,13 @@ const ProductDetails = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white shadow-md p-4">
               <ReviewList reviews={product.reviews} rating={product.rating} numReviews={product.numReviews} />
             </div>
             <div className=" bg-white shadow-md p-4">{product.specs && <ProductSpecs specs={product.specs} />}</div>
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white shadow-md p-4">
               <Details details={product.details} />
             </div>
@@ -73,10 +73,14 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="mt-8">
-            <h2 className="font-main mb-4">Related products</h2>
-            <div className="grid grid-cols-5 gap-2">
-              {products.length > 0 && <ProductList products={products.slice(0, 5)} />}
-            </div>
+            {products.length > 0 && (
+              <>
+                <h2 className="font-main mb-4">Related products</h2>
+                <div className="flex xl:grid xl:grid-cols-5 gap-2 xl:overflow-x-hidden overflow-x-scroll">
+                  <ProductList products={products.slice(0, 5)} />
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

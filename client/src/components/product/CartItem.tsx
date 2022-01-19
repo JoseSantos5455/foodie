@@ -12,11 +12,11 @@ const CartItem = ({ cartItem }: CartItemProps) => {
   const id = cartItem.productId;
   return (
     <div className="bg-white rounded-md shadow-md p-4 mb-4">
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid lg:grid-cols-5 grid-cols-2 gap-2">
         <img src={cartItem.image} alt={cartItem.title} className="object-fitt rounded" />
-        <div className="col-span-3 flex flex-col justify-between">
+        <div className="lg:col-span-3 flex flex-col lg:justify-between lg:space-y-0 space-y-6 ">
           <h4 className="font-main font-bold">{cartItem.title}</h4>
-          <div className="flex space-x-6">
+          <div className="lg:flex lg:space-x-6">
             <p className="text-sm">
               Unit Price:
               <span className="font-bold text-base">{cartItem.price} $</span>
@@ -26,12 +26,12 @@ const CartItem = ({ cartItem }: CartItemProps) => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex lg:flex-col lg:col-span-1 col-span-2 justify-between">
           <div className="text-right cursor-pointer" onClick={() => onRemoveFromCart(id)}>
             <DeleteFilled className="text-red-500 text-2xl" />
           </div>
           <div className="flex items-center space-x-4">
-            <Button onClick={() => onAddQty(id)} theme="btn-gray self-end">
+            <Button onClick={() => onAddQty(id)} theme="btn-gray lg:self-end">
               +
             </Button>
             <span className="font-bold">{cartItem.qty}</span>

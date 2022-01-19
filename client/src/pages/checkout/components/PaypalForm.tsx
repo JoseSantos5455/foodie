@@ -25,7 +25,7 @@ const PaypalForm = () => {
   };
 
   return (
-    <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="md:p-4 p-2" onSubmit={handleSubmit(onSubmit)}>
       <p className="text-red-500 font-bold p-4 text-center">Feature not available yet</p>
       <div className="mb-3">
         <label className="font-bold text-sm mb-2 ml-1">Email</label>

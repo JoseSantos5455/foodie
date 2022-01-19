@@ -25,7 +25,7 @@ const CardForm = () => {
   };
 
   return (
-    <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
+    <form className="md:p-4 p-2" onSubmit={handleSubmit(onSubmit)}>
       <p className="text-red-500 font-bold p-4 text-center">Feature not available yet</p>
       <div className="mb-3">
         <label className="font-bold text-sm mb-2 ml-1">Name on card</label>
@@ -39,8 +39,8 @@ const CardForm = () => {
           <div>{errors.nameOnCard && <span className="text-red-600">This field is required</span>}</div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 mb-3">
-        <div className="col-span-2">
+      <div className="grid md:grid-cols-3 md:gap-x-4 gap-y-4 mb-3">
+        <div className="md:col-span-2">
           <label className="font-bold text-sm mb-2 ml-1">Card number</label>
           <div>
             <input
@@ -66,7 +66,7 @@ const CardForm = () => {
         </div>
       </div>
       <div className="mb-3 -mx-2 flex items-end">
-        <div className="px-2 w-1/2">
+        <div className="px-2 md:w-1/2">
           <label className="font-bold text-sm mb-2 ml-1">Expiration date</label>
           <div>
             <select

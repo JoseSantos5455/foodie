@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = '/api/v1';
+axios.defaults.baseURL = 'https://lapino-server.herokuapp.com/api/v1';
 
 axios.interceptors.response.use(
   (response) => response,

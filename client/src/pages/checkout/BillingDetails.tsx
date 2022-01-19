@@ -86,11 +86,11 @@ const BillingDetails = () => {
   return (
     <WithCart>
       <section className="py-10">
-        {isLoadingProfile && <Loading/>}
+        {isLoadingProfile && <Loading />}
         <h1 className="text-center text-3xl font-main font-bold mb-4">Billing Details</h1>
         <div className=" max-w-screen-md mx-auto bg-white p-4 shadow-md rounded">
           <CheckoutSteps current={2} />
-          <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4 p-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="grid  lg:grid-cols-2 gap-4 md:p-8 p-2">
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">Full Name</label>
               <input
@@ -170,7 +170,7 @@ const BillingDetails = () => {
               </div>
             </div>
 
-            <div className="flex justify-between mt-6 items-center col-span-2">
+            <div className="flex justify-between mt-6 items-center lg:col-span-2">
               <Button theme="btn-outline-rounded">
                 <Link to={CHECKOUT_STEP_2}>Back </Link>
               </Button>

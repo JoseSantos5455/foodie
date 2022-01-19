@@ -97,7 +97,7 @@ const Signup = () => {
             </div>
 
             <div className="flex justify-center">
-              <Button theme="btn-large">Create Account</Button>
+              <Button theme="btn-large md:w-auto w-full">Create Account</Button>
             </div>
           </form>
           <p className="font-secondary px-4 text-base  font-semibold">

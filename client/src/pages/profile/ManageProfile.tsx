@@ -76,7 +76,7 @@ const ManageProfile = () => {
 
       <div className=" max-w-screen-md mx-auto">
         <div className="border relative bg-gray-50 shadow-md border-gray-200 rounded p-4">
-          <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4 p-8 relative">
+          <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-4 p-8 relative">
             <div className="absolute -top-5 right-2 w-10 h-10 rounded-full flex-col text-white bg-black flex justify-center items-center">
               <EditOutlined />
               <span className="text-sm">Edit</span>
@@ -159,7 +159,7 @@ const ManageProfile = () => {
                 <span className="text-red-600">{errors?.zipCode?.message}</span>
               </div>
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Button type="submit" theme="btn-primary">
                 update
               </Button>

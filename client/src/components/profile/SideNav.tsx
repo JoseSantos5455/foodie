@@ -30,7 +30,7 @@ const profileRoutes = [
   },
 ];
 
-const SideNav = ({ dispatch }: any) => {
+const SideNav = ({ dispatch, username = null }: any) => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   return (
     <div
@@ -48,12 +48,12 @@ const SideNav = ({ dispatch }: any) => {
       >
         <div className="flex justify-center">
           <div className="lg:py-10 py-4">
-            <div className="lg:mb-8 lg:text-center lg:block flex justify-between space-x-6 items-center">
+            <div className="lg:mb-8 lg:text-center lg:block flex justify-between lg:space-x-0 space-x-6 items-center">
               <span className="text-2xl mb-2 mx-auto  flex items-center justify-center lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
                 <UserOutlined />
               </span>
 
-              <h3 className="font-bold text-base font-secondary capitalize">Customer</h3>
+              <h3 className="font-bold text-base font-secondary capitalize">{username ? username : 'Customer'}</h3>
             </div>
             <ul className="flex flex-col lg:w-auto w-max mx-auto  space-y-2 lg:max-h-full transition-all duration-300 overflow-hidden lg:items-start items-center">
               {profileRoutes.map(({ name, route, icon }, index) => (

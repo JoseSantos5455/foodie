@@ -34,7 +34,7 @@ const Profile = () => {
     <section className="py-10">
       {(isLoadingOrder || isLoadingProfile || isLoadingAuth) && <Loading />}
       <div className=" lg:grid lg:grid-cols-4 xl:gap-12 gap-6 overflow-hidden">
-        <SideNav dispatch={dispatch} />
+        <SideNav dispatch={dispatch} username={profile?.fullName} />
         <div className="col-span-3 bg-white p-4 shadow-md rounded">
           <Outlet context={[profile, auth, orders]} />
         </div>

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
+import 'styles/pages/profile.css';
 
 const profileRoutes = [
   {
@@ -33,9 +34,9 @@ const SideNav = ({ dispatch }: any) => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   return (
     <div
-      className={`relative lg:h-auto transition-all duration-150 lg:mb-0 mb-6 ${
-        sideNavOpen ? 'h-auto max-h-96' : 'lg:h-auto lg:max-h-fit max-h-20 lg:overflow-visible overflow-hidden'
-      }`}
+      className={`relative lg:h-auto transition-all duration-150 lg:mb-0 mb-6
+      max-h-20 h-fit lg:overflow-visible overflow-hidden
+      ${sideNavOpen ? 'h-auto max-h-96' : ''}`}
     >
       <div onClick={() => setSideNavOpen(!sideNavOpen)} className="lg:hidden absolute top-2 right-1 z-50">
         <Hamburger toggle={setSideNavOpen} toggled={sideNavOpen} color="#000" />

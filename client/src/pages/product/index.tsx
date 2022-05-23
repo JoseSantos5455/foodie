@@ -75,7 +75,7 @@ const ProductDetails = () => {
           <div className="mt-8">
             {products.length > 0 && (
               <>
-                <h2 className="font-main mb-4">Related products</h2>
+                <h2 className="font-main mb-4 font-bold text-xl">Related products</h2>
                 <div className="flex xl:grid xl:grid-cols-5 gap-2 xl:overflow-x-hidden overflow-x-scroll">
                   <ProductList products={products.slice(0, 5)} />
                 </div>

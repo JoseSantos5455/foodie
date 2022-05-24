@@ -26,6 +26,7 @@ module.exports = {
       shadow: ['hover', 'focus'],
       opacity: ['disabled'],
       cursor: ['disabled'],
+      scale: ['group-hover'],
     },
   },
   plugins: [],

@@ -15,3 +15,10 @@ export const getOrders = (token: string) =>
     url: '/orders',
     headers: { authorization: `Bearer ${token}` },
   });
+
+export const adminGetOrders = (token: string) =>
+  httpRequest({
+    method: 'GET',
+    url: '/orders/admin',
+    headers: { authorization: `Bearer ${token}` },
+  });

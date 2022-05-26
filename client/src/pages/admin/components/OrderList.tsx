@@ -1,6 +1,11 @@
 import Button from 'components/UI/Button';
+import { IOrderRes } from 'types/types';
 
-const OrderList = () => {
+type Props = {
+  orders: IOrderRes[];
+};
+
+const OrderList = ({ orders }: Props) => {
   return (
     <div className="p-4 rounded-xl shadow-md bg-white">
       <div className="overflow-x-auto w-full">
@@ -15,22 +20,22 @@ const OrderList = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {new Array(4).fill(null).map((item, index) => (
-              <tr key={`row-${index}`}>
+            {orders.map((order) => (
+              <tr key={order?._id}>
                 <td className="px-6 py-4">
                   <div className="flex items-center space-x-3">
-                    <p> Mira Rodeo </p>
+                    <p> mira </p>
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <Button theme="btn-secondary">pending</Button>
+                  <Button theme="btn-secondary">{order?.orderStatus}</Button>
                 </td>
                 <td className="px-6 py-4 text-center">
                   <Button theme="bg-indigo-500" className="bg-opacity-30 px-2 py-1">
-                    unpaid
+                    {order.isPaid ? 'paid' : 'unpaid'}
                   </Button>
                 </td>
-                <td className="px-6 py-4 text-center"> 125.00 $ </td>
+                <td className="px-6 py-4 text-center"> {order?.total} $ </td>
                 <td className="px-6 py-4 text-center">view </td>
               </tr>
             ))}

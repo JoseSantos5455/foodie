@@ -7,7 +7,7 @@ import { loginStart, logOut, signUpStart } from 'app/slices/authSlice';
 import authSaga from './authSaga';
 import { getProfileStart, updateProfileStart } from 'app/slices/profileSlice';
 import profileSaga from './profileSaga';
-import { addOrderStart, getOrderStart } from 'app/slices/orderSlice';
+import { addOrderStart, adminGetOrderStart, adminGetOrderSuccess, getOrderStart } from 'app/slices/orderSlice';
 import orderSaga from './orderSaga';
 
 function* rootSaga() {
@@ -15,7 +15,7 @@ function* rootSaga() {
   yield takeLatest([addCategoryStart.type, getCategoriesStart.type], categorySaga);
   yield takeLatest([signUpStart.type, loginStart.type, logOut.type], authSaga);
   yield takeLatest([getProfileStart.type, updateProfileStart.type], profileSaga);
-  yield takeLatest([addOrderStart.type, getOrderStart.type], orderSaga);
+  yield takeLatest([addOrderStart.type, getOrderStart.type, adminGetOrderStart, adminGetOrderSuccess], orderSaga);
 }
 
 export default rootSaga;

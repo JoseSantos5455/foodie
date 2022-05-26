@@ -19,6 +19,7 @@ export interface IOrder extends Document {
     },
   ];
   shippingInfo: {
+    fullName: string;
     city: string;
     phone: string;
     isPhoneValidated: boolean;
@@ -50,6 +51,7 @@ const orderSchema = new Schema(
       },
     ],
     shippingInfo: {
+      fullName: {type: String, required: true},
       city: { type: String, required: true },
       phone: { type: String, required: true },
       isPhoneValidated: { type: Boolean, required: true },

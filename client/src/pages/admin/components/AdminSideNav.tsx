@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
 import { DashboardOutlined } from '@ant-design/icons';
 import { GoPackage } from 'react-icons/go';
+import { BsCardChecklist } from 'react-icons/bs';
 
 interface Props {
   sideNavOpen: boolean;
@@ -17,6 +18,11 @@ const adminRoutes = [
     name: 'Add Product',
     route: ROUTES.ADMIN_ADD_PRODUCT,
     icon: <GoPackage />,
+  },
+  {
+    name: 'All Orders',
+    route: ROUTES.ADMIN_ALL_ORDERS,
+    icon: <BsCardChecklist />,
   },
 ];
 

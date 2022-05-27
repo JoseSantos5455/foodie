@@ -6,6 +6,7 @@ import WithAdmin from './WithAdmin';
 import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
 import Admin from 'pages/admin';
+
 const AddProduct = lazy(() => import('pages/admin/AddProduct'));
 const Dashboard = lazy(() => import('pages/admin/Dashboard'));
 const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
@@ -25,6 +26,7 @@ const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
 const ProductDetails = lazy(() => import('pages/product'));
 const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
+const AllOrders = lazy(() => import('pages/admin/AllOrders'));
 
 const AppRouter = () => {
   return (
@@ -187,6 +189,16 @@ const AppRouter = () => {
             <Suspense fallback={<Loading />}>
               <WithAdmin>
                 <AddProduct />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_ALL_ORDERS}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AllOrders />
               </WithAdmin>
             </Suspense>
           }

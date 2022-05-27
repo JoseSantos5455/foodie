@@ -17,3 +17,4 @@ export const ORDER_DETAILS = 'purchase-history/:orderId';
 export const ADD_CATEGORY = 'add-category';
 export const ADMIN_DASHBOARD = '/admin';
 export const ADMIN_ADD_PRODUCT = 'add-product';
+export const ADMIN_ALL_ORDERS = 'all-orders';

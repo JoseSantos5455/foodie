@@ -3,19 +3,27 @@ import { IOrderRes } from 'types/types';
 
 type Props = {
   orders: IOrderRes[];
+  admin?: boolean;
 };
 
-const OrderList = ({ orders }: Props) => {
+const OrderList = ({ orders, admin = false }: Props) => {
   return (
     <div className="p-4 rounded-xl shadow-md bg-white">
       <div className="overflow-x-auto w-full">
         <table className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
           <thead>
             <tr className="text-primaryDark text-left">
-              <th className="font-semibold text-sm uppercase px-6 py-4"> Customer </th>
+              <th className="font-semibold text-sm uppercase px-6 py-4"> Customer</th>
               <th className="font-semibold text-sm uppercase px-6 py-4"> order status </th>
               <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> paiment status </th>
               <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> total </th>
+              {admin && (
+                <>
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> update status </th>
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> update paiment </th>
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> delete order </th>
+                </>
+              )}
               <th className="font-semibold text-sm uppercase px-6 py-4"> </th>
             </tr>
           </thead>
@@ -36,7 +44,18 @@ const OrderList = ({ orders }: Props) => {
                   </Button>
                 </td>
                 <td className="px-6 py-4 text-center"> {order?.total} $ </td>
-                <td className="px-6 py-4 text-center">view </td>
+                {admin && (
+                  <>
+                    <td className="px-6 py-4 text-center"></td>
+                    <td className="px-6 py-4 text-center"></td>
+                    <td className="px-6 py-4 text-center">
+                      <Button theme="btn-err">delete</Button>
+                    </td>
+                  </>
+                )}
+                {/* <td className="px-6 py-4 text-center">
+                  <Link to={`all-orders/${order._id}`}>view</Link>
+                </td> */}
               </tr>
             ))}
           </tbody>

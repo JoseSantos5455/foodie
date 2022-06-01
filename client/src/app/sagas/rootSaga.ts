@@ -11,6 +11,7 @@ import {
   addOrderStart,
   adminGetOrderStart,
   adminGetOrderSuccess,
+  deleteOrderStart,
   getOrderStart,
   updateOrderStatusStart,
   updateOrderStatusSuccess,
@@ -30,6 +31,7 @@ function* rootSaga() {
       adminGetOrderSuccess,
       updateOrderStatusStart,
       updateOrderStatusSuccess,
+      deleteOrderStart,
     ],
     orderSaga,
   );

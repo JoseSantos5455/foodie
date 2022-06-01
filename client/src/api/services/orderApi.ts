@@ -29,3 +29,10 @@ export const updateOrderStatus = (id: string, token: string) =>
     url: `/orders/admin/order-status/${id}`,
     headers: { authorization: `Bearer ${token}` },
   });
+
+export const deleteOrder = (id: string, token: string) =>
+  httpRequest({
+    method: 'DELETE',
+    url: `/orders/admin/${id}`,
+    headers: { authorization: `Bearer ${token}` },
+  });

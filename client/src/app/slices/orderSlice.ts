@@ -8,6 +8,12 @@ type AddOrderPayload = {
   token: string;
 };
 
+type OrderStatusPayload = {
+  id: string;
+  orderStatus: string;
+  token: string;
+};
+
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
@@ -24,6 +30,10 @@ const orderSlice = createSlice({
     adminGetOrderSuccess: (state, action: PayloadAction<IOrderRes[]>) => {
       return [...state, ...action.payload];
     },
+    updateOrderStatusStart: (state, action: PayloadAction<OrderStatusPayload>) => {},
+    updateOrderStatusSuccess: (state, action: PayloadAction<IOrderRes>) => {
+      return state.map((order) => (order._id === action.payload._id ? { ...action.payload } : order));
+    },
     clearOrders: () => {
       return [];
     },
@@ -37,6 +47,8 @@ export const {
   getOrderSuccess,
   adminGetOrderStart,
   adminGetOrderSuccess,
+  updateOrderStatusStart,
+  updateOrderStatusSuccess,
   clearOrders,
 } = orderSlice.actions;
 export default orderSlice.reducer;

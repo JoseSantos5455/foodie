@@ -9,9 +9,11 @@ import {
   getOrderSuccess,
   adminGetOrderStart,
   adminGetOrderSuccess,
+  updateOrderStatusStart,
+  updateOrderStatusSuccess,
 } from 'app/slices/orderSlice';
 import { IOrderRes } from 'types/types';
-import { addOrder, getOrders, adminGetOrders } from 'api/services/orderApi';
+import { addOrder, getOrders, adminGetOrders, updateOrderStatus } from 'api/services/orderApi';
 import { clearCart } from 'app/slices/cartSlice';
 
 function* handleError(err: any) {
@@ -48,6 +50,16 @@ function* orderSaga({ type, payload }: ISaga) {
         yield put(loadingOrder(true));
         const orders: IOrderRes[] = yield call(adminGetOrders, payload);
         yield put(adminGetOrderSuccess(orders));
+        yield put(loadingOrder(false));
+      } catch (err) {
+        handleError(err);
+      }
+      break;
+    case updateOrderStatusStart.type:
+      try {
+        yield put(loadingOrder(true));
+        const order: IOrderRes = yield call(updateOrderStatus, payload.id, payload.token);
+        yield put(updateOrderStatusSuccess(order));
         yield put(loadingOrder(false));
       } catch (err) {
         handleError(err);

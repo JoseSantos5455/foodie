@@ -10,11 +10,9 @@ import profileSaga from './profileSaga';
 import {
   addOrderStart,
   adminGetOrderStart,
-  adminGetOrderSuccess,
   deleteOrderStart,
   getOrderStart,
   updateOrderStatusStart,
-  updateOrderStatusSuccess,
 } from 'app/slices/orderSlice';
 import orderSaga from './orderSaga';
 
@@ -24,15 +22,7 @@ function* rootSaga() {
   yield takeLatest([signUpStart.type, loginStart.type, logOut.type], authSaga);
   yield takeLatest([getProfileStart.type, updateProfileStart.type], profileSaga);
   yield takeLatest(
-    [
-      addOrderStart.type,
-      getOrderStart.type,
-      adminGetOrderStart,
-      adminGetOrderSuccess,
-      updateOrderStatusStart,
-      updateOrderStatusSuccess,
-      deleteOrderStart,
-    ],
+    [addOrderStart.type, getOrderStart.type, adminGetOrderStart, updateOrderStatusStart, deleteOrderStart],
     orderSaga,
   );
 }

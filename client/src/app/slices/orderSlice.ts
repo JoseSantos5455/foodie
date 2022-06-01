@@ -14,6 +14,11 @@ type OrderStatusPayload = {
   token: string;
 };
 
+type DelOrderPayload = {
+  id: string;
+  token: string;
+};
+
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
@@ -34,6 +39,10 @@ const orderSlice = createSlice({
     updateOrderStatusSuccess: (state, action: PayloadAction<IOrderRes>) => {
       return state.map((order) => (order._id === action.payload._id ? { ...action.payload } : order));
     },
+    deleteOrderStart: (state, action: PayloadAction<DelOrderPayload>) => {},
+    deleteOrderSuccess: (state, action: PayloadAction<string>) => {
+      return state.filter((order) => order._id !== action.payload);
+    },
     clearOrders: () => {
       return [];
     },
@@ -49,6 +58,8 @@ export const {
   adminGetOrderSuccess,
   updateOrderStatusStart,
   updateOrderStatusSuccess,
+  deleteOrderStart,
+  deleteOrderSuccess,
   clearOrders,
 } = orderSlice.actions;
 export default orderSlice.reducer;

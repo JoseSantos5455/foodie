@@ -49,7 +49,7 @@ const AllOrders = () => {
               />
             </div>
           </div>
-          {selectedOrders.length > 0 && <OrderList orders={selectedOrders} />}
+          {selectedOrders.length > 0 && <OrderList admin orders={selectedOrders} />}
         </>
       )}
     </section>

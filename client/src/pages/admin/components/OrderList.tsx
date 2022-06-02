@@ -1,5 +1,6 @@
 import Button from 'components/UI/Button';
 import { IOrderRes } from 'types/types';
+import { Link } from 'react-router-dom';
 
 type Props = {
   orders: IOrderRes[];
@@ -17,13 +18,7 @@ const OrderList = ({ orders, admin = false }: Props) => {
               <th className="font-semibold text-sm uppercase px-6 py-4"> order status </th>
               <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> paiment status </th>
               <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> total </th>
-              {admin && (
-                <>
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> update status </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> update paiment </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center"> delete order </th>
-                </>
-              )}
+
               <th className="font-semibold text-sm uppercase px-6 py-4"> </th>
             </tr>
           </thead>
@@ -44,18 +39,12 @@ const OrderList = ({ orders, admin = false }: Props) => {
                   </Button>
                 </td>
                 <td className="px-6 py-4 text-center"> {order?.total} $ </td>
+
                 {admin && (
-                  <>
-                    <td className="px-6 py-4 text-center"></td>
-                    <td className="px-6 py-4 text-center"></td>
-                    <td className="px-6 py-4 text-center">
-                      <Button theme="btn-err">delete</Button>
-                    </td>
-                  </>
+                  <td className="px-6 py-4 text-center">
+                    <Link to={`${order._id}`}>view</Link>
+                  </td>
                 )}
-                {/* <td className="px-6 py-4 text-center">
-                  <Link to={`all-orders/${order._id}`}>view</Link>
-                </td> */}
               </tr>
             ))}
           </tbody>

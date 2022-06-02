@@ -3,28 +3,29 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from 'components/UI/Layout';
 import * as ROUTES from 'utils/routes';
 import WithAdmin from './WithAdmin';
-import WithAuth from './WithAuth';
+// import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
 import Admin from 'pages/admin';
+import OrderDetail from 'pages/admin/OrderDetail';
 
-const AddProduct = lazy(() => import('pages/admin/AddProduct'));
+// const AddProduct = lazy(() => import('pages/admin/AddProduct'));
 const Dashboard = lazy(() => import('pages/admin/Dashboard'));
-const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
-const Profile = lazy(() => import('components/profile'));
-const AddCategory = lazy(() => import('pages/admin/AddCategory'));
-const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
-const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
-const Wishlist = lazy(() => import('pages/profile/Wishlist'));
-const ProfileDashboard = lazy(() => import('pages/profile'));
-const Cart = lazy(() => import('pages/cart'));
-const Shop = lazy(() => import('pages/shop'));
+// const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
+// const Profile = lazy(() => import('components/profile'));
+// const AddCategory = lazy(() => import('pages/admin/AddCategory'));
+// const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
+// const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
+// const Wishlist = lazy(() => import('pages/profile/Wishlist'));
+// const ProfileDashboard = lazy(() => import('pages/profile'));
+// const Cart = lazy(() => import('pages/cart'));
+// const Shop = lazy(() => import('pages/shop'));
 const Login = lazy(() => import('pages/auth/Login'));
-const Signup = lazy(() => import('pages/auth/Signup'));
-const Payment = lazy(() => import('pages/checkout/Payment'));
-const BillingDetails = lazy(() => import('pages/checkout/BillingDetails'));
-const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
-const ProductDetails = lazy(() => import('pages/product'));
-const Home = lazy(() => import('pages/home'));
+// const Signup = lazy(() => import('pages/auth/Signup'));
+// const Payment = lazy(() => import('pages/checkout/Payment'));
+// const BillingDetails = lazy(() => import('pages/checkout/BillingDetails'));
+// const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
+// const ProductDetails = lazy(() => import('pages/product'));
+// const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
 const AllOrders = lazy(() => import('pages/admin/AllOrders'));
 
@@ -32,7 +33,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<Layout />}>
-        <Route
+        {/* <Route
           index
           element={
             <Suspense fallback={<Loading />}>
@@ -85,7 +86,7 @@ const AppRouter = () => {
               </WithAuth>
             </Suspense>
           }
-        />
+        /> */}
         <Route
           path={ROUTES.LOGIN}
           element={
@@ -94,7 +95,7 @@ const AppRouter = () => {
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           path={ROUTES.SIGN_UP}
           element={
             <Suspense fallback={<Loading />}>
@@ -159,8 +160,8 @@ const AppRouter = () => {
                 <OrderDetails />
               </Suspense>
             }
-          />
-        </Route>
+          /> 
+        </Route> */}
 
         <Route
           path="*"
@@ -183,7 +184,7 @@ const AppRouter = () => {
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           path={ROUTES.ADMIN_ADD_PRODUCT}
           element={
             <Suspense fallback={<Loading />}>
@@ -191,8 +192,8 @@ const AppRouter = () => {
                 <AddProduct />
               </WithAdmin>
             </Suspense>
-          }
-        />
+          } 
+        />*/}
         <Route
           path={ROUTES.ADMIN_ALL_ORDERS}
           element={
@@ -204,6 +205,16 @@ const AppRouter = () => {
           }
         />
         <Route
+          path={ROUTES.ADMIN_VIEW_ORDER}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <OrderDetail />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        {/* <Route
           path={ROUTES.ADD_CATEGORY}
           element={
             <Suspense fallback={<Loading />}>
@@ -212,7 +223,7 @@ const AppRouter = () => {
               </WithAdmin>
             </Suspense>
           }
-        />
+        /> */}
       </Route>
       {/* Admin Pages Ends */}
     </Routes>

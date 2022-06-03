@@ -27,6 +27,7 @@ const ProductDetails = lazy(() => import('pages/product'));
 const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
 const AllOrders = lazy(() => import('pages/admin/AllOrders'));
+const OrderDetail = lazy(() => import('pages/admin/OrderDetail'));
 
 const AppRouter = () => {
   return (
@@ -199,6 +200,16 @@ const AppRouter = () => {
             <Suspense fallback={<Loading />}>
               <WithAdmin>
                 <AllOrders />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_VIEW_ORDER}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <OrderDetail />
               </WithAdmin>
             </Suspense>
           }

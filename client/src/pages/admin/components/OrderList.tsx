@@ -42,7 +42,7 @@ const OrderList = ({ orders, admin = false }: Props) => {
 
                 {admin && (
                   <td className="px-6 py-4 text-center">
-                    <Link to={`all-orders/${order._id}`}>view</Link>
+                    <Link to={`${order._id}`}>view</Link>
                   </td>
                 )}
               </tr>

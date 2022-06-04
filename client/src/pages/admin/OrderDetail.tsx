@@ -12,7 +12,10 @@ const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 const OrderDetail = () => {
   const { id } = useParams();
   const orderId = typeof id === 'string' ? id : '';
-  const auth = useAppSelector((state) => state.auth);
+  const { auth, isLoadingOrder } = useAppSelector((state) => ({
+    auth: state.auth,
+    isLoadingOrder: state.loadingState.isLoadingOrder,
+  }));
   const { isError, isLoading, order } = useAdminOrder(id, auth.token);
   const dispatch = useDispatch();
 
@@ -26,7 +29,7 @@ const OrderDetail = () => {
 
   return (
     <section className="py-4 max-w-screen-lg mx-auto">
-      {isLoading && <Loading />}
+      {(isLoading || isLoadingOrder) && <Loading />}
       {isError && <p className="text-center font-bold">An Error Accured</p>}
       {order && (
         <div className="bg-white p-4 text-gray-900 dark:bg-gray-900 dark:text-white">

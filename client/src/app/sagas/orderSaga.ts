@@ -60,7 +60,7 @@ function* orderSaga({ type, payload }: ISaga) {
     case updateOrderStatusStart.type:
       try {
         yield put(loadingOrder(true));
-        const order: IOrderRes = yield call(updateOrderStatus, payload.id, payload.token);
+        const order: IOrderRes = yield call(updateOrderStatus, payload.id, payload.orderStatus, payload.token);
         yield put(updateOrderStatusSuccess(order));
         yield put(loadingOrder(false));
       } catch (err) {

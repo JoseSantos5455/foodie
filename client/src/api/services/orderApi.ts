@@ -23,10 +23,11 @@ export const adminGetOrders = (token: string) =>
     headers: { authorization: `Bearer ${token}` },
   });
 
-export const updateOrderStatus = (id: string, token: string) =>
+export const updateOrderStatus = (id: string, orderStatus: string, token: string) =>
   httpRequest({
     method: 'PATCH',
     url: `/orders/admin/order-status/${id}`,
+    data: { orderStatus },
     headers: { authorization: `Bearer ${token}` },
   });
 

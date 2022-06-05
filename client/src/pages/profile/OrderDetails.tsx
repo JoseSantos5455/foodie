@@ -12,8 +12,16 @@ const OrderDetails = () => {
       <h3 className="font-semibold text-lg text-primaryDark capitalize  mb-6 pb-2 border-b-2 border-gray-50">
         Order Details
       </h3>
-      {foundOrder &&
-        foundOrder.orderItems.map((orderItem) => <PurchaseItem key={orderItem.productId} orderItem={orderItem} />)}
+      <ul className="divide-y divide-gray-200">
+        {foundOrder &&
+          foundOrder.orderItems.map((orderItem) => (
+            <PurchaseItem
+              delivered={foundOrder.orderStatus === 'delivered'}
+              key={orderItem.productId}
+              orderItem={orderItem}
+            />
+          ))}
+      </ul>
     </div>
   );
 };

@@ -37,12 +37,9 @@ export interface IError {
 }
 
 export interface IReview {
-  _id: string;
   userName: string;
   rating: number;
   comment: string;
-  productId: string;
-  userId: string;
 }
 
 export interface ICategory {
@@ -96,4 +93,10 @@ export interface ILoginCredentiels {
 
 export interface IAccountCredentiels extends ILoginCredentiels {
   fullName: string;
+}
+
+export interface IReviewRes extends IReview {
+  _id: string;
+  productId: string;
+  userId: string;
 }

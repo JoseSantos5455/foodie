@@ -16,6 +16,7 @@ const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
 const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
 const Wishlist = lazy(() => import('pages/profile/Wishlist'));
 const ProfileDashboard = lazy(() => import('pages/profile'));
+const AddReview = lazy(() => import('pages/profile/AddReview'));
 const Cart = lazy(() => import('pages/cart'));
 const Shop = lazy(() => import('pages/shop'));
 const Login = lazy(() => import('pages/auth/Login'));
@@ -158,6 +159,14 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <OrderDetails />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.ADD_REVIEW}
+            element={
+              <Suspense fallback={<Loading />}>
+                <AddReview />
               </Suspense>
             }
           />

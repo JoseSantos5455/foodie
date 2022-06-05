@@ -7,11 +7,13 @@ export const CHECKOUT_STEP_1 = '/order-summary';
 export const CHECKOUT_STEP_2 = '/billing-details';
 export const CHECKOUT_STEP_3 = '/payment';
 export const SHOP = '/shop';
+// PROFILE ROUTES
 export const PROFILE_DASHBOARD = '/profile';
 export const PURCHASE_HISTORY = 'purchase-history';
 export const MANAGE_PROFILE = 'manage-profile';
 export const WISHLIST = 'whishlist';
 export const ORDER_DETAILS = 'purchase-history/:orderId';
+export const ADD_REVIEW = 'purchase-history/review/:slug';
 
 // ADMIN ROUTES
 export const ADD_CATEGORY = 'add-category';

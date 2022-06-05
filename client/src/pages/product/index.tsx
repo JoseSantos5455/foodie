@@ -23,6 +23,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     const cartItem = {
       title: product.title,
+      slug: product.slug,
       productId: product._id,
       image: product.image,
       price: discountPrice,

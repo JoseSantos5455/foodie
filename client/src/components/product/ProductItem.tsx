@@ -33,7 +33,8 @@ const ProductItem = ({
   const handleAddToCart = () => {
     const discountPrice = calculateDiscount(originalPrice, discountPercentage);
     const cartItem = {
-      title: title,
+      title,
+      slug,
       productId: id,
       image,
       price: discountPrice,

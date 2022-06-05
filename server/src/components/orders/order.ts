@@ -15,6 +15,7 @@ export interface IOrder extends Document {
         discountPercentage: number;
       };
       title: string;
+      slug: string;
       image: string;
     },
   ];
@@ -44,6 +45,7 @@ const orderSchema = new Schema(
     orderItems: [
       {
         productId: { type: ObjectId, required: true, ref: 'Product' },
+        slug: {type: String, required: true},
         qty: { type: Number, required: true },
         price: { type: Number, required: true },
         title: { type: String, required: true },

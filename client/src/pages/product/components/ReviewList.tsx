@@ -1,9 +1,9 @@
-import { IReview } from 'types/types';
+import { IReviewRes } from 'types/types';
 import Review from './Review';
 import 'styles/pages/review.css';
 
 type ReviewsListProps = {
-  reviews: IReview[];
+  reviews: IReviewRes[];
   rating: number;
   numReviews: number;
 };

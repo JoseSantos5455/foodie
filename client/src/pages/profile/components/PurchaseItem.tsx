@@ -25,7 +25,7 @@ const PurchaseItem = ({ orderItem, delivered = false }: Props) => {
           <p className="text-gray-900 font-bold">${orderItem.price * orderItem.qty}</p>
         </div>
         {delivered && (
-          <Link to={`/reveiw/my-pro`}>
+          <Link to={`review/${orderItem?.slug}`}>
             <span className="font-bold text-sm text-purpleBeta">rate & review</span>
           </Link>
         )}

@@ -67,6 +67,7 @@ export interface IUser {
 export interface IOrder {
   orderItems: ICart[];
   shippingInfo: {
+    fullName: string;
     city: string;
     phone: string;
     isPhoneValidated: boolean;

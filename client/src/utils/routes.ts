@@ -13,7 +13,7 @@ export const PURCHASE_HISTORY = 'purchase-history';
 export const MANAGE_PROFILE = 'manage-profile';
 export const WISHLIST = 'whishlist';
 export const ORDER_DETAILS = 'purchase-history/:orderId';
-export const ADD_REVIEW = 'purchase-history/review/:slug';
+export const ADD_REVIEW = 'purchase-history/:id/review/:slug';
 
 // ADMIN ROUTES
 export const ADD_CATEGORY = 'add-category';

@@ -27,7 +27,7 @@ const OrderList = ({ orders, admin = false }: Props) => {
               <tr key={order?._id}>
                 <td className="px-6 py-4">
                   <div className="flex items-center space-x-3">
-                    <p> mira </p>
+                    <p> {order?.shippingInfo?.fullName} </p>
                   </div>
                 </td>
                 <td className="px-6 py-4">
@@ -42,7 +42,9 @@ const OrderList = ({ orders, admin = false }: Props) => {
 
                 {admin && (
                   <td className="px-6 py-4 text-center">
-                    <Link to={`${order._id}`}>view</Link>
+                    <Link to={`${order._id}`}>
+                      <span className="font-bold text-primary hover:text-primaryHover">view</span>
+                    </Link>
                   </td>
                 )}
               </tr>

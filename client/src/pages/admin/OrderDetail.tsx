@@ -1,16 +1,18 @@
 import { useAppSelector } from 'app/store';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAdminOrder } from 'utils/hooks/useAdminOrder';
 import Loading from 'components/loaders/Loading';
 import Button from 'components/UI/Button';
 import { useDispatch } from 'react-redux';
 import { deleteOrderStart, updateOrderStatusStart } from 'app/slices/orderSlice';
 import { ChangeEvent } from 'react';
+import { ADMIN_ALL_ORDERS } from 'utils/routes';
 
 const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 
 const OrderDetail = () => {
   const { id } = useParams();
+  let navigate = useNavigate();
   const orderId = typeof id === 'string' ? id : '';
   const { auth, isLoadingOrder } = useAppSelector((state) => ({
     auth: state.auth,
@@ -25,6 +27,7 @@ const OrderDetail = () => {
 
   const onDeleteOrder = () => {
     dispatch(deleteOrderStart({ id: orderId, token: auth.token }));
+    navigate(ADMIN_ALL_ORDERS);
   };
 
   return (

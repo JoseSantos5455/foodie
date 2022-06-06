@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { Rating } from 'react-simple-star-rating';
 import { Alert } from 'react-st-modal';
 import { useAppSelector } from 'app/store';
@@ -15,6 +15,7 @@ type ReviewData = {
 
 const AddReview = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -35,8 +36,9 @@ const AddReview = () => {
       try {
         const res: any = await addReview(slug, review, token);
         if (res?._id) toast.success('review added successfully');
+        navigate(-1);
       } catch (err: any) {
-        toast.error(err.message);
+        toast.error(err.error.message);
       }
     }
   };
@@ -61,11 +63,11 @@ const AddReview = () => {
           </label>
           <input
             type="text"
-            {...register('username', { required: 'username is required' })}
+            {...register('userName', { required: 'username is required' })}
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:purpleBeta"
           />
           <div className="text-red-500 mt-2">
-            <span>{errors?.username?.message}</span>
+            <span>{errors?.userName?.message}</span>
           </div>
         </div>
         <div>

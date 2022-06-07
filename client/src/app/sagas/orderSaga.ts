@@ -1,4 +1,4 @@
-import { ISaga } from './productsSaga';
+import { ISaga } from 'types/types';
 import { put, call } from 'redux-saga/effects';
 import { loadingOrder } from 'app/slices/loadingSlice';
 import { orderError } from 'app/slices/errorSlice';
@@ -31,7 +31,7 @@ function* orderSaga({ type, payload }: ISaga) {
         yield put(loadingOrder(true));
         const order: IOrderRes = yield call(addOrder, payload.newOrder, payload.token);
         yield put(addOrderSuccess(order));
-        yield put(clearCart())
+        yield put(clearCart());
         yield put(loadingOrder(false));
       } catch (err) {
         handleError(err);

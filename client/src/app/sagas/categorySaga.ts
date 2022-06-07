@@ -9,7 +9,7 @@ import {
 import { categoryError } from 'app/slices/errorSlice';
 import { loadingCategory } from 'app/slices/loadingSlice';
 import { ICategory } from 'types/types';
-import { ISaga } from './productsSaga';
+import { ISaga } from 'types/types';
 import { uploadImage } from 'api/firebase';
 
 function* handleError(err: any) {

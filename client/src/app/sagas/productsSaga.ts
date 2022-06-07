@@ -6,11 +6,7 @@ import { loadingProducts } from 'app/slices/loadingSlice';
 import { getProductsStart, getProductsSuccess, addProductStart, addProductSuccess } from 'app/slices/productSlice';
 import { IProductRes } from 'types/types';
 import { productData } from 'utils/helpers';
-
-export interface ISaga {
-  type: string;
-  payload: any;
-}
+import { ISaga } from 'types/types';
 
 function* handleError(err: any) {
   yield put(loadingProducts(false));

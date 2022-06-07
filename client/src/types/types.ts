@@ -101,3 +101,8 @@ export interface IReviewRes extends IReview {
   productId: string;
   userId: string;
 }
+
+export interface ISaga {
+  type: string;
+  payload: any;
+}

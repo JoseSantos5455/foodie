@@ -3,7 +3,7 @@ import { loadingProfile } from 'app/slices/loadingSlice';
 import { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess } from 'app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
 import { profileError } from '../slices/errorSlice';
-import { ISaga } from './productsSaga';
+import { ISaga } from 'types/types';
 import { IUser } from 'types/types';
 
 function* handleError(err: any) {

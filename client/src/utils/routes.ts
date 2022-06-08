@@ -21,3 +21,4 @@ export const ADMIN_DASHBOARD = '/admin';
 export const ADMIN_ADD_PRODUCT = 'add-product';
 export const ADMIN_ALL_ORDERS = 'all-orders';
 export const ADMIN_VIEW_ORDER = 'all-orders/:id';
+export const ADMIN_ALL_USERS = 'all-users';

@@ -3,6 +3,7 @@ import * as ROUTES from 'utils/routes';
 import { DashboardOutlined } from '@ant-design/icons';
 import { GoPackage } from 'react-icons/go';
 import { BsCardChecklist } from 'react-icons/bs';
+import { FaUsers } from 'react-icons/fa';
 
 interface Props {
   sideNavOpen: boolean;
@@ -23,6 +24,11 @@ const adminRoutes = [
     name: 'All Orders',
     route: ROUTES.ADMIN_ALL_ORDERS,
     icon: <BsCardChecklist />,
+  },
+  {
+    name: 'All Users',
+    route: ROUTES.ADMIN_ALL_USERS,
+    icon: <FaUsers />,
   },
 ];
 

@@ -50,7 +50,8 @@ export interface ICategory {
 }
 
 export interface IUser {
-  id: string;
+  _id: string;
+  id?: string;
   fullName: string;
   email: string;
   password: string;

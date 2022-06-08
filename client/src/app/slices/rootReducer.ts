@@ -7,6 +7,7 @@ import productReducer from './productSlice';
 import authReducer from './authSlice';
 import profileReducer from './profileSlice';
 import orderReducer from './orderSlice';
+import usersReducer from './usersSlice';
 
 export const rootReducer = combineReducers({
   products: productReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   orders: orderReducer,
+  users: usersReducer,
 });

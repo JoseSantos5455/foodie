@@ -15,7 +15,7 @@ import {
   updateOrderStatusStart,
 } from 'app/slices/orderSlice';
 import orderSaga from './orderSaga';
-import { getUsersStart } from 'app/slices/usersSlice';
+import { delUsersStart, getUsersStart } from 'app/slices/usersSlice';
 import usersSaga from './usersSaga';
 
 function* rootSaga() {
@@ -27,7 +27,7 @@ function* rootSaga() {
     [addOrderStart.type, getOrderStart.type, adminGetOrderStart, updateOrderStatusStart, deleteOrderStart],
     orderSaga,
   );
-  yield takeLatest([getUsersStart.type], usersSaga);
+  yield takeLatest([getUsersStart.type, delUsersStart.type], usersSaga);
 }
 
 export default rootSaga;

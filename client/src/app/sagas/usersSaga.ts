@@ -1,7 +1,7 @@
-import { getUsers } from 'api/services/usersApi';
+import { deleteUser, getUsers } from 'api/services/usersApi';
 import { usersError } from 'app/slices/errorSlice';
 import { loadingUsers } from 'app/slices/loadingSlice';
-import { getUsersStart, getUsersSuccess } from 'app/slices/usersSlice';
+import { delUsersStart, delUsersSuccess, getUsersStart, getUsersSuccess } from 'app/slices/usersSlice';
 import { put, call } from 'redux-saga/effects';
 import { ISaga, IUser } from 'types/types';
 
@@ -23,6 +23,17 @@ function* usersSaga({ type, payload }: ISaga) {
         yield handleError(err);
       }
       break;
+    case delUsersStart.type:
+      try {
+        yield put(loadingUsers(true));
+        const email: string = yield call(deleteUser, payload.email, payload.token);
+        yield put(delUsersSuccess(email));
+        yield put(loadingUsers(false));
+      } catch (err) {
+        yield handleError(err);
+      }
+      break;
+
     default:
       return;
   }

@@ -3,7 +3,7 @@ import * as ROUTES from 'utils/routes';
 import { DashboardOutlined } from '@ant-design/icons';
 import { GoPackage } from 'react-icons/go';
 import { BsCardChecklist } from 'react-icons/bs';
-import { FaUsers } from 'react-icons/fa';
+import { FaUsers, FaProductHunt } from 'react-icons/fa';
 
 interface Props {
   sideNavOpen: boolean;
@@ -14,6 +14,11 @@ const adminRoutes = [
     name: 'Dashboard',
     route: ROUTES.ADMIN_DASHBOARD,
     icon: <DashboardOutlined />,
+  },
+  {
+    name: 'All Products',
+    route: ROUTES.ADMIN_ALL_PRODUCTS,
+    icon: <FaProductHunt />,
   },
   {
     name: 'Add Product',

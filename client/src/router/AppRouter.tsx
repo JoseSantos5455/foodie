@@ -7,6 +7,7 @@ import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
 import Admin from 'pages/admin';
 
+const AllProducts = lazy(() => import('pages/admin/AllProducts'));
 const AllUsers = lazy(() => import('pages/admin/AllUsers'));
 const AddProduct = lazy(() => import('pages/admin/AddProduct'));
 const Dashboard = lazy(() => import('pages/admin/Dashboard'));
@@ -240,6 +241,16 @@ const AppRouter = () => {
             <Suspense fallback={<Loading />}>
               <WithAdmin>
                 <AllUsers />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_ALL_PRODUCTS}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AllProducts />
               </WithAdmin>
             </Suspense>
           }

@@ -6,3 +6,10 @@ export const getUsers = (token: string) =>
     url: '/users',
     headers: { authorization: `Bearer ${token}` },
   });
+
+export const deleteUser = (userEmail: string, token: string) =>
+  httpRequest({
+    method: 'DELETE',
+    url: `/users/${userEmail}`,
+    headers: { authorization: `Bearer ${token}` },
+  });

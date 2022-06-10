@@ -1,5 +1,5 @@
 import { addCategoryStart, getCategoriesStart } from 'app/slices/categorySlice';
-import { addProductStart, getProductsStart } from 'app/slices/productSlice';
+import { addProductStart, delProductStart, getProductsStart } from 'app/slices/productSlice';
 import { takeLatest } from 'redux-saga/effects';
 import productsSaga from './productsSaga';
 import categorySaga from './categorySaga';
@@ -19,7 +19,7 @@ import { delUsersStart, getUsersStart } from 'app/slices/usersSlice';
 import usersSaga from './usersSaga';
 
 function* rootSaga() {
-  yield takeLatest([getProductsStart.type, addProductStart.type], productsSaga);
+  yield takeLatest([getProductsStart.type, addProductStart.type, delProductStart.type], productsSaga);
   yield takeLatest([addCategoryStart.type, getCategoriesStart.type], categorySaga);
   yield takeLatest([signUpStart.type, loginStart.type, logOut.type], authSaga);
   yield takeLatest([getProfileStart.type, updateProfileStart.type], profileSaga);

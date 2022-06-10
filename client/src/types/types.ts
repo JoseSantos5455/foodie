@@ -19,13 +19,14 @@ export interface IProduct {
   category: string;
 }
 
-export interface IProductRes extends IProduct {
+export interface IProductRes extends Omit<IProduct, 'category'> {
   sold: number;
   slug: string;
   _id: string;
   reviews: IReview[];
   rating: number;
   numReviews: number;
+  category: ICategory;
 }
 
 export interface IError {

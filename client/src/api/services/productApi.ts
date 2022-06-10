@@ -14,3 +14,10 @@ export const addProduct = (product: IProduct, token: string) =>
     headers: { authorization: `Bearer ${token}` },
     data: product,
   });
+
+export const deleteProduct = (id: string, token: string) =>
+  httpRequest({
+    method: 'DELETE',
+    url: `/products/${id}`,
+    headers: { authorization: `Bearer ${token}` },
+  });

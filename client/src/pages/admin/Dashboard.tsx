@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { ADMIN_ALL_ORDERS } from 'utils/routes';
 import { Link } from 'react-router-dom';
+import Loading from 'components/loaders/Loading';
 
 const Dashboard = () => {
   const statistics = [
@@ -38,10 +39,10 @@ const Dashboard = () => {
     },
   ];
 
-  const { orders, auth /*,isLoadingOrder*/ } = useAppSelector((state) => ({
+  const { orders, auth, isLoadingOrder } = useAppSelector((state) => ({
     orders: state.orders,
     auth: state.auth,
-    // isLoadingOrder: state.loadingState.isLoadingOrder,
+    isLoadingOrder: state.loadingState.isLoadingOrder,
   }));
 
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const Dashboard = () => {
 
   return (
     <section className="py-4">
+      {isLoadingOrder && <Loading />}
       <div className="grid md:grid-cols-4 justify-center gap-6 mb-12 px-6 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
         {statistics.map((item, index) => (
           <div

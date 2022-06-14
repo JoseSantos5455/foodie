@@ -56,7 +56,7 @@ const Dashboard = () => {
   return (
     <section className="py-4">
       {isLoadingOrder && <Loading />}
-      <div className="grid md:grid-cols-4 justify-center gap-6 mb-12 px-6 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-center gap-6 mb-12 px-6 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
         {statistics.map((item, index) => (
           <div
             key={`${item.title}-${index}`}

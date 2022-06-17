@@ -7,6 +7,7 @@ import userRoute from '@/components/users/userRoute';
 import reviewRoute from '@/components/reviews/reviewRoute';
 import orderRoute from '@/components/orders/orderRoute';
 import errorMiddleware from './middlewares/error.middleware';
+import uploadRoute from '@/components/upload/uploadRoute'
 
 dotenv.config({ path: __dirname + '/config/config.env' });
 connectDB();
@@ -19,6 +20,7 @@ app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/reviews', reviewRoute);
 app.use('/api/v1/orders', orderRoute);
+app.use('/api/v1/upload', uploadRoute);
 
 app.use(errorMiddleware);
 

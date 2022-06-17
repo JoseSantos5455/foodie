@@ -11,7 +11,8 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
       return next(new ErrorHandler(401, 'no token'));
     }
 
-    const payload = await jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+    const payload = typeof decoded !== 'string' && decoded;
 
     const user = await User.findById(payload.user_id).select('-password');
     if (!user) {

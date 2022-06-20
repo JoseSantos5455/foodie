@@ -18,7 +18,7 @@ if (!apps.length) {
       clientEmail: process.env.CLIENT_EMAIL,
       privateKey: formattedPrivateKey,
     }),
-    storageBucket: 'bunny-b4362.appspot.com',
+    storageBucket: 'bunny-b4362.appspot.com/products',
   });
 }
 

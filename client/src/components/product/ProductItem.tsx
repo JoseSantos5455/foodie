@@ -29,7 +29,6 @@ const ProductItem = ({
   slug,
 }: IProductItem) => {
   const { isItemInCart, onAddToCart } = useCart();
-
   const handleAddToCart = () => {
     const discountPrice = calculateDiscount(originalPrice, discountPercentage);
     const cartItem = {
@@ -42,14 +41,10 @@ const ProductItem = ({
     };
     onAddToCart(cartItem);
   };
+
   return (
     <div>
       <div className="product-item xl:self-start xl:w-auto w-72 xl:h-auto">
-        {/* <div className="absolute bg-primary p-2 top-0 right-0 rounded rounded-br-none rounded-tr-none rounded-tl-none">
-            <span className=" text-sm font-semibold">
-               hello
-            </span>
-        </div> */}
         <Link to={`/${slug}`}>
           <div className="w-full xl:h-60 " style={{ backgroundImage: `url${image}` }}>
             <img src={image} alt="baby" />
@@ -58,6 +53,7 @@ const ProductItem = ({
 
         <div className="flex items-center justify-between">
           <h3 className="product-title">{title}</h3>
+
           <HeartOutlined className="text-primaryDark" />
         </div>
 

@@ -1,6 +1,5 @@
 import { call, put } from '@redux-saga/core/effects';
-import { uploadImage } from 'api/firebase';
-import { addProduct, getProducts, deleteProduct } from 'api/services/productApi';
+import { addProduct, getProducts, deleteProduct, uploadProductImage } from 'api/services/productApi';
 import { productsError } from 'app/slices/errorSlice';
 import { loadingProducts } from 'app/slices/loadingSlice';
 import {
@@ -36,12 +35,12 @@ function* productsSaga({ type, payload }: ISaga) {
     case addProductStart.type:
       try {
         yield put(loadingProducts(true));
-        const productImageUrl: string = yield call(uploadImage, payload.image[0]);
+        const productImageUrl: string = yield call(uploadProductImage, payload.image, payload.token);
         payload.image = productImageUrl;
         if (payload.subImages.length > 0) {
           let productSubImagesUrl: string[] = [];
-          for (let i = 0; i < payload.subImages.length; i++) {
-            const uplaodedImageUrl: string = yield call(uploadImage, payload.subImages[i]);
+          for (let img of payload.subImages) {
+            const uplaodedImageUrl: string = yield call(uploadProductImage, img, payload.token);
             productSubImagesUrl.push(uplaodedImageUrl);
           }
 

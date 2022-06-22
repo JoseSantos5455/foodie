@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
 import 'styles/product/productItem.css';
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import useCart from 'utils/hooks/useCart';
 import Button from 'components/UI/Button';
 import PlusMinusBtns from 'components/UI/PlusMinusBtns';
 import { calculateDiscount } from 'utils/helpers';
+import useWishlist from 'utils/hooks/useWishlist';
 
 export interface IProductItem {
   title: string;
@@ -29,7 +30,9 @@ const ProductItem = ({
   slug,
 }: IProductItem) => {
   const { isItemInCart, onAddToCart } = useCart();
-  const handleAddToCart = () => {
+  const { isItemInWish, onWishItem, onRemoveItem } = useWishlist();
+
+  const formCartItem = () => {
     const discountPrice = calculateDiscount(originalPrice, discountPercentage);
     const cartItem = {
       title,
@@ -39,7 +42,15 @@ const ProductItem = ({
       price: discountPrice,
       qty: 1,
     };
+    return cartItem;
+  };
+  const handleAddToCart = () => {
+    const cartItem = formCartItem();
     onAddToCart(cartItem);
+  };
+
+  const onWish = () => {
+    onWishItem(formCartItem());
   };
 
   return (
@@ -53,8 +64,16 @@ const ProductItem = ({
 
         <div className="flex items-center justify-between">
           <h3 className="product-title">{title}</h3>
-
-          <HeartOutlined className="text-primaryDark" />
+          {!isItemInWish(id) && (
+            <span className="cursor-pointer" onClick={onWish}>
+              <HeartOutlined className="text-primaryDark" />
+            </span>
+          )}
+          {isItemInWish(id) && (
+            <span onClick={() => onRemoveItem(id)}>
+              <HeartFilled className="text-red-600" />
+            </span>
+          )}
         </div>
 
         <div className="product-price">

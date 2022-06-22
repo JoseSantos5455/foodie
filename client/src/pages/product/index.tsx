@@ -12,6 +12,8 @@ import ProductList from 'components/product/ProductList';
 import { calculateDiscount } from 'utils/helpers';
 import useCart from 'utils/hooks/useCart';
 import DetailsSkeleton from 'components/loaders/DetailsSkeleton';
+import { useDispatch } from 'react-redux';
+import { addToWishlist } from 'app/slices/wishlistSlice';
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -20,16 +22,25 @@ const ProductDetails = () => {
   const discountPrice = calculateDiscount(product?.pricing.originalPrice, product?.pricing.discountPercentage);
   const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem } = useCart();
 
+  const formCartItem = () => ({
+    title: product.title,
+    slug: product.slug,
+    productId: product._id,
+    image: product.image,
+    price: discountPrice,
+    qty: 1,
+  });
+
+  const dispatch = useDispatch();
+
   const handleAddToCart = () => {
-    const cartItem = {
-      title: product.title,
-      slug: product.slug,
-      productId: product._id,
-      image: product.image,
-      price: discountPrice,
-      qty: 1,
-    };
+    const cartItem = formCartItem();
     onAddToCart(cartItem);
+  };
+
+  const onWish = () => {
+    const wishItem = formCartItem();
+    dispatch(addToWishlist(wishItem));
   };
 
   return (
@@ -56,6 +67,7 @@ const ProductDetails = () => {
                 rating={product.rating}
                 numReviews={product.numReviews}
                 brand={product.brand}
+                onWish={onWish}
               />
             </div>
           </div>

@@ -7,7 +7,7 @@ const useWishlist = () => {
   const isItemInWish = (id: String) => !!wishlist.find((item) => item.productId === id);
   const dispatch = useAppDispatch();
   const onRemoveItem = (id: string) => dispatch(removeFromWishlist(id));
-  const onWishItem = (item: ICart) => dispatch(addToWishlist);
+  const onWishItem = (item: ICart) => dispatch(addToWishlist(item));
 
   return { isItemInWish, onRemoveItem, onWishItem };
 };

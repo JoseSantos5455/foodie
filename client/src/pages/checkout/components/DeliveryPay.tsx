@@ -11,7 +11,7 @@ const DeliveryPay = () => {
   const onConfirm = () => {
     newOrder.paymentMethod = 'cash';
     dispatch(addOrderStart({ newOrder, token }));
-    CustomDialog(<ConfirmationModal />, {
+    CustomDialog(<ConfirmationModal message="Order Confirmed Successfully !" />, {
       title: 'Confirm',
       showCloseIcon: true,
     });

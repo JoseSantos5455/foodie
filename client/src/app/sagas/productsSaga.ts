@@ -1,16 +1,18 @@
 import { call, put } from '@redux-saga/core/effects';
-import { uploadImage } from 'api/firebase';
-import { addProduct, getProducts } from 'api/services/productApi';
+import { addProduct, getProducts, deleteProduct, uploadProductImage } from 'api/services/productApi';
 import { productsError } from 'app/slices/errorSlice';
 import { loadingProducts } from 'app/slices/loadingSlice';
-import { getProductsStart, getProductsSuccess, addProductStart, addProductSuccess } from 'app/slices/productSlice';
+import {
+  getProductsStart,
+  getProductsSuccess,
+  addProductStart,
+  addProductSuccess,
+  delProductStart,
+  delProductSuccess,
+} from 'app/slices/productSlice';
 import { IProductRes } from 'types/types';
 import { productData } from 'utils/helpers';
-
-export interface ISaga {
-  type: string;
-  payload: any;
-}
+import { ISaga } from 'types/types';
 
 function* handleError(err: any) {
   yield put(loadingProducts(false));
@@ -29,16 +31,16 @@ function* productsSaga({ type, payload }: ISaga) {
         yield handleError(err);
       }
       break;
+
     case addProductStart.type:
       try {
         yield put(loadingProducts(true));
-        console.log(payload);
-        const productImageUrl: string = yield call(uploadImage, payload.image[0]);
+        const productImageUrl: string = yield call(uploadProductImage, payload.image, payload.token);
         payload.image = productImageUrl;
         if (payload.subImages.length > 0) {
           let productSubImagesUrl: string[] = [];
-          for (let i = 0; i < payload.subImages.length; i++) {
-            const uplaodedImageUrl: string = yield call(uploadImage, payload.subImages[i]);
+          for (let img of payload.subImages) {
+            const uplaodedImageUrl: string = yield call(uploadProductImage, img, payload.token);
             productSubImagesUrl.push(uplaodedImageUrl);
           }
 
@@ -47,6 +49,16 @@ function* productsSaga({ type, payload }: ISaga) {
 
         const product: IProductRes = yield call(addProduct, productData(payload), payload.token);
         yield put(addProductSuccess(product));
+        yield put(loadingProducts(false));
+      } catch (err) {
+        yield handleError(err);
+      }
+      break;
+    case delProductStart.type:
+      try {
+        yield put(loadingProducts(true));
+        const id: string = yield call(deleteProduct, payload.id, payload.token);
+        yield put(delProductSuccess(id));
         yield put(loadingProducts(false));
       } catch (err) {
         yield handleError(err);

@@ -2,7 +2,11 @@ import Button from './Button';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { useDialog } from 'react-st-modal';
 
-const ConfirmationModal = () => {
+type Props = {
+  message?: string;
+};
+
+const ConfirmationModal = ({ message="confirmed" }: Props) => {
   const dialog = useDialog();
   return (
     <div className="flex items-center justify-center">
@@ -10,7 +14,7 @@ const ConfirmationModal = () => {
         <div className="text-center">
           <CheckCircleOutlined className="text-greenBeta text-4xl mb-2" />
           <div className="mb-4">
-            <p className="font-main text-xl font-bold text-primaryDark">Order Confirmed Successfully !</p>
+            <p className="font-main text-xl font-bold text-primaryDark">{message}</p>
           </div>
 
           <Button theme="btn-success" onClick={() => dialog.close()}>

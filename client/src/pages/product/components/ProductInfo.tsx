@@ -1,7 +1,8 @@
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { ICart } from 'app/slices/cartSlice';
 import Button from 'components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
+import useWishlist from 'utils/hooks/useWishlist';
 
 // type ColorProps = {
 //   color: string;
@@ -27,6 +28,7 @@ type ProductInfoType = {
   onAddQty: (id: string) => void;
   onMinusQty: (id: string) => void;
   findItem: (id: string) => ICart | undefined;
+  onWish: () => void;
 };
 
 // const ColorCircle = ({ color }: ColorProps) => (
@@ -52,9 +54,11 @@ const ProductInfo = ({
   onMinusQty,
   findItem,
   _id,
+  onWish,
 }: ProductInfoType) => {
   // const colors: string[] = ['red', 'blue', 'aqua'];
   // const sizes: number[] = [12, 16, 25];
+  const { isItemInWish, onRemoveItem } = useWishlist();
 
   return (
     <div className="xl:pr-16 pt-10">
@@ -103,7 +107,16 @@ const ProductInfo = ({
           </Button>
         )}
         <div className="rounded-full bg-white shadow-lg w-10 h-10 flex items-center justify-center py-1 px-2">
-          <HeartOutlined className="text-red-300 text-3xl" />
+          {!isItemInWish(_id) && (
+            <span className="cursor-pointer" onClick={onWish}>
+              <HeartOutlined className="text-primaryDark" />
+            </span>
+          )}
+          {isItemInWish(_id) && (
+            <span onClick={() => onRemoveItem(_id)}>
+              <HeartFilled className="text-red-600" />
+            </span>
+          )}
         </div>
       </div>
     </div>

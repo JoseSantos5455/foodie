@@ -11,7 +11,8 @@ const AdminHeader = ({ sideNavOpen, setSideNavOpen }: Props) => {
   return (
     <div className="pt-2 lg:rounded-md px-6 bg-white">
       <div className="flex flex-col lg:flex-row py-1 justify-between">
-        <div className="relative flex space-x-4 items-center w-max z-50">
+        <h1 className="font-bold font-primary text-xl">Dashboard</h1>
+        <div className="relative lg:hidden flex space-x-4 items-center w-max z-50">
           <Hamburger toggled={sideNavOpen} toggle={setSideNavOpen} size={25} />
         </div>
 

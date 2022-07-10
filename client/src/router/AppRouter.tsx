@@ -6,6 +6,9 @@ import WithAdmin from './WithAdmin';
 import WithAuth from './WithAuth';
 import Loading from 'components/loaders/Loading';
 import Admin from 'pages/admin';
+
+const AllProducts = lazy(() => import('pages/admin/AllProducts'));
+const AllUsers = lazy(() => import('pages/admin/AllUsers'));
 const AddProduct = lazy(() => import('pages/admin/AddProduct'));
 const Dashboard = lazy(() => import('pages/admin/Dashboard'));
 const OrderDetails = lazy(() => import('pages/profile/OrderDetails'));
@@ -15,6 +18,7 @@ const PurchaseHistory = lazy(() => import('pages/profile/PurchaseHistory'));
 const ManageProfile = lazy(() => import('pages/profile/ManageProfile'));
 const Wishlist = lazy(() => import('pages/profile/Wishlist'));
 const ProfileDashboard = lazy(() => import('pages/profile'));
+const AddReview = lazy(() => import('pages/profile/AddReview'));
 const Cart = lazy(() => import('pages/cart'));
 const Shop = lazy(() => import('pages/shop'));
 const Login = lazy(() => import('pages/auth/Login'));
@@ -25,6 +29,8 @@ const OrderSummary = lazy(() => import('pages/checkout/OrderSummary'));
 const ProductDetails = lazy(() => import('pages/product'));
 const Home = lazy(() => import('pages/home'));
 const NotFound = lazy(() => import('pages/notFound'));
+const AllOrders = lazy(() => import('pages/admin/AllOrders'));
+const OrderDetail = lazy(() => import('pages/admin/OrderDetail'));
 
 const AppRouter = () => {
   return (
@@ -158,6 +164,14 @@ const AppRouter = () => {
               </Suspense>
             }
           />
+          <Route
+            path={ROUTES.ADD_REVIEW}
+            element={
+              <Suspense fallback={<Loading />}>
+                <AddReview />
+              </Suspense>
+            }
+          />
         </Route>
 
         <Route
@@ -192,11 +206,51 @@ const AppRouter = () => {
           }
         />
         <Route
+          path={ROUTES.ADMIN_ALL_ORDERS}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AllOrders />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_VIEW_ORDER}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <OrderDetail />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
           path={ROUTES.ADD_CATEGORY}
           element={
             <Suspense fallback={<Loading />}>
               <WithAdmin>
                 <AddCategory />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_ALL_USERS}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AllUsers />
+              </WithAdmin>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_ALL_PRODUCTS}
+          element={
+            <Suspense fallback={<Loading />}>
+              <WithAdmin>
+                <AllProducts />
               </WithAdmin>
             </Suspense>
           }

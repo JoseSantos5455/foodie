@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ICart {
   title: string;
+  slug: string;
   productId: string;
   image: string;
   price: number;

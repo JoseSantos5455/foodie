@@ -7,7 +7,7 @@ import { clearOrders } from 'app/slices/orderSlice';
 import { clearProfile } from 'app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
 import { IUser } from 'types/types';
-import { ISaga } from './productsSaga';
+import { ISaga } from 'types/types';
 
 function* handleError(err: any) {
   yield put(loadingAuth(false));

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import * as ROUTES from 'utils/routes';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
+import 'styles/pages/profile.css';
 
 const profileRoutes = [
   {
@@ -29,13 +30,13 @@ const profileRoutes = [
   },
 ];
 
-const SideNav = ({ dispatch }: any) => {
+const SideNav = ({ dispatch, username = null }: any) => {
   const [sideNavOpen, setSideNavOpen] = useState(false);
   return (
     <div
-      className={`relative lg:h-auto transition-all duration-150 lg:mb-0 mb-6 ${
-        sideNavOpen ? 'h-auto max-h-96' : 'lg:h-auto lg:max-h-fit max-h-20 lg:overflow-visible overflow-hidden'
-      }`}
+      className={`relative lg:h-auto transition-all duration-150 lg:mb-0 mb-6
+      max-h-20 h-fit lg:overflow-visible overflow-hidden
+      ${sideNavOpen ? 'h-auto max-h-96' : ''}`}
     >
       <div onClick={() => setSideNavOpen(!sideNavOpen)} className="lg:hidden absolute top-2 right-1 z-50">
         <Hamburger toggle={setSideNavOpen} toggled={sideNavOpen} color="#000" />
@@ -47,12 +48,12 @@ const SideNav = ({ dispatch }: any) => {
       >
         <div className="flex justify-center">
           <div className="lg:py-10 py-4">
-            <div className="lg:mb-8 lg:text-center lg:block flex justify-between space-x-6 items-center">
+            <div className="lg:mb-8 lg:text-center lg:block flex justify-between lg:space-x-0 space-x-6 items-center">
               <span className="text-2xl mb-2 mx-auto  flex items-center justify-center lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
                 <UserOutlined />
               </span>
 
-              <h3 className="font-bold text-base font-secondary capitalize">Customer</h3>
+              <h3 className="font-bold text-base font-secondary capitalize">{username ? username : 'Customer'}</h3>
             </div>
             <ul className="flex flex-col lg:w-auto w-max mx-auto  space-y-2 lg:max-h-full transition-all duration-300 overflow-hidden lg:items-start items-center">
               {profileRoutes.map(({ name, route, icon }, index) => (

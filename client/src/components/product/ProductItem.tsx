@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
 import 'styles/product/productItem.css';
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import useCart from 'utils/hooks/useCart';
 import Button from 'components/UI/Button';
 import PlusMinusBtns from 'components/UI/PlusMinusBtns';
 import { calculateDiscount } from 'utils/helpers';
+import useWishlist from 'utils/hooks/useWishlist';
 
 export interface IProductItem {
   title: string;
@@ -29,26 +30,32 @@ const ProductItem = ({
   slug,
 }: IProductItem) => {
   const { isItemInCart, onAddToCart } = useCart();
+  const { isItemInWish, onWishItem, onRemoveItem } = useWishlist();
 
-  const handleAddToCart = () => {
+  const formCartItem = () => {
     const discountPrice = calculateDiscount(originalPrice, discountPercentage);
     const cartItem = {
-      title: title,
+      title,
+      slug,
       productId: id,
       image,
       price: discountPrice,
       qty: 1,
     };
+    return cartItem;
+  };
+  const handleAddToCart = () => {
+    const cartItem = formCartItem();
     onAddToCart(cartItem);
   };
+
+  const onWish = () => {
+    onWishItem(formCartItem());
+  };
+
   return (
     <div>
       <div className="product-item xl:self-start xl:w-auto w-72 xl:h-auto">
-        {/* <div className="absolute bg-primary p-2 top-0 right-0 rounded rounded-br-none rounded-tr-none rounded-tl-none">
-            <span className=" text-sm font-semibold">
-               hello
-            </span>
-        </div> */}
         <Link to={`/${slug}`}>
           <div className="w-full xl:h-60 " style={{ backgroundImage: `url${image}` }}>
             <img src={image} alt="baby" />
@@ -57,7 +64,16 @@ const ProductItem = ({
 
         <div className="flex items-center justify-between">
           <h3 className="product-title">{title}</h3>
-          <HeartOutlined className="text-primaryDark" />
+          {!isItemInWish(id) && (
+            <span className="cursor-pointer" onClick={onWish}>
+              <HeartOutlined className="text-primaryDark" />
+            </span>
+          )}
+          {isItemInWish(id) && (
+            <span onClick={() => onRemoveItem(id)}>
+              <HeartFilled className="text-red-600" />
+            </span>
+          )}
         </div>
 
         <div className="product-price">

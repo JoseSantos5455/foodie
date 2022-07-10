@@ -8,7 +8,7 @@ router.route('/admin').get(isAuthenticated, isAdmin, orderController.getAllOrder
 router.route('/').get(isAuthenticated, orderController.getUserOrders).post(isAuthenticated, orderController.addOrder);
 router.route('/:id').get(isAuthenticated, orderController.getOrderById);
 
-router.route('/admin/:id').delete(isAuthenticated, isAdmin, orderController.deleteOrder);
+router.route('/admin/:id').get(isAuthenticated, isAdmin, orderController.getOrderById).delete(isAuthenticated, isAdmin, orderController.deleteOrder);
 
 router.route('/admin/order-status/:id').patch(isAuthenticated, isAdmin, orderController.updateOrderStatus);
 router.route('/admin/paid/:id').patch(isAuthenticated, isAdmin, orderController.updateOrderPayment);

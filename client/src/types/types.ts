@@ -19,13 +19,14 @@ export interface IProduct {
   category: string;
 }
 
-export interface IProductRes extends IProduct {
+export interface IProductRes extends Omit<IProduct, 'category'> {
   sold: number;
   slug: string;
   _id: string;
   reviews: IReview[];
   rating: number;
   numReviews: number;
+  category: ICategory;
 }
 
 export interface IError {
@@ -37,12 +38,9 @@ export interface IError {
 }
 
 export interface IReview {
-  _id: string;
   userName: string;
   rating: number;
   comment: string;
-  productId: string;
-  userId: string;
 }
 
 export interface ICategory {
@@ -53,7 +51,8 @@ export interface ICategory {
 }
 
 export interface IUser {
-  id: string;
+  _id: string;
+  id?: string;
   fullName: string;
   email: string;
   password: string;
@@ -70,6 +69,7 @@ export interface IUser {
 export interface IOrder {
   orderItems: ICart[];
   shippingInfo: {
+    fullName: string;
     city: string;
     phone: string;
     isPhoneValidated: boolean;
@@ -96,4 +96,15 @@ export interface ILoginCredentiels {
 
 export interface IAccountCredentiels extends ILoginCredentiels {
   fullName: string;
+}
+
+export interface IReviewRes extends IReview {
+  _id: string;
+  productId: string;
+  userId: string;
+}
+
+export interface ISaga {
+  type: string;
+  payload: any;
 }

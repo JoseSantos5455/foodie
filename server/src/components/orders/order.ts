@@ -15,10 +15,12 @@ export interface IOrder extends Document {
         discountPercentage: number;
       };
       title: string;
+      slug: string;
       image: string;
     },
   ];
   shippingInfo: {
+    fullName: string;
     city: string;
     phone: string;
     isPhoneValidated: boolean;
@@ -43,6 +45,7 @@ const orderSchema = new Schema(
     orderItems: [
       {
         productId: { type: ObjectId, required: true, ref: 'Product' },
+        slug: {type: String, required: true},
         qty: { type: Number, required: true },
         price: { type: Number, required: true },
         title: { type: String, required: true },
@@ -50,6 +53,7 @@ const orderSchema = new Schema(
       },
     ],
     shippingInfo: {
+      fullName: {type: String, required: true},
       city: { type: String, required: true },
       phone: { type: String, required: true },
       isPhoneValidated: { type: Boolean, required: true },

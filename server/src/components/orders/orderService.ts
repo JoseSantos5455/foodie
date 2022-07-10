@@ -7,7 +7,7 @@ interface IOrderService {
   getUserOrders: (userId: IUser['_id']) => Promise<IOrder[]>;
   getAllOrders: () => Promise<IOrder[]>;
   getOrderById: (orderId: IOrder['_id']) => Promise<IOrder>;
-  updateOrderStatus: (orderStatus: string, orderId: IOrder['_id']) => Promise<string>;
+  updateOrderStatus: (orderStatus: string, orderId: IOrder['_id']) => Promise<IOrder>;
   deleteOrder: (orderId: IOrder['_id']) => Promise<IOrder['_id']>;
   updateOrderPayment: (isPaid: boolean, orderId: IOrder['_id']) => Promise<boolean>;
 }
@@ -65,7 +65,7 @@ class OrderService implements IOrderService {
     }
   }
 
-  async updateOrderStatus(orderStatus: string, orderId: IOrder['_id']): Promise<string> {
+  async updateOrderStatus(orderStatus: string, orderId: IOrder['_id']): Promise<IOrder> {
     try {
       const updatedOrder = await Order.findByIdAndUpdate(orderId, { orderStatus }, { new: true });
       if (!updatedOrder) {
@@ -82,7 +82,7 @@ class OrderService implements IOrderService {
         user.orders = orderedProducts;
         await user.save();
       }
-      return updatedOrder.orderStatus;
+      return updatedOrder;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }

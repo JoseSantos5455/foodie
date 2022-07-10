@@ -5,7 +5,7 @@ const ShareProduct: FC = () => {
   return (
     <div>
       <div className="mb-6 pb-2 border-b border-gray-200">
-        <h3 className="font-main font-bold">Product Specs</h3>
+        <h3 className="font-main font-bold">Share Product</h3>
       </div>
       <div className="flex itesm-center text-2xl space-x-4">
         <FacebookFilled style={{ color: '#3B5998' }} />

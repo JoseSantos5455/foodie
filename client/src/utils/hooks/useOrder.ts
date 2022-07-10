@@ -26,6 +26,7 @@ const useOrder = () => {
   const newOrder: IOrder = {
     orderItems: cart,
     shippingInfo: {
+      fullName: profile.fullName,
       city: profile.city,
       phone: profile.phone,
       isPhoneValidated: profile.isPhoneValidated,

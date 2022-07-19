@@ -1,20 +1,20 @@
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { CHECKOUT_STEP_2, CHECKOUT_STEP_3 } from 'utils/routes';
+import { CHECKOUT_STEP_2, CHECKOUT_STEP_3 } from '@/utils/routes';
 import CheckoutSteps from './components/CheckoutSteps';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { profileSchema } from 'utils/formValidation';
-import { useAppSelector } from 'app/store';
+import { profileSchema } from '@/utils/formValidation';
+import { useAppSelector } from '@/app/store';
 import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProfileStart, updateProfileStart } from 'app/slices/profileSlice';
-import { compareObjs } from 'utils/helpers';
-import { IUser } from 'types/types';
+import { getProfileStart, updateProfileStart } from '@/app/slices/profileSlice';
+import { compareObjs } from '@/utils/helpers';
+import { IUser } from '@/types/types';
 import { CustomDialog } from 'react-st-modal';
 import PasswordModal from './components/PasswordModal';
 import WithCart from './components/WithCart';
-import Loading from 'components/loaders/Loading';
+import Loading from '@/components/loaders/Loading';
 
 const BillingDetails = () => {
   const navigate = useNavigate();

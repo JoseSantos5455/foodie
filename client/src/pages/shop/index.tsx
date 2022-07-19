@@ -1,8 +1,8 @@
 import PriceRange from './components/PriceRange';
 import DiscountRange from './components/DiscountRange';
 import RatingRange from './components/RatingRange';
-import ProductList from 'components/product/ProductList';
-import { useAppSelector } from 'app/store';
+import ProductList from '@/components/product/ProductList';
+import { useAppSelector } from '@/app/store';
 
 const Shop = () => {
   const products = useAppSelector((state) => state.products);

@@ -1,16 +1,16 @@
 import { EditOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { updateProfileStart } from 'app/slices/profileSlice';
-import { compareObjs } from 'utils/helpers';
-import { IUser } from 'types/types';
+import { updateProfileStart } from '@/app/slices/profileSlice';
+import { compareObjs } from '@/utils/helpers';
+import { IUser } from '@/types/types';
 import { CustomDialog } from 'react-st-modal';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { profileSchema } from 'utils/formValidation';
-import PasswordModal from 'pages/checkout/components/PasswordModal';
-import { useUserProfile } from 'components/profile';
-import Button from 'components/UI/Button';
+import { profileSchema } from '@/utils/formValidation';
+import PasswordModal from '@/pages/checkout/components/PasswordModal';
+import { useUserProfile } from '@/components/profile';
+import Button from '@/components/UI/Button';
 
 const ManageProfile = () => {
   const userProfile = useUserProfile();

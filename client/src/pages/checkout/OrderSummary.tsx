@@ -1,13 +1,13 @@
-import Summary from 'components/checkout/Summary';
-import CartItem from 'components/product/CartItem';
-import Button from 'components/UI/Button';
-import useCart from 'utils/hooks/useCart';
+import Summary from '@/components/checkout/Summary';
+import CartItem from '@/components/product/CartItem';
+import Button from '@/components/UI/Button';
+import useCart from '@/utils/hooks/useCart';
 import CheckoutSteps from './components/CheckoutSteps';
 import { FC } from 'react';
-import { CHECKOUT_STEP_2, HOME } from 'utils/routes';
+import { CHECKOUT_STEP_2, HOME } from '@/utils/routes';
 import { Link } from 'react-router-dom';
 import WithCart from './components/WithCart';
-import { calcSubTotal } from 'utils/helpers';
+import { calcSubTotal } from '@/utils/helpers';
 
 const OrderSummary: FC = () => {
   const { cart } = useCart();

@@ -1,10 +1,10 @@
-import * as ROUTES from 'utils/routes';
+import * as ROUTES from '@/utils/routes';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
-import 'styles/UI/navbar.css';
-import logo from 'assets/logo.png';
-import { useAppSelector } from 'app/store';
+import '@/styles/UI/navbar.css';
+import logo from '@/assets/logo.png';
+import { useAppSelector } from '@/app/store';
 import Button from './Button';
 import MobileNav from './MobileNav';
 

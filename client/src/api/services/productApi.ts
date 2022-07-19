@@ -1,5 +1,5 @@
-import httpRequest from 'api/axios';
-import { IProduct } from 'types/types';
+import httpRequest from '@/api/axios';
+import { IProduct } from '@/types/types';
 
 export const getProducts = () =>
   httpRequest({

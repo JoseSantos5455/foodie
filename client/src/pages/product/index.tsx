@@ -1,19 +1,19 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useParams } from 'react-router';
-import 'styles/pages/productDetails.css';
-import { useProduct } from 'utils/hooks/useProduct';
+import '@/styles/pages/productDetails.css';
+import { useProduct } from '@/utils/hooks/useProduct';
 import Details from './components/Details';
 import ProductInfo from './components/ProductInfo';
 import { ProductShowcase } from './components/ProductShowcase';
 import ProductSpecs from './components/ProductSpecs';
 import ReviewList from './components/ReviewList';
 import ShareProduct from './components/ShareProduct';
-import ProductList from 'components/product/ProductList';
-import { calculateDiscount } from 'utils/helpers';
-import useCart from 'utils/hooks/useCart';
-import DetailsSkeleton from 'components/loaders/DetailsSkeleton';
+import ProductList from '@/components/product/ProductList';
+import { calculateDiscount } from '@/utils/helpers';
+import useCart from '@/utils/hooks/useCart';
+import DetailsSkeleton from '@/components/loaders/DetailsSkeleton';
 import { useDispatch } from 'react-redux';
-import { addToWishlist } from 'app/slices/wishlistSlice';
+import { addToWishlist } from '@/app/slices/wishlistSlice';
 
 const ProductDetails = () => {
   const { slug } = useParams();

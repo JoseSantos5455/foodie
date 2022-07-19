@@ -1,5 +1,5 @@
 import React from 'react';
-import 'styles/UI/btns.css';
+import '@/styles/UI/btns.css';
 
 interface Props {
   theme: string;

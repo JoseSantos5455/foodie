@@ -1,4 +1,4 @@
-import { IReview } from 'types/types';
+import { IReview } from '@/types/types';
 import { RatingView } from 'react-simple-star-rating';
 
 type ReviewProps = {

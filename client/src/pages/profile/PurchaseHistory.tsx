@@ -1,9 +1,9 @@
 import PurchaseRow from './components/PurchaseRow';
-import { useUserProfile } from 'components/profile';
+import { useUserProfile } from '@/components/profile';
 import { Link } from 'react-router-dom';
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import { useDispatch } from 'react-redux';
-import { getOrderStart } from 'app/slices/orderSlice';
+import { getOrderStart } from '@/app/slices/orderSlice';
 
 const PurchaseHistory = () => {
   const userProfile = useUserProfile();

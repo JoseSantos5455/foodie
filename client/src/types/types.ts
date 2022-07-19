@@ -1,4 +1,4 @@
-import { ICart } from 'app/slices/cartSlice';
+import { ICart } from '@/app/slices/cartSlice';
 
 export interface IProduct {
   title: string;

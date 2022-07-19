@@ -3,13 +3,13 @@ import CustomerRating from './components/CustomerRating';
 import OrderList from './components/OrderList';
 import TopSales from './components/TopSales';
 import AdminChart from './components/AdminChart';
-import { useAppSelector } from 'app/store';
-import { adminGetOrderStart } from 'app/slices/orderSlice';
+import { useAppSelector } from '@/app/store';
+import { adminGetOrderStart } from '@/app/slices/orderSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { ADMIN_ALL_ORDERS } from 'utils/routes';
+import { ADMIN_ALL_ORDERS } from '@/utils/routes';
 import { Link } from 'react-router-dom';
-import Loading from 'components/loaders/Loading';
+import Loading from '@/components/loaders/Loading';
 
 const Dashboard = () => {
   const statistics = [

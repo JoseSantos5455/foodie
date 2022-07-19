@@ -1,13 +1,13 @@
 import { ShoppingOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import SearchBar from './SearchBar';
-import * as ROUTES from 'utils/routes';
+import * as ROUTES from '@/utils/routes';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import CategoryNav from './CategoryNav';
-import { useAppSelector } from 'app/store';
-import CategorySkeleton from 'components/loaders/CategorySkeleton';
-import logo from 'assets/logo.png';
+import { useAppSelector } from '@/app/store';
+import CategorySkeleton from '@/components/loaders/CategorySkeleton';
+import logo from '@/assets/logo.png'
 
 type Props = {
   cartLength: number;

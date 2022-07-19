@@ -1,9 +1,9 @@
-import { deleteUser, getUsers } from 'api/services/usersApi';
-import { usersError } from 'app/slices/errorSlice';
-import { loadingUsers } from 'app/slices/loadingSlice';
-import { delUsersStart, delUsersSuccess, getUsersStart, getUsersSuccess } from 'app/slices/usersSlice';
+import { deleteUser, getUsers } from '@/api/services/usersApi';
+import { usersError } from '@/app/slices/errorSlice';
+import { loadingUsers } from '@/app/slices/loadingSlice';
+import { delUsersStart, delUsersSuccess, getUsersStart, getUsersSuccess } from '@/app/slices/usersSlice';
 import { put, call } from 'redux-saga/effects';
-import { ISaga, IUser } from 'types/types';
+import { ISaga, IUser } from '@/types/types';
 
 function* handleError(err: any) {
   yield put(loadingUsers(false));

@@ -1,18 +1,18 @@
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from 'utils/formValidation';
+import { loginSchema } from '@/utils/formValidation';
 import { Link } from 'react-router-dom';
-import { SIGN_UP } from 'utils/routes';
+import { SIGN_UP } from '@/utils/routes';
 import { useDispatch } from 'react-redux';
-import { loginStart } from 'app/slices/authSlice';
-import { ILoginCredentiels } from 'types/types';
+import { loginStart } from '@/app/slices/authSlice';
+import { ILoginCredentiels } from '@/types/types';
 import UseAuth from './UseAuth';
-import { useAppSelector } from 'app/store';
-import { loadingAuth } from 'app/slices/loadingSlice';
-import { authError } from 'app/slices/errorSlice';
+import { useAppSelector } from '@/app/store';
+import { loadingAuth } from '@/app/slices/loadingSlice';
+import { authError } from '@/app/slices/errorSlice';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import ErrorBoundary from 'modules/ErrorBoundary';
-import { getProductsStart } from 'app/slices/productSlice';
+import ErrorBoundary from '@/modules/ErrorBoundary';
+import { getProductsStart } from '@/app/slices/productSlice';
 import { useDispatch } from 'react-redux';
-import { useAppSelector } from 'app/store';
-import ProductList from 'components/product/ProductList';
-import ErrorCard from 'components/UI/ErrorCard';
+import { useAppSelector } from '@/app/store';
+import ProductList from '@/components/product/ProductList';
+import ErrorCard from '@/components/UI/ErrorCard';
 import { Link } from 'react-router-dom';
-import { getCategoriesStart } from 'app/slices/categorySlice';
-import CategoryNav from 'components/UI/CategoryNav';
-import CategorySkeleton from 'components/loaders/CategorySkeleton';
-import ProductSkeleton from 'components/loaders/ProductSkeleton';
+import { getCategoriesStart } from '@/app/slices/categorySlice';
+import CategoryNav from '@/components/UI/CategoryNav';
+import CategorySkeleton from '@/components/loaders/CategorySkeleton';
+import ProductSkeleton from '@/components/loaders/ProductSkeleton';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();

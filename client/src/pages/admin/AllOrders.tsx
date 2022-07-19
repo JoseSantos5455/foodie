@@ -1,5 +1,5 @@
-import { useAppSelector } from 'app/store';
-import { adminGetOrderStart } from 'app/slices/orderSlice';
+import { useAppSelector } from '@/app/store';
+import { adminGetOrderStart } from '@/app/slices/orderSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import OrderList from './components/OrderList';

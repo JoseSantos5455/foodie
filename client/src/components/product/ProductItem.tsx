@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
-import 'styles/product/productItem.css';
+import '@/styles/product/productItem.css';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import useCart from 'utils/hooks/useCart';
-import Button from 'components/UI/Button';
-import PlusMinusBtns from 'components/UI/PlusMinusBtns';
-import { calculateDiscount } from 'utils/helpers';
-import useWishlist from 'utils/hooks/useWishlist';
+import useCart from '@/utils/hooks/useCart';
+import Button from '@/components/UI/Button';
+import PlusMinusBtns from '@/components/UI/PlusMinusBtns';
+import { calculateDiscount } from '@/utils/helpers';
+import useWishlist from '@/utils/hooks/useWishlist';
 
 export interface IProductItem {
   title: string;

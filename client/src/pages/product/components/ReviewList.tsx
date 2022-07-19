@@ -1,6 +1,6 @@
-import { IReviewRes } from 'types/types';
+import { IReviewRes } from '@/types/types';
 import Review from './Review';
-import 'styles/pages/review.css';
+import '@/styles/pages/review.css';
 
 type ReviewsListProps = {
   reviews: IReviewRes[];

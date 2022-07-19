@@ -1,11 +1,11 @@
-import { addCategoryStart, getCategoriesStart } from 'app/slices/categorySlice';
-import { addProductStart, delProductStart, getProductsStart } from 'app/slices/productSlice';
+import { addCategoryStart, getCategoriesStart } from '@/app/slices/categorySlice';
+import { addProductStart, delProductStart, getProductsStart } from '@/app/slices/productSlice';
 import { takeLatest } from 'redux-saga/effects';
 import productsSaga from './productsSaga';
 import categorySaga from './categorySaga';
-import { loginStart, logOut, signUpStart } from 'app/slices/authSlice';
+import { loginStart, logOut, signUpStart } from '@/app/slices/authSlice';
 import authSaga from './authSaga';
-import { getProfileStart, updateProfileStart } from 'app/slices/profileSlice';
+import { getProfileStart, updateProfileStart } from '@/app/slices/profileSlice';
 import profileSaga from './profileSaga';
 import {
   addOrderStart,
@@ -13,9 +13,9 @@ import {
   deleteOrderStart,
   getOrderStart,
   updateOrderStatusStart,
-} from 'app/slices/orderSlice';
+} from '@/app/slices/orderSlice';
 import orderSaga from './orderSaga';
-import { delUsersStart, getUsersStart } from 'app/slices/usersSlice';
+import { delUsersStart, getUsersStart } from '@/app/slices/usersSlice';
 import usersSaga from './usersSaga';
 
 function* rootSaga() {

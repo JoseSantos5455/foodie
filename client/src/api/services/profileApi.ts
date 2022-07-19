@@ -1,5 +1,5 @@
 import httpRequest from '../axios';
-import { IUser } from 'types/types';
+import { IUser } from '@/types/types';
 
 export const getProfile = (token: string) =>
   httpRequest({

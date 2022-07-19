@@ -1,6 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Button from './Button';
-import 'styles/UI/searchBar.css';
+import '@/styles/UI/searchBar.css';
 
 const SearchBar = () => {
   return (

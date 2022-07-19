@@ -1,4 +1,4 @@
-import { IUser } from 'types/types';
+import { IUser } from '@/types/types'
 import httpRequest from '../axios';
 
 export const signUp = (user: IUser) =>

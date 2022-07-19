@@ -1,7 +1,7 @@
-import emptyCart from 'assets/empty-cart.png';
-import Button from 'components/UI/Button';
+import emptyCart from '@/assets/empty-cart.png';
+import Button from '@/components/UI/Button';
 import { Link } from 'react-router-dom';
-import { HOME } from 'utils/routes';
+import { HOME } from '@/utils/routes';
 
 const EmptyCart = () => {
   return (

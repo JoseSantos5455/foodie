@@ -1,5 +1,5 @@
-import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart } from 'app/slices/cartSlice';
-import { useAppDispatch, useAppSelector } from 'app/store';
+import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart } from '@/app/slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/app/store';
 import toast from 'react-hot-toast';
 
 const useCart = () => {
@@ -7,7 +7,7 @@ const useCart = () => {
 
   const dispatch = useAppDispatch();
 
-  const findItem = (id: String) => cart.find((item) => item.productId === id);
+  const findItem = (id: String) => cart.find((item: ICart) => item.productId === id);
   const isItemInCart = (id: string) => !!findItem(id);
 
   const onAddToCart = (cartItem: ICart) => {

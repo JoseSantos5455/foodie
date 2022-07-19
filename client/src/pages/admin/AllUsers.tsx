@@ -1,8 +1,8 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useEffect } from 'react';
-import { delUsersStart, getUsersStart } from 'app/slices/usersSlice';
+import { delUsersStart, getUsersStart } from '@/app/slices/usersSlice';
 import { useDispatch } from 'react-redux';
-import Loading from 'components/loaders/Loading';
+import Loading from '@/components/loaders/Loading';
 
 const AllUsers = () => {
   const { users, token, isLoadingUsers, isErrorUsers } = useAppSelector((state) => ({

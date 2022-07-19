@@ -1,7 +1,7 @@
 import { DeleteOutlined } from '@ant-design/icons';
-import { ICart } from 'app/slices/cartSlice';
-import Button from 'components/UI/Button';
-import useCart from 'utils/hooks/useCart';
+import { ICart } from '@/app/slices/cartSlice';
+import Button from '@/components/UI/Button';
+import useCart from '@/utils/hooks/useCart';
 
 type Props = {
   wishItem: ICart;

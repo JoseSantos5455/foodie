@@ -1,16 +1,16 @@
-import { addProductStart } from 'app/slices/productSlice';
-import { getCategoriesStart } from 'app/slices/categorySlice';
-import Button from 'components/UI/Button';
+import { addProductStart } from '@/app/slices/productSlice';
+import { getCategoriesStart } from '@/app/slices/categorySlice';
+import Button from '@/components/UI/Button';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { productColors, shoeSizes } from 'utils/data';
-import { useAppSelector } from 'app/store';
+import { productColors, shoeSizes } from '@/utils/data';
+import { useAppSelector } from '@/app/store';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { productSchema } from 'utils/formValidation';
-import Loading from 'components/loaders/Loading';
+import { productSchema } from '@/utils/formValidation';
+import Loading from '@/components/loaders/Loading';
 
 const AddProduct = () => {
   const dispatch = useDispatch();

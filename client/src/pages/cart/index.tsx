@@ -1,8 +1,8 @@
-import Summary from 'components/checkout/Summary';
-import CartItem from 'components/product/CartItem';
-import useCart from 'utils/hooks/useCart';
+import Summary from '@/components/checkout/Summary';
+import CartItem from '@/components/product/CartItem';
+import useCart from '@/utils/hooks/useCart';
 import EmptyCart from './components/EmptyCart';
-import { calcSubTotal } from 'utils/helpers';
+import { calcSubTotal } from '@/utils/helpers';
 
 const Cart = () => {
   const { cart } = useCart();

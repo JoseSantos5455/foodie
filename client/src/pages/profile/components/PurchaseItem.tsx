@@ -1,4 +1,4 @@
-import { ICart } from 'app/slices/cartSlice';
+import { ICart } from '@/app/slices/cartSlice';
 import { Link } from 'react-router-dom';
 // import Button from 'components/UI/Button';
 

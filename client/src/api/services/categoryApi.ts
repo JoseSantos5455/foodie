@@ -1,5 +1,5 @@
-import httpRequest from 'api/axios';
-import { ICategory } from 'types/types';
+import httpRequest from '@/api/axios';
+import { ICategory } from '@/types/types';
 
 export const addCategory = (category: ICategory) =>
   httpRequest({

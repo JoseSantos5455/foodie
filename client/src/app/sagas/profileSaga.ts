@@ -1,10 +1,10 @@
-import { getProfile, updateProfile } from 'api/services/profileApi';
-import { loadingProfile } from 'app/slices/loadingSlice';
-import { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess } from 'app/slices/profileSlice';
+import { getProfile, updateProfile } from '@/api/services/profileApi';
+import { loadingProfile } from '@/app/slices/loadingSlice';
+import { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess } from '@/app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
-import { profileError } from '../slices/errorSlice';
-import { ISaga } from 'types/types';
-import { IUser } from 'types/types';
+import { profileError } from '@/app/slices/errorSlice';
+import { ISaga, IUser } from '@/types/types';
+
 
 function* handleError(err: any) {
   yield put(loadingProfile(false));

@@ -1,8 +1,8 @@
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import { ICart } from 'app/slices/cartSlice';
-import Button from 'components/UI/Button';
+import { ICart } from '@/app/slices/cartSlice';
+import Button from '@/components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
-import useWishlist from 'utils/hooks/useWishlist';
+import useWishlist from '@/utils/hooks/useWishlist';
 
 // type ColorProps = {
 //   color: string;

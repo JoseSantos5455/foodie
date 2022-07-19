@@ -1,7 +1,7 @@
 import { call, put } from '@redux-saga/core/effects';
-import { addProduct, getProducts, deleteProduct, uploadProductImage } from 'api/services/productApi';
-import { productsError } from 'app/slices/errorSlice';
-import { loadingProducts } from 'app/slices/loadingSlice';
+import { addProduct, getProducts, deleteProduct, uploadProductImage } from '@/api/services/productApi';
+import { productsError } from '@/app/slices/errorSlice';
+import { loadingProducts } from '@/app/slices/loadingSlice';
 import {
   getProductsStart,
   getProductsSuccess,
@@ -9,10 +9,10 @@ import {
   addProductSuccess,
   delProductStart,
   delProductSuccess,
-} from 'app/slices/productSlice';
-import { IProductRes } from 'types/types';
-import { productData } from 'utils/helpers';
-import { ISaga } from 'types/types';
+} from '@/app/slices/productSlice';
+import { IProductRes, ISaga } from '@/types/types';
+import { productData } from '@/utils/helpers';
+
 
 function* handleError(err: any) {
   yield put(loadingProducts(false));

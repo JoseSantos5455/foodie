@@ -1,5 +1,5 @@
-import Button from 'components/UI/Button';
-import { IOrderRes } from 'types/types';
+import Button from '@/components/UI/Button';
+import { IOrderRes } from '@/types/types';
 import { Link } from 'react-router-dom';
 
 type Props = {

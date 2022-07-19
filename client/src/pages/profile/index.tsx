@@ -1,7 +1,7 @@
 import { EllipsisOutlined, HeartFilled, ShoppingOutlined, UserOutlined } from '@ant-design/icons';
-import { useUserProfile } from 'components/profile';
+import { useUserProfile } from '@/components/profile';
 import { Link } from 'react-router-dom';
-import * as ROUTES from 'utils/routes';
+import * as ROUTES from '@/utils/routes';
 
 const ProfileDashboard = () => {
   const userProfile = useUserProfile();

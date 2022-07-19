@@ -1,16 +1,15 @@
 import { put, call } from '@redux-saga/core/effects';
-import { addCategory, getCategories } from 'api/services/categoryApi';
+import { /*addCategory,*/ getCategories } from '@/api/services/categoryApi';
 import {
-  addCategoryStart,
-  addCategorySuccess,
+  // addCategoryStart,
+  // addCategorySuccess,
   getCategoriesStart,
   getCategoriesSuccess,
-} from 'app/slices/categorySlice';
-import { categoryError } from 'app/slices/errorSlice';
-import { loadingCategory } from 'app/slices/loadingSlice';
-import { ICategory } from 'types/types';
-import { ISaga } from 'types/types';
-import { uploadImage } from 'api/firebase';
+} from '@/app/slices/categorySlice';
+import { categoryError } from '@/app/slices/errorSlice';
+import { loadingCategory } from '@/app/slices/loadingSlice';
+import { ICategory, ISaga } from '@/types/types';
+// import { uploadImage } from '@/api/firebase';
 
 function* handleError(err: any) {
   yield put(loadingCategory(false));
@@ -19,23 +18,23 @@ function* handleError(err: any) {
 
 function* categorySaga({ type, payload }: ISaga) {
   switch (type) {
-    case addCategoryStart.type:
-      try {
-        yield put(loadingCategory(true));
-        if (payload.image) {
-          const imageUrl: string = yield call(uploadImage, payload.image);
-          const category: ICategory = yield call(addCategory, { name: payload.name, image: imageUrl });
-          yield put(addCategorySuccess(category));
-          yield put(loadingCategory(false));
-        } else {
-          const category: ICategory = yield call(addCategory, payload);
-          yield put(addCategorySuccess(category));
-          yield put(loadingCategory(false));
-        }
-      } catch (err) {
-        yield handleError(err);
-      }
-      break;
+    // case addCategoryStart.type:
+    //   try {
+    //     yield put(loadingCategory(true));
+    //     if (payload.image) {
+    //       const imageUrl: string = yield call(uploadImage, payload.image);
+    //       const category: ICategory = yield call(addCategory, { name: payload.name, image: imageUrl });
+    //       yield put(addCategorySuccess(category));
+    //       yield put(loadingCategory(false));
+    //     } else {
+    //       const category: ICategory = yield call(addCategory, payload);
+    //       yield put(addCategorySuccess(category));
+    //       yield put(loadingCategory(false));
+    //     }
+    //   } catch (err) {
+    //     yield handleError(err);
+    //   }
+    //   break;
     case getCategoriesStart.type:
       try {
         yield put(loadingCategory(true));

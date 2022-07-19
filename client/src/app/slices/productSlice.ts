@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProductRes, IProduct } from 'types/types';
+import { IProductRes, IProduct } from '@/types/types';
 
 const initialState: IProductRes[] = [];
 interface IAdminProduct extends IProduct {

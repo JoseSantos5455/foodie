@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { RatingView } from 'react-simple-star-rating';
-import '@/styles/product/productItem.css';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import useCart from '@/utils/hooks/useCart';
 import Button from '@/components/UI/Button';
@@ -55,7 +54,7 @@ const ProductItem = ({
 
   return (
     <div>
-      <div className="product-item xl:self-start xl:w-auto w-72 xl:h-auto">
+      <div className="p-2 bg-white shadow-sm hover:shadow-lg rounded-lg xl:self-start xl:w-auto w-72 xl:h-auto">
         <Link to={`/${slug}`}>
           <div className="w-full xl:h-60 " style={{ backgroundImage: `url${image}` }}>
             <img src={image} alt="baby" />
@@ -63,7 +62,9 @@ const ProductItem = ({
         </Link>
 
         <div className="flex items-center justify-between">
-          <h3 className="product-title">{title}</h3>
+          <h3 className="font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden h-6 w-32  text-base">
+            {title}
+          </h3>
           {!isItemInWish(id) && (
             <span className="cursor-pointer" onClick={onWish}>
               <HeartOutlined className="text-primaryDark" />
@@ -76,9 +77,9 @@ const ProductItem = ({
           )}
         </div>
 
-        <div className="product-price">
+        <div className="flex items-center justify-between">
           <h5 className="font-semibold text-lg">{originalPrice} $</h5>
-          <div className="rating-stars">
+          <div className="flex items-center">
             <RatingView fillColor={'#fed900'} className="contents" ratingValue={rating} size={18} />
           </div>
         </div>

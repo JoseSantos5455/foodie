@@ -1,6 +1,5 @@
 import { useAppSelector } from '@/app/store';
 import { useParams } from 'react-router';
-import '@/styles/pages/productDetails.css';
 import { useProduct } from '@/utils/hooks/useProduct';
 import Details from './components/Details';
 import ProductInfo from './components/ProductInfo';

@@ -2,7 +2,6 @@ import * as ROUTES from '@/utils/routes';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { ShoppingOutlined, UserOutlined } from '@ant-design/icons';
-import '@/styles/UI/navbar.css';
 import logo from '@/assets/logo.png';
 import { useAppSelector } from '@/app/store';
 import Button from './Button';
@@ -15,8 +14,8 @@ const Navbar = () => {
   }));
   return (
     <>
-      <header className="header lg:block hidden">
-        <nav className="container">
+      <header className="py-4 bg-white w-full shadow-sm lg:block hidden">
+        <nav className="mx-auto px-2" style={{maxWidth: 1184}}>
           <div className="flex justify-between items-center">
             <div>
               <Link to={ROUTES.HOME} className="font-bold text-2xl text-primary font-main">

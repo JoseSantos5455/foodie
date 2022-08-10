@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/app/store';
 import ProductList from '@/components/product/ProductList';
 import ErrorCard from '@/components/UI/ErrorCard';
-import { Link } from 'react-router-dom';
 import { getCategoriesStart } from '@/app/slices/categorySlice';
 import CategoryNav from '@/components/UI/CategoryNav';
 import CategorySkeleton from '@/components/loaders/CategorySkeleton';
@@ -36,7 +35,6 @@ const Home: React.FC = () => {
   return (
     <ErrorBoundary>
       <section className="py-10">
-        <Link to="/shop">shop</Link>
         <div className=" grid grid-cols-5 gap-2 mb-10">
           <div className="bg-white shadow-md lg:block hidden">
             {isLoadingCategory && <CategorySkeleton />}

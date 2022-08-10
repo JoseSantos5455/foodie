@@ -3,14 +3,8 @@ import { ICart } from '@/app/slices/cartSlice';
 import Button from '@/components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
 import useWishlist from '@/utils/hooks/useWishlist';
-
-// type ColorProps = {
-//   color: string;
-// };
-
-// type SizeProps = {
-//   size: number;
-// };
+import Sizes from './Sizes';
+import Colors from './Colors';
 
 type ProductInfoType = {
   title: string;
@@ -22,6 +16,8 @@ type ProductInfoType = {
   brand: string;
   rating: number;
   numReviews: number;
+  color: string[];
+  size: [];
   _id: string;
   handleAddToCart: () => void;
   isItemInCart: (id: string) => boolean;
@@ -31,16 +27,6 @@ type ProductInfoType = {
   onWish: () => void;
 };
 
-// const ColorCircle = ({ color }: ColorProps) => (
-//   <span style={{ backgroundColor: color }} className="inline-block w-6 h-6 rounded-full" />
-// );
-
-// const Size = ({ size }: SizeProps) => (
-//   <span className=" w-10 h-10 border hover:bg-gray-200 cursor-pointer border-gray-300 flex font-medium items-center justify-center">
-//     {size}
-//   </span>
-// );
-
 const ProductInfo = ({
   title,
   description,
@@ -48,6 +34,8 @@ const ProductInfo = ({
   pricing,
   rating,
   numReviews,
+  color,
+  size,
   handleAddToCart,
   isItemInCart,
   onAddQty,
@@ -56,8 +44,6 @@ const ProductInfo = ({
   _id,
   onWish,
 }: ProductInfoType) => {
-  // const colors: string[] = ['red', 'blue', 'aqua'];
-  // const sizes: number[] = [12, 16, 25];
   const { isItemInWish, onRemoveItem } = useWishlist();
 
   return (
@@ -69,26 +55,20 @@ const ProductInfo = ({
       </div>
       <h3 className="font-main uppercase font-bold mb-4">brand : {brand}</h3>
       <p className="text-xl font-bold font-main">{pricing.originalPrice} $</p>
-      <div className="flex space-x-2 items-center  mb-12">
+      <div className="flex space-x-2 items-center mb-6">
         <RatingView ratingValue={rating} />
         <span className="text-base text-gray-300">({numReviews})</span>
       </div>
-      {/* <div className="mb-4">
-        <h3 className="font-secondary font-medium mb-2">color :</h3>
-        <div className="flex space-x-2">
-          {colors.map((color, index) => (
-            <ColorCircle key={`${color}-${index}`} color={color} />
-          ))}
+      {color.length > 0 && (
+        <div className="mb-4">
+          <Colors colors={color} />
         </div>
-      </div>
-      <div className="mb-6">
-        <h3 className="font-secondary font-medium mb-2">size :</h3>
-        <div className="flex space-x-2">
-          {sizes.map((size, index) => (
-            <Size key={`${size}-${index}`} size={size} />
-          ))}
+      )}
+      {size.length > 0 && (
+        <div className="mb-6">
+          <Sizes sizes={size} />
         </div>
-      </div> */}
+      )}
       <div className="flex md:items-center md:flex-row flex-col  md:space-x-4 md:space-y-0 space-y-4">
         {isItemInCart(_id) && (
           <div className="flex items-center space-x-4">

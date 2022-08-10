@@ -65,6 +65,8 @@ const ProductDetails = () => {
                 pricing={product.pricing}
                 rating={product.rating}
                 numReviews={product.numReviews}
+                color={product.color}
+                size={product.size}
                 brand={product.brand}
                 onWish={onWish}
               />

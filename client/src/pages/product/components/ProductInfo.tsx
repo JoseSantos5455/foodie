@@ -1,50 +1,19 @@
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import { ICart } from '@/app/slices/cartSlice';
-import Button from '@/components/UI/Button';
 import { RatingView } from 'react-simple-star-rating';
 import useWishlist from '@/utils/hooks/useWishlist';
 import Sizes from './Sizes';
 import Colors from './Colors';
+import CartBtn from './CartBtn';
+import { IProductRes } from '@/types/types';
 
 type ProductInfoType = {
-  title: string;
-  description: string;
-  pricing: {
-    originalPrice: number;
-    discountPrice?: number;
-  };
-  brand: string;
-  rating: number;
-  numReviews: number;
-  color: string[];
-  size: [];
-  _id: string;
-  handleAddToCart: () => void;
-  isItemInCart: (id: string) => boolean;
-  onAddQty: (id: string) => void;
-  onMinusQty: (id: string) => void;
-  findItem: (id: string) => ICart | undefined;
+  product: IProductRes;
   onWish: () => void;
 };
 
-const ProductInfo = ({
-  title,
-  description,
-  brand,
-  pricing,
-  rating,
-  numReviews,
-  color,
-  size,
-  handleAddToCart,
-  isItemInCart,
-  onAddQty,
-  onMinusQty,
-  findItem,
-  _id,
-  onWish,
-}: ProductInfoType) => {
+const ProductInfo = ({ product, onWish }: ProductInfoType) => {
   const { isItemInWish, onRemoveItem } = useWishlist();
+  const { _id, title, description, brand, pricing, rating, numReviews, color, size } = product;
 
   return (
     <div className="xl:pr-16 pt-10">
@@ -70,22 +39,7 @@ const ProductInfo = ({
         </div>
       )}
       <div className="flex md:items-center md:flex-row flex-col  md:space-x-4 md:space-y-0 space-y-4">
-        {isItemInCart(_id) && (
-          <div className="flex items-center space-x-4">
-            <Button onClick={() => onAddQty(_id)} theme="btn-gray self-end">
-              +
-            </Button>
-            <span className="font-bold">{findItem(_id)?.qty}</span>
-            <Button onClick={() => onMinusQty(_id)} theme="btn-gray">
-              -
-            </Button>
-          </div>
-        )}
-        {!isItemInCart(_id) && (
-          <Button onClick={handleAddToCart} theme="btn-large md:w-auto w-full">
-            Add to cart
-          </Button>
-        )}
+        <CartBtn product={product} />
         <div className="rounded-full bg-white shadow-lg w-10 h-10 flex items-center justify-center py-1 px-2">
           {!isItemInWish(_id) && (
             <span className="cursor-pointer" onClick={onWish}>

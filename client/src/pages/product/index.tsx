@@ -8,37 +8,19 @@ import ProductSpecs from './components/ProductSpecs';
 import ReviewList from './components/ReviewList';
 import ShareProduct from './components/ShareProduct';
 import ProductList from '@/components/product/ProductList';
-import { calculateDiscount } from '@/utils/helpers';
-import useCart from '@/utils/hooks/useCart';
 import DetailsSkeleton from '@/components/loaders/DetailsSkeleton';
 import { useDispatch } from 'react-redux';
 import { addToWishlist } from '@/app/slices/wishlistSlice';
+import { formCartItem } from '@/utils/helpers';
 
 const ProductDetails = () => {
   const { slug } = useParams();
   const { isError, isLoading, product } = useProduct(slug);
   const products = useAppSelector((state) => state.products);
-  const discountPrice = calculateDiscount(product?.pricing.originalPrice, product?.pricing.discountPercentage);
-  const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem } = useCart();
-
-  const formCartItem = () => ({
-    title: product.title,
-    slug: product.slug,
-    productId: product._id,
-    image: product.image,
-    price: discountPrice,
-    qty: 1,
-  });
-
   const dispatch = useDispatch();
 
-  const handleAddToCart = () => {
-    const cartItem = formCartItem();
-    onAddToCart(cartItem);
-  };
-
   const onWish = () => {
-    const wishItem = formCartItem();
+    const wishItem = formCartItem(product);
     dispatch(addToWishlist(wishItem));
   };
 
@@ -53,23 +35,7 @@ const ProductDetails = () => {
             </div>
             <div className="h-full lg:block hidden bg-gray-200 justify-self-center" style={{ width: 1 }}></div>
             <div className="lg:col-span-4">
-              <ProductInfo
-                isItemInCart={isItemInCart}
-                onAddQty={onAddQty}
-                onMinusQty={onMinusQty}
-                findItem={findItem}
-                _id={product._id}
-                handleAddToCart={handleAddToCart}
-                title={product.title}
-                description={product.description}
-                pricing={product.pricing}
-                rating={product.rating}
-                numReviews={product.numReviews}
-                color={product.color}
-                size={product.size}
-                brand={product.brand}
-                onWish={onWish}
-              />
+              <ProductInfo onWish={onWish} product={product} />
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-8">

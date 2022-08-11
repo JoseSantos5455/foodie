@@ -1,3 +1,5 @@
+import {  IProductRes } from "@/types/types";
+
 export const calculateDiscount = (originalPrice: number, discountPercentage: number = 0) =>
   originalPrice - (originalPrice * discountPercentage) / 100;
 
@@ -63,4 +65,15 @@ export const productData = (data: any) => ({
     model: data.model,
   },
   category: data.category,
+});
+
+
+
+export const formCartItem = (product: IProductRes) => ({
+  title: product.title,
+  slug: product.slug,
+  productId: product._id,
+  image: product.image,
+  price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
+  qty: 1,
 });

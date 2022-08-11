@@ -5,6 +5,7 @@ import Sizes from './Sizes';
 import Colors from './Colors';
 import CartBtn from './CartBtn';
 import { IProductRes } from '@/types/types';
+import { useState } from 'react';
 
 type ProductInfoType = {
   product: IProductRes;
@@ -14,6 +15,7 @@ type ProductInfoType = {
 const ProductInfo = ({ product, onWish }: ProductInfoType) => {
   const { isItemInWish, onRemoveItem } = useWishlist();
   const { _id, title, description, brand, pricing, rating, numReviews, color, size } = product;
+  const [selectedSize, setSelectedSize] = useState(size[0] || null);
 
   return (
     <div className="xl:pr-16 pt-10">
@@ -35,11 +37,11 @@ const ProductInfo = ({ product, onWish }: ProductInfoType) => {
       )}
       {size.length > 0 && (
         <div className="mb-6">
-          <Sizes sizes={size} />
+          <Sizes selectedSize={selectedSize} setSelectedSize={setSelectedSize} sizes={size} />
         </div>
       )}
       <div className="flex md:items-center md:flex-row flex-col  md:space-x-4 md:space-y-0 space-y-4">
-        <CartBtn product={product} />
+        <CartBtn product={product} selectedSize={selectedSize} />
         <div className="rounded-full bg-white shadow-lg w-10 h-10 flex items-center justify-center py-1 px-2">
           {!isItemInWish(_id) && (
             <span className="cursor-pointer" onClick={onWish}>

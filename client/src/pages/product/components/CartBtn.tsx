@@ -3,14 +3,22 @@ import { IProductRes } from '@/types/types';
 import { formCartItem } from '@/utils/helpers';
 import useCart from '@/utils/hooks/useCart';
 import { Confirm } from 'react-st-modal';
+import { ColorCircle } from './Colors';
 import { Size } from './Sizes';
 
-type Props = {
+type ModelProps = {
   handleAddToCart: () => void;
   size: string | null;
+  color: string | null;
 };
 
-const CartBtn = ({ product, selectedSize }: { product: IProductRes; selectedSize: string | null }) => {
+type CartBtnProps = {
+  product: IProductRes;
+  selectedSize: string | null;
+  selectedColor: string | null;
+};
+
+const CartBtn = ({ product, selectedSize, selectedColor }: CartBtnProps) => {
   const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem } = useCart();
   const { _id } = product;
 
@@ -27,7 +35,7 @@ const CartBtn = ({ product, selectedSize }: { product: IProductRes; selectedSize
             Add to cart
           </Button>
         ) : (
-          <ConfirmVariants size={selectedSize} handleAddToCart={handleAddToCart} />
+          <ConfirmVariants size={selectedSize} color={selectedColor} handleAddToCart={handleAddToCart} />
         )
       ) : (
         <div className="flex items-center space-x-4">
@@ -44,7 +52,7 @@ const CartBtn = ({ product, selectedSize }: { product: IProductRes; selectedSize
   );
 };
 
-function ConfirmVariants({ size, handleAddToCart }: Props) {
+function ConfirmVariants({ size, color, handleAddToCart }: ModelProps) {
   return (
     <div>
       <Button
@@ -58,6 +66,14 @@ function ConfirmVariants({ size, handleAddToCart }: Props) {
                   <div className="flex items-center space-x-2">
                     <Size size={size} selectedSize />
                     <span className="text-sm">Months</span>
+                  </div>
+                </span>
+              )}
+              {color && (
+                <span className="flex justify-between mb-2">
+                  <span className="text-gray-500 text-xl">Selected Color: </span>
+                  <div className="flex items-center space-x-2">
+                    <ColorCircle color={color} selectedColor />
                   </div>
                 </span>
               )}

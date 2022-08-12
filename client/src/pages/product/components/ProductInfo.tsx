@@ -16,6 +16,7 @@ const ProductInfo = ({ product, onWish }: ProductInfoType) => {
   const { isItemInWish, onRemoveItem } = useWishlist();
   const { _id, title, description, brand, pricing, rating, numReviews, color, size } = product;
   const [selectedSize, setSelectedSize] = useState(size[0] || null);
+  const [selectedColor, setSelectedColor] = useState(color[0] || null);
 
   return (
     <div className="xl:pr-16 pt-10">
@@ -32,7 +33,7 @@ const ProductInfo = ({ product, onWish }: ProductInfoType) => {
       </div>
       {color.length > 0 && (
         <div className="mb-4">
-          <Colors colors={color} />
+          <Colors selectedColor={selectedColor} setSelectedColor={setSelectedColor} colors={color} />
         </div>
       )}
       {size.length > 0 && (
@@ -41,7 +42,7 @@ const ProductInfo = ({ product, onWish }: ProductInfoType) => {
         </div>
       )}
       <div className="flex md:items-center md:flex-row flex-col  md:space-x-4 md:space-y-0 space-y-4">
-        <CartBtn product={product} selectedSize={selectedSize} />
+        <CartBtn product={product} selectedSize={selectedSize} selectedColor={selectedColor} />
         <div className="rounded-full bg-white shadow-lg w-10 h-10 flex items-center justify-center py-1 px-2">
           {!isItemInWish(_id) && (
             <span className="cursor-pointer" onClick={onWish}>

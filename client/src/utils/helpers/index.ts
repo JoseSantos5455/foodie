@@ -69,11 +69,22 @@ export const productData = (data: any) => ({
 
 
 
-export const formCartItem = (product: IProductRes) => ({
-  title: product.title,
-  slug: product.slug,
-  productId: product._id,
-  image: product.image,
-  price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
-  qty: 1,
-});
+export const formVariant = (size?: string | null, color?: string | null) => {
+  if(size && color) return `${size}-${color}`
+  else if (size) return size
+  else if (color) return color
+  else return null
+}
+
+export const formCartItem = (product: IProductRes, size?: string | null, color?: string | null) => {
+  let variant = formVariant(size, color)
+  return ({
+    title: product.title,
+    slug: product.slug,
+    productId: product._id,
+    image: product.image,
+    price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
+    qty: 1,
+    variant: variant || ''
+  });
+}

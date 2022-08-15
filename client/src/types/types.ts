@@ -108,3 +108,8 @@ export interface ISaga {
   type: string;
   payload: any;
 }
+
+
+export interface ICartItem extends Omit <ICart, 'variants'>{
+  variant: string;
+}

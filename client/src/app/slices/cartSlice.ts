@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import {ICartItem} from '@/types/types'
 export interface ICart {
   title: string;
   slug: string;
@@ -7,6 +7,9 @@ export interface ICart {
   image: string;
   price: number;
   qty: number;
+  variants?: {
+    [x: string]: number;
+}; 
 }
 
 const initialState: ICart[] = [];
@@ -45,12 +48,32 @@ export const cartSlice = createSlice({
         return product;
       });
     },
+    incrementVariant: (state, action: PayloadAction<ICartItem>) => {
+        return state.map((product) => {
+          if(product.productId === action.payload.productId && action.payload.variant !== ''){
+            let newVariants = product.variants
+            if(newVariants){
+              if(newVariants[action.payload.variant]){
+                newVariants[action.payload.variant] = newVariants[action.payload.variant] + 1;
+              }else{
+                newVariants[action.payload.variant] = 1;
+              }
+            }
+            return {
+              ...product,
+              variants: newVariants,
+              qty: product.qty + 1
+            }
+          }
+          return product
+        })
+    },
     clearCart: () => {
       return [];
     },
   },
 });
 
-export const { addToCart, removeFromCart, addQtyItem, minusQtyItem, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, addQtyItem, minusQtyItem, incrementVariant, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

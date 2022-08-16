@@ -18,10 +18,15 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<ICart>) => {
-      return state.some((product) => product.productId === action.payload.productId)
-        ? state
-        : [...state, { ...action.payload }];
+    addToCart: (state, action: PayloadAction<ICartItem>) => {
+      if(state.some((product) => product.productId === action.payload.productId)){
+        return state
+      }else if(action.payload.variant !== ""){
+          const {variant, ...rest} = action.payload;
+          return [...state, { ...rest, variants: {[variant]: 1} }]
+      }else{
+        return [...state, { ...action.payload }]
+      }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       return state.filter((product) => product.productId !== action.payload);

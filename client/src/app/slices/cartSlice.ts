@@ -7,9 +7,18 @@ export interface ICart {
   image: string;
   price: number;
   qty: number;
-  variants?: {
-    [x: string]: number;
-}; 
+  variants?: 
+      {
+        key: string,
+        color: string | null,
+        size: string | null,
+        qty: number
+      }[];
+}
+
+type ItemWithVariant = {
+    id: string;
+    variantKey: string;
 }
 
 const initialState: ICart[] = [];
@@ -21,9 +30,9 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<ICartItem>) => {
       if(state.some((product) => product.productId === action.payload.productId)){
         return state
-      }else if(action.payload.variant !== ""){
+      }else if(action.payload.variant){
           const {variant, ...rest} = action.payload;
-          return [...state, { ...rest, variants: {[variant]: 1} }]
+          return [...state, { ...rest, variants: [action.payload.variant] }]
       }else{
         return [...state, { ...action.payload }]
       }
@@ -53,22 +62,22 @@ export const cartSlice = createSlice({
         return product;
       });
     },
-    incrementVariant: (state, action: PayloadAction<ICartItem>) => {
+    incrementVariant: (state, action: PayloadAction<ItemWithVariant>) => {
         return state.map((product) => {
-          if(product.productId === action.payload.productId && action.payload.variant !== ''){
-            let newVariants = product.variants
-            if(newVariants){
-              if(newVariants[action.payload.variant]){
-                newVariants[action.payload.variant] = newVariants[action.payload.variant] + 1;
-              }else{
-                newVariants[action.payload.variant] = 1;
-              }
-            }
+          if(product.productId === action.payload.id && action.payload.variantKey){
+             let existingVariant = product.variants?.find(v => v.key === action.payload.variantKey)
+            if(existingVariant){
             return {
               ...product,
-              variants: newVariants,
+              variants: product.variants?.map(v => v.key === action.payload.variantKey ? {...v, qty: (existingVariant?.qty || 0) + 1} : v ),
               qty: product.qty + 1
             }
+          }else{
+            return {
+              ...product,
+              qty: product.qty + 1
+            }
+          }
           }
           return product
         })

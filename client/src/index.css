@@ -39,6 +39,10 @@ html {
     @apply bg-gray-300 hover:bg-gray-400 w-6 h-6 flex items-center justify-center text-xl capitalize  text-primaryDark;
   }
 
+  .btn-small {
+    @apply  w-6 h-6 flex items-center justify-center text-xl capitalize;
+  }
+
   .btn-rounded {
     @apply bg-primary md:px-6 px-2 py-1 hover:bg-primaryHover border-2 border-primary hover:border-primaryHover text-white rounded-full;
   }

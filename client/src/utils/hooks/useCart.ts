@@ -1,5 +1,6 @@
-import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart } from '@/app/slices/cartSlice';
+import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart, incrementVariant } from '@/app/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/app/store';
+import { ICartItem } from '@/types/types';
 import toast from 'react-hot-toast';
 
 const useCart = () => {
@@ -8,17 +9,29 @@ const useCart = () => {
   const dispatch = useAppDispatch();
 
   const findItem = (id: String) => cart.find((item: ICart) => item.productId === id);
+  const findVariant = (id:string, key: String) => cart.find((item: ICart) => item.productId === id)?.variants?.find(v => v.key === key);
   const isItemInCart = (id: string) => !!findItem(id);
+ 
 
-  const onAddToCart = (cartItem: ICart) => {
+  const onAddToCart = (cartItem: ICartItem) => {
     if (isItemInCart(cartItem.productId)) {
-      dispatch(addQtyItem(cartItem.productId));
+      if (cartItem?.variant) {
+          dispatch(incrementVariant({id:cartItem.productId, variantKey:cartItem.variant.key}))
+      } else {
+        dispatch(addQtyItem(cartItem.productId));
+      }
+
       toast.success('Product Added to cart');
     } else {
+      
       dispatch(addToCart(cartItem));
       toast.success('Product Added to cart');
     }
   };
+
+  const onIncrementVariant = (id: string, variantKey: string) => {
+    dispatch(incrementVariant({id, variantKey}))
+  }
 
   const onMinusQty = (id: string) => {
     if (isItemInCart(id)) {
@@ -43,7 +56,7 @@ const useCart = () => {
     dispatch(clearCart());
   };
 
-  return { cart, isItemInCart, onAddToCart, onRemoveFromCart, onMinusQty, onAddQty, onClearCart, findItem };
+  return { cart, isItemInCart, onAddToCart, onRemoveFromCart, onMinusQty, onAddQty, onClearCart, findItem, onIncrementVariant };
 };
 
 export default useCart;

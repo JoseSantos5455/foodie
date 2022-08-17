@@ -110,6 +110,16 @@ export interface ISaga {
 }
 
 
-export interface ICartItem extends Omit <ICart, 'variants'>{
-  variant: string;
+export interface IVariant {
+  key: string,
+  color: string | null,
+  size: string | null,
+  qty: number
 }
+
+
+export interface ICartItem extends Omit <ICart, 'variants'>{
+  variant: IVariant | null;
+}
+
+

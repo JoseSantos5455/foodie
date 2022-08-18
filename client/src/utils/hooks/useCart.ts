@@ -1,4 +1,4 @@
-import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart, incrementVariant } from '@/app/slices/cartSlice';
+import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart, incrementVariant, decrementVariant } from '@/app/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/app/store';
 import { ICartItem } from '@/types/types';
 import toast from 'react-hot-toast';
@@ -9,7 +9,6 @@ const useCart = () => {
   const dispatch = useAppDispatch();
 
   const findItem = (id: String) => cart.find((item: ICart) => item.productId === id);
-  const findVariant = (id:string, key: String) => cart.find((item: ICart) => item.productId === id)?.variants?.find(v => v.key === key);
   const isItemInCart = (id: string) => !!findItem(id);
  
 
@@ -31,6 +30,14 @@ const useCart = () => {
 
   const onIncrementVariant = (id: string, variantKey: string) => {
     dispatch(incrementVariant({id, variantKey}))
+  }
+
+  const onDecrementVariant = (id: string, variantKey: string) => {
+    if (findItem(id)?.qty === 1) {
+      dispatch(removeFromCart(id));
+    } else {
+      dispatch(decrementVariant({id, variantKey}));
+    }
   }
 
   const onMinusQty = (id: string) => {
@@ -56,7 +63,17 @@ const useCart = () => {
     dispatch(clearCart());
   };
 
-  return { cart, isItemInCart, onAddToCart, onRemoveFromCart, onMinusQty, onAddQty, onClearCart, findItem, onIncrementVariant };
+  return { cart, 
+    isItemInCart, 
+    onAddToCart, 
+    onRemoveFromCart, 
+    onMinusQty, 
+    onAddQty, 
+    onClearCart, 
+    findItem, 
+    onIncrementVariant,
+    onDecrementVariant
+  };
 };
 
 export default useCart;

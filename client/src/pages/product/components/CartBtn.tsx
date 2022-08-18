@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 
 type ModelProps = {
   onIncrementVariant: (id: string, variantKey: string) => void;
+  onDecrementVariant: (id: string, variantKey: string) => void;
   findItem: (id: string) => ICart | undefined;
   id: string;
 };
@@ -21,7 +22,8 @@ type CartBtnProps = {
 };
 
 const CartBtn = ({ product, selectedSize, selectedColor }: CartBtnProps) => {
-  const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem, onIncrementVariant } = useCart();
+  const { onAddToCart, isItemInCart, onAddQty, onMinusQty, findItem, onIncrementVariant, onDecrementVariant } =
+    useCart();
   const { _id } = product;
   const foundItem = findItem(_id);
 
@@ -37,7 +39,12 @@ const CartBtn = ({ product, selectedSize, selectedColor }: CartBtnProps) => {
           Add to cart
         </Button>
       ) : foundItem?.variants ? (
-        <ConfirmVariants findItem={findItem} onIncrementVariant={onIncrementVariant} id={_id} />
+        <ConfirmVariants
+          onDecrementVariant={onDecrementVariant}
+          findItem={findItem}
+          onIncrementVariant={onIncrementVariant}
+          id={_id}
+        />
       ) : (
         <div className="flex items-center space-x-4">
           <Button onClick={() => onAddQty(_id)} theme="btn-gray self-end">
@@ -53,7 +60,7 @@ const CartBtn = ({ product, selectedSize, selectedColor }: CartBtnProps) => {
   );
 };
 
-function ConfirmVariants({ findItem, id, onIncrementVariant }: ModelProps) {
+function ConfirmVariants({ findItem, id, onIncrementVariant, onDecrementVariant }: ModelProps) {
   const foundItem = findItem(id);
   const [isOpen, setOpen] = useState(false);
   return (
@@ -87,7 +94,13 @@ function ConfirmVariants({ findItem, id, onIncrementVariant }: ModelProps) {
                     +
                   </button>
                   <span>{variant.qty}</span>
-                  <button className="btn-small rounded bg-primary text-white">-</button>
+                  <button
+                    onClick={() => onDecrementVariant(foundItem.productId, variant.key)}
+                    disabled={variant.qty === 0}
+                    className="btn-small rounded bg-primary text-white"
+                  >
+                    -
+                  </button>
                 </div>
               </div>
             ))}

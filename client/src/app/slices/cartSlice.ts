@@ -82,12 +82,32 @@ export const cartSlice = createSlice({
           return product
         })
     },
+    decrementVariant: (state, action: PayloadAction<ItemWithVariant>) => {
+      return state.map((product) => {
+        if(product.productId === action.payload.id && action.payload.variantKey){
+           let existingVariant = product.variants?.find(v => v.key === action.payload.variantKey)
+          if(existingVariant){
+          return {
+            ...product,
+            variants: product.variants?.map(v => v.key === action.payload.variantKey ? {...v, qty: (existingVariant?.qty || 1) - 1} : v ),
+            qty: product.qty - 1
+          }
+        }else{
+          return {
+            ...product,
+            qty: product.qty - 1 
+          }
+        }
+        }
+        return product
+      })
+  },
     clearCart: () => {
       return [];
     },
   },
 });
 
-export const { addToCart, removeFromCart, addQtyItem, minusQtyItem, incrementVariant, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, addQtyItem, minusQtyItem, incrementVariant, clearCart, decrementVariant } = cartSlice.actions;
 
 export default cartSlice.reducer;

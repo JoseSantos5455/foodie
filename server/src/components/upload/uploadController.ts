@@ -11,6 +11,19 @@ interface MulterRequest extends Request {
 
 const formattedPrivateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 
+async function configureBucketCors() {
+  await getStorage().bucket().setCorsConfiguration([
+    {
+      origin: ['http://localhost:3000'],
+        responseHeader: ['Content-Type'],
+        method: ['GET', 'POST'],
+        maxAgeSeconds: 3600,
+    },
+  ]);
+}
+
+configureBucketCors().catch(console.error);
+
 if (!apps.length) {
   initializeApp({
     credential: cert({
@@ -18,11 +31,14 @@ if (!apps.length) {
       clientEmail: process.env.CLIENT_EMAIL,
       privateKey: formattedPrivateKey,
     }),
-    storageBucket: 'bunny-b4362.appspot.com/products',
+    storageBucket: 'bunny-b4362.appspot.com',
   });
 }
 
-const bucket = getStorage().bucket();
+
+
+
+const bucket = getStorage().bucket()
 
 export const uploader = multer({
   storage: multer.memoryStorage(),
@@ -39,6 +55,7 @@ export async function uploadImage(req: MulterRequest, res: Response, next: NextF
 
   try {
     const blob = bucket.file(req.file.originalname);
+    
     const blobStream = blob.createWriteStream();
 
     blobStream.on('err', (err) => next(err));

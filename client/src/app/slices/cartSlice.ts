@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {ICartItem} from '@/types/types'
+import {ICartItem, IVariant} from '@/types/types'
 export interface ICart {
   title: string;
   slug: string;
@@ -7,19 +7,17 @@ export interface ICart {
   image: string;
   price: number;
   qty: number;
-  variants?: 
-      {
-        key: string,
-        color: string | null,
-        size: string | null,
-        qty: number
-      }[];
+  variants?: {
+      [key: string]: IVariant
+    }
 }
 
 type ItemWithVariant = {
     id: string;
     variantKey: string;
 }
+
+
 
 const initialState: ICart[] = [];
 
@@ -32,9 +30,25 @@ export const cartSlice = createSlice({
         return state
       }else if(action.payload.variant){
           const {variant, ...rest} = action.payload;
-          return [...state, { ...rest, variants: [action.payload.variant] }]
+          return [...state, { ...rest, variants: {[action.payload.variant.key]: action.payload.variant} }]
       }else{
         return [...state, { ...action.payload }]
+      }
+    },
+    addNewVariant: (state, action: PayloadAction<ICartItem>) => {
+      const {variant, ...rest} = action.payload;
+      if(variant){
+        if(state.some((product) => product.variants && product.variants[variant.key])){
+          return state
+        }else {state.map((product) => {
+            return {
+              ...product,
+              variants: {...product.variants, [variant.key]: variant},
+              qty: product.qty + 1
+            }
+          })}
+      }else{
+        return state
       }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
@@ -65,11 +79,13 @@ export const cartSlice = createSlice({
     incrementVariant: (state, action: PayloadAction<ItemWithVariant>) => {
         return state.map((product) => {
           if(product.productId === action.payload.id && action.payload.variantKey){
-             let existingVariant = product.variants?.find(v => v.key === action.payload.variantKey)
+             let existingVariant = product.variants ? product.variants[action.payload.variantKey] : null
             if(existingVariant){
+              let newVariant = {...existingVariant, qty: existingVariant.qty + 1}
+              
             return {
               ...product,
-              variants: product.variants?.map(v => v.key === action.payload.variantKey ? {...v, qty: (existingVariant?.qty || 0) + 1} : v ),
+              variants: {...product.variants, [action.payload.variantKey]: newVariant},
               qty: product.qty + 1
             }
           }else{
@@ -85,11 +101,12 @@ export const cartSlice = createSlice({
     decrementVariant: (state, action: PayloadAction<ItemWithVariant>) => {
       return state.map((product) => {
         if(product.productId === action.payload.id && action.payload.variantKey){
-           let existingVariant = product.variants?.find(v => v.key === action.payload.variantKey)
+           let existingVariant = product.variants ? product.variants[action.payload.variantKey] : null
           if(existingVariant){
+            let newVariant = {...existingVariant, qty: existingVariant.qty - 1}
           return {
             ...product,
-            variants: product.variants?.map(v => v.key === action.payload.variantKey ? {...v, qty: (existingVariant?.qty || 1) - 1} : v ),
+            variants: {...product.variants, [action.payload.variantKey]: newVariant},
             qty: product.qty - 1
           }
         }else{

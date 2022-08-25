@@ -1,6 +1,6 @@
-import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart, incrementVariant, decrementVariant } from '@/app/slices/cartSlice';
+import { addToCart, ICart, minusQtyItem, addQtyItem, removeFromCart, clearCart, incrementVariant, decrementVariant, addNewVariant } from '@/app/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/app/store';
-import { ICartItem } from '@/types/types';
+import { ICartItem, IVariant } from '@/types/types';
 import toast from 'react-hot-toast';
 
 const useCart = () => {
@@ -15,7 +15,7 @@ const useCart = () => {
   const onAddToCart = (cartItem: ICartItem) => {
     if (isItemInCart(cartItem.productId)) {
       if (cartItem?.variant) {
-          dispatch(incrementVariant({id:cartItem.productId, variantKey:cartItem.variant.key}))
+          onIncrementVariant(cartItem.productId,cartItem.variant.key)
       } else {
         dispatch(addQtyItem(cartItem.productId));
       }
@@ -27,6 +27,12 @@ const useCart = () => {
       toast.success('Product Added to cart');
     }
   };
+
+  const onAddVariant = (id: string, variant: IVariant) => {  
+      dispatch(addNewVariant({id, variant}))
+      toast.success('Product Added to cart');
+  };
+
 
   const onIncrementVariant = (id: string, variantKey: string) => {
     dispatch(incrementVariant({id, variantKey}))
@@ -72,7 +78,8 @@ const useCart = () => {
     onClearCart, 
     findItem, 
     onIncrementVariant,
-    onDecrementVariant
+    onDecrementVariant,
+    onAddVariant
   };
 };
 

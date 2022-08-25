@@ -25,7 +25,7 @@ function VariantsModel({ findItem, id, onIncrementVariant, onDecrementVariant }:
       >
         <div className="p-4">
           {foundItem?.variants &&
-            foundItem.variants.map((variant) => (
+            Object.values(foundItem.variants).map((variant) => (
               <div key={variant.key} className="flex justify-between items-center">
                 {variant.size && (
                   <span className="flex items-center space-x-2">
@@ -63,15 +63,9 @@ function VariantsModel({ findItem, id, onIncrementVariant, onDecrementVariant }:
           setOpen(true);
         }}
       >
-        {foundItem ? (
-          <>
-            <span className="btn btn-gray">+</span>
-            <span>{foundItem?.qty}</span>
-            <span className="btn btn-gray">-</span>
-          </>
-        ) : (
-          <span className="btn-large md:w-auto w-full">Add to cart</span>
-        )}
+        <span className="btn btn-gray">+</span>
+        <span>{foundItem?.qty}</span>
+        <span className="btn btn-gray">-</span>
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
 import Button from '@/components/UI/Button';
-import { IProductRes, IVariant } from '@/types/types';
+import { IProductRes } from '@/types/types';
 import { formCartItem, formVariant, formVariantKey } from '@/utils/helpers';
 import useCart from '@/utils/hooks/useCart';
 import VariantsModel from './VariantsModel';

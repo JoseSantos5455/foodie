@@ -76,12 +76,16 @@ export const formVariantKey = (size?: string | null, color?: string | null) => {
   else return null
 }
 
-export const formCartItem = (product: IProductRes, size?: string | null, color?: string | null) => {
-  let variantKey = formVariantKey(size, color)
+export const formVariant = (variantKey: string | null, size: string | null | undefined, color: string | null | undefined) => {
   let variant = null;
   if(variantKey){
     variant = {key: variantKey, size: size || null, color: color || null, qty: 1}
   }
+  return variant
+}
+
+export const formCartItem = (product: IProductRes, size?: string | null, color?: string | null) => {
+  
   return ({
     title: product.title,
     slug: product.slug,
@@ -89,6 +93,6 @@ export const formCartItem = (product: IProductRes, size?: string | null, color?:
     image: product.image,
     price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
     qty: 1,
-    variant: variant
+    variant: formVariant(formVariantKey(size, color), size, color)
   });
 }

@@ -8,12 +8,14 @@ import reviewRoute from '@/components/reviews/reviewRoute';
 import orderRoute from '@/components/orders/orderRoute';
 import errorMiddleware from './middlewares/error.middleware';
 import uploadRoute from '@/components/upload/uploadRoute'
+import cors from 'cors'
 
 dotenv.config({ path: __dirname + '/config/config.env' });
 connectDB();
 
 const app: express.Application = express();
 
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use('/api/v1/products', productRoute);
 app.use('/api/v1/category', categoryRoute);

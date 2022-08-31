@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {ICartItem, IVariant} from '@/types/types'
-import { string } from 'yup';
 export interface ICart {
   title: string;
   slug: string;

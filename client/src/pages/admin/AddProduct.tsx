@@ -45,6 +45,9 @@ const AddProduct = () => {
   const onSubmit = (data: any) => {
     data.color = color;
     data.sizes = sizes;
+    const formData = new FormData();
+    formData.append('image', data.image[0]);
+    data.image = formData;
     data.token = auth.token;
     dispatch(addProductStart(data));
   };
@@ -193,6 +196,8 @@ const AddProduct = () => {
                 className="bg-gray-200 self-center appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="file"
                 {...register('image')}
+                id="file"
+                accept=".png, .jpg, .jpeg"
               />
               <div className="mt-1">
                 <span className="text-red-600">{errors?.image?.message}</span>

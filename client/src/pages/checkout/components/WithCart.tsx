@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { useAppSelector } from 'app/store';
-import { CART } from 'utils/routes';
+import { useAppSelector } from '@/app/store';
+import { CART } from '@/utils/routes';
 import { Navigate } from 'react-router-dom';
 
 interface Props {

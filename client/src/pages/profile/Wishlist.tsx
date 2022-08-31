@@ -1,4 +1,4 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import WishItem from './components/WishItem';
 
 const Wishlist = () => {

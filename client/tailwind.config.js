@@ -1,8 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  mode: 'jit',
+  content: [
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -21,13 +25,13 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      shadow: ['hover', 'focus'],
-      opacity: ['disabled'],
-      cursor: ['disabled'],
-      scale: ['group-hover'],
-    },
-  },
+  // variants: {
+  //   extend: {
+  //     shadow: ['hover', 'focus'],
+  //     opacity: ['disabled'],
+  //     cursor: ['disabled'],
+  //     scale: ['group-hover'],
+  //   },
+  // },
   plugins: [],
 };

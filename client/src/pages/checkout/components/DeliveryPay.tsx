@@ -1,8 +1,8 @@
 import { LockOutlined } from '@ant-design/icons';
-import { addOrderStart } from 'app/slices/orderSlice';
-import Button from 'components/UI/Button';
-import useOrder from 'utils/hooks/useOrder';
-import ConfirmationModal from 'components/UI/ConfirmationModal';
+import { addOrderStart } from '@/app/slices/orderSlice';
+import Button from '@/components/UI/Button';
+import useOrder from '@/utils/hooks/useOrder';
+import ConfirmationModal from '@/components/UI/ConfirmationModal';
 import { CustomDialog } from 'react-st-modal';
 
 const DeliveryPay = () => {

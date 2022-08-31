@@ -1,3 +1,5 @@
+import {  IProductRes } from "@/types/types";
+
 export const calculateDiscount = (originalPrice: number, discountPercentage: number = 0) =>
   originalPrice - (originalPrice * discountPercentage) / 100;
 
@@ -64,3 +66,33 @@ export const productData = (data: any) => ({
   },
   category: data.category,
 });
+
+
+
+export const formVariantKey = (size?: string | null, color?: string | null) => {
+  if(size && color) return `${size}*${color}`
+  else if (size) return size
+  else if (color) return color
+  else return null
+}
+
+export const formVariant = (variantKey: string | null, size: string | null | undefined, color: string | null | undefined) => {
+  let variant = null;
+  if(variantKey){
+    variant = {key: variantKey, size: size || null, color: color || null, qty: 1}
+  }
+  return variant
+}
+
+export const formCartItem = (product: IProductRes, size?: string | null, color?: string | null) => {
+  
+  return ({
+    title: product.title,
+    slug: product.slug,
+    productId: product._id,
+    image: product.image,
+    price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
+    qty: 1,
+    variant: formVariant(formVariantKey(size, color), size, color)
+  });
+}

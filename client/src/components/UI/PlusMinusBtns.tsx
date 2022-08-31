@@ -1,4 +1,4 @@
-import useCart from 'utils/hooks/useCart';
+import useCart from '@/utils/hooks/useCart';
 import Button from './Button';
 
 type Props = {

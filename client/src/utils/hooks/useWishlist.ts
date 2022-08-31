@@ -1,6 +1,6 @@
-import { useAppSelector, useAppDispatch } from 'app/store';
-import { addToWishlist, removeFromWishlist } from 'app/slices/wishlistSlice';
-import { ICart } from 'app/slices/cartSlice';
+import { useAppSelector, useAppDispatch } from '@/app/store';
+import { addToWishlist, removeFromWishlist } from '@/app/slices/wishlistSlice';
+import { ICart } from '@/app/slices/cartSlice';
 
 const useWishlist = () => {
   const wishlist = useAppSelector((state) => state.wishlist);

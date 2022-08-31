@@ -1,10 +1,10 @@
 import { HomeOutlined, DollarOutlined, IdcardOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
-import { logOut } from 'app/slices/authSlice';
+import { logOut } from '@/app/slices/authSlice';
 import { NavLink } from 'react-router-dom';
-import * as ROUTES from 'utils/routes';
+import * as ROUTES from '@/utils/routes';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
-import 'styles/pages/profile.css';
+import '@/styles/pages/profile.css';
 
 const profileRoutes = [
   {

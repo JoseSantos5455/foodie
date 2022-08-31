@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IError } from 'types/types';
+import { IError } from '@/types/types';
 
 interface IErrorState {
   isErrorProducts: IError | null;

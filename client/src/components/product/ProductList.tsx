@@ -1,6 +1,5 @@
-import React from 'react';
 import ProductItem from './ProductItem';
-import { IProductRes } from 'types/types';
+import { IProductRes } from '@/types/types';
 
 interface IProductList {
   products: IProductRes[];

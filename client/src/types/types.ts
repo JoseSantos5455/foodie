@@ -1,4 +1,4 @@
-import { ICart } from 'app/slices/cartSlice';
+import { ICart } from '@/app/slices/cartSlice';
 
 export interface IProduct {
   title: string;
@@ -108,3 +108,18 @@ export interface ISaga {
   type: string;
   payload: any;
 }
+
+
+export interface IVariant {
+  key: string,
+  color: string | null,
+  size: string | null,
+  qty: number
+}
+
+
+export interface ICartItem extends Omit <ICart, 'variants'>{
+  variant: IVariant | null;
+}
+
+

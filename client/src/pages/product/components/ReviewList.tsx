@@ -1,6 +1,7 @@
-import { IReviewRes } from 'types/types';
+import { IReviewRes } from '@/types/types';
 import Review from './Review';
-import 'styles/pages/review.css';
+import '@/styles/pages/review.css';
+import {FaStar} from 'react-icons/fa'
 
 type ReviewsListProps = {
   reviews: IReviewRes[];
@@ -13,8 +14,9 @@ const ReviewList = ({ reviews, rating, numReviews }: ReviewsListProps) => {
     <div>
       <div className="mb-6 pb-2 border-b border-gray-200  flex justify-between items-center">
         <h3 className="font-main font-bold">Reviews</h3>
-        <p className="text-bold">
-          {rating} ({numReviews})
+        <p className="text-bold flex items-center">
+         <span className="flex space-x-1 items-center mr-3">{rating.toFixed(1)} <FaStar className='text-yellow-400'/></span> 
+             ({numReviews})
         </p>
       </div>
       <div className="max-h-52 overflow-y-scroll px-4  ">

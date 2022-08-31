@@ -1,4 +1,4 @@
-import { displayTime } from 'utils/helpers';
+import { displayTime } from '@/utils/helpers';
 
 type Props = {
   orderStatus: string;

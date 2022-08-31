@@ -4,6 +4,6 @@ import { uploader, uploadImage } from './uploadController';
 
 const router = Router();
 
-router.route('/').post(isAuthenticated, isAdmin, uploader.single('file'), uploadImage);
+router.route('/').post(isAuthenticated, isAdmin, uploader.single('image'), uploadImage);
 
 export default router;

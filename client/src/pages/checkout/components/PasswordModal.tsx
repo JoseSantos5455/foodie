@@ -1,5 +1,5 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import { useState } from 'react';
 import { useDialog } from 'react-st-modal';
 

@@ -1,12 +1,12 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAdminOrder } from 'utils/hooks/useAdminOrder';
-import Loading from 'components/loaders/Loading';
-import Button from 'components/UI/Button';
+import { useAdminOrder } from '@/utils/hooks/useAdminOrder';
+import Loading from '@/components/loaders/Loading';
+import Button from '@/components/UI/Button';
 import { useDispatch } from 'react-redux';
-import { deleteOrderStart, updateOrderStatusStart } from 'app/slices/orderSlice';
+import { deleteOrderStart, updateOrderStatusStart } from '@/app/slices/orderSlice';
 import { ChangeEvent } from 'react';
-import { ADMIN_ALL_ORDERS } from 'utils/routes';
+import { ADMIN_ALL_ORDERS } from '@/utils/routes';
 
 const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 

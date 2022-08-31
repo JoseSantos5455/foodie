@@ -9,3 +9,44 @@ html {
   background-position: center center;
   background-attachment: fixed;
 }
+
+@layer components {
+  .btn {
+    @apply font-medium shadow-lg font-secondary rounded;
+  }
+  .btn-primary {
+    @apply bg-primary hover:bg-primaryHover py-1 px-4  text-white;
+  }
+  .btn-secondary {
+    @apply bg-purpleBeta hover:opacity-70 py-1 px-4  text-white;
+  }
+
+  .btn-dark {
+    @apply bg-primaryDark hover:bg-gray-800 py-1 px-4  text-white;
+  }
+  .btn-err {
+    @apply bg-red-600 hover:bg-red-800 py-1 px-4  text-white;
+  }
+
+  .btn-success {
+    @apply bg-greenBeta hover:opacity-75 py-1 px-4  text-white;
+  }
+
+  .btn-large {
+    @apply bg-primary hover:bg-primaryHover py-3 lg:px-24 px-16 text-xl capitalize  text-white;
+  }
+  .btn-gray {
+    @apply bg-gray-300 hover:bg-gray-400 w-6 h-6 flex items-center justify-center text-xl capitalize  text-primaryDark;
+  }
+
+  .btn-small {
+    @apply  w-6 h-6 flex items-center justify-center text-xl capitalize;
+  }
+
+  .btn-rounded {
+    @apply bg-primary md:px-6 px-2 py-1 hover:bg-primaryHover border-2 border-primary hover:border-primaryHover text-white rounded-full;
+  }
+  .btn-outline-rounded {
+    @apply border-2 px-6 py-1 text-primary border-primary hover:bg-primaryHover hover:text-white hover:border-primaryHover  rounded-full;
+  }
+}

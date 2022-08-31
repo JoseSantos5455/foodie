@@ -1,4 +1,4 @@
-import { addCategoryStart } from 'app/slices/categorySlice';
+import { addCategoryStart } from '@/app/slices/categorySlice';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 

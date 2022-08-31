@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ICategory } from 'types/types';
+import { ICategory } from '@/types/types';
 
 interface Props {
   categories: ICategory[];

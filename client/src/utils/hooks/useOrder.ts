@@ -1,9 +1,9 @@
-import { calcSubTotal } from 'utils/helpers';
+import { calcSubTotal } from '@/utils/helpers';
 import { useEffect } from 'react';
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useDispatch } from 'react-redux';
-import { getProfileStart } from 'app/slices/profileSlice';
-import { IOrder } from 'types/types';
+import { getProfileStart } from '@/app/slices/profileSlice';
+import { IOrder } from '@/types/types';
 
 const useOrder = () => {
   const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import { LockOutlined } from '@ant-design/icons';
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import { useForm } from 'react-hook-form';
-import useOrder from 'utils/hooks/useOrder';
-import { addOrderStart } from 'app/slices/orderSlice';
-import ConfirmationModal from 'components/UI/ConfirmationModal';
+import useOrder from '@/utils/hooks/useOrder';
+import { addOrderStart } from '@/app/slices/orderSlice';
+import ConfirmationModal from '@/components/UI/ConfirmationModal';
 import { CustomDialog } from 'react-st-modal';
 
 const CardForm = () => {

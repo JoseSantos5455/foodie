@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrder, IOrderRes } from 'types/types';
+import { IOrder, IOrderRes } from '@/types/types';
 
 const initialState: IOrderRes[] = [];
 

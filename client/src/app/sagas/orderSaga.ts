@@ -1,7 +1,7 @@
-import { ISaga } from 'types/types';
+import { ISaga,  IOrderRes } from '@/types/types';
 import { put, call } from 'redux-saga/effects';
-import { loadingOrder } from 'app/slices/loadingSlice';
-import { orderError } from 'app/slices/errorSlice';
+import { loadingOrder } from '@/app/slices/loadingSlice';
+import { orderError } from '@/app/slices/errorSlice';
 import {
   addOrderStart,
   addOrderSuccess,
@@ -13,10 +13,9 @@ import {
   updateOrderStatusSuccess,
   deleteOrderStart,
   deleteOrderSuccess,
-} from 'app/slices/orderSlice';
-import { IOrderRes } from 'types/types';
-import { addOrder, getOrders, adminGetOrders, updateOrderStatus, deleteOrder } from 'api/services/orderApi';
-import { clearCart } from 'app/slices/cartSlice';
+} from '@/app/slices/orderSlice';
+import { addOrder, getOrders, adminGetOrders, updateOrderStatus, deleteOrder } from '@/api/services/orderApi';
+import { clearCart } from '@/app/slices/cartSlice';
 import toast from 'react-hot-toast';
 
 function* handleError(err: any) {

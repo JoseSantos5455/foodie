@@ -1,5 +1,5 @@
-import Button from 'components/UI/Button';
-import { CHECKOUT_STEP_1 } from 'utils/routes';
+import Button from '@/components/UI/Button';
+import { CHECKOUT_STEP_1 } from '@/utils/routes';
 import { Link } from 'react-router-dom';
 
 interface SummaryProps {

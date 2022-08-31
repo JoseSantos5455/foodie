@@ -1,9 +1,9 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ADMIN_DASHBOARD } from 'utils/routes';
-import Loading from 'components/loaders/Loading';
+import { ADMIN_DASHBOARD } from '@/utils/routes';
+import Loading from '@/components/loaders/Loading';
 
 interface Props {
   children: JSX.Element;

@@ -1,5 +1,5 @@
 import httpRequest from '../axios';
-import { IOrder } from '../../types/types';
+import { IOrder } from '@/types/types';
 
 export const addOrder = (order: IOrder, token: string) =>
   httpRequest({

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useUserProfile } from 'components/profile';
+import { useUserProfile } from '@/components/profile';
 import PurchaseItem from './components/PurchaseItem';
 
 const OrderDetails = () => {

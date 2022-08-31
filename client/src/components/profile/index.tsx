@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Outlet, useOutletContext } from 'react-router-dom';
-import { IUser, IOrderRes } from 'types/types';
+import { IUser, IOrderRes } from '@/types/types';
 import SideNav from './SideNav';
-import { useAppSelector } from 'app/store';
-import { getProfileStart } from 'app/slices/profileSlice';
+import { useAppSelector } from '@/app/store';
+import { getProfileStart } from '@/app/slices/profileSlice';
 import { useDispatch } from 'react-redux';
-import { getOrderStart } from 'app/slices/orderSlice';
-import Loading from 'components/loaders/Loading';
+import { getOrderStart } from '@/app/slices/orderSlice';
+import Loading from '@/components/loaders/Loading';
 
 type ContextType = [IUser, IUser, IOrderRes[]];
 

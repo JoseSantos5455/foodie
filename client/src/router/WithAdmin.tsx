@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 
 interface Props {
   children: JSX.Element;

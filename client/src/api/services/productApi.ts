@@ -1,5 +1,5 @@
-import httpRequest from 'api/axios';
-import { IProduct } from 'types/types';
+import httpRequest from '@/api/axios';
+import { IProduct } from '@/types/types';
 
 export const getProducts = () =>
   httpRequest({
@@ -7,7 +7,7 @@ export const getProducts = () =>
     url: '/products',
   });
 
-export const addProduct = (product: IProduct, token: string) =>
+export const addProduct = (product: any, token: string) =>
   httpRequest({
     method: 'POST',
     url: '/products',
@@ -22,11 +22,11 @@ export const deleteProduct = (id: string, token: string) =>
     headers: { authorization: `Bearer ${token}` },
   });
 
-export const uploadProductImage = (image: File, token: string) => {
+export const uploadProductImage = (image: FormData, token: string) => {
   httpRequest({
     method: 'POST',
     url: '/upload',
-    headers: { authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}`,  'Content-Type': 'multipart/form-data' },
     data: image,
   });
 };

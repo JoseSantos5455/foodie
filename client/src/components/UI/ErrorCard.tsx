@@ -1,6 +1,6 @@
 import Button from './Button';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { clearErrors } from 'app/slices/errorSlice';
+import { clearErrors } from '@/app/slices/errorSlice';
 import { useDispatch } from 'react-redux';
 
 type ErrorProps = {

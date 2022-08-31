@@ -1,8 +1,8 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import { useEffect } from 'react';
-import { delProductStart, getProductsStart } from 'app/slices/productSlice';
+import { delProductStart, getProductsStart } from '@/app/slices/productSlice';
 import { useDispatch } from 'react-redux';
-import Loading from 'components/loaders/Loading';
+import Loading from '@/components/loaders/Loading';
 import { FaTrashAlt } from 'react-icons/fa';
 
 const AllProducts = () => {

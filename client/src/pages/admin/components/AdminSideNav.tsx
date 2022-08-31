@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import * as ROUTES from 'utils/routes';
+import * as ROUTES from '@/utils/routes';
 import { DashboardOutlined } from '@ant-design/icons';
 import { GoPackage } from 'react-icons/go';
 import { BsCardChecklist } from 'react-icons/bs';

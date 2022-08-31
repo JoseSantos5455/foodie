@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router';
 import { Rating } from 'react-simple-star-rating';
 import { Alert } from 'react-st-modal';
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from '@/app/store';
 import toast from 'react-hot-toast';
-import { addReview } from 'api/services/reviewsApi';
+import { addReview } from '@/api/services/reviewsApi';
 
 type ReviewData = {
   userName: string;

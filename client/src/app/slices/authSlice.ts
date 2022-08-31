@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAccountCredentiels, ILoginCredentiels, IUser } from 'types/types';
+import { IAccountCredentiels, ILoginCredentiels, IUser } from '@/types/types';
 
 const initialState = {} as IUser;
 

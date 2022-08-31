@@ -1,16 +1,16 @@
-import { addProductStart } from 'app/slices/productSlice';
-import { getCategoriesStart } from 'app/slices/categorySlice';
-import Button from 'components/UI/Button';
+import { addProductStart } from '@/app/slices/productSlice';
+import { getCategoriesStart } from '@/app/slices/categorySlice';
+import Button from '@/components/UI/Button';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { productColors, shoeSizes } from 'utils/data';
-import { useAppSelector } from 'app/store';
+import { productColors, shoeSizes } from '@/utils/data';
+import { useAppSelector } from '@/app/store';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { productSchema } from 'utils/formValidation';
-import Loading from 'components/loaders/Loading';
+import { productSchema } from '@/utils/formValidation';
+import Loading from '@/components/loaders/Loading';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -45,6 +45,9 @@ const AddProduct = () => {
   const onSubmit = (data: any) => {
     data.color = color;
     data.sizes = sizes;
+    const formData = new FormData();
+    formData.append('image', data.image[0]);
+    data.image = formData;
     data.token = auth.token;
     dispatch(addProductStart(data));
   };
@@ -193,6 +196,8 @@ const AddProduct = () => {
                 className="bg-gray-200 self-center appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="file"
                 {...register('image')}
+                id="file"
+                accept=".png, .jpg, .jpeg"
               />
               <div className="mt-1">
                 <span className="text-red-600">{errors?.image?.message}</span>

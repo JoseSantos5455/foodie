@@ -1,4 +1,4 @@
-import Button from 'components/UI/Button';
+import Button from '@/components/UI/Button';
 import React, { useState } from 'react';
 
 const PriceRange = () => {

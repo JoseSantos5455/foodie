@@ -22,6 +22,7 @@ function VariantsModel({ findItem, id, onIncrementVariant, onDecrementVariant }:
         onAfterClose={(result: any) => {
           setOpen(false);
         }}
+        showCloseIcon={true}
       >
         <div className="p-4">
           {foundItem?.variants &&

@@ -10,5 +10,6 @@ router
   .get(productController.getProductBySlug)
   .patch(isAuthenticated, isAdmin, productController.updateProduct);
 router.route('/:id').delete(isAuthenticated, isAdmin, productController.deleteProduct);
+router.route('/search/:title').get(productController.seachByTitle);
 
 export default router;

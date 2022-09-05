@@ -88,6 +88,20 @@ class ProductService implements IProductService {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
+
+  async searchByTitle(title: string): Promise<IProduct[]> {
+    try {
+      if (!title) throw new ErrorHandler(404, 'title must be provided');
+
+      const products = await Product.find({ title: { $regex: new RegExp(title), $options: 'is' }, isActive: true });
+
+      if (products.length === 0) throw new ErrorHandler(404, 'No Product found.');
+
+      return products;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
 }
 
 export default new ProductService();

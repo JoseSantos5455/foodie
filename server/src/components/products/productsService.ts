@@ -102,6 +102,20 @@ class ProductService implements IProductService {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
+
+  async searchByCategory(category: string): Promise<IProduct[]> {
+    try {
+      if (!category) throw new ErrorHandler(404, 'category must be provided');
+
+      const products = await Product.find({ category });
+
+      if (products.length === 0) throw new ErrorHandler(404, 'No Product found.');
+
+      return products;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
 }
 
 export default new ProductService();

@@ -57,6 +57,15 @@ class ProductController {
       next(err);
     }
   }
+  async searchByCategory(req: Request, res: Response, next: NextFunction) {
+    try {
+      if (typeof req.query.category !== 'string') throw new ErrorHandler(404, 'category must be provided');
+      const searchProducts = await productService.searchByCategory(req.query.category);
+      res.status(200).json(makeResJson(searchProducts));
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new ProductController();

@@ -1,29 +1,56 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
 import connectDB from '@/config/db';
-import productRoute from '@/components/products/productRoute';
-import categoryRoute from '@/components/categories/categoryRoute';
-import userRoute from '@/components/users/userRoute';
-import reviewRoute from '@/components/reviews/reviewRoute';
-import orderRoute from '@/components/orders/orderRoute';
 import errorMiddleware from './middlewares/error.middleware';
-import uploadRoute from '@/components/upload/uploadRoute'
-import cors from 'cors'
+import cors from 'cors';
+import { NODE_ENV, ORIGIN, PORT } from './config';
+import { Routes } from './types/routes.interface';
 
-dotenv.config({ path: __dirname + '/config/config.env' });
-connectDB();
+class App {
+  public app: express.Application;
+  public env: string;
+  public port: string | number;
 
-const app: express.Application = express();
+  constructor(routes: Routes[]) {
+    this.app = express();
+    this.env = NODE_ENV || 'development';
+    this.port = PORT || 5000;
+    this.connectToDatabase();
+    this.initializeMiddlewares();
+    this.initializeRoutes(routes);
+    this.initializeErrorHandling();
+  }
 
-app.use(cors({ origin: "*" }));
-app.use(express.json());
-app.use('/api/v1/products', productRoute);
-app.use('/api/v1/category', categoryRoute);
-app.use('/api/v1/users', userRoute);
-app.use('/api/v1/reviews', reviewRoute);
-app.use('/api/v1/orders', orderRoute);
-app.use('/api/v1/upload', uploadRoute);
+  public listen() {
+    this.app.listen(this.port, () => {
+      console.log(`=================================`);
+      console.log(`======= ENV: ${this.env} =======`);
+      console.log(`🚀 App listening on the port ${this.port}`);
+      console.log(`=================================`);
+    });
+  }
 
-app.use(errorMiddleware);
+  public getServer() {
+    return this.app;
+  }
 
-export default app;
+  public connectToDatabase() {
+    connectDB();
+  }
+
+  private initializeMiddlewares() {
+    this.app.use(cors({ origin: ORIGIN }));
+    this.app.use(express.json());
+  }
+
+  private initializeRoutes(routes: Routes[]) {
+    routes.forEach((route) => {
+      this.app.use('/api/v1/', route.router);
+    });
+  }
+
+  private initializeErrorHandling() {
+    this.app.use(errorMiddleware);
+  }
+}
+
+export default App;

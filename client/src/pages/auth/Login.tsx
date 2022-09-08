@@ -21,7 +21,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILoginCredentiels>({
     resolver: yupResolver(loginSchema),
   });
 

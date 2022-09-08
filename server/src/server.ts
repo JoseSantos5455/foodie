@@ -1,9 +1,13 @@
-import app from './app';
+import App from './app';
+import CategoryRoute from './components/categories/categoryRoute';
+import OrderRoute from './components/orders/orderRoute';
+import ProductsRoute from './components/products/productRoute';
+import ReviewRoute from './components/reviews/reviewRoute';
+import UserRoute from './components/users/userRoute';
 
-const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+const app = new App([new ProductsRoute(), new UserRoute(), new ReviewRoute(), new OrderRoute(), new CategoryRoute()]);
+app.listen();
 
 process.on('unhandledRejection', (err: NodeJS.ErrnoException) => {
   console.log(`Error : ${err.message}`);
-  server.close(() => process.exit(1));
 });

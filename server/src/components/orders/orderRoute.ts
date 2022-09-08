@@ -1,16 +1,34 @@
 import { isAdmin, isAuthenticated } from '@/middlewares/auth.middleware';
+import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import orderController from './orderController';
 
-const router = Router();
+class OrderRoute implements Routes {
+  public path = '/orders/';
+  public router = Router();
 
-router.route('/admin').get(isAuthenticated, isAdmin, orderController.getAllOrders);
-router.route('/').get(isAuthenticated, orderController.getUserOrders).post(isAuthenticated, orderController.addOrder);
-router.route('/:id').get(isAuthenticated, orderController.getOrderById);
+  constructor() {
+    this.initializeRoutes();
+  }
 
-router.route('/admin/:id').get(isAuthenticated, isAdmin, orderController.getOrderById).delete(isAuthenticated, isAdmin, orderController.deleteOrder);
+  private initializeRoutes() {
+    this.router.route(`${this.path}admin`).get(isAuthenticated, isAdmin, orderController.getAllOrders);
+    this.router
+      .route(this.path)
+      .get(isAuthenticated, orderController.getUserOrders)
+      .post(isAuthenticated, orderController.addOrder);
+    this.router.route(`${this.path}:id`).get(isAuthenticated, orderController.getOrderById);
 
-router.route('/admin/order-status/:id').patch(isAuthenticated, isAdmin, orderController.updateOrderStatus);
-router.route('/admin/paid/:id').patch(isAuthenticated, isAdmin, orderController.updateOrderPayment);
+    this.router
+      .route(`${this.path}admin/:id`)
+      .get(isAuthenticated, isAdmin, orderController.getOrderById)
+      .delete(isAuthenticated, isAdmin, orderController.deleteOrder);
 
-export default router;
+    this.router
+      .route(`${this.path}admin/order-status/:id`)
+      .patch(isAuthenticated, isAdmin, orderController.updateOrderStatus);
+    this.router.route(`${this.path}admin/paid/:id`).patch(isAuthenticated, isAdmin, orderController.updateOrderPayment);
+  }
+}
+
+export default OrderRoute;

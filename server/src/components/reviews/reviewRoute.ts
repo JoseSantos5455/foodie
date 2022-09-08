@@ -1,16 +1,26 @@
 import { isAuthenticated } from '@/middlewares/auth.middleware';
 import { isAllowedToReview, isReviewOwner } from '@/middlewares/middleware';
+import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import reviewController from './reviewController';
 
-const router = Router();
+class ReviewRoute implements Routes {
+  public path = '/reviews/';
+  public router = Router();
 
-router.route('/:slug').post(isAuthenticated, isAllowedToReview, reviewController.addReview);
-router
-  .route('/:id')
-  .delete(isAuthenticated, isReviewOwner, reviewController.deleteReview)
-  .patch(isAuthenticated, isReviewOwner, reviewController.editReview);
+  constructor() {
+    this.initializeRoutes();
+  }
 
-router.route('/:product').get(reviewController.getProductReviews);
+  private initializeRoutes() {
+    this.router.route(`${this.path}:slug`).post(isAuthenticated, isAllowedToReview, reviewController.addReview);
+    this.router
+      .route(`${this.path}:id`)
+      .delete(isAuthenticated, isReviewOwner, reviewController.deleteReview)
+      .patch(isAuthenticated, isReviewOwner, reviewController.editReview);
 
-export default router;
+    this.router.route(`${this.path}:product`).get(reviewController.getProductReviews);
+  }
+}
+
+export default ReviewRoute;

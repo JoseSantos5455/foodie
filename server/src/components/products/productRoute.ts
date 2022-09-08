@@ -1,16 +1,29 @@
 import { isAdmin, isAuthenticated } from '@/middlewares/auth.middleware';
+import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import productController from './productsController';
 
-const router = Router();
+class ProductsRoute implements Routes {
+  public path = '/products/';
+  public router = Router();
+  constructor() {
+    this.initializeRoutes();
+  }
 
-router.route('/').get(productController.getProducts).post(isAuthenticated, isAdmin, productController.addProduct);
-router.route('/search').get(productController.searchByCategory);
-router.route('/search/:title').get(productController.seachByTitle);
-router
-  .route('/:slug')
-  .get(productController.getProductBySlug)
-  .patch(isAuthenticated, isAdmin, productController.updateProduct);
-router.route('/:id').delete(isAuthenticated, isAdmin, productController.deleteProduct);
+  private initializeRoutes() {
+    this.router
+      .route(this.path)
+      .get(productController.getProducts)
+      .post(isAuthenticated, isAdmin, productController.addProduct);
+    this.router.route(`${this.path}search`).get(productController.searchByCategory);
+    this.router.route(`${this.path}search/:title`).get(productController.seachByTitle);
+    this.router
+      .route(`${this.path}:slug`)
+      .get(productController.getProductBySlug)
+      .patch(isAuthenticated, isAdmin, productController.updateProduct);
 
-export default router;
+    this.router.route(`${this.path}:id`).delete(isAuthenticated, isAdmin, productController.deleteProduct);
+  }
+}
+
+export default ProductsRoute;

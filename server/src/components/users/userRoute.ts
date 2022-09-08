@@ -1,20 +1,30 @@
 import { isAuthenticated, isAdmin } from '@/middlewares/auth.middleware';
+import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import adminController from './adminController';
 import userController from './userController';
 
-const router = Router();
+class UserRoute implements Routes {
+  public path = 'users/';
+  public router = Router();
 
-router
-  .route('/profile')
-  .get(isAuthenticated, userController.getProfile)
-  .patch(isAuthenticated, userController.updateProfile);
-router.route('/signup').post(userController.signUp);
-router.route('/signin').post(userController.signIn);
-router.route('/').get(isAuthenticated, isAdmin, adminController.getUsers);
-router
-  .route('/:email')
-  .get(isAuthenticated, isAdmin, adminController.getUserByEmail)
-  .delete(isAuthenticated, isAdmin, adminController.deleteUser);
+  constructor() {
+    this.initializeRoutes();
+  }
 
-export default router;
+  private initializeRoutes() {
+    this.router
+      .route(`${this.path}profile`)
+      .get(isAuthenticated, userController.getProfile)
+      .patch(isAuthenticated, userController.updateProfile);
+    this.router.route(`${this.path}signup`).post(userController.signUp);
+    this.router.route(`${this.path}signin`).post(userController.signIn);
+    this.router.route(this.path).get(isAuthenticated, isAdmin, adminController.getUsers);
+    this.router
+      .route(`${this.path}:email`)
+      .get(isAuthenticated, isAdmin, adminController.getUserByEmail)
+      .delete(isAuthenticated, isAdmin, adminController.deleteUser);
+  }
+}
+
+export default UserRoute;

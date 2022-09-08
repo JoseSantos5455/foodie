@@ -1,9 +1,19 @@
+import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import categoryController from './categoryController';
 
-const router = Router();
+class CategoryRoute implements Routes {
+  public path = '/category/';
+  public router = Router();
 
-router.route('/').get(categoryController.getParentCategories).post(categoryController.addCategory);
-router.route('/:id').delete(categoryController.deleteCategory);
+  constructor() {
+    this.initializeRoutes();
+  }
 
-export default router;
+  private initializeRoutes() {
+    this.router.route(this.path).get(categoryController.getParentCategories).post(categoryController.addCategory);
+    this.router.route(`${this.path}:id`).delete(categoryController.deleteCategory);
+  }
+}
+
+export default CategoryRoute;

@@ -11,8 +11,8 @@ import { IUser, ISaga  } from '@/types/types';
 
 function* handleError(err: any) {
   yield put(loadingAuth(false));
-  yield put(authError({ message: err.error.message || 'Sorry, a server error accured please try again later' }));
-}
+  yield put(authError({ message: err?.error?.message || 'Sorry, a server error accured please try again later' }));
+} 
 
 function* authSaga({ type, payload }: ISaga) {
   switch (type) {

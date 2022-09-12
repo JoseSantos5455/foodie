@@ -5,7 +5,7 @@ import adminController from './adminController';
 import userController from './userController';
 
 class UserRoute implements Routes {
-  public path = 'users/';
+  public path = '/users/';
   public router = Router();
 
   constructor() {

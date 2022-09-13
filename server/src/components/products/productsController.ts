@@ -66,6 +66,14 @@ class ProductController {
       next(err);
     }
   }
+  async searchFilters(req: Request, res: Response, next: NextFunction) {
+    try {
+      const searchProducts = await productService.searchFilters(req.query);
+      res.status(200).json(makeResJson(searchProducts));
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export default new ProductController();

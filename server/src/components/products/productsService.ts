@@ -1,6 +1,7 @@
 import Product, { IProduct } from './product';
 import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
+import APIFilters from '@/helpers/filterAPI';
 
 export interface IProductService {
   addProduct: (product: IProduct) => Promise<IProduct>;
@@ -110,7 +111,19 @@ class ProductService implements IProductService {
       const products = await Product.find({ category });
 
       if (products.length === 0) throw new ErrorHandler(404, 'No Product found.');
+      return products;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
 
+  async searchFilters(queryString: any): Promise<IProduct[]> {
+    try {
+      const features = new APIFilters(Product.find(), queryString).filtreing();
+
+      const products = await features.query;
+
+      if (products.length === 0) throw new ErrorHandler(404, 'No Product found.');
       return products;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);

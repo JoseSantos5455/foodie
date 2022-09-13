@@ -15,6 +15,7 @@ class ProductsRoute implements Routes {
       .route(this.path)
       .get(productController.getProducts)
       .post(isAuthenticated, isAdmin, productController.addProduct);
+    this.router.route(`${this.path}shop`).get(productController.searchFilters)
     this.router.route(`${this.path}search`).get(productController.searchByCategory);
     this.router.route(`${this.path}search/:title`).get(productController.seachByTitle);
     this.router

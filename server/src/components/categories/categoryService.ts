@@ -1,16 +1,8 @@
 import Category, { ICategory } from './category';
 import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
-// import Product from '../products/product';
 
-interface ICategoryService {
-  addCategory: (category: ICategory) => Promise<ICategory>;
-  getAllCategories: (select?: string) => Promise<ICategory[]>;
-  getParentCategories: () => Promise<ICategory[]>;
-  deleteCategory: (id: ICategory['_id']) => Promise<ICategory['_id']>;
-}
-
-class CategoryService implements ICategoryService {
+class CategoryService {
   async addCategory(category: ICategory): Promise<ICategory> {
     try {
       const categoryParentId = category.parent ? category.parent : null;

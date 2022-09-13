@@ -2,17 +2,8 @@ import { ErrorHandler } from '@/middlewares/error.middleware';
 import User, { IUser } from '../users/user';
 import Order, { IOrder } from './order';
 
-interface IOrderService {
-  addOrder: (order: IOrder, userId: IUser['_id']) => Promise<IOrder>;
-  getUserOrders: (userId: IUser['_id']) => Promise<IOrder[]>;
-  getAllOrders: () => Promise<IOrder[]>;
-  getOrderById: (orderId: IOrder['_id']) => Promise<IOrder>;
-  updateOrderStatus: (orderStatus: string, orderId: IOrder['_id']) => Promise<IOrder>;
-  deleteOrder: (orderId: IOrder['_id']) => Promise<IOrder['_id']>;
-  updateOrderPayment: (isPaid: boolean, orderId: IOrder['_id']) => Promise<boolean>;
-}
 
-class OrderService implements IOrderService {
+class OrderService {
   async addOrder(order: IOrder, userId: IUser['_id']): Promise<IOrder> {
     try {
       // if (!order.shippingInfo.isPhoneValidated) {

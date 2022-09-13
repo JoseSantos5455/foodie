@@ -3,14 +3,8 @@ import { IUser } from '../users/user';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import Product, { IProduct } from '../products/product';
 
-interface IReviewService {
-  addReview: (review: IReview, productSlug: string, userId: IUser['_id']) => Promise<IReview>;
-  deleteReview: (reviewId: IReview['_id']) => Promise<IReview['_id']>;
-  editReview: (edits: Partial<IReview>, reviewId: IReview['_id']) => Promise<IReview>;
-  getProductReviews: (productId: IProduct['_id']) => Promise<IReview[]>;
-}
 
-class ReviewService implements IReviewService {
+class ReviewService {
   async addReview(review: IReview, productSlug: string, userId: IUser['_id']): Promise<IReview> {
     try {
       const { userName, comment, rating } = review;

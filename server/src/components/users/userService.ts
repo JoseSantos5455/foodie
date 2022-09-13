@@ -2,14 +2,8 @@ import User, { IUser } from './user';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import bcrypt from 'bcryptjs';
 
-interface IUserService {
-  signUp: (user: IUser) => Promise<IUser>;
-  signIn: (email: string, password: string) => Promise<IUser>;
-  userProfile: (id: string) => Promise<IUser>;
-  updateProfile: (updates: Partial<IUser>, id: string) => Promise<IUser>;
-}
 
-class UserService implements IUserService {
+class UserService{
   async signUp(user: IUser): Promise<IUser> {
     try {
       const userExists = await User.findOne({ email: user.email });

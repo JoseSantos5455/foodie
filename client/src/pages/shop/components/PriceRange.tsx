@@ -1,17 +1,32 @@
 import Button from '@/components/UI/Button';
+import { SHOP } from '@/utils/routes';
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
-const PriceRange = () => {
+
+const PriceRange = ({searchQuery}: {searchQuery: string}) => {
   const [range, setRange] = useState(500);
-  const min = 10;
-
+  const min = 1;
+  const navigate = useNavigate()
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRange(Number(e.target.value));
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const priceFilter = `pricing.originalPrice[gte]=${min}&pricing.originalPrice[lte]=${range}`
+    if(searchQuery){
+      navigate(`${SHOP}${searchQuery}&&${priceFilter}`)
+    }else{
+      navigate(`${SHOP}?${priceFilter}`)
+    }
+    
+  }
+
   return (
     <div className="relative w-full mb-10">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex justify-between items-center mb-4">
           <h4 className="font-semibold uppercase">Price $</h4>
           <Button theme="btn-dark">Apply</Button>

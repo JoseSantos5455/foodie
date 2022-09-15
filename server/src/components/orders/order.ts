@@ -45,15 +45,23 @@ const orderSchema = new Schema(
     orderItems: [
       {
         productId: { type: ObjectId, required: true, ref: 'Product' },
-        slug: {type: String, required: true},
+        slug: { type: String, required: true },
         qty: { type: Number, required: true },
         price: { type: Number, required: true },
         title: { type: String, required: true },
         image: { type: String, required: true },
+        variants: [
+          {
+            key: { type: String },
+            color: { type: String },
+            size: { type: String },
+            qty: { type: Number },
+          },
+        ],
       },
     ],
     shippingInfo: {
-      fullName: {type: String, required: true},
+      fullName: { type: String, required: true },
       city: { type: String, required: true },
       phone: { type: String, required: true },
       isPhoneValidated: { type: Boolean, required: true },

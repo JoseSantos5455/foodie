@@ -1,4 +1,5 @@
-import {  IProductRes } from "@/types/types";
+import { ICart } from "@/app/slices/cartSlice";
+import {  ICartItem, IOrderItems, IProductRes } from "@/types/types";
 
 export const calculateDiscount = (originalPrice: number, discountPercentage: number = 0) =>
   originalPrice - (originalPrice * discountPercentage) / 100;
@@ -96,3 +97,11 @@ export const formCartItem = (product: IProductRes, size?: string | null, color?:
     variant: formVariant(formVariantKey(size, color), size, color)
   });
 }
+
+export const formOrderItems = (cart: ICart[]): (ICart | IOrderItems)[] => (
+  cart.map((item) : IOrderItems | ICart => {
+    if(item.variants){
+      return {...item, variants: Object.values(item.variants)}
+    }else return item
+  })
+)

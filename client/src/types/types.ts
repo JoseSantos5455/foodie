@@ -67,7 +67,7 @@ export interface IUser {
 }
 
 export interface IOrder {
-  orderItems: ICart[];
+  orderItems: (IOrderItems | ICart)[];
   shippingInfo: {
     fullName: string;
     city: string;
@@ -87,6 +87,10 @@ export interface IOrderRes extends IOrder {
   _id: string;
   createdAt: string;
   orderStatus: string;
+}
+
+export interface IOrderItems extends  Omit<ICart, 'variants'> {
+  variants?: IVariant[]
 }
 
 export interface ILoginCredentiels {

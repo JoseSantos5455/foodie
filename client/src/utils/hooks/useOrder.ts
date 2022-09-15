@@ -1,4 +1,4 @@
-import { calcSubTotal } from '@/utils/helpers';
+import { calcSubTotal, formOrderItems } from '@/utils/helpers';
 import { useEffect } from 'react';
 import { useAppSelector } from '@/app/store';
 import { useDispatch } from 'react-redux';
@@ -24,7 +24,7 @@ const useOrder = () => {
   const total = subTotal + 5;
 
   const newOrder: IOrder = {
-    orderItems: cart,
+    orderItems: formOrderItems(cart),
     shippingInfo: {
       fullName: profile.fullName,
       city: profile.city,

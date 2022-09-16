@@ -1,12 +1,13 @@
 import { makeResJson } from '@/helpers/utils';
 import { ErrorHandler } from '@/middlewares/error.middleware';
+import { MulterRequest } from '@/types/types';
 import { NextFunction, Request, Response } from 'express';
 import productService from './productsService';
 
 class ProductController {
-  async addProduct(req: Request, res: Response, next: NextFunction) {
+  async addProduct(req: MulterRequest, res: Response, next: NextFunction) {
     try {
-      const createdProduct = await productService.addProduct(req.body);
+      const createdProduct = await productService.addProduct(req.body, req.file.firebaseUrl);
       return res.status(200).json(makeResJson(createdProduct));
     } catch (err) {
       next(err);

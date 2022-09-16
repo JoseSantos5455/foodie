@@ -1,4 +1,5 @@
 import { isAdmin, isAuthenticated } from '@/middlewares/auth.middleware';
+import { upload, uploader } from '@/middlewares/upload.middleware';
 import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import productController from './productsController';
@@ -14,7 +15,7 @@ class ProductsRoute implements Routes {
     this.router
       .route(this.path)
       .get(productController.getProducts)
-      .post(isAuthenticated, isAdmin, productController.addProduct);
+      .post(isAuthenticated, isAdmin, uploader.single('image'), upload, productController.addProduct);    
     this.router.route(`${this.path}shop`).get(productController.searchFilters)
     this.router.route(`${this.path}search`).get(productController.searchByCategory);
     this.router.route(`${this.path}search/:title`).get(productController.seachByTitle);

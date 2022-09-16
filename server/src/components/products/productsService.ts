@@ -3,16 +3,10 @@ import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import APIFilters from '@/helpers/filterAPI';
 
-export interface IProductService {
-  addProduct: (product: IProduct) => Promise<IProduct>;
-  getProductBySlug: (slug: string) => Promise<IProduct>;
-  getProducts: () => Promise<{ products: IProduct[] }>;
-  deleteProduct: (id: IProduct['_id']) => Promise<IProduct['_id']>;
-  updateProduct: (slug: string, updates: Partial<IProduct>) => Promise<IProduct>;
-}
 
-class ProductService implements IProductService {
-  async addProduct(product: IProduct): Promise<IProduct> {
+
+class ProductService {
+  async addProduct(product: IProduct, imageUrl: string): Promise<IProduct> {
     try {
       const productExists = await Product.findOne({ slug: slugify(product.title) });
 
@@ -20,9 +14,11 @@ class ProductService implements IProductService {
         throw new ErrorHandler(400, 'Product with this title already exists');
       }
 
-      if (!product.image) {
-        throw new ErrorHandler(400, 'Product image is required');
+      if (!imageUrl) {
+        throw new ErrorHandler(400, 'Failed to upload product image');
       }
+
+      product.image = imageUrl;
 
       const createdProduct = await Product.create(product);
 

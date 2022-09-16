@@ -88,7 +88,7 @@ const OrderDetail = () => {
                     Title: <span className="ml-2 font-bold">{item.title}</span>
                   </p>
                   <p>
-                    Qty: <span className="ml-2 font-bold">{item.qty}</span>{' '}
+                    Qty: <span className="ml-2 font-bold">{item.qty}</span>
                   </p>
                   <p>
                     Total Price: <span className="ml-2 font-bold">{item.price * item.qty}</span>

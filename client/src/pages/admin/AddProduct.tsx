@@ -11,12 +11,13 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '@/utils/formValidation';
 import Loading from '@/components/loaders/Loading';
+import { formProductData } from '@/utils/helpers';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  const { categories, auth, isLoadingProducts } = useAppSelector((state) => ({
+  const { categories, token, isLoadingProducts } = useAppSelector((state) => ({
     categories: state.categories,
-    auth: state.auth,
+    token: state.auth.token,
     isLoadingProducts: state.loadingState.isLoadingProducts,
   }));
 
@@ -45,11 +46,9 @@ const AddProduct = () => {
   const onSubmit = (data: any) => {
     data.color = color;
     data.sizes = sizes;
-    const formData = new FormData();
-    formData.append('image', data.image[0]);
-    data.image = formData;
-    data.token = auth.token;
-    dispatch(addProductStart(data));
+    const formData = formProductData(data); 
+    
+    dispatch(addProductStart({data: formData, token}));
   };
 
   return (

@@ -1,5 +1,4 @@
 import httpRequest from '@/api/axios';
-import { IProduct } from '@/types/types';
 
 export const getProducts = () =>
   httpRequest({
@@ -11,7 +10,7 @@ export const addProduct = (product: any, token: string) =>
   httpRequest({
     method: 'POST',
     url: '/products',
-    headers: { authorization: `Bearer ${token}` },
+    headers: { authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data'},
     data: product,
   });
 
@@ -26,7 +25,7 @@ export const uploadProductImage = (image: FormData, token: string) => {
   httpRequest({
     method: 'POST',
     url: '/upload',
-    headers: { authorization: `Bearer ${token}`,  'Content-Type': 'multipart/form-data' },
+    headers: { authorization: `Bearer ${token}` },
     data: image,
   });
 };

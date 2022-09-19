@@ -51,7 +51,7 @@ export const uploader = multer({
 
 export async function upload(req: MulterRequest, res: Response, next: NextFunction): Promise<any> {
   if (!req.file) {
-    res.status(200).json({ msg: 'No file submitted' });
+    res.status(404).json({ msg: 'No image file submitted' });
     return;
   }
 

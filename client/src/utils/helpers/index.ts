@@ -1,5 +1,5 @@
-import { ICart } from "@/app/slices/cartSlice";
-import {  ICartItem, IOrderItems, IProductRes } from "@/types/types";
+import { ICart } from '@/app/slices/cartSlice';
+import { ICartItem, IOrderItems, IProduct, IProductRes } from '@/types/types';
 
 export const calculateDiscount = (originalPrice: number, discountPercentage: number = 0) =>
   originalPrice - (originalPrice * discountPercentage) / 100;
@@ -49,59 +49,60 @@ export const displayTime = (timestamp: string) => {
   return `${monthNames[monthIndex]} ${day}, ${year} at ${hour}`;
 };
 
-export const productData = (data: any) => ({
-  title: data.title,
-  description: data.description,
-  details: data.details,
-  image: data.image,
-  subImages: data.subImages,
-  brand: data.brand,
-  pricing: { originalPrice: data.originalPrice, discountPercentage: data.discountPercentage },
-  countInStock: data.countInStock,
-  size: data.size || [],
-  color: data.color || [],
-  specs: {
-    countryOfProduction: data.countryOfProduction,
-    weight: data.weight,
-    model: data.model,
-  },
-  category: data.category,
-});
+export const formProductData = (data: any): FormData => {
+  const formData = new FormData();
+  for (const key in data) {
+    if (key === 'image') {
+      formData.append(key, data[key][0]);
+    }else if(key === 'originalPrice' || key === 'discountPercentage'){
+        formData.append(`pricing[${key}]`, data[key]);
+    }else if(key === 'countryOfProduction' || key === 'weight' || key === 'model'){
+        formData.append(`specs[${key}]`, data[key]);
+    }
+     else {
+      formData.append(key, data[key]);
+    }
+  }
 
-
+  return formData;
+};
 
 export const formVariantKey = (size?: string | null, color?: string | null) => {
-  if(size && color) return `${size}*${color}`
-  else if (size) return size
-  else if (color) return color
-  else return null
-}
+  if (size && color) return `${size}*${color}`;
+  else if (size) return size;
+  else if (color) return color;
+  else return null;
+};
 
-export const formVariant = (variantKey: string | null, size: string | null | undefined, color: string | null | undefined) => {
+export const formVariant = (
+  variantKey: string | null,
+  size: string | null | undefined,
+  color: string | null | undefined,
+) => {
   let variant = null;
-  if(variantKey){
-    variant = {key: variantKey, size: size || null, color: color || null, qty: 1}
+  if (variantKey) {
+    variant = { key: variantKey, size: size || null, color: color || null, qty: 1 };
   }
-  return variant
-}
+  return variant;
+};
 
 export const formCartItem = (product: IProductRes, size?: string | null, color?: string | null) => {
-  
-  return ({
+  return {
     title: product.title,
     slug: product.slug,
     productId: product._id,
     image: product.image,
-    price: product.pricing.discountPercentage ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage) : product.pricing.originalPrice,
+    price: product.pricing.discountPercentage
+      ? calculateDiscount(product.pricing.originalPrice, product.pricing.discountPercentage)
+      : product.pricing.originalPrice,
     qty: 1,
-    variant: formVariant(formVariantKey(size, color), size, color)
-  });
-}
+    variant: formVariant(formVariantKey(size, color), size, color),
+  };
+};
 
-export const formOrderItems = (cart: ICart[]): (ICart | IOrderItems)[] => (
-  cart.map((item) : IOrderItems | ICart => {
-    if(item.variants){
-      return {...item, variants: Object.values(item.variants)}
-    }else return item
-  })
-)
+export const formOrderItems = (cart: ICart[]): (ICart | IOrderItems)[] =>
+  cart.map((item): IOrderItems | ICart => {
+    if (item.variants) {
+      return { ...item, variants: Object.values(item.variants) };
+    } else return item;
+  });

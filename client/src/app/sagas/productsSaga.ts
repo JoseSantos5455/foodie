@@ -1,5 +1,5 @@
 import { call, put } from '@redux-saga/core/effects';
-import { addProduct, getProducts, deleteProduct, uploadProductImage } from '@/api/services/productApi';
+import { addProduct, getProducts, deleteProduct } from '@/api/services/productApi';
 import { productsError } from '@/app/slices/errorSlice';
 import { loadingProducts } from '@/app/slices/loadingSlice';
 import {
@@ -11,7 +11,7 @@ import {
   delProductSuccess,
 } from '@/app/slices/productSlice';
 import { IProductRes, ISaga } from '@/types/types';
-import { productData } from '@/utils/helpers';
+
 
 
 function* handleError(err: any) {
@@ -35,19 +35,7 @@ function* productsSaga({ type, payload }: ISaga) {
     case addProductStart.type:
       try {
         yield put(loadingProducts(true));
-        const productImageUrl: string = yield call(uploadProductImage, payload.image, payload.token);
-        payload.image = productImageUrl;
-        if (payload.subImages.length > 0) {
-          let productSubImagesUrl: string[] = [];
-          for (let img of payload.subImages) {
-            const uplaodedImageUrl: string = yield call(uploadProductImage, img, payload.token);
-            productSubImagesUrl.push(uplaodedImageUrl);
-          }
-
-          payload.subImages = productSubImagesUrl;
-        }
-
-        const product: IProductRes = yield call(addProduct, productData(payload), payload.token);
+        const product: IProductRes = yield call(addProduct, payload.data, payload.token);
         yield put(addProductSuccess(product));
         yield put(loadingProducts(false));
       } catch (err) {

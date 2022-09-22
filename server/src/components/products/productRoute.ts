@@ -1,6 +1,6 @@
 import { isAdmin, isAuthenticated } from '@/middlewares/auth.middleware';
 import { isValidProduct } from '@/middlewares/product.middleware';
-import { upload, uploader } from '@/middlewares/upload.middleware';
+import { deleteFile, upload, uploader } from '@/middlewares/firebase.middleware';
 import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
 import productController from './productsController';
@@ -25,7 +25,7 @@ class ProductsRoute implements Routes {
       .get(productController.getProductBySlug)
       .patch(isAuthenticated, isAdmin, productController.updateProduct);
 
-    this.router.route(`${this.path}:id`).delete(isAuthenticated, isAdmin, productController.deleteProduct);
+    this.router.route(`${this.path}:id`).delete(isAuthenticated, isAdmin, deleteFile,  productController.deleteProduct);
   }
 }
 

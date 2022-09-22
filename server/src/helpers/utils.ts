@@ -44,4 +44,6 @@ const userInfo = (user: IUser, token: string) => ({
   token,
 });
 
-export { makeResJson, generateToken, userInfo };
+const refFromURL = (URL) => decodeURIComponent(URL.split('/').pop().split('?')[0])
+
+export { makeResJson, generateToken, userInfo, refFromURL };

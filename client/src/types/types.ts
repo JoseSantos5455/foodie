@@ -45,6 +45,7 @@ export interface IReview {
 
 export interface ICategory {
   name: string;
+  slug: string;
   image?: string;
   parent?: string;
   _id?: string;

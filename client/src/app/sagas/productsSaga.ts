@@ -11,6 +11,7 @@ import {
   delProductSuccess,
 } from '@/app/slices/productSlice';
 import { IProductRes, ISaga } from '@/types/types';
+import {toast} from 'react-hot-toast'
 
 
 
@@ -38,6 +39,7 @@ function* productsSaga({ type, payload }: ISaga) {
         const product: IProductRes = yield call(addProduct, payload.data, payload.token);
         yield put(addProductSuccess(product));
         yield put(loadingProducts(false));
+        yield toast.success('product addded successfuly')
       } catch (err) {
         yield handleError(err);
       }

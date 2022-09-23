@@ -52,10 +52,11 @@ export const uploader = multer({
 });
 
 export async function upload(req: MulterRequest, res: Response, next: NextFunction): Promise<any> {
-  if (!req.file) {
+  if (!req.file.category && !req.file) {
     res.status(404).json({ msg: 'No image file submitted' });
     return;
   }
+  if(req.file.category && !req.file) return next()
 
   try {
     const blob = bucket.file(req.file.originalname);

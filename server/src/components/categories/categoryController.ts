@@ -1,11 +1,12 @@
 import { makeResJson } from '@/helpers/utils';
+import { MulterRequest } from '@/types/types';
 import { NextFunction, Request, Response } from 'express';
 import categoryService from './categoryService';
 
 class CategoryController {
-  async addCategory(req: Request, res: Response, next: NextFunction) {
+  async addCategory(req: MulterRequest, res: Response, next: NextFunction) {
     try {
-      const createdCategory = await categoryService.addCategory(req.body);
+      const createdCategory = await categoryService.addCategory(req.body, req.file.firebaseUrl);
       res.status(200).json(makeResJson(createdCategory));
     } catch (err) {
       next(err);

@@ -2,7 +2,7 @@ import Category, { ICategory } from './category';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 
 class CategoryService {
-  async addCategory(category: ICategory): Promise<ICategory> {
+  async addCategory(category: ICategory, imageUrl: string): Promise<ICategory> {
     try {
       const categoryParentId = category.parent ? category.parent : null;
       const {slug} = category
@@ -10,6 +10,9 @@ class CategoryService {
       if (categoryExists) {
         throw new ErrorHandler(400, 'Category with this name already exists');
       }
+      if(!category.parent && !imageUrl) throw new ErrorHandler(500, 'Failed to upload Category image');
+
+      if(imageUrl) category.image = imageUrl;
 
       const createdCategory = await Category.create(category);
 
@@ -44,7 +47,7 @@ class CategoryService {
 
   async getParentCategories(): Promise<ICategory[]> {
     try {
-      const categories = await Category.find({ parent: null }).select('name image');
+      const categories = await Category.find({ parent: null }).select('name image slug');
 
       if (!categories) {
         throw new ErrorHandler(404, 'no category was found');

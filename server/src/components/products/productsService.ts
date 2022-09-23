@@ -115,7 +115,7 @@ class ProductService {
 
   async searchFilters(queryString: any): Promise<IProduct[]> {
     try {
-      const features = new APIFilters(Product.find(), queryString).filtreing();
+      const features = await new APIFilters(Product.find(), queryString).filtreing();
 
       const products = await features.query;
 

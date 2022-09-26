@@ -7,6 +7,7 @@ export const CHECKOUT_STEP_1 = '/order-summary';
 export const CHECKOUT_STEP_2 = '/billing-details';
 export const CHECKOUT_STEP_3 = '/payment';
 export const SHOP = '/shop';
+export const SEARCH = '/search/:searchWord'
 // PROFILE ROUTES
 export const PROFILE_DASHBOARD = '/profile';
 export const PURCHASE_HISTORY = 'purchase-history';

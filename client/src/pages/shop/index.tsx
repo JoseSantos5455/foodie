@@ -9,7 +9,7 @@ import Loading from '@/components/loaders/Loading';
 
 const Shop = () => {
   const location = useLocation() 
-  const {products, isLoading, isError} = useSearch(`${location.search}`)
+  const {products, isLoading, isError} = useSearch(`/products/shop/${location.search}`)
  
 
   return (

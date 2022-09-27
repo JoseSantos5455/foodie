@@ -10,19 +10,7 @@ const ProductList = ({ products, hasBtn }: IProductList) => {
   return (
     <>
       {products.length > 0 &&
-        products.map((product) => (
-          <ProductItem
-            key={product._id}
-            title={product.title}
-            originalPrice={product.pricing.originalPrice}
-            discountPercentage={product.pricing.discountPercentage}
-            image={product.image}
-            id={product._id}
-            rating={product.rating}
-            hasBtn={hasBtn}
-            slug={product.slug}
-          />
-        ))}
+        products.map((product) => <ProductItem key={product._id} product={product} hasBtn={hasBtn} />)}
     </>
   );
 };

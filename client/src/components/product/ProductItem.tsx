@@ -4,52 +4,26 @@ import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import useCart from '@/utils/hooks/useCart';
 import Button from '@/components/UI/Button';
 import PlusMinusBtns from '@/components/UI/PlusMinusBtns';
-import { calculateDiscount } from '@/utils/helpers';
+import { formCartItem } from '@/utils/helpers';
 import useWishlist from '@/utils/hooks/useWishlist';
+import { IProductRes } from '@/types/types';
 
 export interface IProductItem {
-  title: string;
-  originalPrice: number;
-  discountPercentage?: number;
-  rating: number;
-  image: string;
-  id: string;
+  product: IProductRes;
   hasBtn?: boolean;
-  slug: string;
 }
 
-const ProductItem = ({
-  title,
-  originalPrice,
-  discountPercentage,
-  image,
-  id,
-  rating,
-  hasBtn = false,
-  slug,
-}: IProductItem) => {
+const ProductItem = ({ product, hasBtn = false }: IProductItem) => {
   const { isItemInCart, onAddToCart } = useCart();
   const { isItemInWish, onWishItem, onRemoveItem } = useWishlist();
-
-  const formCartItem = () => {
-    const discountPrice = calculateDiscount(originalPrice, discountPercentage);
-    const cartItem = {
-      title,
-      slug,
-      productId: id,
-      image,
-      price: discountPrice,
-      qty: 1,
-    };
-    return cartItem;
-  };
+  const { image, _id, pricing, slug, rating, title } = product;
   const handleAddToCart = () => {
-    const cartItem = formCartItem();
+    const cartItem = formCartItem(product);
     onAddToCart(cartItem);
   };
 
   const onWish = () => {
-    onWishItem(formCartItem());
+    onWishItem(formCartItem(product));
   };
 
   return (
@@ -65,32 +39,32 @@ const ProductItem = ({
           <h3 className="font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden h-6 w-32  text-base">
             {title}
           </h3>
-          {!isItemInWish(id) && (
+          {!isItemInWish(_id) && (
             <span className="cursor-pointer" onClick={onWish}>
               <HeartOutlined className="text-primaryDark" />
             </span>
           )}
-          {isItemInWish(id) && (
-            <span onClick={() => onRemoveItem(id)}>
+          {isItemInWish(_id) && (
+            <span onClick={() => onRemoveItem(_id)}>
               <HeartFilled className="text-red-600" />
             </span>
           )}
         </div>
 
         <div className="flex items-center justify-between">
-          <h5 className="font-semibold text-lg">{originalPrice} $</h5>
+          <h5 className="font-semibold text-lg">{pricing.originalPrice} $</h5>
           <div className="flex items-center">
             <RatingView fillColor={'#fed900'} className="contents" ratingValue={rating} size={18} />
           </div>
         </div>
         {hasBtn && (
           <div className="mt-4 p-3  transition-all duration-300">
-            {!isItemInCart(id) && (
+            {!isItemInCart(_id) && (
               <Button theme="btn-primary" className="w-full" onClick={handleAddToCart}>
                 Add to cart
               </Button>
             )}
-            {isItemInCart(id) && <PlusMinusBtns theme="btn-primary" id={id} />}
+            {isItemInCart(_id) && <PlusMinusBtns theme="btn-primary" id={_id} />}
           </div>
         )}
       </div>

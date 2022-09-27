@@ -36,7 +36,6 @@ const CartBtn = ({ product, selectedSize, selectedColor }: CartBtnProps) => {
       : null
     : null;
   const handleAddVariant = () => {
-    console.log('adding');
     let variant = formVariant(selectedVariant, selectedSize, selectedColor);
     if (variant) {
       onAddVariant(_id, variant);

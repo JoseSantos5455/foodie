@@ -16,15 +16,14 @@ export const paymentIcons = [
   },
 ];
 
-export const shoeSizes = [
-  { value: 20, label: 20 },
-  { value: 21, label: 21 },
-  { value: 23, label: 23 },
-  { value: 24, label: 24 },
-  { value: 26, label: 26 },
-  { value: 30, label: 30 },
-  { value: 32, label: 32 },
-  { value: 34, label: 34 },
+export const productSizes = [
+  { value: '0-3', label: '0-3 Months' },
+  { value: '3-6', label: '0-6 Months' },
+  { value: '6-12', label: '6-12 Months' },
+  { value: '12-18', label: '12-18 Months' },
+  { value: '18-24', label: '18-24 Months' },
+  { value: '24-30', label: '24-30 Months' },
+  { value: '30-36', label: '30-36 Months' },
 ];
 
 export const productColors = [

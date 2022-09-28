@@ -11,7 +11,7 @@ const Search = () => {
     <section className="py-10">
       {isLoading && <Loading />}
       <div className="flex xl:grid xl:grid-cols-5 gap-2 xl:overflow-x-hidden overflow-x-scroll">
-      {products?.length > 0 && products.length > 0 && <ProductList products={products} hasBtn />}
+      {!isError && products.length > 0 && <ProductList products={products} hasBtn />}
       </div>
     </section>
   );

@@ -26,7 +26,7 @@ export interface IProductRes extends Omit<IProduct, 'category'> {
   reviews: IReview[];
   rating: number;
   numReviews: number;
-  category: ICategory;
+  category: string;
 }
 
 export interface IError {
@@ -90,8 +90,8 @@ export interface IOrderRes extends IOrder {
   orderStatus: string;
 }
 
-export interface IOrderItems extends  Omit<ICart, 'variants'> {
-  variants?: IVariant[]
+export interface IOrderItems extends Omit<ICart, 'variants'> {
+  variants?: IVariant[];
 }
 
 export interface ILoginCredentiels {
@@ -114,17 +114,21 @@ export interface ISaga {
   payload: any;
 }
 
-
 export interface IVariant {
-  key: string,
-  color: string | null,
-  size: string | null,
-  qty: number
+  key: string;
+  color: string | null;
+  size: string | null;
+  qty: number;
 }
 
-
-export interface ICartItem extends Omit <ICart, 'variants'>{
+export interface ICartItem extends Omit<ICart, 'variants'> {
   variant: IVariant | null;
 }
 
-
+export interface IProductForm extends Omit<IProduct, 'pricing' | 'specs'> {
+  countryOfProduction: string;
+  weight: number;
+  model: string;
+  originalPrice: number;
+  discountPercentage: number;
+}

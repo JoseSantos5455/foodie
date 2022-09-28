@@ -4,14 +4,15 @@ import Button from '@/components/UI/Button';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import Select from 'react-select';
-import { productColors, shoeSizes } from '@/utils/data';
+import { MultiSelect } from 'react-multi-select-component';
+import { productColors, productSizes } from '@/utils/data';
 import { useAppSelector } from '@/app/store';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '@/utils/formValidation';
 import Loading from '@/components/loaders/Loading';
 import { formProductData } from '@/utils/helpers';
+import { IProductForm } from '@/types/types';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -32,22 +33,16 @@ const AddProduct = () => {
     handleSubmit,
     reset,
     formState: { isDirty, errors },
-  } = useForm({
+  } = useForm<IProductForm>({
     resolver: yupResolver(productSchema),
   });
-  const [color, setColors] = useState([]);
+  const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
-  const onSizeChange = (selectedSizes: any) =>
-    setSizes(selectedSizes.map((size: { value: string; label: string }) => size.value));
-
-  const onColorChange = (selectedColors: any) =>
-    setColors(selectedColors.map((color: { value: string; label: string }) => color.value));
-
+ 
   const onSubmit = (data: any) => {
-    data.color = color;
-    data.sizes = sizes;
+    if(colors.length > 0) data.color = colors;
+    if(sizes.length > 0) data.sizes = sizes;
     const formData = formProductData(data); 
-    
     dispatch(addProductStart({data: formData, token}));
   };
 
@@ -104,10 +99,10 @@ const AddProduct = () => {
                       {cat.name}
                     </option>
                   ))}
-                <div className="mt-1">
+              </select>
+              <div className="mt-1">
                   <span className="text-red-600">{errors?.category?.message}</span>
                 </div>
-              </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <span className="text-md">
                   <CaretDownOutlined />
@@ -267,7 +262,7 @@ const AddProduct = () => {
               <input
                 className="bg-gray-200 self-center appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
-                {...register('production country')}
+                {...register('countryOfProduction')}
               />
             </div>
           </div>
@@ -278,13 +273,13 @@ const AddProduct = () => {
               </label>
             </div>
             <div className="col-span-4">
-              <Select
+              <MultiSelect
                 className=" self-center appearance-none w-full text-gray-700 leading-tight focus:outline-none  focus:border-purple-500"
-                isMulti
-                onChange={onColorChange}
-                defaultValue={productColors[0]}
-                name="colors"
+                onChange={setColors}
+                value={colors}
                 options={productColors}
+                labelledBy={"Select"}
+                isCreatable={true}
               />
             </div>
           </div>
@@ -296,13 +291,13 @@ const AddProduct = () => {
               </label>
             </div>
             <div className="col-span-4">
-              <Select
+              <MultiSelect
                 className=" self-center appearance-none w-full text-gray-700 leading-tight focus:outline-none  focus:border-purple-500"
-                isMulti
-                onChange={onSizeChange}
-                defaultValue={shoeSizes[0]}
-                name="sizes"
-                options={shoeSizes}
+                onChange={setSizes}
+                value={sizes}
+                options={productSizes}
+                labelledBy={"Select"}
+                isCreatable={true}
               />
             </div>
           </div>

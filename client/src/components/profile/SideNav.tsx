@@ -1,10 +1,17 @@
-import { HomeOutlined, DollarOutlined, IdcardOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  HomeOutlined,
+  DollarOutlined,
+  IdcardOutlined,
+  HeartOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { logOut } from '@/app/slices/authSlice';
 import { NavLink } from 'react-router-dom';
 import * as ROUTES from '@/utils/routes';
 import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import '@/styles/pages/profile.css';
+import {AiFillEdit} from 'react-icons/ai'
 
 const profileRoutes = [
   {
@@ -49,9 +56,14 @@ const SideNav = ({ dispatch, username = null }: any) => {
         <div className="flex justify-center">
           <div className="lg:py-10 py-4">
             <div className="lg:mb-8 lg:text-center lg:block flex justify-between lg:space-x-0 space-x-6 items-center">
-              <span className="text-2xl mb-2 mx-auto  flex items-center justify-center lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
+              <div className="relative w-max m-auto">
+              <span className="inline-block text-2xl mb-2 mx-auto lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
                 <UserOutlined />
-              </span>
+                </span>
+                <span className="bottom-2 -right-2 absolute  w-6 h-6 flex items-center justify-center bg-black border-2 border-white text-white rounded-full">
+                  <AiFillEdit />
+                </span>
+              </div>
 
               <h3 className="font-bold text-base font-secondary capitalize">{username ? username : 'Customer'}</h3>
             </div>
@@ -68,7 +80,7 @@ const SideNav = ({ dispatch, username = null }: any) => {
                       }
                       to={route}
                     >
-                      <span className=" contents">{icon}</span>
+                      <span className="contents">{icon}</span>
                       <span>{name}</span>
                     </NavLink>
                   )}

@@ -1,9 +1,10 @@
 import { ICart } from '@/app/slices/cartSlice';
+import { IOrderItems } from '@/types/types';
 import { Link } from 'react-router-dom';
 // import Button from 'components/UI/Button';
 
 type Props = {
-  orderItem: ICart;
+  orderItem: ICart | IOrderItems;
   delivered: boolean;
 };
 

@@ -6,6 +6,7 @@ import logo from '@/assets/logo.png';
 import { useAppSelector } from '@/app/store';
 import Button from './Button';
 import MobileNav from './MobileNav';
+import { countCartItems } from '@/utils/helpers';
 
 const Navbar = () => {
   const { cart, auth } = useAppSelector((state) => ({
@@ -28,7 +29,7 @@ const Navbar = () => {
                 <span className="relative text-primaryDark hover:text-primary text-xl">
                   <ShoppingOutlined />
                   <span className="absolute  top-0 rounded-full bg-purpleBeta w-4 h-4 right-2 p-0 m-0 text-white font-main text-xs  leading-tight text-center">
-                    {cart.length}
+                    {countCartItems(cart) || 0}
                   </span>
                 </span>
               </Link>

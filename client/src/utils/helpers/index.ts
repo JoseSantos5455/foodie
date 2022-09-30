@@ -106,3 +106,12 @@ export const formOrderItems = (cart: ICart[]): (ICart | IOrderItems)[] =>
       return { ...item, variants: Object.values(item.variants) };
     } else return item;
   });
+
+export const countCartItems = (cart: ICart[]) => {
+  if (cart.length !== 0) {
+    return cart
+      .reduce((sum: number, curr: ICart) => {
+        return sum + curr.qty;
+      }, 0)
+  }
+};

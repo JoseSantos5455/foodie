@@ -73,6 +73,20 @@ class UserService{
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
+  async uploadAvatar(avatar: string, id: string){
+    try {
+      const user = await User.findById(id)
+      if(!user) throw new ErrorHandler(404, 'no user found with this id');
+      if (!avatar) {
+        throw new ErrorHandler(400, 'Failed to upload avatar image');
+      }
+      user.avatar = avatar
+      const updatedUser = user.save()
+      return updatedUser
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
 }
 
 export default new UserService();

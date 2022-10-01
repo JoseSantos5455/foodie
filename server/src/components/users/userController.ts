@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import userService from './userService';
 import { makeResJson, userInfo } from '@/helpers/utils';
 import { generateToken } from '@/helpers/utils';
+import { MulterRequest } from '@/types/types';
 
 class UserController {
   async signUp(req: Request, res: Response, next: NextFunction) {
@@ -40,6 +41,16 @@ class UserController {
 
       const token = generateToken(updatedProfile._id, updatedProfile.email);
       res.status(200).json(makeResJson(userInfo(updatedProfile, token)));
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async uploadAvatar(req: MulterRequest, res: Response, next: NextFunction) {
+    try {
+      const updatedUser = await userService.uploadAvatar(req.file.firebaseUrl, req.user.id);
+      const token = generateToken(updatedUser._id, updatedUser.email);
+      res.status(200).json(makeResJson(userInfo(updatedUser, token)));
     } catch (err) {
       next(err);
     }

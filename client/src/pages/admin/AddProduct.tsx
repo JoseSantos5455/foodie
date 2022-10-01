@@ -11,7 +11,7 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '@/utils/formValidation';
 import Loading from '@/components/loaders/Loading';
-import { formProductData } from '@/utils/helpers';
+import { formFormData } from '@/utils/helpers';
 import { IProductForm } from '@/types/types';
 
 const AddProduct = () => {
@@ -38,12 +38,12 @@ const AddProduct = () => {
   });
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
- 
+
   const onSubmit = (data: any) => {
-    if(colors.length > 0) data.color = colors;
-    if(sizes.length > 0) data.sizes = sizes;
-    const formData = formProductData(data); 
-    dispatch(addProductStart({data: formData, token}));
+    if (colors.length > 0) data.color = colors;
+    if (sizes.length > 0) data.sizes = sizes;
+    const formData = formFormData(data);
+    dispatch(addProductStart({ data: formData, token }));
   };
 
   return (
@@ -101,8 +101,8 @@ const AddProduct = () => {
                   ))}
               </select>
               <div className="mt-1">
-                  <span className="text-red-600">{errors?.category?.message}</span>
-                </div>
+                <span className="text-red-600">{errors?.category?.message}</span>
+              </div>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <span className="text-md">
                   <CaretDownOutlined />
@@ -278,7 +278,7 @@ const AddProduct = () => {
                 onChange={setColors}
                 value={colors}
                 options={productColors}
-                labelledBy={"Select"}
+                labelledBy={'Select'}
                 isCreatable={true}
               />
             </div>
@@ -296,7 +296,7 @@ const AddProduct = () => {
                 onChange={setSizes}
                 value={sizes}
                 options={productSizes}
-                labelledBy={"Select"}
+                labelledBy={'Select'}
                 isCreatable={true}
               />
             </div>

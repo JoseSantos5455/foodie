@@ -32,6 +32,7 @@ const Home = lazy(() => import('@/pages/home'));
 const NotFound = lazy(() => import('@/pages/notFound'));
 const AllOrders = lazy(() => import('@/pages/admin/AllOrders'));
 const OrderDetail = lazy(() => import('@/pages/admin/OrderDetail'));
+const UploadAvatar = lazy(() => import('@/pages/profile/UploadAvatar'));
 
 const AppRouter = () => {
   return (
@@ -178,6 +179,14 @@ const AppRouter = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <AddReview />
+              </Suspense>
+            }
+          />
+          <Route
+            path={ROUTES.UPLOAD_AVATAR}
+            element={
+              <Suspense fallback={<Loading />}>
+                <UploadAvatar />
               </Suspense>
             }
           />

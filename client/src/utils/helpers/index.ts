@@ -49,17 +49,16 @@ export const displayTime = (timestamp: string) => {
   return `${monthNames[monthIndex]} ${day}, ${year} at ${hour}`;
 };
 
-export const formProductData = (data: any): FormData => {
+export const formFormData = (data: any): FormData => {
   const formData = new FormData();
   for (const key in data) {
     if (key === 'image') {
       formData.append(key, data[key][0]);
-    }else if(key === 'originalPrice' || key === 'discountPercentage'){
-        formData.append(`pricing[${key}]`, data[key]);
-    }else if(key === 'countryOfProduction' || key === 'weight' || key === 'model'){
-        formData.append(`specs[${key}]`, data[key]);
-    }
-     else {
+    } else if (key === 'originalPrice' || key === 'discountPercentage') {
+      formData.append(`pricing[${key}]`, data[key]);
+    } else if (key === 'countryOfProduction' || key === 'weight' || key === 'model') {
+      formData.append(`specs[${key}]`, data[key]);
+    } else {
       formData.append(key, data[key]);
     }
   }
@@ -109,9 +108,8 @@ export const formOrderItems = (cart: ICart[]): (ICart | IOrderItems)[] =>
 
 export const countCartItems = (cart: ICart[]) => {
   if (cart.length !== 0) {
-    return cart
-      .reduce((sum: number, curr: ICart) => {
-        return sum + curr.qty;
-      }, 0)
+    return cart.reduce((sum: number, curr: ICart) => {
+      return sum + curr.qty;
+    }, 0);
   }
 };

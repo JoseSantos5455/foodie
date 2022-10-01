@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { SUPPORTED_FORMATS, FILE_SIZE } from './helpers/constants';
 
 export const loginSchema = Yup.object().shape({
   email: Yup.string().required('this field is required').email('please enter a valid email'),
@@ -47,3 +48,13 @@ export const productSchema = Yup.object().shape({
   countInStock: Yup.number().typeError('must be a number').required('this field is required'),
 });
 
+export const imageUploadSchema = Yup.object().shape({
+  image: Yup.mixed()
+    .test('required', 'You need to provide an image', (value) => {
+      return value && value.length;
+    })
+    .test('fileSize', 'The image is too large max is 1mb', (value, context) => {
+      return value && value[0] && value[0].size <= FILE_SIZE;
+    })
+    .test('fileType', 'Unsupported File Format', (value) => SUPPORTED_FORMATS.includes(value[0].type)),
+});

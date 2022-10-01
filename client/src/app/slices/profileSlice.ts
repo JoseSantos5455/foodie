@@ -16,13 +16,25 @@ const profileSlice = createSlice({
       return action.payload;
     },
 
+    uploadAvatarStart: (state, action: PayloadAction<{ token: string; avatar: FormData }>) => {},
+    uploadAvatarSuccess: (state, action: PayloadAction<IUser>) => {
+      return action.payload;
+    },
+
     clearProfile: () => {
       return {} as IUser;
     },
   },
 });
 
-export const { getProfileStart, getProfileSuccess, updateProfileStart, updateProfileSuccess, clearProfile } =
-  profileSlice.actions;
+export const {
+  getProfileStart,
+  getProfileSuccess,
+  updateProfileStart,
+  updateProfileSuccess,
+  clearProfile,
+  uploadAvatarStart,
+  uploadAvatarSuccess,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

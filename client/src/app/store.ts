@@ -6,6 +6,7 @@ import rootSaga from './sagas/rootSaga';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { addCategoryStart } from './slices/categorySlice';
 import { addProductStart } from './slices/productSlice';
+import { uploadAvatarStart } from './slices/profileSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,7 +15,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [addCategoryStart.type, addProductStart.type],
+        ignoredActions: [addCategoryStart.type, addProductStart.type, uploadAvatarStart.type],
       },
     }).concat(sagaMiddleware, logger),
 });

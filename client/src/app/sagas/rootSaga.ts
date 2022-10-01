@@ -5,7 +5,7 @@ import productsSaga from './productsSaga';
 import categorySaga from './categorySaga';
 import { loginStart, logOut, signUpStart } from '@/app/slices/authSlice';
 import authSaga from './authSaga';
-import { getProfileStart, updateProfileStart } from '@/app/slices/profileSlice';
+import { getProfileStart, updateProfileStart, uploadAvatarStart } from '@/app/slices/profileSlice';
 import profileSaga from './profileSaga';
 import {
   addOrderStart,
@@ -22,7 +22,7 @@ function* rootSaga() {
   yield takeLatest([getProductsStart.type, addProductStart.type, delProductStart.type], productsSaga);
   yield takeLatest([addCategoryStart.type, getCategoriesStart.type], categorySaga);
   yield takeLatest([signUpStart.type, loginStart.type, logOut.type], authSaga);
-  yield takeLatest([getProfileStart.type, updateProfileStart.type], profileSaga);
+  yield takeLatest([getProfileStart.type, updateProfileStart.type, uploadAvatarStart.type], profileSaga);
   yield takeLatest(
     [addOrderStart.type, getOrderStart.type, adminGetOrderStart, updateOrderStatusStart, deleteOrderStart],
     orderSaga,

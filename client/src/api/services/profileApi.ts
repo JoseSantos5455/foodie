@@ -15,3 +15,11 @@ export const updateProfile = (token: string, updates: Partial<IUser>) =>
     headers: { authorization: `Bearer ${token}` },
     data: updates,
   });
+
+export const uploadAvatar = (token: string, avatar: FormData) =>
+  httpRequest({
+    method: 'PATCH',
+    url: '/users/avatar',
+    headers: { authorization: `Bearer ${token}` },
+    data: avatar,
+  });

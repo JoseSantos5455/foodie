@@ -40,7 +40,7 @@ html {
   }
 
   .btn-small {
-    @apply  w-6 h-6 flex items-center justify-center text-xl capitalize;
+    @apply w-6 h-6 flex items-center justify-center text-xl capitalize;
   }
 
   .btn-rounded {
@@ -48,5 +48,23 @@ html {
   }
   .btn-outline-rounded {
     @apply border-2 px-6 py-1 text-primary border-primary hover:bg-primaryHover hover:text-white hover:border-primaryHover  rounded-full;
+  }
+}
+
+.is-img-loading {
+  opacity: 0;
+}
+
+.is-img-loaded {
+  animation: fadeIn 0.3s ease;
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

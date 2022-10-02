@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import '@/styles/pages/profile.css';
 import { AiFillEdit } from 'react-icons/ai';
+import ImgLoader from '../UI/ImgLoader';
 
 const profileRoutes = [
   {
@@ -51,8 +52,8 @@ const SideNav = ({ dispatch, username = null, avatar = undefined }: any) => {
           <div className="lg:py-10 py-4">
             <div className="lg:mb-8 lg:text-center lg:block flex justify-between lg:space-x-0 space-x-6 items-center">
               <div className="relative w-max m-auto">
-                <span className="inline-block text-2xl mb-2 mx-auto lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
-                  {avatar ? <img src={avatar} alt="avatar" className="rounded-full" /> : <UserOutlined />}
+                <span className="relative inline-block text-2xl mb-2 mx-auto lg:w-16 lg:h-16 w-10 h-10 rounded-full bg-gray-100">
+                  {avatar ? <ImgLoader src={avatar} alt="avatar" className="rounded-full" /> : <UserOutlined />}
                 </span>
                 <Link
                   to={ROUTES.UPLOAD_AVATAR}

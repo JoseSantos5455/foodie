@@ -30,7 +30,7 @@ const ProductItem = ({ product, hasBtn = false }: IProductItem) => {
     <div>
       <div className="p-2 bg-white shadow-sm hover:shadow-lg rounded-lg xl:self-start xl:w-auto w-72 xl:h-auto">
         <Link to={`/${slug}`}>
-          <div className="w-full xl:h-60 " style={{ backgroundImage: `url${image}` }}>
+          <div className="w-full xl:h-60">
             <img src={image} alt="baby" />
           </div>
         </Link>

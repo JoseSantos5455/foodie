@@ -36,6 +36,7 @@ function* profileSaga({ type, payload }: ISaga) {
         const profile: IUser = yield call(updateProfile, payload.token, payload);
         yield put(updateProfileSuccess(profile));
         yield put(loadingProfile(false));
+        yield toast.success('profile updated successfully');
       } catch (err) {
         handleError(err);
       }

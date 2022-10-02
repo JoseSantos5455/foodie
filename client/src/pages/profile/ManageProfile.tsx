@@ -4,7 +4,7 @@ import { updateProfileStart } from '@/app/slices/profileSlice';
 import { compareObjs } from '@/utils/helpers';
 import { IUser } from '@/types/types';
 import { CustomDialog } from 'react-st-modal';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from '@/utils/formValidation';
@@ -15,6 +15,7 @@ import Button from '@/components/UI/Button';
 const ManageProfile = () => {
   const userProfile = useUserProfile();
   const profile = userProfile[0];
+  const [disabled, setDisabled] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -47,6 +48,7 @@ const ManageProfile = () => {
   }, [profile, reset, defaultValues]);
 
   const onSubmit = async (data: Partial<IUser>) => {
+    setDisabled(true);
     const updates = compareObjs(data, defaultValues);
     if (Object.keys(updates).length !== 0) {
       if (updates.email) {
@@ -77,14 +79,18 @@ const ManageProfile = () => {
       <div className=" max-w-screen-md mx-auto">
         <div className="border relative bg-gray-50 shadow-md border-gray-200 rounded p-4">
           <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-4 p-8 relative">
-            <div className="absolute -top-5 right-2 w-10 h-10 rounded-full flex-col text-white bg-black flex justify-center items-center">
+            <div
+              onClick={() => setDisabled(!disabled)}
+              className="absolute -top-5 cursor-pointer right-2 w-10 h-10 rounded-full flex-col text-white bg-black flex justify-center items-center"
+            >
               <EditOutlined />
               <span className="text-sm">Edit</span>
             </div>
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">Full Name</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="text"
                 placeholder="Your Name"
                 aria-label="Name"
@@ -97,7 +103,8 @@ const ManageProfile = () => {
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">Email</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="email"
                 placeholder="Your Email"
                 aria-label="email"
@@ -110,7 +117,8 @@ const ManageProfile = () => {
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">Phone</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="phone"
                 placeholder="Your phone number"
                 aria-label="phone"
@@ -123,7 +131,8 @@ const ManageProfile = () => {
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">City</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="text"
                 placeholder="Your city"
                 aria-label="city"
@@ -136,7 +145,8 @@ const ManageProfile = () => {
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">Address</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="text"
                 placeholder="Your address"
                 aria-label="address"
@@ -149,7 +159,8 @@ const ManageProfile = () => {
             <div>
               <label className="block text-sm text-primaryDark font-secondary mb-1">zip code</label>
               <input
-                className="w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
+                disabled={disabled}
+                className="disabled:cursor-not-allowed disabled:bg-gray-300 w-full px-5 py-2 focus:outline-none focus:border-primaryDark border text-gray-700 bg-gray-200 rounded"
                 type="text"
                 placeholder="Your postal code"
                 aria-label="postal code"
@@ -160,7 +171,12 @@ const ManageProfile = () => {
               </div>
             </div>
             <div className="md:col-span-2">
-              <Button type="submit" theme="btn-primary">
+              <Button
+                disabled={disabled}
+                type="submit"
+                theme="btn-primary"
+                className="disabled:cursor-not-allowed disabled:opacity-70"
+              >
                 update
               </Button>
             </div>

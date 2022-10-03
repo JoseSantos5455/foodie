@@ -29,7 +29,7 @@ const BillingDetails = lazy(() => import('@/pages/checkout/BillingDetails'));
 const OrderSummary = lazy(() => import('@/pages/checkout/OrderSummary'));
 const ProductDetails = lazy(() => import('@/pages/product'));
 const Home = lazy(() => import('@/pages/home'));
-const NotFound = lazy(() => import('@/pages/notFound'));
+const NotFound = lazy(() => import('@/pages/errors/NotFound'));
 const AllOrders = lazy(() => import('@/pages/admin/AllOrders'));
 const OrderDetail = lazy(() => import('@/pages/admin/OrderDetail'));
 const UploadAvatar = lazy(() => import('@/pages/profile/UploadAvatar'));

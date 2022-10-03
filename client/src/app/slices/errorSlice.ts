@@ -8,6 +8,7 @@ interface IErrorState {
   isErrorProfile: IError | null;
   isErrorOrder: IError | null;
   isErrorUsers: IError | null;
+  isErrorGlobal: IError | null;
 }
 
 const initialState: IErrorState = {
@@ -17,6 +18,7 @@ const initialState: IErrorState = {
   isErrorProfile: null,
   isErrorOrder: null,
   isErrorUsers: null,
+  isErrorGlobal: null,
 };
 
 const errorSlice = createSlice({
@@ -41,13 +43,24 @@ const errorSlice = createSlice({
     usersError: (state, action: PayloadAction<IError | null>) => {
       return { ...state, isErrorUsers: action.payload };
     },
+    globalError: (state, action: PayloadAction<IError | null>) => {
+      return { ...state, isErrorGlobal: action.payload };
+    },
     clearErrors: () => {
       return initialState;
     },
   },
 });
 
-export const { productsError, categoryError, authError, clearErrors, profileError, orderError, usersError } =
-  errorSlice.actions;
+export const {
+  productsError,
+  categoryError,
+  authError,
+  clearErrors,
+  profileError,
+  orderError,
+  usersError,
+  globalError,
+} = errorSlice.actions;
 
 export default errorSlice.reducer;

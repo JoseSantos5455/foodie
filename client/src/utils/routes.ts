@@ -7,10 +7,11 @@ export const CHECKOUT_STEP_1 = '/order-summary';
 export const CHECKOUT_STEP_2 = '/billing-details';
 export const CHECKOUT_STEP_3 = '/payment';
 export const SHOP = '/shop';
-export const SEARCH = '/search/:searchWord'
+export const SEARCH = '/search/:searchWord';
+export const SERVER_ERROR = '/server-error';
 // PROFILE ROUTES
 export const PROFILE_DASHBOARD = '/profile';
-export const UPLOAD_AVATAR = 'avatar'
+export const UPLOAD_AVATAR = 'avatar';
 export const PURCHASE_HISTORY = 'purchase-history';
 export const MANAGE_PROFILE = 'manage-profile';
 export const WISHLIST = 'whishlist';

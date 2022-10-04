@@ -1,11 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
 import { Toaster } from 'react-hot-toast';
+import { useAppSelector } from './app/store';
+import ErrorRouter from './router/ErrorRouter';
 
 function App() {
+  const globalError = useAppSelector((state) => state.errorState.isErrorGlobal);
   return (
     <BrowserRouter>
-      <AppRouter />
+      {globalError && (!globalError.statusCode || globalError?.statusCode >= 500) ? <ErrorRouter /> : <AppRouter />}
       <Toaster
         containerStyle={{
           top: 50,

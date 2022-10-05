@@ -12,6 +12,7 @@ import DetailsSkeleton from '@/components/loaders/DetailsSkeleton';
 import { useDispatch } from 'react-redux';
 import { addToWishlist } from '@/app/slices/wishlistSlice';
 import { formCartItem } from '@/utils/helpers';
+import SearchError from '@/components/UI/SearchError';
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -27,6 +28,7 @@ const ProductDetails = () => {
   return (
     <section className="py-10">
       {isLoading && <DetailsSkeleton />}
+      {!isLoading && isError && <SearchError />}
       {!isError && !isLoading && product && (
         <>
           <div className="lg:grid grid-cols-9 gap-2 bg-white shadow-md p-4 mb-8">

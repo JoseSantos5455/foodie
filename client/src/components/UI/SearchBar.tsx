@@ -16,11 +16,13 @@ const SearchBar = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<SearchType>();
 
   const onSubmit = (data: SearchType) => {
-    navigate(`/search/${data.searchWord}`)
-  } 
+    navigate(`/search/${data.searchWord}`);
+    reset();
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-4 sm:gap-2 lg:w-max w-full lg:justify-items-end gap-2">

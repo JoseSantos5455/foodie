@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+    <div className="min-h-screen min-w-screen fixed left-0 right-0 bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
       <div className="mx-auto max-w-max">
         <main className="sm:flex">
           <p className="bg-gradient-to-br from-primary to-purpleBeta bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
@@ -16,9 +16,9 @@ const NotFound = () => {
             </div>
             <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
               <Link to={HOME}>
-                <a className="inline-flex items-center rounded-md border border-transparent bg-primaryLight px-4 py-2 text-sm font-medium text-gray-700 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2">
+                <span className="inline-flex items-center rounded-md border border-transparent bg-primaryLight px-4 py-2 text-sm font-medium text-gray-700 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2">
                   Go back home
-                </a>
+                </span>
               </Link>
             </div>
           </div>

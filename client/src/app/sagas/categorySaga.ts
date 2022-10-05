@@ -6,14 +6,16 @@ import {
   getCategoriesStart,
   getCategoriesSuccess,
 } from '@/app/slices/categorySlice';
-import { categoryError } from '@/app/slices/errorSlice';
+import { categoryError, globalError } from '@/app/slices/errorSlice';
 import { loadingCategory } from '@/app/slices/loadingSlice';
 import { ICategory, ISaga } from '@/types/types';
 // import { uploadImage } from '@/api/firebase';
 
 function* handleError(err: any) {
   yield put(loadingCategory(false));
-  yield put(categoryError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(categoryError({ message: err.message }));
 }
 
 function* categorySaga({ type, payload }: ISaga) {

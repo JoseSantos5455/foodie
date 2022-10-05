@@ -9,13 +9,15 @@ import {
   uploadAvatarSuccess,
 } from '@/app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
-import { profileError } from '@/app/slices/errorSlice';
+import { globalError, profileError } from '@/app/slices/errorSlice';
 import { ISaga, IUser } from '@/types/types';
 import toast from 'react-hot-toast';
 
 function* handleError(err: any) {
   yield put(loadingProfile(false));
-  yield put(profileError({ message: err.error.message || 'Sorry, a server error accured please try again later' }));
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(profileError({ message: err.message }));
 }
 
 function* profileSaga({ type, payload }: ISaga) {

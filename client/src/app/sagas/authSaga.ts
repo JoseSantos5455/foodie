@@ -1,18 +1,19 @@
 import { signUp, login } from '@/api/services/authApi';
 import { signUpStart, signUpSuccess, loginStart, loginSuccess, logOut, clearAuth } from '@/app/slices/authSlice';
 import { clearCart } from '@/app/slices/cartSlice';
-import { authError } from '@/app/slices/errorSlice';
+import { authError, globalError } from '@/app/slices/errorSlice';
 import { loadingAuth } from '@/app/slices/loadingSlice';
 import { clearOrders } from '@/app/slices/orderSlice';
 import { clearProfile } from '@/app/slices/profileSlice';
 import { put, call } from 'redux-saga/effects';
-import { IUser, ISaga  } from '@/types/types';
-
+import { IUser, ISaga } from '@/types/types';
 
 function* handleError(err: any) {
   yield put(loadingAuth(false));
-  yield put(authError({ message: err?.error?.message || 'Sorry, a server error accured please try again later' }));
-} 
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(authError({ message: err.message }));
+}
 
 function* authSaga({ type, payload }: ISaga) {
   switch (type) {

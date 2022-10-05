@@ -1,5 +1,5 @@
 import { deleteUser, getUsers } from '@/api/services/usersApi';
-import { usersError } from '@/app/slices/errorSlice';
+import { globalError, usersError } from '@/app/slices/errorSlice';
 import { loadingUsers } from '@/app/slices/loadingSlice';
 import { delUsersStart, delUsersSuccess, getUsersStart, getUsersSuccess } from '@/app/slices/usersSlice';
 import { put, call } from 'redux-saga/effects';
@@ -7,7 +7,9 @@ import { ISaga, IUser } from '@/types/types';
 
 function* handleError(err: any) {
   yield put(loadingUsers(false));
-  yield put(usersError({ message: err.error.message || 'Sorry, a server error accured please try again later' }));
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(usersError({ message: err.message }));
 }
 
 function* usersSaga({ type, payload }: ISaga) {

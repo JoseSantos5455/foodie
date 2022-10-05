@@ -1,7 +1,7 @@
-import { ISaga,  IOrderRes } from '@/types/types';
+import { ISaga, IOrderRes } from '@/types/types';
 import { put, call } from 'redux-saga/effects';
 import { loadingOrder } from '@/app/slices/loadingSlice';
-import { orderError } from '@/app/slices/errorSlice';
+import { globalError, orderError } from '@/app/slices/errorSlice';
 import {
   addOrderStart,
   addOrderSuccess,
@@ -20,7 +20,9 @@ import toast from 'react-hot-toast';
 
 function* handleError(err: any) {
   yield put(loadingOrder(false));
-  yield put(orderError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(orderError({ message: err.message }));
 }
 
 function* orderSaga({ type, payload }: ISaga) {

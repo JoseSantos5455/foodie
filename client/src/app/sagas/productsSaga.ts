@@ -1,6 +1,6 @@
 import { call, put } from '@redux-saga/core/effects';
 import { addProduct, getProducts, deleteProduct } from '@/api/services/productApi';
-import { productsError } from '@/app/slices/errorSlice';
+import { globalError, productsError } from '@/app/slices/errorSlice';
 import { loadingProducts } from '@/app/slices/loadingSlice';
 import {
   getProductsStart,
@@ -11,13 +11,13 @@ import {
   delProductSuccess,
 } from '@/app/slices/productSlice';
 import { IProductRes, ISaga } from '@/types/types';
-import {toast} from 'react-hot-toast'
-
-
+import { toast } from 'react-hot-toast';
 
 function* handleError(err: any) {
   yield put(loadingProducts(false));
-  yield put(productsError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  if (err.status >= 500 || !err.status)
+    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(productsError({ message: err.message }));
 }
 
 function* productsSaga({ type, payload }: ISaga) {
@@ -39,7 +39,7 @@ function* productsSaga({ type, payload }: ISaga) {
         const product: IProductRes = yield call(addProduct, payload.data, payload.token);
         yield put(addProductSuccess(product));
         yield put(loadingProducts(false));
-        yield toast.success('product addded successfuly')
+        yield toast.success('product addded successfuly');
       } catch (err) {
         yield handleError(err);
       }

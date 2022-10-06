@@ -10,9 +10,9 @@ import { IUser, ISaga } from '@/types/types';
 
 function* handleError(err: any) {
   yield put(loadingAuth(false));
-  if (err.status >= 500 || !err.status)
-    yield put(globalError({ message: err.message || 'Sorry, a server error accured please try again later' }));
-  else yield put(authError({ message: err.message }));
+  if (err.status_code >= 500 || !err.status_code)
+    yield put(globalError({ message: err.error.message || 'Sorry, a server error accured please try again later' }));
+  else yield put(authError({ message: err.error.message }));
 }
 
 function* authSaga({ type, payload }: ISaga) {

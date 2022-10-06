@@ -18,8 +18,8 @@ export interface IProduct extends Document {
   sold: number;
   rating: number;
   numReviews: number;
-  size: string[];
-  color: string[];
+  size: string;
+  color: string;
   specs: {
     countryOfProduction: string;
     weight: number;

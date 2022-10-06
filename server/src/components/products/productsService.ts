@@ -3,8 +3,6 @@ import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import APIFilters from '@/helpers/filterAPI';
 
-
-
 class ProductService {
   async addProduct(product: IProduct, imageUrl: string): Promise<IProduct> {
     try {
@@ -19,6 +17,10 @@ class ProductService {
       }
 
       product.image = imageUrl;
+
+      if (product.color) product.color = JSON.parse(product.color);
+
+      if (product.size) product.size = JSON.parse(product.size);
 
       const createdProduct = await Product.create(product);
 

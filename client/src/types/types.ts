@@ -132,3 +132,8 @@ export interface IProductForm extends Omit<IProduct, 'pricing' | 'specs'> {
   originalPrice: number;
   discountPercentage: number;
 }
+
+export type SelectType = {
+  value: string;
+  label: string;
+};

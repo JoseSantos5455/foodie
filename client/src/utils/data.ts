@@ -32,7 +32,8 @@ export const productColors = [
   { value: '#0000FF', label: 'Blue' },
   { value: '#FF0000', label: 'Red' },
   { value: '#FFFF00', label: 'Yellow' },
-  { value: '#0000FF', label: 'Orange' },
-  { value: ' #00FF00', label: 'Green' },
+  { value: '#FFA500', label: 'Orange' },
+  { value: '#00FF00', label: 'Green' },
   { value: '#6a0dad', label: 'Purple' },
+  { value: '#FFC0CB', label: 'Pink' },
 ];

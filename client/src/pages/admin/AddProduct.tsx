@@ -12,7 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { productSchema } from '@/utils/formValidation';
 import Loading from '@/components/loaders/Loading';
 import { formFormData } from '@/utils/helpers';
-import { IProductForm } from '@/types/types';
+import { IProductForm, SelectType } from '@/types/types';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -36,12 +36,12 @@ const AddProduct = () => {
   } = useForm<IProductForm>({
     resolver: yupResolver(productSchema),
   });
-  const [colors, setColors] = useState([]);
-  const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState<SelectType[]>([]);
+  const [sizes, setSizes] = useState<SelectType[]>([]);
 
   const onSubmit = (data: any) => {
-    if (colors.length > 0) data.color = colors;
-    if (sizes.length > 0) data.sizes = sizes;
+    if (colors.length > 0) data.color = colors.map((color) => color.value);
+    if (sizes.length > 0) data.size = sizes.map((size) => size.value);
     const formData = formFormData(data);
     dispatch(addProductStart({ data: formData, token }));
   };

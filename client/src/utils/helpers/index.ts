@@ -55,9 +55,11 @@ export const formFormData = (data: any): FormData => {
     if (key === 'image') {
       formData.append(key, data[key][0]);
     } else if (key === 'originalPrice' || key === 'discountPercentage') {
-      formData.append(`pricing[${key}]`, data[key]);
+      formData.append(`pricing[${key}]`, data[key] || 0);
     } else if (key === 'countryOfProduction' || key === 'weight' || key === 'model') {
       formData.append(`specs[${key}]`, data[key]);
+    } else if (key === 'color' || key === 'size') {
+      formData.append(key, JSON.stringify(data[key]));
     } else {
       formData.append(key, data[key]);
     }

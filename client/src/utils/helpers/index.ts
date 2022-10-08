@@ -115,3 +115,5 @@ export const countCartItems = (cart: ICart[]) => {
     }, 0);
   }
 };
+
+export const isEmptyObj = (obj: any) => (!obj ? false : Object.values(obj).every((x) => x === null || x === ''));

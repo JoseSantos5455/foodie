@@ -11,7 +11,7 @@ import ProductList from '@/components/product/ProductList';
 import DetailsSkeleton from '@/components/loaders/DetailsSkeleton';
 import { useDispatch } from 'react-redux';
 import { addToWishlist } from '@/app/slices/wishlistSlice';
-import { formCartItem } from '@/utils/helpers';
+import { formCartItem, isEmptyObj } from '@/utils/helpers';
 import SearchError from '@/components/UI/SearchError';
 
 const ProductDetails = () => {
@@ -24,6 +24,8 @@ const ProductDetails = () => {
     const wishItem = formCartItem(product);
     dispatch(addToWishlist(wishItem));
   };
+
+  const isEmptySpecs = isEmptyObj(product?.specs);
 
   return (
     <section className="py-10">
@@ -40,11 +42,13 @@ const ProductDetails = () => {
               <ProductInfo onWish={onWish} product={product} />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className={`${!isEmptySpecs && 'grid md:grid-cols-2 gap-6'} mb-8`}>
             <div className="bg-white shadow-md p-4">
               <ReviewList reviews={product.reviews} rating={product.rating} numReviews={product.numReviews} />
             </div>
-            <div className=" bg-white shadow-md p-4">{product.specs && <ProductSpecs specs={product.specs} />}</div>
+            {!isEmptySpecs && (
+              <div className=" bg-white shadow-md p-4">{product.specs && <ProductSpecs specs={product.specs} />}</div>
+            )}
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white shadow-md p-4">

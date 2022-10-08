@@ -34,8 +34,8 @@ const SearchBar = () => {
           type="text"
           className="bg-gray-200  appearance-none border-2 border-gray-200 rounded w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none focus:border-primaryDark "
         />
-        <span className="absolute inline-flex top-1/2 left-0.5 text-2xl text-gray-400 transform -translate-y-1/2">
-          <SearchOutlined className="text-gray-500" />
+        <span className="absolute inline-flex top-1/2 left-1 text-2xl text-gray-400 transform -translate-y-1/2">
+          <SearchOutlined className="text-gray-600" />
         </span>
         <span className="text-red-500">{errors.searchWord && errors.searchWord.message}</span>
       </div>

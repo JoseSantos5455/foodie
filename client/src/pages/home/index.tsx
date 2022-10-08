@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         </div>
         {isLoadingProducts && <ProductSkeleton />}
         {isErrorProducts && <ErrorCard message={isErrorProducts.message} />}
-        <div className="flex xl:grid xl:grid-cols-5 gap-2 xl:overflow-x-hidden overflow-x-scroll">
+        <div className="flex xl:grid xl:grid-cols-5 gap-2 flex-wrap justify-center">
           {products.length > 0 && <ProductList products={products} />}
         </div>
       </section>

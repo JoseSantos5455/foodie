@@ -15,15 +15,6 @@ export const ProductShowcase = ({ images, image }: ShowCaseProps) => {
       thumbnailHeight: 100,
     },
   ];
-  images?.forEach((img) => {
-    const gallery = {
-      original: img,
-      thumbnail: img,
-      originalHeight: 400,
-      thumbnailHeight: 100,
-    };
-    galleryImages.push(gallery);
-  });
   return (
     <div className="w-full h-full">
       <ImageGallery showNav={false} showPlayButton={false} items={galleryImages} />

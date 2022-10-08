@@ -98,8 +98,7 @@ export interface ILoginCredentiels {
   email: string;
   password: string;
 }
-
-export interface IAccountCredentiels extends ILoginCredentiels {
+export interface ISignUpCredentiels extends ILoginCredentiels {
   fullName: string;
 }
 

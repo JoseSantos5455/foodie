@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Button from '@/components/UI/Button';
 import { useDispatch } from 'react-redux';
 import { getOrderStart } from '@/app/slices/orderSlice';
+import { HOME } from '@/utils/routes';
+import emptyOrder from '@/assets/empty-order.svg';
 
 const PurchaseHistory = () => {
   const userProfile = useUserProfile();
@@ -48,6 +50,19 @@ const PurchaseHistory = () => {
             </Link>
           ))}
       </div>
+      {orders?.length === 0 && (
+        <div className="flex items-center justify-center">
+          <div className="flex flex-col text-center space-y-4">
+            <img className="w-80 h-auto" src={emptyOrder} alt="empty order" />
+            <p className="text-secondary text-gray-600">There are no orders yet.</p>
+            <Link to={HOME}>
+              <span className="inline-flex items-center rounded-md border border-transparent  px-4 py-2 text-sm  text-white font-bold hover:bg-primaryHover bg-primary focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2">
+                Shop now
+              </span>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

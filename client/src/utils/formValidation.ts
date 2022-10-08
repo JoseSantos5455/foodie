@@ -3,7 +3,7 @@ import { SUPPORTED_FORMATS, FILE_SIZE } from './helpers/constants';
 
 export const loginSchema = Yup.object().shape({
   email: Yup.string().required('this field is required').email('please enter a valid email'),
-  password: Yup.string().required('this field is required').min(6, 'password must contain at least 6 characters'),
+  password: Yup.string().required('this field is required').min(8, 'password must contain at least 8 characters'),
 });
 
 export const signupSchema = Yup.object().shape({
@@ -12,7 +12,7 @@ export const signupSchema = Yup.object().shape({
     .min(4, 'must contain more than 4 letter')
     .max(16, 'your name must contain less than 16 letters'),
   email: Yup.string().required('this field is required').email('please enter a valid email'),
-  password: Yup.string().required('this field is required').min(6, 'password must contain at least 6 characters'),
+  password: Yup.string().required('this field is required').min(8, 'password must contain at least 8 characters'),
 });
 
 export const profileSchema = Yup.object().shape({

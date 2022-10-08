@@ -10,10 +10,13 @@ import '@fontsource/quicksand/400.css';
 import '@fontsource/quicksand/600.css';
 import '@fontsource/quicksand/700.css';
 import '@fontsource/lato';
+import ErrorBoundary from './modules/ErrorBoundary';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </Provider>,
   document.getElementById('root'),
 );

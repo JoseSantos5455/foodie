@@ -1,5 +1,5 @@
 import { ICart } from '@/app/slices/cartSlice';
-import { ICartItem, IOrderItems, IProduct, IProductRes } from '@/types/types';
+import { IOrderItems, IProductRes } from '@/types/types';
 
 export const calculateDiscount = (originalPrice: number, discountPercentage: number = 0) =>
   originalPrice - (originalPrice * discountPercentage) / 100;

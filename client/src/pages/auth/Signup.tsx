@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signupSchema } from '@/utils/formValidation';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '@/utils/routes';
-import { IAccountCredentiels } from '@/types/types';
+import { ISignUpCredentiels } from '@/types/types';
 import { signUpStart } from '@/app/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import UseAuth from './UseAuth';
@@ -21,14 +21,14 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ISignUpCredentiels>({
     resolver: yupResolver(signupSchema),
   });
 
   const dispatch = useDispatch();
   const isErrorAuth = useAppSelector((state) => state.errorState.isErrorAuth);
 
-  const onSubmit = (data: IAccountCredentiels) => {
+  const onSubmit = (data: ISignUpCredentiels) => {
     dispatch(signUpStart(data));
   };
 
@@ -101,7 +101,7 @@ const Signup = () => {
             </div>
           </form>
           <p className="font-secondary px-4 text-base  font-semibold">
-            Already have an acoount ?{' '}
+            Already have an acoount ?
             <Link to={LOGIN} className="underline">
               Login
             </Link>

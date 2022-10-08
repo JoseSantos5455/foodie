@@ -77,6 +77,7 @@ const SideNav = ({ dispatch, username = null, avatar = undefined }: any) => {
                         `flex items-center space-x-2 ${isActive ? 'text-primary' : 'text-primaryDark'}`
                       }
                       to={route}
+                      end
                     >
                       <span className="contents">{icon}</span>
                       <span>{name}</span>

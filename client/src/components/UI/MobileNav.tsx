@@ -7,7 +7,7 @@ import { Squash as Hamburger } from 'hamburger-react';
 import CategoryNav from './CategoryNav';
 import { useAppSelector } from '@/app/store';
 import CategorySkeleton from '@/components/loaders/CategorySkeleton';
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.png';
 
 type Props = {
   cartLength: number;
@@ -65,7 +65,7 @@ const MobileNav = ({ cartLength, auth }: Props) => {
 
         <h2 className="text-primary font-semibold mb-4">Our Categories</h2>
 
-        {categories.length > 0 && <CategoryNav categories={categories} />}
+        {categories.length > 0 && <CategoryNav setOpen={setOpen} categories={categories} />}
         {isLoadingCategory && <CategorySkeleton />}
         {isErrorCategory && <p>Error accured while getting categories</p>}
       </div>

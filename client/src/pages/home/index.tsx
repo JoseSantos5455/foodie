@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ErrorBoundary from '@/modules/ErrorBoundary';
 import { getProductsStart } from '@/app/slices/productSlice';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/app/store';
@@ -33,31 +32,29 @@ const Home: React.FC = () => {
   }, [products.length, categories.length, dispatch]);
 
   return (
-    <ErrorBoundary>
-      <section className="py-10">
-        <div className=" grid grid-cols-5 gap-2 mb-10">
-          <div className="bg-white shadow-md lg:block hidden">
-            {isLoadingCategory && <CategorySkeleton />}
-            {isErrorCategory && <span>error !.</span>}
-            {categories.length > 0 && <CategoryNav categories={categories} />}
-          </div>
-          <div className="lg:col-span-4 col-span-5">
-            <div className="h-72 p-2 hover:p-1 bg-white shadow-md">
-              <img
-                src="https://i.pinimg.com/originals/0b/39/14/0b3914ae30b768461468509a81e94d9c.jpg"
-                alt="banner"
-                className="object-cover h-full w-full"
-              />
-            </div>
+    <section className="py-10">
+      <div className=" grid grid-cols-5 gap-2 mb-10">
+        <div className="bg-white shadow-md lg:block hidden">
+          {isLoadingCategory && <CategorySkeleton />}
+          {isErrorCategory && <span>error !.</span>}
+          {categories.length > 0 && <CategoryNav categories={categories} />}
+        </div>
+        <div className="lg:col-span-4 col-span-5">
+          <div className="h-72 p-2 hover:p-1 bg-white shadow-md">
+            <img
+              src="https://i.pinimg.com/originals/0b/39/14/0b3914ae30b768461468509a81e94d9c.jpg"
+              alt="banner"
+              className="object-cover h-full w-full"
+            />
           </div>
         </div>
-        {isLoadingProducts && <ProductSkeleton />}
-        {isErrorProducts && <ErrorCard message={isErrorProducts.message} />}
-        <div className="flex xl:grid xl:grid-cols-5 gap-2 flex-wrap justify-center">
-          {products.length > 0 && <ProductList products={products} />}
-        </div>
-      </section>
-    </ErrorBoundary>
+      </div>
+      {isLoadingProducts && <ProductSkeleton />}
+      {isErrorProducts && <ErrorCard message={isErrorProducts.message} />}
+      <div className="flex xl:grid xl:grid-cols-5 gap-2 flex-wrap justify-center">
+        {products.length > 0 && <ProductList products={products} />}
+      </div>
+    </section>
   );
 };
 

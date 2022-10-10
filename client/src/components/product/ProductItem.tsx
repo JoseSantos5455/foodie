@@ -52,7 +52,7 @@ const ProductItem = ({ product, hasBtn = false }: IProductItem) => {
         </div>
 
         <div className="flex items-center justify-between">
-          <h5 className="font-semibold text-lg">{pricing.originalPrice} $</h5>
+          <h5 className="font-semibold text-lg">{pricing.originalPrice} MAD</h5>
           <div className="flex items-center">
             <RatingView fillColor={'#fed900'} className="contents" ratingValue={rating} size={18} />
           </div>

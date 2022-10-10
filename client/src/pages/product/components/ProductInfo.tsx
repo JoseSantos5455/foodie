@@ -26,7 +26,7 @@ const ProductInfo = ({ product, onWish }: ProductInfoType) => {
         <p className="font-secondary text-gray-600 ">{description}</p>
       </div>
       <h3 className="font-main uppercase font-bold mb-4">brand : {brand}</h3>
-      <p className="text-xl font-bold font-main">{pricing.originalPrice} $</p>
+      <p className="text-xl font-bold font-main">{pricing.originalPrice} MAD</p>
       <div className="flex space-x-2 items-center mb-6">
         <RatingView ratingValue={rating} />
         <span className="text-base text-gray-300">({numReviews})</span>

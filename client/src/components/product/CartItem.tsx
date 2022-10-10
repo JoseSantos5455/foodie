@@ -20,10 +20,10 @@ const CartItem = ({ cartItem }: CartItemProps) => {
           <div className="lg:flex lg:space-x-6">
             <p className="text-sm">
               Unit Price:
-              <span className="font-bold text-base">{cartItem.price} $</span>
+              <span className="font-bold text-base">{cartItem.price} MAD</span>
             </p>
             <p className="text-sm">
-              Total Price: <span className="font-bold text-base">{cartItem.price * cartItem.qty} $</span>
+              Total Price: <span className="font-bold text-base">{cartItem.price * cartItem.qty} MAD</span>
             </p>
           </div>
         </div>

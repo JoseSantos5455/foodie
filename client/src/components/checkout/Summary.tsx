@@ -16,21 +16,15 @@ const Summary = ({ subTotal, showBtn = false }: SummaryProps) => {
       <h2 className="font-main text-center font-bold mb-4">Summary</h2>
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-secondary capitalize">Sub Total</h4>
-        <p className="font-bold">{subTotal}$</p>
+        <p className="font-bold">{subTotal}MAD</p>
       </div>
-      {/* {tax && (
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="font-secondary capitalize">tax</h4>
-          <p className="font-bold">{tax}$</p>
-        </div>
-      )} */}
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-secondary capitalize">delivery</h4>
-        <p className="font-bold">{5}$</p>
+        <p className="font-bold">{5} MAD</p>
       </div>
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-secondary capitalize">Total</h4>
-        <p className="font-bold">{subTotal + 5}$</p>
+        <p className="font-bold">{subTotal + 5} MAD</p>
       </div>
       {showBtn && (
         <Button theme="btn-primary" className="w-full uppercase">

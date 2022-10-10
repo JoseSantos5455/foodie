@@ -16,10 +16,11 @@ const ServerErorr = () => {
               </p>
             </div>
             <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
-              <Link to="/support">
-                <a className="inline-flex items-center rounded-md border border-transparent bg-primaryLight px-4 py-2 text-sm font-medium text-gray-700 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2">
-                  Contact support
-                </a>
+              <Link
+                to="/support"
+                className="inline-flex items-center rounded-md border border-transparent bg-primaryLight px-4 py-2 text-sm font-medium text-gray-700 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primaryHover focus:ring-offset-2"
+              >
+                Contact support
               </Link>
             </div>
           </div>

@@ -6,6 +6,7 @@ import Button from '@/components/UI/Button';
 import { useState } from 'react';
 import Filter from './components/Filter';
 import { FaFilter } from 'react-icons/fa';
+import SearchError from '@/components/UI/SearchError';
 
 const Shop = () => {
   const location = useLocation();
@@ -35,6 +36,7 @@ const Shop = () => {
         <div className="xl:block hidden border border-gray-200 py-6  bg-white shadow px-4">
           <Filter searchQuery={location.search} />
         </div>
+        {!isLoading && isError && <SearchError />}
         {!isError && products?.length > 0 && <ProductList products={products} hasBtn />}
       </div>
     </section>

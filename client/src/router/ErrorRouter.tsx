@@ -1,7 +1,9 @@
 import Loading from '@/components/loaders/Loading';
-import ServerError from '@/pages/errors/ServerError';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+const NotFound = lazy(() => import('@/pages/errors/NotFound'));
+const ServerError = lazy(() => import('@/pages/errors/ServerError'));
 
 const ErrorRouter = () => {
   return (
@@ -11,6 +13,14 @@ const ErrorRouter = () => {
         element={
           <Suspense fallback={<Loading />}>
             <ServerError />
+          </Suspense>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<Loading />}>
+            <NotFound />
           </Suspense>
         }
       />

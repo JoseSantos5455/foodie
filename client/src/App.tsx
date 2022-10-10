@@ -7,7 +7,7 @@ import ErrorRouter from './router/ErrorRouter';
 function App() {
   const globalError = useAppSelector((state) => state.errorState.isErrorGlobal);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       {globalError && (!globalError.statusCode || globalError?.statusCode >= 500) ? <ErrorRouter /> : <AppRouter />}
       <Toaster
         containerStyle={{

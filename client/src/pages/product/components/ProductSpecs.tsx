@@ -27,7 +27,7 @@ const ProductSpecs = ({ specs }: SpecsProps) => {
       {specs.weight && (
         <div className="flex items-center space-x-2">
           <h4 className="font-bold">weight:</h4>
-          <h4>{specs.weight}</h4>
+          <h4>{specs.weight} kg</h4>
         </div>
       )}
     </div>

@@ -37,7 +37,7 @@ const adminRoutes = [
   },
 ];
 
-const AdminSideNav = ({ sideNavOpen }: Props) => {
+const AdminSideNav = () => {
   return (
     <div
       className={`bg-white w-20   min-h-screen flex justify-center   transition-all duration-100 py-2

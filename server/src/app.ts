@@ -4,6 +4,7 @@ import errorMiddleware from './middlewares/error.middleware';
 import cors from 'cors';
 import { NODE_ENV, ORIGIN, PORT } from './config';
 import { Routes } from './types/routes.interface';
+import path from 'path';
 
 class App {
   public app: express.Application;
@@ -40,6 +41,12 @@ class App {
   private initializeMiddlewares() {
     this.app.use(cors({ origin: ORIGIN }));
     this.app.use(express.json());
+    if (process.env.NODE_ENV === 'production') {
+      this.app.use(express.static(path.resolve(__dirname, '../build')));
+      this.app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../build/index.html'));
+      });
+    }
   }
 
   private initializeRoutes(routes: Routes[]) {

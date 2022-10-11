@@ -7,12 +7,12 @@ import ReviewRoute from './components/reviews/reviewRoute';
 import UserRoute from './components/users/userRoute';
 
 const app = new App([
-  new IndexRoute(),
   new ProductsRoute(),
   new UserRoute(),
   new ReviewRoute(),
   new OrderRoute(),
   new CategoryRoute(),
+  new IndexRoute(),
 ]);
 app.listen();
 

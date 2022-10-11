@@ -26,7 +26,7 @@ const AllOrders = () => {
     }
   }, [dispatch, orders.length, auth.token]);
 
-  const [currentStatus, setCurrentStatus] = useState(null);
+  const [currentStatus, setCurrentStatus] = useState('');
 
   const selectedOrders = currentStatus ? orders.filter((order) => order.orderStatus === currentStatus) : orders;
 

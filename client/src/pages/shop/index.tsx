@@ -36,7 +36,11 @@ const Shop = () => {
         <div className="xl:block hidden border border-gray-200 py-6  bg-white shadow px-4">
           <Filter searchQuery={location.search} />
         </div>
-        {!isLoading && isError && <SearchError />}
+        {!isLoading && isError && (
+          <div className="col-span-4">
+            <SearchError />
+          </div>
+        )}
         {!isError && products?.length > 0 && <ProductList products={products} hasBtn />}
       </div>
     </section>

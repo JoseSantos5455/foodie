@@ -50,7 +50,7 @@ const AddProduct = () => {
     <section className=" py-6">
       <h1 className="font-bold font-primary text-2xl mb-4 capitalize">add product</h1>
       {isLoadingProducts && <Loading />}
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full px-4 grid grid-cols-2  gap-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full px-4 xl:grid grid-cols-2  gap-2">
         <div className=" md:p-4 p-2  rounded-md bg-white ">
           <h3 className="font-semibold mb-4 pb-4 border-b-2 border-gray-200 flex justify-between">
             <span>Product Info</span>

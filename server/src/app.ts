@@ -40,6 +40,10 @@ class App {
   private initializeMiddlewares() {
     this.app.use(cors({ origin: ORIGIN }));
     this.app.use(express.json());
+    if (this.env === 'production') {
+      //*Set static folder up in production
+      this.app.use(express.static('client/dist'));
+    }
   }
 
   private initializeRoutes(routes: Routes[]) {

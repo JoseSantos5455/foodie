@@ -4,13 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start-client": "cd client && npm start",
-    "start-server": "cd server && npm start",
-    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
-    "init-project": "concurrently \"cd client && npm install\" \"cd server && npm install\""
+    "server": "cd server && yarn run start",
+    "client": "cd client && yarn run start",
+    "clientinstall": "yarn install --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "render-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn run build -- prefix client"
   },
   "devDependencies": {
-    "concurrently": "^6.3.0",
+    "concurrently": "^7.4.0",
     "nodemon": "^2.0.19"
   },
   "dependencies": {

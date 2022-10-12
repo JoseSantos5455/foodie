@@ -6,8 +6,8 @@
   "scripts": {
     "server": "cd server && yarn run start",
     "client": "cd client && yarn run start",
-    "build-server": "cd server && yarn run build",
-    "build-client": "cd client && yarn run build",
+    "build-server": "cd server && yarn && yarn run build",
+    "build-client": "cd client && yarn && yarn run build",
     "clientinstall": "yarn install --prefix client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "build": "concurrently \"yarn run build-server\" \"yarn run build-client\"",

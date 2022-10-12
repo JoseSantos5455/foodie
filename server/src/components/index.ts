@@ -3,7 +3,7 @@ import { Routes } from '@/types/routes.interface';
 import path from 'path';
 
 class IndexRoute implements Routes {
-  public path = '/*';
+  public path = '*';
   public router = Router();
 
   constructor() {

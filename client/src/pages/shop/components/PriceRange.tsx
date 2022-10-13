@@ -14,12 +14,24 @@ const PriceRange = ({ setPricingRange }: { setPricingRange: (range: number[]) =>
     setPricingRange([min, range]);
   };
 
+  const clearPricing = () => {
+    setPricingRange([1, 20000]);
+    setRange(20000);
+  };
+
   return (
     <div className="relative w-full mb-10">
       <form onSubmit={handleSubmit}>
-        <div className="flex justify-between items-center mb-4">
-          <h4 className="font-semibold uppercase">Price $</h4>
-          <Button theme="btn-dark">Apply</Button>
+        <div className="mb-2">
+          <h4 className="font-semibold uppercase mb-4">Price $</h4>
+          <div className="flex justify-between items-center">
+            <Button onClick={clearPricing} theme="btn-secondary">
+              clear
+            </Button>
+            <Button type="submit" theme="btn-dark">
+              Apply
+            </Button>
+          </div>
         </div>
         <div className="w-full mb-4">
           <input

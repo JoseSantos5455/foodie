@@ -1,3 +1,4 @@
+import Button from '@/components/UI/Button';
 import { useState } from 'react';
 
 const DiscountRange = ({ setDiscountRange }: { setDiscountRange: (range: number) => void }) => {
@@ -8,9 +9,16 @@ const DiscountRange = ({ setDiscountRange }: { setDiscountRange: (range: number)
     setSelectedDiscount(range);
     setDiscountRange(range);
   };
+  const clearDiscount = () => {
+    setDiscountRange(0);
+    setSelectedDiscount(0);
+  };
   return (
     <div className="mb-10">
       <h3 className="font-semibold text-md uppercase mb-4">Discount percentage</h3>
+      <Button onClick={clearDiscount} theme="btn-secondary" className="mb-2">
+        clear
+      </Button>
       <div className="flex flex-col space-y-4">
         {discountRanges.map((range) => (
           <div key={range} className="flex items-center space-x-4">

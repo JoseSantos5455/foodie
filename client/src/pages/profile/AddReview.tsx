@@ -7,6 +7,7 @@ import { Alert } from 'react-st-modal';
 import { useAppSelector } from '@/app/store';
 import toast from 'react-hot-toast';
 import { addReview } from '@/api/services/reviewsApi';
+import Loading from '@/components/loaders/Loading';
 
 type ReviewData = {
   userName: string;
@@ -17,6 +18,7 @@ const AddReview = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const handleRating = (rate: number) => {
     setRating(rate);
   };
@@ -26,7 +28,7 @@ const AddReview = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<ReviewData>();
 
   const onSubmit = async (data: ReviewData) => {
     if (rating === 0) {
@@ -34,20 +36,21 @@ const AddReview = () => {
     } else {
       const review = { rating, userName: data.userName, comment: data.comment };
       try {
+        setLoading(true);
         const res: any = await addReview(slug, review, token);
         if (res?._id) toast.success('review added successfully');
         navigate(-1);
+        setLoading(false);
       } catch (err: any) {
+        setLoading(false);
         toast.error(err.error.message);
       }
     }
   };
 
   return (
-    <div
-      className="py-6  px-4 mt-8
-         "
-    >
+    <div className="  px-4 relative">
+      {isLoading && <Loading />}
       <h2 className="font-semibold mb-6">Add Review</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg mx-auto px-4">
         <div className="mb-4">

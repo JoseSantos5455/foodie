@@ -1,9 +1,7 @@
 import PurchaseRow from './components/PurchaseRow';
 import { useUserProfile } from '@/components/profile';
 import { Link } from 'react-router-dom';
-import Button from '@/components/UI/Button';
 import { useDispatch } from 'react-redux';
-import { getOrderStart } from '@/app/slices/orderSlice';
 import { HOME } from '@/utils/routes';
 import emptyOrder from '@/assets/empty-order.svg';
 
@@ -21,9 +19,6 @@ const PurchaseHistory = () => {
         <>
           <h3 className="flex justify-between font-semibold text-lg text-primaryDark capitalize  mb-6 pb-2 border-b-2 border-gray-50">
             <span>Purchase history</span>
-            <Button onClick={() => dispatch(getOrderStart(auth?.token))} theme="btn-primary">
-              get all orders
-            </Button>
           </h3>
           <div className="lg:grid hidden grid-cols-6 gap-2  w-full justify-items-center border-b-2 border-gray-100 pb-2 mb-4">
             {ordersTable.map((title, index) => (

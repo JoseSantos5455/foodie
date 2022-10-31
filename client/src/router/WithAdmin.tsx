@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { useLocation, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '@/app/store';
 
 interface Props {
@@ -7,10 +7,9 @@ interface Props {
 }
 
 function WithAdmin({ children }: Props): ReactElement {
-  const location = useLocation();
   const auth = useAppSelector((state) => state.auth?.id && state.auth?.role === 'admin');
 
-  if (!auth) return <Navigate to="/login" state={{ from: location }} />;
+  if (!auth) return <Navigate to="/login" />;
 
   return children;
 }

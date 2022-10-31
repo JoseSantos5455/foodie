@@ -5,10 +5,6 @@ import { GoPackage } from 'react-icons/go';
 import { BsCardChecklist } from 'react-icons/bs';
 import { FaUsers, FaProductHunt } from 'react-icons/fa';
 
-interface Props {
-  sideNavOpen: boolean;
-}
-
 const adminRoutes = [
   {
     name: 'Dashboard',

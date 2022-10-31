@@ -2,11 +2,10 @@ import { useAppSelector } from '@/app/store';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAdminOrder } from '@/utils/hooks/useAdminOrder';
 import Loading from '@/components/loaders/Loading';
-import Button from '@/components/UI/Button';
+// import Button from '@/components/UI/Button';
 import { useDispatch } from 'react-redux';
-import { deleteOrderStart, updateOrderStatusStart } from '@/app/slices/orderSlice';
+import { /*deleteOrderStart,*/ updateOrderStatusStart } from '@/app/slices/orderSlice';
 import { ChangeEvent } from 'react';
-import { ADMIN_ALL_ORDERS } from '@/utils/routes';
 
 const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 
@@ -25,10 +24,10 @@ const OrderDetail = () => {
     dispatch(updateOrderStatusStart({ id: orderId, orderStatus: e.target.value, token: auth.token }));
   };
 
-  const onDeleteOrder = () => {
-    dispatch(deleteOrderStart({ id: orderId, token: auth.token }));
-    navigate(ADMIN_ALL_ORDERS);
-  };
+  // const onDeleteOrder = () => {
+  //   dispatch(deleteOrderStart({ id: orderId, token: auth.token }));
+  //   navigate(-1);
+  // };
 
   return (
     <section className="py-4 max-w-screen-lg mx-auto">
@@ -51,9 +50,9 @@ const OrderDetail = () => {
                   </option>
                 ))}
             </select>
-            <Button onClick={onDeleteOrder} theme="btn-err">
+            {/* <Button onClick={onDeleteOrder} theme="btn-err">
               Delete
-            </Button>
+            </Button> */}
           </div>
           <div className="border-b border-gray-200 py-5 dark:border-gray-700">
             <h2 className="flex w-full items-center justify-between   py-5 text-left font-medium text-gray-500 dark:border-gray-700 dark:text-gray-400">

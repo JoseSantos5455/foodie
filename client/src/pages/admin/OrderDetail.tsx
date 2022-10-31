@@ -11,7 +11,6 @@ const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 
 const OrderDetail = () => {
   const { id } = useParams();
-  let navigate = useNavigate();
   const orderId = typeof id === 'string' ? id : '';
   const { auth, isLoadingOrder } = useAppSelector((state) => ({
     auth: state.auth,

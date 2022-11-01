@@ -17,6 +17,8 @@ import {
 import orderSaga from './orderSaga';
 import { delUsersStart, getUsersStart } from '@/app/slices/usersSlice';
 import usersSaga from './usersSaga';
+import { getReviewsStart } from '../slices/reviewsSlice';
+import reviewsSaga from './reviewsSaga';
 
 function* rootSaga() {
   yield takeLatest([getProductsStart.type, addProductStart.type, delProductStart.type], productsSaga);
@@ -28,6 +30,7 @@ function* rootSaga() {
     orderSaga,
   );
   yield takeLatest([getUsersStart.type, delUsersStart.type], usersSaga);
+  yield takeLatest([getReviewsStart.type], reviewsSaga);
 }
 
 export default rootSaga;

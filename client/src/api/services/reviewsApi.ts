@@ -8,3 +8,10 @@ export const addReview = (slug: string | undefined, review: IReview, token: stri
     headers: { authorization: `Bearer ${token}` },
     data: review,
   });
+
+export const getReviews = (token: string) =>
+  httpRequest({
+    method: 'GET',
+    url: `/reviews/`,
+    headers: { authorization: `Bearer ${token}` },
+  });

@@ -46,6 +46,12 @@ const AddProduct = () => {
     dispatch(addProductStart({ data: formData, token }));
   };
 
+  const resetForm = () => {
+    reset();
+    setColors([]);
+    setSizes([]);
+  };
+
   return (
     <section className=" py-6">
       <h1 className="font-bold font-primary text-2xl mb-4 capitalize">add product</h1>
@@ -57,7 +63,7 @@ const AddProduct = () => {
             <button
               disabled={!isDirty}
               className="bg-gray-800 rounded disabled:opacity-50 disabled:cursor-not-allowed text-white px-2 py-1"
-              onClick={() => reset()}
+              onClick={resetForm}
             >
               clear form
             </button>

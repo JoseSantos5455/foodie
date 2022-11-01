@@ -7,6 +7,7 @@ interface ILoadingState {
   isLoadingProfile: boolean;
   isLoadingOrder: boolean;
   isLoadingUsers: boolean;
+  isLoadingReviews: boolean;
 }
 
 const initialState: ILoadingState = {
@@ -16,6 +17,7 @@ const initialState: ILoadingState = {
   isLoadingProfile: false,
   isLoadingOrder: false,
   isLoadingUsers: false,
+  isLoadingReviews: false,
 };
 
 const loadingSlice = createSlice({
@@ -40,10 +42,20 @@ const loadingSlice = createSlice({
     loadingUsers: (state, action: PayloadAction<boolean>) => {
       return { ...state, isLoadingUsers: action.payload };
     },
+    loadingReviews: (state, action: PayloadAction<boolean>) => {
+      return { ...state, isLoadingReviews: action.payload };
+    },
   },
 });
 
-export const { loadingProducts, loadingCategory, loadingAuth, loadingProfile, loadingOrder, loadingUsers } =
-  loadingSlice.actions;
+export const {
+  loadingProducts,
+  loadingCategory,
+  loadingAuth,
+  loadingProfile,
+  loadingOrder,
+  loadingUsers,
+  loadingReviews,
+} = loadingSlice.actions;
 
 export default loadingSlice.reducer;

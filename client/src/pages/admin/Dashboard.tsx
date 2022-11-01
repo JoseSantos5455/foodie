@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { ADMIN_ALL_ORDERS } from '@/utils/routes';
 import { Link } from 'react-router-dom';
 import Loading from '@/components/loaders/Loading';
+import { getReviewsStart } from '@/app/slices/reviewsSlice';
 
 const Dashboard = () => {
   const statistics = [
@@ -39,10 +40,12 @@ const Dashboard = () => {
     },
   ];
 
-  const { orders, auth, isLoadingOrder } = useAppSelector((state) => ({
+  const { orders, auth, reviews, isLoadingReviews, isLoadingOrder } = useAppSelector((state) => ({
     orders: state.orders,
     auth: state.auth,
+    reviews: state.reviews,
     isLoadingOrder: state.loadingState.isLoadingOrder,
+    isLoadingReviews: state.loadingState.isLoadingReviews,
   }));
 
   const dispatch = useDispatch();
@@ -51,11 +54,15 @@ const Dashboard = () => {
     if (orders.length === 0) {
       dispatch(adminGetOrderStart(auth.token));
     }
-  }, [dispatch, orders.length, auth.token]);
+    if (reviews.length === 0) {
+      dispatch(getReviewsStart(auth.token));
+    }
+  }, [dispatch, orders.length, auth.token, reviews.length]);
 
   return (
     <section className="py-4">
-      {isLoadingOrder && <Loading />}
+      {(isLoadingOrder || isLoadingReviews) && <Loading />}
+
       <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-center gap-6 mb-12 px-6 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
         {statistics.map((item, index) => (
           <div
@@ -86,7 +93,7 @@ const Dashboard = () => {
           </div>
           {orders.length && <OrderList orders={orders.slice(-4)} />}
         </div>
-        <CustomerRating />
+        <CustomerRating reviews={reviews} />
       </div>
     </section>
   );

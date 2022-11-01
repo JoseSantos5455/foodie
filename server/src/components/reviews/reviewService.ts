@@ -3,8 +3,16 @@ import { IUser } from '../users/user';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import Product, { IProduct } from '../products/product';
 
-
 class ReviewService {
+  async getAllReviews(): Promise<IReview[]> {
+    try {
+      const reviews = await Review.find().populate('productId', 'title image pricing.originalPrice');
+      if (reviews.length === 0) throw new ErrorHandler(404, 'no review was found');
+      return reviews;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
   async addReview(review: IReview, productSlug: string, userId: IUser['_id']): Promise<IReview> {
     try {
       const { userName, comment, rating } = review;
@@ -23,7 +31,7 @@ class ReviewService {
       const alreadyReviewed = product.reviews.find((r) => r.userId.toString() === userId.toString());
 
       if (alreadyReviewed) {
-        throw new ErrorHandler(400, 'you alredy reviewed this product');
+        throw new ErrorHandler(400, 'you already reviewed this product');
       }
 
       const newReview = await Review.create({

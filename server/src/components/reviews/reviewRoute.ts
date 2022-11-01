@@ -1,4 +1,4 @@
-import { isAuthenticated } from '@/middlewares/auth.middleware';
+import { isAdmin, isAuthenticated } from '@/middlewares/auth.middleware';
 import { isAllowedToReview, isReviewOwner } from '@/middlewares/middleware';
 import { Routes } from '@/types/routes.interface';
 import { Router } from 'express';
@@ -13,6 +13,7 @@ class ReviewRoute implements Routes {
   }
 
   private initializeRoutes() {
+    this.router.route(`${this.path}`).get(isAuthenticated, isAdmin, reviewController.getAllReviews);
     this.router.route(`${this.path}:slug`).post(isAuthenticated, isAllowedToReview, reviewController.addReview);
     this.router
       .route(`${this.path}:id`)

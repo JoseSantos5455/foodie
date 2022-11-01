@@ -3,6 +3,15 @@ import { NextFunction, Request, Response } from 'express';
 import reviewService from './reviewService';
 
 class ReviewController {
+  async getAllReviews(req: Request, res: Response, next: NextFunction) {
+    try {
+      const reviews = await reviewService.getAllReviews();
+      res.status(200).json(makeResJson(reviews));
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async addReview(req: Request, res: Response, next: NextFunction) {
     try {
       const newReview = await reviewService.addReview(req.body, req.params.slug, req.user._id);

@@ -136,3 +136,13 @@ export type SelectType = {
   value: string;
   label: string;
 };
+
+export interface IReviewAdmin extends Omit<IReviewRes, 'productId'> {
+  productId: {
+    pricing: { originalPrice: number };
+    _id: string;
+    title: string;
+    image: string;
+    id: string;
+  };
+}

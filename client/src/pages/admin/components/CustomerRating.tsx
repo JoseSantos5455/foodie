@@ -1,5 +1,6 @@
 import { IReviewAdmin } from '@/types/types';
 import { RatingView } from 'react-simple-star-rating';
+import ImgLoader from '@/components/UI/ImgLoader';
 
 const CustomerRating = ({ reviews }: { reviews: IReviewAdmin[] }) => {
   return (
@@ -10,7 +11,10 @@ const CustomerRating = ({ reviews }: { reviews: IReviewAdmin[] }) => {
       {reviews.length > 0 &&
         reviews.map((review) => (
           <div key={review._id} className="border-b border-gray-100  pb-4 mb-2 flex items-center justify-between">
-            <div className="rounded-full justify-self-center w-16 h-16 bg-gray-100"></div>
+            {review.productId?.image && (
+              <ImgLoader src={review.productId?.image} alt="avatar" className="rounded-full w-10 h-10" />
+            )}
+
             <div>
               <h3 className="font-semibold text-greyAD dark:text-gray-200 capitalize text-base mb-4">
                 {review.productId?.title}

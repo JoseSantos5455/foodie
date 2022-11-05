@@ -1,7 +1,8 @@
-import Product, { IProduct } from './product';
+import Product from './product';
 import slugify from 'slugify';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import APIFilters from '@/helpers/filterAPI';
+import { IProduct } from '@/types/products.interface';
 
 class ProductService {
   async addProduct(product: IProduct, imageUrl: string): Promise<IProduct> {

@@ -1,39 +1,7 @@
-import { Schema, model, Document } from 'mongoose';
-import { IProduct } from '../products/product';
-import { IUser } from '../users/user';
+import { Schema, model } from 'mongoose';
+import { IOrder } from '@/types/order.interface';
 
 const ObjectId = Schema.Types.ObjectId;
-
-export interface IOrder extends Document {
-  user: IUser['_id'];
-  orderItems: [
-    {
-      productId: IProduct['_id'];
-      quantity: number;
-      pricing: {
-        originalPrice: number;
-        discountPercentage: number;
-      };
-      title: string;
-      slug: string;
-      image: string;
-    },
-  ];
-  shippingInfo: {
-    fullName: string;
-    city: string;
-    phone: string;
-    isPhoneValidated: boolean;
-    address: string;
-    zipCode: string;
-  };
-  paymentMethod: string;
-  orderStatus: string;
-  subTotal: number;
-  total: number;
-  shippingPrice: number;
-  isPaid: boolean;
-}
 
 const orderSchema = new Schema(
   {

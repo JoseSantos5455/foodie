@@ -1,9 +1,9 @@
-import User, { IUser } from './user';
+import User from './user';
 import { ErrorHandler } from '@/middlewares/error.middleware';
 import bcrypt from 'bcryptjs';
+import { IUser } from '@/types/user.interface';
 
-
-class UserService{
+class UserService {
   async signUp(user: IUser): Promise<IUser> {
     try {
       const userExists = await User.findOne({ email: user.email });
@@ -73,16 +73,16 @@ class UserService{
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }
   }
-  async uploadAvatar(avatar: string, id: string){
+  async uploadAvatar(avatar: string, id: string) {
     try {
-      const user = await User.findById(id)
-      if(!user) throw new ErrorHandler(404, 'no user found with this id');
+      const user = await User.findById(id);
+      if (!user) throw new ErrorHandler(404, 'no user found with this id');
       if (!avatar) {
         throw new ErrorHandler(400, 'Failed to upload avatar image');
       }
-      user.avatar = avatar
-      const updatedUser = user.save()
-      return updatedUser
+      user.avatar = avatar;
+      const updatedUser = user.save();
+      return updatedUser;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }

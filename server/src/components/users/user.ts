@@ -1,24 +1,9 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
-import { IProduct } from '../products/product';
 import { NextFunction } from 'express';
+import { IUser } from '@/types/user.interface';
 
 const ObjectId = Schema.Types.ObjectId;
-
-export interface IUser extends Document {
-  fullName: string;
-  email: string;
-  password: string;
-  phone?: string;
-  isPhoneValidated?: boolean;
-  city?: string;
-  address?: string;
-  zipCode?: string;
-  avatar?: string;
-  role: string;
-  orders: IProduct['_id'][];
-  matchPassword: (password: string) => boolean;
-}
 
 const userSchema = new Schema({
   fullName: { type: String, required: true },

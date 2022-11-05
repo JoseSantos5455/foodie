@@ -1,18 +1,18 @@
-import Category, { ICategory } from './category';
+import Category from './category';
 import { ErrorHandler } from '@/middlewares/error.middleware';
-
+import { ICategory } from '@/types/category.interface';
 class CategoryService {
   async addCategory(category: ICategory, imageUrl: string): Promise<ICategory> {
     try {
       const categoryParentId = category.parent ? category.parent : null;
-      const {slug} = category
+      const { slug } = category;
       const categoryExists = await Category.findOne({ slug });
       if (categoryExists) {
         throw new ErrorHandler(400, 'Category with this name already exists');
       }
-      if(!category.parent && !imageUrl) throw new ErrorHandler(500, 'Failed to upload Category image');
+      if (!category.parent && !imageUrl) throw new ErrorHandler(500, 'Failed to upload Category image');
 
-      if(imageUrl) category.image = imageUrl;
+      if (imageUrl) category.image = imageUrl;
 
       const createdCategory = await Category.create(category);
 

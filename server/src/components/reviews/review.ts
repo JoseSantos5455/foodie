@@ -1,16 +1,6 @@
-import { Schema, model, Document } from 'mongoose';
-import { IProduct } from '../products/product';
-import { IUser } from '../users/user';
-
+import { Schema, model } from 'mongoose';
+import { IReview } from '@/types/review.interface';
 const ObjectId = Schema.Types.ObjectId;
-
-export interface IReview extends Document {
-  userName: string;
-  rating: number;
-  comment: string;
-  productId: IProduct['_id'];
-  userId: IUser['_id'];
-}
 
 const reviewSchema = new Schema({
   userName: { type: String, required: true },

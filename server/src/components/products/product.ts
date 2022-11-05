@@ -1,33 +1,8 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import slugify from 'slugify';
-import { ICategory } from '../categories/category';
-import { IReview } from '../reviews/review';
+import { IProduct } from '@/types/products.interface';
 
 const ObjectId = Schema.Types.ObjectId;
-
-export interface IProduct extends Document {
-  title: string;
-  description: string;
-  details: string;
-  slug: string;
-  image: string;
-  subImages: string[];
-  brand: string;
-  pricing: { originalPrice: number; discountPercentage: number };
-  countInStock: number;
-  sold: number;
-  rating: number;
-  numReviews: number;
-  size: string;
-  color: string;
-  specs: {
-    countryOfProduction: string;
-    weight: number;
-    model: string;
-  };
-  category: ICategory['_id'];
-  reviews: IReview[];
-}
 
 const productSchema = new Schema<IProduct>(
   {

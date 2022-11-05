@@ -1,7 +1,8 @@
 import { ErrorHandler } from '@/middlewares/error.middleware';
-import User, { IUser } from '../users/user';
-import Order, { IOrder } from './order';
-
+import User from '../users/user';
+import Order from './order';
+import { IUser } from '@/types/user.interface';
+import { IOrder } from '@/types/order.interface';
 
 class OrderService {
   async addOrder(order: IOrder, userId: IUser['_id']): Promise<IOrder> {

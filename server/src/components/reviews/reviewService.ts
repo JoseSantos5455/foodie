@@ -1,8 +1,9 @@
-import Review, { IReview } from './review';
-import { IUser } from '../users/user';
+import Review from './review';
 import { ErrorHandler } from '@/middlewares/error.middleware';
-import Product, { IProduct } from '../products/product';
-
+import Product from '../products/product';
+import { IUser } from '@/types/user.interface';
+import { IProduct } from '@/types/products.interface';
+import { IReview } from '@/types/review.interface';
 class ReviewService {
   async getAllReviews(): Promise<IReview[]> {
     try {

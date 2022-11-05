@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { IUser } from '../components/users/user';
-
+import { IUser } from '@/types/user.interface';
 interface IResponseStatus {
   status_code: number;
   success: boolean;
@@ -44,6 +43,6 @@ const userInfo = (user: IUser, token: string) => ({
   token,
 });
 
-const refFromURL = (URL) => decodeURIComponent(URL.split('/').pop().split('?')[0])
+const refFromURL = (URL) => decodeURIComponent(URL.split('/').pop().split('?')[0]);
 
 export { makeResJson, generateToken, userInfo, refFromURL };

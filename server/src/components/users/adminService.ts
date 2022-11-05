@@ -1,6 +1,6 @@
 import { ErrorHandler } from '@/middlewares/error.middleware';
-import User, { IUser } from './user';
-
+import User from './user';
+import { IUser } from '@/types/user.interface';
 interface IAdminService {
   getUsers: () => Promise<IUser[]>;
   getUserByEmail: (id: IUser['_id']) => Promise<IUser>;

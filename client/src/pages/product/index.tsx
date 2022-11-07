@@ -44,7 +44,13 @@ const ProductDetails = () => {
           </div>
           <div className={`${!isEmptySpecs && 'grid md:grid-cols-2 gap-6'} mb-8`}>
             <div className="bg-white shadow-md p-4">
-              <ReviewList reviews={product.reviews} rating={product.rating} numReviews={product.numReviews} />
+              <ReviewList
+                reviews={product.reviews}
+                rating={product.rating}
+                numReviews={product.numReviews}
+                userId={auth.id}
+                token={auth.token}
+              />
             </div>
             {!isEmptySpecs && (
               <div className=" bg-white shadow-md p-4">{product.specs && <ProductSpecs specs={product.specs} />}</div>

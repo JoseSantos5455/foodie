@@ -7,9 +7,11 @@ type ReviewsListProps = {
   reviews: IReviewRes[];
   rating: number;
   numReviews: number;
+  userId: string;
+  token: string;
 };
 
-const ReviewList = ({ reviews, rating, numReviews }: ReviewsListProps) => {
+const ReviewList = ({ reviews, rating, numReviews, userId, token }: ReviewsListProps) => {
   return (
     <div>
       <div className="mb-6 pb-2 border-b border-gray-200  flex justify-between items-center">
@@ -22,7 +24,8 @@ const ReviewList = ({ reviews, rating, numReviews }: ReviewsListProps) => {
         </p>
       </div>
       <div className="max-h-52 overflow-y-scroll px-4  ">
-        {reviews?.length > 0 && reviews.map((review) => <Review key={review._id} review={review} />)}
+        {reviews?.length > 0 &&
+          reviews.map((review) => <Review key={review._id} review={review} userId={userId} token={token} />)}
         {reviews.length < 1 && (
           <div className="flex items-center justify-center">
             <span className="text-gray-500">No Reviews</span>

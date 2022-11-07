@@ -15,3 +15,10 @@ export const getReviews = (token: string) =>
     url: `/reviews/`,
     headers: { authorization: `Bearer ${token}` },
   });
+
+export const delReview = (token: string, reviewId: string) =>
+  httpRequest({
+    method: 'DELETE',
+    url: `/reviews/${reviewId}`,
+    headers: { authorization: `Bearer ${token}` },
+  });

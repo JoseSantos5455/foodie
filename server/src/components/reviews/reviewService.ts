@@ -63,9 +63,25 @@ class ReviewService {
 
   async deleteReview(reviewId: IReview['_id']): Promise<IReview['_id']> {
     try {
-      const review = await Review.findByIdAndDelete(reviewId);
+      const review = await Review.findOneAndDelete(reviewId);
+
       if (!review) {
         throw new ErrorHandler(404, 'No review was found');
+      }
+      const reviewedProduct = await Product.findById(review.productId).populate('reviews').select('numReviews rating');
+
+      if (!reviewedProduct) {
+        throw new ErrorHandler(404, 'No product containing this review was found');
+      }
+
+      if (review._id) {
+        reviewedProduct.numReviews = reviewedProduct.reviews?.length;
+        const reviewsRating = (
+          reviewedProduct.reviews?.reduce((acc, item) => item?.rating + acc, 0) / reviewedProduct.reviews?.length
+        ).toFixed(1);
+        reviewedProduct.rating = reviewedProduct.reviews?.length > 0 ? Number(reviewsRating) : 0;
+
+        await reviewedProduct.save();
       }
       return review._id;
     } catch (err) {

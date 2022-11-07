@@ -83,6 +83,7 @@ class ReviewService {
 
         await reviewedProduct.save();
       }
+
       return review._id;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);
@@ -109,6 +110,18 @@ class ReviewService {
         throw new ErrorHandler(404, 'no reviews where found');
       }
       return reviews;
+    } catch (err) {
+      throw new ErrorHandler(err.statusCode || 500, err.message);
+    }
+  }
+
+  async adminDeleteReview(reviewId: IReview['_id']): Promise<IReview['_id']> {
+    try {
+      const review = await Review.findByIdAndDelete(reviewId);
+      if (!review) {
+        throw new ErrorHandler(404, 'No review was found');
+      }
+      return review._id;
     } catch (err) {
       throw new ErrorHandler(err.statusCode || 500, err.message);
     }

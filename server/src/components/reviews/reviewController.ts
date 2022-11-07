@@ -47,6 +47,15 @@ class ReviewController {
       return next(err);
     }
   }
+
+  async adminDeleteReview(req: Request, res: Response, next: NextFunction) {
+    try {
+      const delReviewId = await reviewService.deleteReview(req.params.id);
+      res.status(200).json(makeResJson(delReviewId));
+    } catch (err) {
+      return next(err);
+    }
+  }
 }
 
 export default new ReviewController();

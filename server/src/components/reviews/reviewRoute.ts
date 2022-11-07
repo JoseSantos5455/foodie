@@ -21,6 +21,7 @@ class ReviewRoute implements Routes {
       .patch(isAuthenticated, isReviewOwner, reviewController.editReview);
 
     this.router.route(`${this.path}:product`).get(reviewController.getProductReviews);
+    this.router.route(`${this.path}admin/:id`).delete(isAuthenticated, isAdmin, reviewController.adminDeleteReview);
   }
 }
 

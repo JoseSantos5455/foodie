@@ -2,7 +2,7 @@ import { IReviewAdmin } from '@/types/types';
 import { RatingView } from 'react-simple-star-rating';
 import ImgLoader from '@/components/UI/ImgLoader';
 
-const CustomerRating = ({ reviews }: { reviews: IReviewAdmin[] }) => {
+const CustomerRating = ({ reviews, showLink }: { reviews: IReviewAdmin[]; showLink?: boolean }) => {
   return (
     <div className="rounded-xl shadow-md bg-white  p-4 ">
       <div className="border-b-2 border-gray-100  pb-4 mb-4">
@@ -27,9 +27,11 @@ const CustomerRating = ({ reviews }: { reviews: IReviewAdmin[] }) => {
             </div>
           </div>
         ))}
-      <div className="flex justify-center">
-        <span className="capitalize hover:opacity-70 font-bold text-primary text-base">View all</span>
-      </div>
+      {showLink && (
+        <div className="flex justify-center">
+          <span className="capitalize hover:opacity-70 font-bold text-primary text-base">View all</span>
+        </div>
+      )}
     </div>
   );
 };

@@ -93,7 +93,7 @@ const Dashboard = () => {
           </div>
           {orders.length && <OrderList orders={orders.slice(-4)} />}
         </div>
-        <CustomerRating reviews={reviews} />
+        <CustomerRating reviews={reviews} showLink />
       </div>
     </section>
   );

@@ -26,3 +26,4 @@ export const ADMIN_ALL_ORDERS = 'all-orders';
 export const ADMIN_VIEW_ORDER = 'all-orders/:id';
 export const ADMIN_ALL_USERS = 'all-users';
 export const ADMIN_ALL_PRODUCTS = 'all-products';
+export const ADMIN_ALL_REVIEWS = 'all-reviews';

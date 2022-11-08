@@ -4,7 +4,7 @@ import { DashboardOutlined } from '@ant-design/icons';
 import { GoPackage } from 'react-icons/go';
 import { BsCardChecklist } from 'react-icons/bs';
 import { FaUsers, FaProductHunt } from 'react-icons/fa';
-
+import { MdOutlineReviews } from 'react-icons/md';
 const adminRoutes = [
   {
     name: 'Dashboard',
@@ -30,6 +30,12 @@ const adminRoutes = [
     name: 'All Users',
     route: ROUTES.ADMIN_ALL_USERS,
     icon: <FaUsers />,
+  },
+
+  {
+    name: 'All Reviews',
+    route: ROUTES.ADMIN_ALL_REVIEWS,
+    icon: <MdOutlineReviews />,
   },
 ];
 

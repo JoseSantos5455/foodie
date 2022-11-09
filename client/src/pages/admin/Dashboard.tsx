@@ -63,7 +63,7 @@ const Dashboard = () => {
     <section className="py-4">
       {(isLoadingOrder || isLoadingReviews) && <Loading />}
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-center gap-6 mb-12 px-6 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-center gap-6 mb-12 sm:px-6 px-2 rounded-xl py-6 shadow-md bg-white dark:bg-darkAD">
         {statistics.map((item, index) => (
           <div
             key={`${item.title}-${index}`}
@@ -81,18 +81,12 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className="grid md:grid-cols-3  grid-cols-1 gap-10">
-        <div className="col-span-2">
+      <div className="grid lg:grid-cols-3  grid-cols-1 lg:gap-10 gap-y-4">
+        <div className="lg:col-span-2">
           <AdminChart />
         </div>
         <TopSales />
-        <div className="md:col-span-2">
-          <div className="flex justify-between">
-            <h3 className="font-semibold text-greyAD dark:text-gray-50 capitalize">Latest Orders</h3>
-            <Link to={ADMIN_ALL_ORDERS}>View All</Link>
-          </div>
-          {orders.length && <OrderList orders={orders.slice(-4)} />}
-        </div>
+        <div className="lg:col-span-2">{orders.length && <OrderList orders={orders.slice(-4)} />}</div>
         <CustomerRating reviews={reviews} showLink />
       </div>
     </section>

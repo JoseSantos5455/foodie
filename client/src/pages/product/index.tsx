@@ -17,7 +17,7 @@ import SearchError from '@/components/UI/SearchError';
 const ProductDetails = () => {
   const { slug } = useParams();
   const { isError, isLoading, product } = useProduct(slug);
-  const products = useAppSelector((state) => state.products);
+  const { products, auth } = useAppSelector((state) => ({ products: state.products, auth: state.auth }));
   const dispatch = useDispatch();
 
   const onWish = () => {

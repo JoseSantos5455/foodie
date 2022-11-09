@@ -4,7 +4,6 @@ import AdminHeader from './components/AdminHeader';
 import AdminSideNav from './components/AdminSideNav';
 
 const Admin = () => {
-  const [sideNavOpen, setSideNavOpen] = useState(false);
   return (
     <main>
       <section
@@ -14,9 +13,12 @@ const Admin = () => {
         }}
       >
         <div className="flex transition-all duration-300 ">
-          <AdminSideNav sideNavOpen={sideNavOpen} />
-          <div style={{ gridColumn: 'none' }} className={`w-full transform transition-all duration-300 px-6 py-2`}>
-            <AdminHeader setSideNavOpen={setSideNavOpen} sideNavOpen={sideNavOpen} />
+          <AdminSideNav />
+          <div
+            style={{ gridColumn: 'none' }}
+            className={`w-full transform transition-all duration-300 sm:px-6 px-2 py-2`}
+          >
+            <AdminHeader />
 
             <div className="relative transition-all duration-500 ">
               <Outlet />

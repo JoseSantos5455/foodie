@@ -6,7 +6,7 @@ import OrderList from './components/OrderList';
 import Select from 'react-select';
 
 const orderStatus = [
-  { value: null, label: 'All' },
+  { value: '', label: 'All' },
   { value: 'pending', label: 'Pending' },
   { value: 'delivered', label: 'Delivered' },
   { value: 'canceled', label: 'Canceled' },

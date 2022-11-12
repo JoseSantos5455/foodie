@@ -86,7 +86,7 @@ const Dashboard = () => {
           <AdminChart />
         </div>
         <TopSales />
-        <div className="lg:col-span-2">{orders.length && <OrderList orders={orders.slice(-4)} />}</div>
+        <div className="lg:col-span-2">{orders.length && <OrderList showLink orders={orders.slice(-4)} />}</div>
         <CustomerRating reviews={reviews} showLink />
       </div>
     </section>

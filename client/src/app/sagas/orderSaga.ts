@@ -17,6 +17,7 @@ import {
 import { addOrder, getOrders, adminGetOrders, updateOrderStatus, deleteOrder } from '@/api/services/orderApi';
 import { clearCart } from '@/app/slices/cartSlice';
 import toast from 'react-hot-toast';
+import { setOrderStatus } from '../slices/globalStateSlice';
 
 function* handleError(err: any) {
   yield put(loadingOrder(false));
@@ -32,8 +33,11 @@ function* orderSaga({ type, payload }: ISaga) {
         yield put(loadingOrder(true));
         const order: IOrderRes = yield call(addOrder, payload.newOrder, payload.token);
         yield put(addOrderSuccess(order));
+        yield put(setOrderStatus(true));
+        yield toast.success('order placed successfully');
         yield put(clearCart());
         yield put(loadingOrder(false));
+        yield put(setOrderStatus(false));
       } catch (err) {
         handleError(err);
       }

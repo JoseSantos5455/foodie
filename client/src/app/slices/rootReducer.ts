@@ -9,7 +9,8 @@ import profileReducer from './profileSlice';
 import orderReducer from './orderSlice';
 import usersReducer from './usersSlice';
 import wishlistReducer from './wishlistSlice';
-import reviewSlice from './reviewsSlice';
+import reviewReducer from './reviewsSlice';
+import globalStateReducer from './globalStateSlice';
 
 export const rootReducer = combineReducers({
   products: productReducer,
@@ -22,5 +23,6 @@ export const rootReducer = combineReducers({
   orders: orderReducer,
   users: usersReducer,
   wishlist: wishlistReducer,
-  reviews: reviewSlice,
+  reviews: reviewReducer,
+  globalState: globalStateReducer,
 });

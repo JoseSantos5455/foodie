@@ -20,7 +20,9 @@ html {
   .btn-secondary {
     @apply bg-purpleBeta hover:opacity-70 py-1 px-4  text-white;
   }
-
+  .btn-secondary-outline {
+    @apply border-2 border-purpleBeta hover:bg-purpleBeta hover:text-white py-1 px-4  text-purpleBeta;
+  }
   .btn-dark {
     @apply bg-primaryDark hover:bg-gray-800 py-1 px-4  text-white;
   }

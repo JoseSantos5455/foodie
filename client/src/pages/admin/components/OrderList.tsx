@@ -6,17 +6,20 @@ import { Link } from 'react-router-dom';
 type Props = {
   orders: IOrderRes[];
   admin?: boolean;
+  showLink?: boolean;
 };
 
-const OrderList = ({ orders, admin = false }: Props) => {
+const OrderList = ({ orders, admin = false, showLink }: Props) => {
   return (
     <div className="p-4 rounded-xl shadow-md bg-white">
-      <div className="flex justify-between mb-2">
-        <h3 className="font-semibold text-greyAD dark:text-gray-50 capitalize">Latest Orders</h3>
-        <Link className="text-primary font-bold" to={ADMIN_ALL_ORDERS}>
-          View All
-        </Link>
-      </div>
+      {showLink && (
+        <div className="flex justify-between mb-2">
+          <h3 className="font-semibold text-greyAD dark:text-gray-50 capitalize">Latest Orders</h3>
+          <Link className="text-primary font-bold" to={ADMIN_ALL_ORDERS}>
+            View All
+          </Link>
+        </div>
+      )}
       <div className="overflow-x-auto w-full border-t-2 border-gray-100 dark:border-nero">
         <table className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
           <thead>

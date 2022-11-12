@@ -6,12 +6,15 @@ import Loading from '@/components/loaders/Loading';
 import { useDispatch } from 'react-redux';
 import { /*deleteOrderStart,*/ updateOrderStatusStart } from '@/app/slices/orderSlice';
 import { ChangeEvent } from 'react';
+import Button from '@/components/UI/Button';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const orderStatus = ['delivered', 'pending', 'on going', 'canceled'];
 
 const OrderDetail = () => {
   const { id } = useParams();
   const orderId = typeof id === 'string' ? id : '';
+  const navigate = useNavigate();
   const { auth, isLoadingOrder } = useAppSelector((state) => ({
     auth: state.auth,
     isLoadingOrder: state.loadingState.isLoadingOrder,
@@ -34,24 +37,30 @@ const OrderDetail = () => {
       {isError && <p className="text-center font-bold">An Error Accured</p>}
       {order && (
         <div className="bg-white p-4 text-gray-900 dark:bg-gray-900 dark:text-white">
-          <div className="flex justify-end space-x-4">
-            <p className="font-bold self-center">update order status:</p>
-            <select
-              onChange={onStatusUpdate}
-              className="bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            >
-              <option selected>choose a status</option>
-              {orderStatus
-                .filter((status) => status !== order.orderStatus)
-                .map((status, index) => (
-                  <option key={`${status}-${index}`} value={status}>
-                    {status}
-                  </option>
-                ))}
-            </select>
-            {/* <Button onClick={onDeleteOrder} theme="btn-err">
+          <div className="flex justify-between">
+            <Button theme="btn-secondary-outline" onClick={() => navigate(-1)} className="flex items-center">
+              <ArrowLeftOutlined />
+              <span className="ml-1">Back</span>
+            </Button>
+            <div className="flex space-x-4">
+              <p className="font-bold self-center">update order status:</p>
+              <select
+                onChange={onStatusUpdate}
+                className="bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              >
+                <option defaultValue="">choose a status</option>
+                {orderStatus
+                  .filter((status) => status !== order.orderStatus)
+                  .map((status, index) => (
+                    <option key={`${status}-${index}`} value={status}>
+                      {status}
+                    </option>
+                  ))}
+              </select>
+              {/* <Button onClick={onDeleteOrder} theme="btn-err">
               Delete
             </Button> */}
+            </div>
           </div>
           <div className="border-b border-gray-200 py-5 dark:border-gray-700">
             <h2 className="flex w-full items-center justify-between   py-5 text-left font-medium text-gray-500 dark:border-gray-700 dark:text-gray-400">

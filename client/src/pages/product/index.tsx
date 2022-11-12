@@ -13,8 +13,10 @@ import { useDispatch } from 'react-redux';
 import { addToWishlist } from '@/app/slices/wishlistSlice';
 import { formCartItem, isEmptyObj } from '@/utils/helpers';
 import SearchError from '@/components/UI/SearchError';
+import useScrollTop from '@/utils/hooks/useScrollTop';
 
 const ProductDetails = () => {
+  useScrollTop();
   const { slug } = useParams();
   const { isError, isLoading, product } = useProduct(slug);
   const { products, auth } = useAppSelector((state) => ({ products: state.products, auth: state.auth }));

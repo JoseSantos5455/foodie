@@ -26,7 +26,7 @@ const AllReviews = () => {
           <h1 className="text-capitalize font-bold text-gray-600">There are no reviews</h1>
         </div>
       )}
-      <div className="max-w-md mx-auto">{reviews.length > 0 && <CustomerRating reviews={reviews} />}</div>
+      <div className="max-w-md mx-auto">{reviews.length > 0 && <CustomerRating showComment reviews={reviews} />}</div>
     </section>
   );
 };

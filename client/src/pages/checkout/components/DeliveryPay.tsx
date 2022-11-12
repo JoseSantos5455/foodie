@@ -2,20 +2,22 @@ import { LockOutlined } from '@ant-design/icons';
 import { addOrderStart } from '@/app/slices/orderSlice';
 import Button from '@/components/UI/Button';
 import useOrder from '@/utils/hooks/useOrder';
-import ConfirmationModal from '@/components/UI/ConfirmationModal';
-import { CustomDialog } from 'react-st-modal';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PURCHASE_HISTORY } from '@/utils/routes';
 
-const DeliveryPay = () => {
+const DeliveryPay = ({ orderSuccess }: { orderSuccess: boolean }) => {
   const { newOrder, token, dispatch } = useOrder();
+  const navigate = useNavigate();
 
   const onConfirm = () => {
     newOrder.paymentMethod = 'cash';
     dispatch(addOrderStart({ newOrder, token }));
-    CustomDialog(<ConfirmationModal message="Order Confirmed Successfully !" />, {
-      title: 'Confirm',
-      showCloseIcon: true,
-    });
   };
+
+  useEffect(() => {
+    if (orderSuccess) navigate(`/profile/${PURCHASE_HISTORY}`);
+  }, [orderSuccess]);
   return (
     <div className="flex justify-center align-center p-8">
       <div className="text-center">

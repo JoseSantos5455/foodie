@@ -11,7 +11,10 @@ import Loading from '@/components/loaders/Loading';
 const Payment = () => {
   const [paymentType, setPaymentType] = useState('cash');
 
-  const isLoadingOrder = useAppSelector((state) => state.loadingState.isLoadingOrder);
+  const { isLoadingOrder, orderSuccess } = useAppSelector((state) => ({
+    isLoadingOrder: state.loadingState.isLoadingOrder,
+    orderSuccess: state.globalState.orderSuccess,
+  }));
 
   return (
     <WithCart>
@@ -41,7 +44,7 @@ const Payment = () => {
           </div>
           {paymentType === 'card' && <CardForm />}
           {paymentType === 'paypal' && <PaypalForm />}
-          {paymentType === 'cash' && <DeliveryPay />}
+          {paymentType === 'cash' && <DeliveryPay orderSuccess={orderSuccess} />}
         </div>
       </section>
     </WithCart>

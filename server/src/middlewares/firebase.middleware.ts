@@ -12,8 +12,9 @@ import { refFromURL } from '@/helpers/utils';
 
 
 
-const formattedPrivateKey = PRIVATE_KEY.replace(/\\n/g, '\n');
+const formattedPrivateKey = PRIVATE_KEY?.replace(/\\n/g, '\n');
 
+console.log(PROJECT_ID, STORAGE_BUCKET)
 
 if (!apps.length) {
   initializeApp({
@@ -36,7 +37,7 @@ async function configureBucketCors() {
       },
     ]);
   }
-  
+
   configureBucketCors().catch(console.error);
 
 
@@ -60,19 +61,19 @@ export async function upload(req: MulterRequest, res: Response, next: NextFuncti
 
   try {
     const blob = bucket.file(req.file.originalname);
-    
+
     const blobStream = blob.createWriteStream();
 
     blobStream.on('err', (err) => next(err));
 
     blobStream.on('finish', () => {
-     
+
       const publicUrl = format(
         `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURI(blob.name)}?alt=media`,
       );
       req.file.firebaseUrl = publicUrl;
       next()
-     
+
     });
 
     blobStream.end(req.file.buffer);
@@ -87,7 +88,7 @@ export async function deleteFile(req: Request, res: Response, next : NextFunctio
     const {image } = await product.findOne({id}).select('image')
     const ref = refFromURL(image)
     await bucket.file(ref).delete()
-    
+
     return next()
   } catch (err) {
     next(err)

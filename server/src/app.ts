@@ -1,9 +1,11 @@
+import 'module-alias/register';
 import express from 'express';
 import connectDB from '@/config/db';
 import errorMiddleware from './middlewares/error.middleware';
 import cors from 'cors';
 import { NODE_ENV, ORIGIN, PORT } from './config';
 import { Routes } from './types/routes.interface';
+
 
 class App {
   public app: express.Application;

@@ -14,8 +14,6 @@ import { refFromURL } from '@/helpers/utils';
 
 const formattedPrivateKey = PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-console.log(PROJECT_ID, STORAGE_BUCKET)
-
 if (!apps.length) {
   initializeApp({
     credential: cert({

@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Document, Model, Schema, model, models } from 'mongoose';
 import { IOrder } from '@/types/order.interface';
 
 const ObjectId = Schema.Types.ObjectId;
@@ -53,4 +53,6 @@ const orderSchema = new Schema(
   },
 );
 
-export default model<IOrder>('Order', orderSchema);
+
+const OrderModel: Model<IOrder & Document> = models.Order || model<IOrder>('Order', orderSchema);
+export default OrderModel;

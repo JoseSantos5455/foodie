@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Document, Model, Schema, model, models } from 'mongoose';
 import { IReview } from '@/types/review.interface';
 const ObjectId = Schema.Types.ObjectId;
 
@@ -10,4 +10,6 @@ const reviewSchema = new Schema({
   userId: { type: ObjectId, ref: 'User' },
 });
 
-export default model<IReview>('Review', reviewSchema);
+
+const ReviewModel: Model<IReview & Document> = models.Review || model<IReview>('Review', reviewSchema);
+export default ReviewModel;

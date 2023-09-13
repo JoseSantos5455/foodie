@@ -1,5 +1,5 @@
 import { NextFunction } from 'express';
-import { Schema, model, ObjectId } from 'mongoose';
+import { Schema, model, ObjectId, Model, Document, models } from 'mongoose';
 import slugify from 'slugify';
 import { ICategory } from '@/types/category.interface';
 
@@ -33,4 +33,12 @@ categorySchema.pre('validate', function (this: ICategory, next: NextFunction) {
   next();
 });
 
-export default model<ICategory>('Category', categorySchema);
+let CategoryModel: Model<ICategory & Document>;
+
+if (!models.Category) {
+  CategoryModel = model<ICategory>('Category', categorySchema);
+} else {
+  CategoryModel = models.Category;
+}
+
+export default CategoryModel;

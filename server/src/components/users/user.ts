@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Document, Model, Schema, model, models } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { NextFunction } from 'express';
 import { IUser } from '@/types/user.interface';
@@ -55,4 +55,6 @@ userSchema.pre<IUser>('save', async function (next: NextFunction) {
   this.password = encryptPassword;
 });
 
-export default model<IUser>('User', userSchema);
+
+const UserModel: Model<IUser & Document> = models.User || model<IUser>('User', userSchema);
+export default UserModel;

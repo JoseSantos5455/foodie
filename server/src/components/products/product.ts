@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Document, Model, Schema, model, models } from 'mongoose';
 import slugify from 'slugify';
 import { IProduct } from '@/types/products.interface';
 
@@ -62,4 +62,6 @@ productSchema.virtual('reviews', {
   justOne: false,
 });
 
-export default model<IProduct>('Product', productSchema);
+
+const ProductModel: Model<IProduct & Document> = models.Product || model<IProduct>('Product', productSchema);
+export default ProductModel;

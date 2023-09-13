@@ -8,6 +8,7 @@ import { getCategoriesStart } from '@/app/slices/categorySlice';
 import CategoryNav from '@/components/UI/CategoryNav';
 import CategorySkeleton from '@/components/loaders/CategorySkeleton';
 import ProductSkeleton from '@/components/loaders/ProductSkeleton';
+import Carousel from './components/Carousel';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -40,13 +41,7 @@ const Home: React.FC = () => {
           {categories.length > 0 && <CategoryNav categories={categories} />}
         </div>
         <div className="lg:col-span-4 col-span-5">
-          <div className="h-72 p-2 hover:p-1 bg-white shadow-md">
-            <img
-              src="https://i.pinimg.com/originals/0b/39/14/0b3914ae30b768461468509a81e94d9c.jpg"
-              alt="banner"
-              className="object-cover h-full w-full"
-            />
-          </div>
+         <Carousel/>
         </div>
       </div>
       {isLoadingProducts && <ProductSkeleton />}

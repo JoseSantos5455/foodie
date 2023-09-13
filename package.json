@@ -4,19 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "cd server && yarn run start",
-    "client": "cd client && yarn run start",
-    "build-server": "cd server && yarn && yarn run build",
-    "build-client": "cd client && yarn && yarn run build",
-    "clientinstall": "yarn install --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "build": "concurrently \"yarn run build-server\" \"yarn run build-client\"",
-    "render-postbuild": "YARN_PRODUCTION=false yarn install --prefix client && yarn run build -- prefix client",
-    "serve": "cd server && yarn run serve"
+    "server": "cd server && npm run start",
+    "client": "cd client && npm run start",
+    "build-server": "cd server && npm && npm run build",
+    "build-client": "cd client && npm && npm run build",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "concurrently \"npm run build-server\" \"npm run build-client\"",
+    "render-postbuild": "npm_PRODUCTION=false npm install --prefix client && npm run build -- prefix client",
+    "serve": "cd server && npm run serve"
   },
   "devDependencies": {
     "concurrently": "^7.4.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^3.0.1"
   },
   "dependencies": {
     "history": "^5.2.0"

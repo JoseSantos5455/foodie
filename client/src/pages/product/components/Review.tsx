@@ -51,7 +51,7 @@ const Review = ({ review, userId, token }: ReviewProps) => {
           {review.userId === userId && (
             <div className="flex space-x-4 items-baseline">
               <DeleteFilled onClick={onReviewDel} className="text-red-500" />
-              <EditFilled className="text-blue-500" />
+              {/* <EditFilled className="text-blue-500" /> */}
             </div>
           )}
         </>

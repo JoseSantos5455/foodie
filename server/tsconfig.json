@@ -25,5 +25,5 @@
     "resolveJsonModule": true
   },
   "include": ["./src/**/*", ".env"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"]
 }

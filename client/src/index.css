@@ -70,3 +70,11 @@ html {
     opacity: 1;
   }
 }
+
+ .image-gallery-content {
+display: flex!important;
+}
+
+.image-gallery-thumbnails-wrapper{
+  order: -1!important;
+}

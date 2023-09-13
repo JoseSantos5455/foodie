@@ -16,8 +16,8 @@ export const ProductShowcase = ({ images, image }: ShowCaseProps) => {
     },
   ];
   return (
-    <div className="w-full h-full">
-      <ImageGallery showNav={false} showPlayButton={false} items={galleryImages} />
+    <div className="w-full h-full flex items-center justify-center">
+      <ImageGallery showNav={false} showFullscreenButton={false} showPlayButton={false} items={galleryImages} />
     </div>
   );
 };

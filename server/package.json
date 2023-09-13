@@ -7,7 +7,7 @@
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
     "serve": "node ./build/server.js",
-    "build": "./node_modules/.bin/rimraf ./build && ./node_modules/.bin/tsc --skipLibCheck",
+    "build": "rimraf ./build && tsc --skipLibCheck",
     "start": "nodemon --exec npx ts-node --files -r tsconfig-paths/register src/server.ts",
     "deploy": "tsc"
   },

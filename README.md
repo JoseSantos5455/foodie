@@ -9,7 +9,7 @@ To get started with the application, you will need to:
 1.  Clone this repository to your local machine:
 
 ```
-git clone https://github.com/ZinoChan/lapino.git
+git clone https://github.com/JoseSantos5455/lapino.git
 ```
 
 2.  Install dependencies:
